@@ -1,0 +1,710 @@
+﻿Column1;value;value_1;V1;V2;V3;V4;V5;V6;V7;V8;V9
+1;Gustav Herzog;SPD;Ausschuss Digitale Agenda;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA
+2;Lars Klingbeil;SPD;Ausschuss Digitale Agenda;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+3;Ulrich Lechte;FDP;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+4;Erwin Rüddel;CDU;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+5;Johannes Kahrs;SPD;Haushaltsausschuss;Ausschuss für Kultur und Medien;Rechnungsprüfungsausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA
+6;Dr. Kirsten Kappert-Gonther;DIE GRÜNEN;Ausschuss für Gesundheit;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+7;Daniela Ludwig;CSU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA;NA
+8;Niels Annen;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+9;Dr. Konstantin von Notz;DIE GRÜNEN;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+10;Dr. Eva Högl;SPD;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;Ausschuss für Kultur und Medien;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Sportausschuss;NA;NA;NA
+11;Anja Karliczek;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+12;Dr. Rolf Mützenich;SPD;Ausschuss für Menschenrechte und humanitäre Hilfe;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+13;Prof. Dr. Matthias Zimmer;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+14;Andrea Lindholz;CSU;Ausschuss für Inneres und Heimat;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Kultur und Medien;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA
+15;Marco Bülow;Parteilos;NA;NA;NA;NA;NA;NA;NA;NA;NA
+16;Kerstin Tack;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Gesundheit;NA;NA;NA;NA;NA
+17;Christian Schmidt;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+18;Paul Ziemiak;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+19;Thomas Heilmann;CDU;Ausschuss Digitale Agenda;Ausschuss für Arbeit und Soziales;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA
+20;Oliver Krischer;DIE GRÜNEN;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+21;Beatrix von Storch;AfD;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+22;Dr. Anton Friesen;AfD;Auswärtiger Ausschuss;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+23;Dr. Joachim Pfeiffer;CDU;Ausschuss für Wirtschaft und Energie;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+24;Frank Steffel;CDU;Sportausschuss;Auswärtiger Ausschuss;Finanzausschuss;NA;NA;NA;NA;NA;NA
+25;Svenja Stadler;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss Digitale Agenda;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+26;Peter Altmaier;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+27;Rudolf Henke;CDU;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA
+28;Martin Sichert;AfD;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA;NA
+29;Dr. Dietmar Bartsch;DIE LINKE;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+30;Dr. Jan-Marco Luczak;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+31;Marcus Weinberg;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+32;Antje Tillmann;CDU;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+33;Lothar Binding;SPD;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+34;Alexander Krauß;CDU;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+35;Kerstin Griese;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+36;Prof. Dr. Heribert Hirte;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für die Angelegenheiten der Europäischen Union;Finanzausschuss;NA;NA;NA;NA;NA;NA
+37;Hilde Mattheis;SPD;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+38;Katrin Helling-Plahr;FDP;Ausschuss für Gesundheit;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+39;Dr. Peter Tauber;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+40;Dr. Matthias Heider;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Wirtschaft und Energie;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA
+41;Dr. Astrid Mannes;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+42;Dirk Heidenblut;SPD;Ausschuss für Gesundheit;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA
+43;Stefan Liebich;DIE LINKE;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+44;Elisabeth Motschmann;CDU;Ausschuss für Kultur und Medien;Auswärtiger Ausschuss;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA
+45;Mark Hauptmann;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Gesundheit;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+46;Kirsten Lühmann;SPD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+47;Dr. Wiebke Esdar;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Finanzausschuss;Sportausschuss;NA;NA;NA;NA;NA;NA
+48;Dr. Fritz Felgentreu;SPD;Verteidigungsausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+49;Eckhard Pols;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA
+50;Uwe Schummer;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+51;Harald Weinberg;DIE LINKE;Ausschuss für Gesundheit;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+52;Sören Bartol;SPD;Ausschuss Digitale Agenda;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+53;Hansjörg Durz;CSU;Ausschuss Digitale Agenda;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA
+54;Michael Hennrich;CDU;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA;NA
+55;Gabriele Katzmarek;SPD;Ausschuss für Wirtschaft und Energie;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+56;Michael Thews;SPD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+57;Dr. Anja Weisgerber;CSU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+58;Elisabeth Winkelmeier-Becker;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+59;Ulrike Bahr;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+60;Silvia Breher;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+61;Dr. Matthias Miersch;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Tourismus;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA
+62;Fabio De Masi;DIE LINKE;Finanzausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+63;Dr. Edgar Franke;SPD;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA;NA
+64;Dagmar Freitag;SPD;Sportausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+65;Olav Gutting;CDU;Finanzausschuss;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+66;Britta Haßelmann;DIE GRÜNEN;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+67;Stephan Kühn;DIE GRÜNEN;Ausschuss für Verkehr und digitale Infrastruktur;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA
+68;Lisa Badum;DIE GRÜNEN;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+69;Dr. Johannes Fechner;SPD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+70;Anja Hajduk;DIE GRÜNEN;Haushaltsausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+71;Renate Künast;DIE GRÜNEN;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+72;Carsten Müller;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Wirtschaft und Energie;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA
+73;Carsten Schneider;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+74;Philipp Amthor;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+75;Matthias W. Birkwald;DIE LINKE;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA;NA
+76;Christine Buchholz;DIE LINKE;Verteidigungsausschuss;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+77;Monika Grütters;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+78;Frank Heinrich;CDU;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Arbeit und Soziales;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;NA;NA;NA;NA;NA
+79;Sylvia Kotting-Uhl;DIE GRÜNEN;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+80;Omid Nouripour;DIE GRÜNEN;Auswärtiger Ausschuss;Sportausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+81;Mahmut Özdemir;SPD;Ausschuss für Inneres und Heimat;Sportausschuss;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+82;Dr. Christoph Ploß;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+83;Dr. Nils Schmid;SPD;Auswärtiger Ausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+84;Bärbel Bas;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+85;Enak Ferlemann;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+86;Matthias Gastel;DIE GRÜNEN;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+87;Alexander Hoffmann;CSU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+88;Cem Özdemir;DIE GRÜNEN;Ausschuss für Verkehr und digitale Infrastruktur;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+89;Dr. Sascha Raabe;SPD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+90;Jürgen Trittin;DIE GRÜNEN;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+91;Dr. Andrew Ullmann;FDP;Ausschuss für Gesundheit;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+92;Heike Baehrens;SPD;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+93;Katja Dörner;DIE GRÜNEN;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+94;Prof. Dr. Axel Gehrke;AfD;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA;NA
+95;Cansel Kiziltepe;SPD;Finanzausschuss;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+96;Jan Korte;DIE LINKE;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA;NA;NA;NA
+97;Wolfgang Kubicki;FDP;NA;NA;NA;NA;NA;NA;NA;NA;NA
+98;Tabea Rößner;DIE GRÜNEN;Ausschuss für Recht und Verbraucherschutz;Ausschuss Digitale Agenda;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA
+99;Carsten Träger;SPD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+100;Timon Gremmels;SPD;Ausschuss für Wirtschaft und Energie;Petitionsausschuss;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+101;Ulla Jelpke;DIE LINKE;Ausschuss für Inneres und Heimat;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+102;Maria Klein-Schmeink;DIE GRÜNEN;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+103;Hansjörg Müller;AfD;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA;NA
+104;Ingrid Nestle;DIE GRÜNEN;Ausschuss für Wirtschaft und Energie;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+105;Sylvia Pantel;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Gesundheit;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA
+106;Jana Schimke;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+107;Patrick Schnieder;CDU;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+108;Stephan Stracke;CSU;Ausschuss für Arbeit und Soziales;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Gesundheit;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA
+109;Kai Wegner;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+110;Ingo Wellenreuther;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Inneres und Heimat;Sportausschuss;NA;NA;NA;NA;NA;NA
+111;Katharina Willkomm;FDP;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Gesundheit;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+112;Dr. Daniela De Ridder;SPD;Auswärtiger Ausschuss;Auswärtiger Ausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+113;Katja Keul;DIE GRÜNEN;Ausschuss für Recht und Verbraucherschutz;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+114;Stefan Müller;CSU;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Finanzausschuss;Sportausschuss;NA;NA;NA;NA;NA;NA
+115;Aydan Özoguz;SPD;Ausschuss für Menschenrechte und humanitäre Hilfe;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+116;Michael Roth;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+117;Dr. Wolfgang Stefinger;CSU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+118;Matern von Marschall;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+119;Doris Barnett;SPD;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Haushaltsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Auswärtiger Ausschuss;Rechnungsprüfungsausschuss;NA;NA
+120;Melanie Bernstein;CDU;Ausschuss für Kultur und Medien;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+121;Prof. Dr. Helge Braun;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+122;Gabriele Hiller-Ohm;SPD;Ausschuss für Tourismus;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA
+123;Ulrich Lange;CSU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+124;Bernhard Loos;CSU;Ausschuss für Wirtschaft und Energie;Petitionsausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA
+125;Klaus Mindrup;SPD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Finanzausschuss;NA;NA;NA;NA;NA;NA
+126;Dagmar Schmidt;SPD;Ausschuss für Arbeit und Soziales;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+127;Armin Schuster;CDU;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+128;Rainer Spiering;SPD;Ausschuss für Ernährung und Landwirtschaft;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+129;Ute Vogt;SPD;Ausschuss für Inneres und Heimat;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Recht und Verbraucherschutz;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA
+130;Annette Widmann-Mauz;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+131;Dorothee Bär;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+132;Leni Breymaier;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+133;Astrid Damerow;CDU;Ausschuss für Tourismus;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA
+134;Christoph de Vries;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Arbeit und Soziales;Finanzausschuss;NA;NA;NA;NA;NA;NA
+135;Bettina Hagedorn;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+136;Dr. Barbara Hendricks;SPD;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+137;Bettina Hoffmann;DIE GRÜNEN;Ausschuss für Gesundheit;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA
+138;Thomas Jarzombek;CDU;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA;NA
+139;Michael Kießling;CSU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+140;Elvan Korkmaz-Emre;SPD;Ausschuss Digitale Agenda;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA
+141;Dietmar Nietan;SPD;Auswärtiger Ausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+142;Dr. Manuela Rottmann;DIE GRÜNEN;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Gesundheit;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+143;Prof. Dr. Claudia Schmidtke;CDU;Ausschuss für Gesundheit;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+144;Stefan Schwartze;SPD;Petitionsausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+145;Martina Stamm-Fibich;SPD;Petitionsausschuss;Ausschuss für Gesundheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+146;Dr. Julia Verlinden;DIE GRÜNEN;Ausschuss für Wirtschaft und Energie;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+147;Daniela Wagner;DIE GRÜNEN;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Verkehr und digitale Infrastruktur;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+148;Dr. Jens Zimmermann;SPD;Ausschuss Digitale Agenda;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+149;Peter Aumer;CSU;Ausschuss für Arbeit und Soziales;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+150;Heike Brehmer;CDU;Ausschuss für Tourismus;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Finanzausschuss;NA;NA;NA;NA;NA
+151;Martin Burkert;SPD;Ausschuss für Tourismus;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+152;Sabine Dittmar;SPD;Ausschuss für Gesundheit;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+153;Hartmut Ebbing;FDP;Ausschuss für Kultur und Medien;Petitionsausschuss;Finanzausschuss;NA;NA;NA;NA;NA;NA
+154;Ursula Groden-Kranich;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA
+155;Florian Hahn;CSU;Ausschuss für die Angelegenheiten der Europäischen Union;Verteidigungsausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+156;Wolfgang Hellmich;SPD;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+157;Dr. Georg Kippels;CDU;Ausschuss für Gesundheit;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+158;Sven Lehmann;DIE GRÜNEN;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+159;Falko Mohrs;SPD;Ausschuss Digitale Agenda;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+160;Ulli Nissen;SPD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA
+161;Sarah Ryglewski;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+162;Johann Saathoff;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+163;Uwe Schmidt;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+164;Tino Sorge;CDU;Ausschuss für Gesundheit;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+165;Claudia Tausend;SPD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+166;Emmi Zeulner;CSU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;Verteidigungsausschuss;NA;NA;NA;NA;NA
+167;Andreas Bleck;AfD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Sportausschuss;NA;NA;NA;NA;NA;NA
+168;Karl-Heinz Brunner;SPD;Ausschuss für Recht und Verbraucherschutz;Verteidigungsausschuss;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Auswärtiger Ausschuss;NA;NA;NA;NA;NA
+169;Dr. Marco Buschmann;FDP;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+170;Anke Domscheit-Berg;DIE LINKE;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+171;Katharina Dröge;DIE GRÜNEN;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+172;Uwe Feiler;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+173;Sebastian Hartmann;SPD;Ausschuss für Inneres und Heimat;Ausschuss für Verkehr und digitale Infrastruktur;Finanzausschuss;NA;NA;NA;NA;NA;NA
+174;Frank Junge;SPD;Ausschuss für Tourismus;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+175;Daniela Kolbe;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Inneres und Heimat;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+176;Markus Kurth;DIE GRÜNEN;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+177;Siemtje Möller;SPD;Petitionsausschuss;Verteidigungsausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+178;Dr. Ernst Dieter Rossmann;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA;NA
+179;Dr. Wieland Schinnenburg;FDP;Ausschuss für Gesundheit;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+180;Mathias Stein;SPD;Ausschuss für Verkehr und digitale Infrastruktur;Finanzausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+181;Peter Weiß;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+182;Renata Alt;FDP;Auswärtiger Ausschuss;Ausschuss für Gesundheit;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+183;Bernhard Daldrup;SPD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+184;Marie-Luise Dött;CDU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA
+185;Otto Fricke;FDP;Haushaltsausschuss;Ausschuss für Recht und Verbraucherschutz;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+186;Michael Frieser;CSU;Ausschuss für Kultur und Medien;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA;NA
+187;Gunther Krichbaum;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+188;Helge Lindh;SPD;Ausschuss für Inneres und Heimat;Ausschuss für Kultur und Medien;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+189;Dietrich Monstadt;CDU;Ausschuss für Gesundheit;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+190;Beate Müller-Gemmeke;DIE GRÜNEN;Ausschuss für Arbeit und Soziales;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA
+191;Josephine Ortleb;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+192;Florian Post;SPD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Finanzausschuss;NA;NA;NA;NA;NA;NA
+193;Jörg Schneider;AfD;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+194;Thomas Silberhorn;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+195;Katrin Staffler;CSU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+196;Sonja Steffen;SPD;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Haushaltsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Gesundheit;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Petitionsausschuss;Rechnungsprüfungsausschuss
+197;Katja Suding;FDP;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA
+198;Marja-Liisa Völlers;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Gesundheit;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+199;Sabine Zimmermann;DIE LINKE;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Tourismus;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA
+200;Michael Brand;CDU;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Inneres und Heimat;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+201;Harald Ebner;DIE GRÜNEN;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+202;Thorsten Frei;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+203;Stefan Gelbhaar;DIE GRÜNEN;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA;NA
+204;Metin Hakverdi;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+205;Gabriela Heinrich;SPD;Ausschuss für Inneres und Heimat;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA
+206;Christian Jung;FDP;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+207;Anette Kramme;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+208;Nikolas Löbel;CDU;Auswärtiger Ausschuss;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+209;Katja Mast;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+210;Detlef Müller;SPD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA
+211;Frank Müller-Rosentritt;FDP;Auswärtiger Ausschuss;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+212;Petra Nicolaisen;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+213;Jan R. Nolte;AfD;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+214;Sören Pellmann;DIE LINKE;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Petitionsausschuss;Sportausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA
+215;Filiz Polat;DIE GRÜNEN;Ausschuss für Inneres und Heimat;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+216;Dennis Rohde;SPD;Haushaltsausschuss;Rechnungsprüfungsausschuss;Rechnungsprüfungsausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA
+217;Corinna Rüffer;DIE GRÜNEN;Petitionsausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Gesundheit;NA;NA;NA;NA;NA
+218;Rita Schwarzelühr-Sutter;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+219;Dr. Petra Sitte;DIE LINKE;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Haushaltsausschuss;Sportausschuss;NA;NA;NA;NA;NA
+220;Manfred Behrens;CDU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+221;Marc Bernhard;AfD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Arbeit und Soziales;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA
+222;Agnieszka Brugger;DIE GRÜNEN;Verteidigungsausschuss;Ausschuss für Inneres und Heimat;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+223;Joana Cotar;AfD;Ausschuss Digitale Agenda;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+224;Dr. Thomas Gebhart;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+225;Nicole Gohlke;DIE LINKE;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA;NA
+226;Dieter Janecek;DIE GRÜNEN;Ausschuss Digitale Agenda;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+227;Ronja Kemmer;CDU;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+228;Dr. Achim Kessler;DIE LINKE;Ausschuss für Gesundheit;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+229;Jutta Krellmann;DIE LINKE;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+230;Andreas Lämmel;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Tourismus;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+231;Karin Maag;CDU;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA
+232;Karsten Möring;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+233;Bettina Müller;SPD;Ausschuss für Gesundheit;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+234;Dr. Alexander S. Neu;DIE LINKE;Verteidigungsausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+235;Lothar Riebsamen;CDU;Ausschuss für Gesundheit;Ausschuss für Verkehr und digitale Infrastruktur;Finanzausschuss;NA;NA;NA;NA;NA;NA
+236;Dr. Martin Rosemann;SPD;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA;NA
+237;Bernd Rützel;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+238;Manuel Sarrazin;DIE GRÜNEN;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+239;Dr. Robby Schlund;AfD;Ausschuss für Gesundheit;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+240;Nadine Schön;CDU;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+241;Johannes Selle;CDU;Ausschuss für Kultur und Medien;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+242;Judith Skudelny;FDP;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+243;Dr. Dietlind Tiemann;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+244;Arnold Vaatz;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA
+245;Gökay Akbulut;DIE LINKE;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+246;Artur Auernhammer;CSU;Ausschuss für Ernährung und Landwirtschaft;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+247;Simone Barrientos;DIE LINKE;Ausschuss für Kultur und Medien;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+248;Norbert Brackmann;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+249;Dr. Carsten Brodesser;CDU;Finanzausschuss;Ausschuss für Menschenrechte und humanitäre Hilfe;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+250;Dr. Anna Christmann;DIE GRÜNEN;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+251;Britta Dassler;FDP;Sportausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA
+252;Klaus Ernst;DIE LINKE;Ausschuss für Wirtschaft und Energie;Ausschuss für Wirtschaft und Energie;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA
+253;Hermann Färber;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+254;Martin Gerster;SPD;Rechnungsprüfungsausschuss;Haushaltsausschuss;Ausschuss Digitale Agenda;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Inneres und Heimat;Rechnungsprüfungsausschuss;NA;NA;NA
+255;Angelika Glöckner;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA
+256;Alexander Graf Lambsdorff;FDP;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA
+257;Uli Grötsch;SPD;Ausschuss für Inneres und Heimat;Parlamentarisches Kontrollgremium (PKGr);NA;NA;NA;NA;NA;NA;NA
+258;Manfred Grund;CDU;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+259;Marc Henrichmann;CDU;Ausschuss für Inneres und Heimat;Petitionsausschuss;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA
+260;Reinhard Arnold Houben;FDP;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA;NA
+261;Volkmar Klein;CDU;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+262;Jens Koeppen;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+263;Patricia Lips;CDU;Haushaltsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+264;Christoph Matschie;SPD;Auswärtiger Ausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+265;Martin Patzelt;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+266;Lisa Paus;DIE GRÜNEN;Finanzausschuss;Ausschuss für Arbeit und Soziales;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+267;Sönke Rix;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+268;Tankred Schipanski;CDU;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Recht und Verbraucherschutz;Haushaltsausschuss;NA;NA;NA;NA
+269;René Springer;AfD;Ausschuss für Arbeit und Soziales;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+270;Markus Uhl;CDU;Ausschuss für Verkehr und digitale Infrastruktur;Unterausschuss zu Fragen der Europäischen Union;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+271;Andreas Wagner;DIE LINKE;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA;NA
+272;Marco Wanderwitz;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+273;Nicole Westig;FDP;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+274;Bernd Westphal;SPD;Ausschuss für Wirtschaft und Energie;Ausschuss für Wirtschaft und Energie;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+275;Pia Zimmermann;DIE LINKE;Ausschuss für Gesundheit;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+276;Luise Amtsberg;DIE GRÜNEN;Ausschuss für Inneres und Heimat;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+277;Danyal Bayaz;DIE GRÜNEN;Finanzausschuss;Ausschuss Digitale Agenda;Ausschuss für Wirtschaft und Energie;Haushaltsausschuss;NA;NA;NA;NA;NA
+278;Dr. Franziska Brantner;DIE GRÜNEN;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+279;Thomas Ehrhorn;AfD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Kultur und Medien;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA
+280;Yasmin Fahimi;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Arbeit und Soziales;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+281;Kai Gehring;DIE GRÜNEN;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Menschenrechte und humanitäre Hilfe;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+282;Albrecht Glaser;AfD;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+283;Christian Haase;CDU;Haushaltsausschuss;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+284;Dr. Roland Hartwig;AfD;Auswärtiger Ausschuss;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+285;Christian Hirte;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+286;Johannes Huber;AfD;Petitionsausschuss;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+287;Dr. Stefan Kaufmann;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+288;Axel Knoerig;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+289;Caren Lay;DIE LINKE;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+290;Dr. Katja Leikert;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Menschenrechte und humanitäre Hilfe;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+291;Niema Movassat;DIE LINKE;Ausschuss für Recht und Verbraucherschutz;Ausschuss Digitale Agenda;Ausschuss für Gesundheit;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA
+292;Florian Oßner;CSU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA
+293;Achim Post;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+294;Stefan Sauer;CDU;Ausschuss Digitale Agenda;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+295;Eva-Maria Schreiber;DIE LINKE;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+296;Michael Schrodi;SPD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+297;Swen Schulz;SPD;Haushaltsausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+298;Andreas Schwarz;SPD;Haushaltsausschuss;Rechnungsprüfungsausschuss;Finanzausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+299;Torsten Schweiger;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+300;Detlev Spangenberg;AfD;Ausschuss für Gesundheit;Petitionsausschuss;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA
+301;Dr. Marie-Agnes Strack-Zimmermann;FDP;Verteidigungsausschuss;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+302;Dr. Michael von Abercron;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+303;Canan Bayram;DIE GRÜNEN;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Inneres und Heimat;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+304;Jens Beeck;FDP;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+305;Dr. Lars Castellucci;SPD;Ausschuss für Inneres und Heimat;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+306;Jörg Cezanne;DIE LINKE;Ausschuss für Verkehr und digitale Infrastruktur;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+307;Dr. Marcus Faber;FDP;Verteidigungsausschuss;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA
+308;Dr. Maria Flachsbarth;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+309;Sylvia Gabelmann;DIE LINKE;Ausschuss für Gesundheit;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+310;Kay Gottschalk;AfD;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+311;Mark Helfrich;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA
+312;Thomas Hitschler;SPD;Ausschuss für Inneres und Heimat;Verteidigungsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+313;Elisabeth Kaiser;SPD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Inneres und Heimat;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+314;Ralf Kapschack;SPD;Ausschuss für Arbeit und Soziales;Petitionsausschuss;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+315;Kerstin Kassner;DIE LINKE;Ausschuss für Tourismus;Petitionsausschuss;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA
+316;Uwe Kekeritz;DIE GRÜNEN;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+317;Sven-Christian Kindler;DIE GRÜNEN;Haushaltsausschuss;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für die Angelegenheiten der Europäischen Union;Finanzausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+318;Daniela Kluckert;FDP;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA;NA
+319;Dr. Rainer Kraft;AfD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+320;Antje Lezius;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+321;Dr. Gesine Lötzsch;DIE LINKE;Haushaltsausschuss;Rechnungsprüfungsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+322;Oliver Luksic;FDP;Ausschuss für Verkehr und digitale Infrastruktur;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+323;Frank Magnitz;AfD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+324;Jens Maier;AfD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+325;Norbert Müller;DIE LINKE;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+326;Sebastian Münzenmaier;AfD;Ausschuss für Tourismus;Ausschuss für Tourismus;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA
+327;Michaela Noll;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+328;Petra Pau;DIE LINKE;Ausschuss für Inneres und Heimat;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA
+329;Victor Perli;DIE LINKE;Haushaltsausschuss;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+330;Paul Podolay;AfD;Ausschuss für Gesundheit;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+331;Sabine Poschmann;SPD;Ausschuss für Wirtschaft und Energie;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+332;Eckhardt Rehberg;CDU;Haushaltsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+333;Kordula Schulz-Asche;DIE GRÜNEN;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+334;Frank Schwabe;SPD;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+335;Matthias Seestern-Pauly;FDP;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+336;Karin Strenz;CDU;Verteidigungsausschuss;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+337;Michael Theurer;FDP;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Ausschuss für Tourismus;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA
+338;Alexander Throm;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA
+339;Markus Tressel;DIE GRÜNEN;Ausschuss für Tourismus;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+340;Volkmar Vogel;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA
+341;Klaus-Peter Willsch;CDU;Ausschuss für Wirtschaft und Energie;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+342;Stefan Zierke;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+343;Ingrid Arndt-Brauer;SPD;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+344;Dr. Reinhard Brandl;CSU;Haushaltsausschuss;Verteidigungsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+345;Karlheinz Busen;FDP;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+346;Ekin Deligöz;DIE GRÜNEN;Rechnungsprüfungsausschuss;Haushaltsausschuss;Ausschuss für Arbeit und Soziales;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+347;Esther Dilcher;SPD;Ausschuss für Recht und Verbraucherschutz;Haushaltsausschuss;Unterausschuss zu Fragen der Europäischen Union;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+348;Daniel Föst;FDP;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+349;Ingo Gädechens;CDU;Verteidigungsausschuss;Haushaltsausschuss;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für Tourismus;Petitionsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA
+350;Alois Gerig;CDU;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA;NA
+351;Markus Grübel;CDU;Auswärtiger Ausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+352;Rita Hagl-Kehl;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+353;Oliver Kaczmarek;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Arbeit und Soziales;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+354;Dr. Bärbel Kofler;SPD;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+355;Christian Kühn;DIE GRÜNEN;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+356;Christine Lambrecht;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+357;Dr. Karl A. Lamers;CDU;Verteidigungsausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+358;Ralph Lenkert;DIE LINKE;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+359;Cornelia Möhring;DIE LINKE;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+360;Amira Mohamed Ali;DIE LINKE;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+361;Roman Müller-Böhm;FDP;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+362;Henning Otte;CDU;Verteidigungsausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+363;Detlev Pilger;SPD;Sportausschuss;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+364;Florian Pronold;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+365;Stefan Rouenhoff;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+366;Axel Schäfer;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+367;Felix Schreiner;CDU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+368;Prof. Dr. Patrick Sensburg;CDU;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Recht und Verbraucherschutz;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA
+369;Johannes Steiniger;CDU;Finanzausschuss;Sportausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA
+370;Alexander Ulrich;DIE LINKE;Ausschuss für Wirtschaft und Energie;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+371;Oswin Veith;CDU;Verteidigungsausschuss;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+372;Kathrin Vogler;DIE LINKE;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+373;Ottmar von Holtz;DIE GRÜNEN;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+374;Dr. Johann Wadephul;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+375;Beate Walter-Rosenheimer;DIE GRÜNEN;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+376;Gerhard Zickenheiner;DIE GRÜNEN;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+377;Dagmar Ziegler;SPD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Gesundheit;Finanzausschuss;NA;NA;NA;NA;NA;NA
+378;Norbert Barthle;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+379;Sybille Benning;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+380;Saskia Esken;SPD;Ausschuss Digitale Agenda;Ausschuss für Inneres und Heimat;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA
+381;Susanne Ferschl;DIE LINKE;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+382;Michael Groß;SPD;Ausschuss für Recht und Verbraucherschutz;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Arbeit und Soziales;Petitionsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA
+383;Oliver Grundmann;CDU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+384;Fritz Güntzler;CDU;Finanzausschuss;Sportausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+385;Udo Hemmelgarn;AfD;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Gesundheit;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Auswärtiger Ausschuss;NA;NA;NA;NA;NA
+386;Josip Juratovic;SPD;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+387;Enrico Komning;AfD;Ausschuss für Wirtschaft und Energie;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+388;Monika Lazar;DIE GRÜNEN;Sportausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;Petitionsausschuss;NA;NA;NA;NA;NA
+389;Rüdiger Lucassen;AfD;Verteidigungsausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+390;Zaklin Nastic;DIE LINKE;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+391;Christian Petry;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+392;Stephan Protschka;AfD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+393;Josef Rief;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Ernährung und Landwirtschaft;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+394;Thomas Sattelberger;FDP;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+395;Dr. Klaus-Peter Schulze;CDU;Ausschuss für Tourismus;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+396;Frank Sitta;FDP;Ausschuss Digitale Agenda;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA
+397;Friedrich Straetmanns;DIE LINKE;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+398;Benjamin Strasser;FDP;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA;NA
+399;Margit Stumpp;DIE GRÜNEN;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+400;Dr. Kirsten Tackmann;DIE LINKE;Ausschuss für Ernährung und Landwirtschaft;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA
+401;Jessica Tatti;DIE LINKE;Ausschuss für Arbeit und Soziales;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+402;Hans-Jürgen Thies;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+403;Markus Töns;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+404;Uwe Witt;AfD;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+405;Dr. Bernd Baumann;AfD;Ausschuss für Inneres und Heimat;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+406;Dr. Jens Brandenburg;FDP;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+407;Michel Brandt;DIE LINKE;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+408;Gitta Connemann;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+409;Dr. Karamba Diaby;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+410;Christian Dürr;FDP;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+411;Dr. Astrid Freudenstein;CSU;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+412;Klaus-Dieter Gröhler;CDU;Haushaltsausschuss;Ausschuss für Inneres und Heimat;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+413;Dr. André Hahn;DIE LINKE;Sportausschuss;Ausschuss für Inneres und Heimat;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Tourismus;NA;NA;NA;NA;NA
+414;Marcus Held;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+415;Gyde Jensen;FDP;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA;NA
+416;Thomas Jurk;SPD;Haushaltsausschuss;Ausschuss für Wirtschaft und Energie;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+417;Dr.  Lukas Köhler;FDP;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+418;Dr. Silke Launert;CSU;Ausschuss für Familie, Senioren, Frauen und Jugend;Rechnungsprüfungsausschuss;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;Haushaltsausschuss;NA;NA;NA;NA
+419;Paul Lehrieder;CSU;Ausschuss für Tourismus;Petitionsausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA
+420;Sabine Leidig;DIE LINKE;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+421;Dr. Andreas Lenz;CSU;Ausschuss für Wirtschaft und Energie;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Finanzausschuss;NA;NA;NA;NA;NA;NA
+422;Gisela Manderla;CDU;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+423;Susanne Mittag;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+424;Sepp Müller;CDU;Finanzausschuss;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+425;Prof. Dr. Martin Neumann;FDP;Ausschuss für Wirtschaft und Energie;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+426;Gerold Otten;AfD;Verteidigungsausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+427;Frank Pasemann;AfD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Arbeit und Soziales;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA
+428;Tobias Matthias Peterka;AfD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+429;Tobias Pflüger;DIE LINKE;Verteidigungsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+430;Martin Rabanus;SPD;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA;NA
+431;Martina Renner;DIE LINKE;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+432;Bernd Reuther;FDP;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+433;Bernd Riexinger;DIE LINKE;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+434;Marianne Schieder;SPD;Ausschuss für Kultur und Medien;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+435;Udo Schiefner;SPD;Ausschuss für Verkehr und digitale Infrastruktur;Petitionsausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+436;Ulrike Schielke-Ziesing;AfD;Rechnungsprüfungsausschuss;Ausschuss für Arbeit und Soziales;Haushaltsausschuss;Rechnungsprüfungsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+437;Johannes Schraps;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+438;Ursula Schulte;SPD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+439;Uwe Schulz;AfD;Ausschuss Digitale Agenda;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+440;Sebastian Steineke;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA
+441;Wolfgang Strengmann-Kuhn;DIE GRÜNEN;Finanzausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA
+442;Dirk Wiese;SPD;Ausschuss für Ernährung und Landwirtschaft;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+443;Gülistan Yüksel;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+444;Nezahat Baradari;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+445;Dr. André Berghegger;CDU;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Inneres und Heimat;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+446;Christoph Bernstiel;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA
+447;Peter Bleser;CDU;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA;NA
+448;Heidrun Bluhm;DIE LINKE;Ausschuss für Ernährung und Landwirtschaft;Haushaltsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+449;Birke Bull-Bischoff;DIE LINKE;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+450;Thomas Hacker;FDP;Ausschuss für Kultur und Medien;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+451;Markus Herbrand;FDP;Finanzausschuss;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+452;Katja Hessel;FDP;Finanzausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+453;Dr. Gero Hocker;FDP;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+454;Christoph Hoffmann;FDP;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+455;Olaf in der Beek;FDP;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+456;Stefan Keuter;AfD;Finanzausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+457;Arno Klare;SPD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+458;Pascal Kober;FDP;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+459;Markus Koob;CDU;Auswärtiger Ausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+460;Dr. Günter Krings;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+461;Dr. Roy Kühne;CDU;Ausschuss für Gesundheit;Ausschuss Digitale Agenda;Auswärtiger Ausschuss;Sportausschuss;NA;NA;NA;NA;NA
+462;Steffi Lemke;DIE GRÜNEN;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA;NA
+463;Dr. Tobias Lindner;DIE GRÜNEN;Rechnungsprüfungsausschuss;Verteidigungsausschuss;Haushaltsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+464;Yvonne Magwas;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Kultur und Medien;Haushaltsausschuss;Petitionsausschuss;NA;NA;NA;NA;NA
+465;Caren Marks;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+466;Dr. Jürgen Martens;FDP;Ausschuss für Recht und Verbraucherschutz;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+467;Pascal Meiser;DIE LINKE;Ausschuss für Wirtschaft und Energie;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+468;Corinna Miazga;AfD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+469;Mario Mieruch;Die blaue Partei;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA;NA
+470;Dr. Irene Mihalic;DIE GRÜNEN;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+471;Claudia Müller;DIE GRÜNEN;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Wirtschaft und Energie;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+472;Alexander Müller;FDP;Verteidigungsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+473;Jürgen Pohl;AfD;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+474;Alexander Radwan;CSU;Auswärtiger Ausschuss;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+475;Andreas Rimkus;SPD;Ausschuss für Wirtschaft und Energie;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+476;René Röspel;SPD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+477;Ulle Schauws;DIE GRÜNEN;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+478;Peter Stein;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+479;Florian Toncar;FDP;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Finanzausschuss;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA
+480;Dr. Volker Ullrich;CSU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Inneres und Heimat;Auswärtiger Ausschuss;NA;NA;NA;NA;NA
+481;Kerstin Vieregge;CDU;Ausschuss für Tourismus;Verteidigungsausschuss;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA
+482;Gabi Weber;SPD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA;NA
+483;Katrin Werner;DIE LINKE;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA;NA
+484;Wolfgang Wiehle;AfD;Ausschuss für Verkehr und digitale Infrastruktur;Petitionsausschuss;Ausschuss Digitale Agenda;Haushaltsausschuss;NA;NA;NA;NA;NA
+485;Doris Achelwilm;DIE LINKE;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+486;Norbert Altenkamp;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Arbeit und Soziales;Petitionsausschuss;NA;NA;NA;NA;NA
+487;Nicole Bauer;FDP;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+488;Mario Brandenburg;FDP;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA
+489;Matthias Büttner;AfD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+490;Carl-Julius Cronenberg;FDP;Ausschuss für Arbeit und Soziales;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+491;Alexander Dobrindt;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+492;Brigitte Freihold;DIE LINKE;Ausschuss für Kultur und Medien;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+493;Waldemar Herdt;AfD;Ausschuss für Menschenrechte und humanitäre Hilfe;Auswärtiger Ausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+494;Ulla Ihnen;FDP;Rechnungsprüfungsausschuss;Haushaltsausschuss;Ausschuss für Recht und Verbraucherschutz;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+495;Rüdiger Kruse;CDU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Wirtschaft und Energie;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+496;Jens Lehmann;CDU;Petitionsausschuss;Verteidigungsausschuss;Sportausschuss;NA;NA;NA;NA;NA;NA
+497;Michael Link;FDP;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA
+498;Thomas Lutze;DIE LINKE;Ausschuss für Wirtschaft und Energie;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Tourismus;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA
+499;Andreas Mrosek;AfD;Ausschuss für Verkehr und digitale Infrastruktur;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+500;Dr. Frauke Petry;Die blaue Partei;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA;NA
+501;Hagen Reinhold;FDP;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Arbeit und Soziales;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+502;Ingrid Remmers;DIE LINKE;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+503;Roman Reusch;AfD;Ausschuss für Recht und Verbraucherschutz;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+504;Manfred Todtenhausen;FDP;Petitionsausschuss;Ausschuss für Wirtschaft und Energie;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA
+505;Johannes Vogel;FDP;Ausschuss für Arbeit und Soziales;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+506;Marian Wendt;CDU;Petitionsausschuss;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+507;Kai Whittaker;CDU;Ausschuss für Arbeit und Soziales;Ausschuss Digitale Agenda;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+508;Dr. Heiko Wildberg;AfD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Gesundheit;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+509;Margarete Bause;DIE GRÜNEN;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+510;Katrin Budde;SPD;Ausschuss für Kultur und Medien;Ausschuss für Recht und Verbraucherschutz;Verteidigungsausschuss;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA
+511;Kees de Vries;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+512;Dr. Diether Dehm;DIE LINKE;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+513;Bijan Djir-Sarai;FDP;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+514;Berengar Elsner von Gronow;AfD;Verteidigungsausschuss;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+515;Ulrich Freese;SPD;Ausschuss für Wirtschaft und Energie;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Gesundheit;Haushaltsausschuss;NA;NA;NA;NA;NA
+516;Dietmar Friedhoff;AfD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+517;Eckhard Gnodtke;CDU;Verteidigungsausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+518;Erhard Grundl;DIE GRÜNEN;Ausschuss für Kultur und Medien;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+519;Verena Hartmann;AfD;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+520;Torsten Herbst;FDP;Ausschuss für Verkehr und digitale Infrastruktur;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+521;Nicole Höchst;AfD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+522;Torbjörn Kartes;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+523;Konstantin Elias Kuhle;FDP;Ausschuss für Inneres und Heimat;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+524;Heiko Maas;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+525;Prof. Dr. Lothar Maier;AfD;Ausschuss für Recht und Verbraucherschutz;Auswärtiger Ausschuss;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+526;Stephan Mayer;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+527;Dr. Georg Nüßlein;CSU;Ausschuss für Gesundheit;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+528;Friedrich Ostendorff;DIE GRÜNEN;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+529;Dr. Stefan Ruppert;FDP;Haushaltsausschuss;Ausschuss für Inneres und Heimat;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+530;Dr. Nina Scheer;SPD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+531;Stefan Schmidt;DIE GRÜNEN;Ausschuss für Tourismus;Finanzausschuss;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA
+532;Dr. Frithjof Schmidt;DIE GRÜNEN;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+533;Björn Simon;CDU;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;NA;NA;NA;NA;NA;NA
+534;Albert Stegemann;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Arbeit und Soziales;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA
+535;Andreas Steier;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Wirtschaft und Energie;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+536;Kersten Steinke;DIE LINKE;Ausschuss für Ernährung und Landwirtschaft;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA
+537;Stephan Thomae;FDP;Parlamentarisches Kontrollgremium (PKGr);Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Petitionsausschuss;NA;NA;NA;NA
+538;Sandra Weeser;FDP;Ausschuss für Wirtschaft und Energie;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+539;Prof. Dr. Harald Weyel;AfD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+540;Oliver Wittke;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+541;Stephan Albani;CDU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Arbeit und Soziales;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA
+542;Peter Boehringer;AfD;Haushaltsausschuss;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für die Angelegenheiten der Europäischen Union;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+543;Jürgen Braun;AfD;Ausschuss für Menschenrechte und humanitäre Hilfe;Ausschuss für Gesundheit;Finanzausschuss;NA;NA;NA;NA;NA;NA
+544;Dr. Hans-Peter Friedrich;CSU;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA;NA
+545;Markus Frohnmaier;AfD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Menschenrechte und humanitäre Hilfe;NA;NA;NA;NA;NA;NA;NA
+546;Hans-Joachim Fuchtel;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+547;Lorenz Gösta Beutin;DIE LINKE;Ausschuss für Wirtschaft und Energie;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+548;Martin Hebner;AfD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Arbeit und Soziales;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+549;Ansgar Heveling;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Inneres und Heimat;Ausschuss für Kultur und Medien;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA
+550;Matthias Höhn;DIE LINKE;Verteidigungsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+551;Dr. Bruno Hollnagel;AfD;Finanzausschuss;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+552;Dr. Marc Jongen;AfD;Ausschuss für Kultur und Medien;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+553;Karsten Klein;FDP;Haushaltsausschuss;Rechnungsprüfungsausschuss;Rechnungsprüfungsausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA
+554;Norbert Kleinwächter;AfD;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Arbeit und Soziales;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA
+555;Steffen Kotré;AfD;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+556;Katharina Landgraf;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+557;Michael Leutert;DIE LINKE;Rechnungsprüfungsausschuss;Finanzausschuss;Haushaltsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+558;Isabel Mackensen;SPD;Petitionsausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+559;Christoph Meyer;FDP;Haushaltsausschuss;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+560;Dr. Mathias Middelberg;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;Finanzausschuss;NA;NA;NA;NA;NA;NA
+561;Markus Paschke;SPD;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA;NA
+562;Stephan Pilsinger;CSU;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Gesundheit;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+563;Albert Rupprecht;CSU;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA;NA
+564;Frank Schäffler;FDP;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+565;Thomas Seitz;AfD;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Recht und Verbraucherschutz;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+566;Helin Evrim Sommer;DIE LINKE;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+567;Dr. Dirk Spaniel;AfD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+568;Bettina Stark-Watzinger;FDP;Finanzausschuss;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+569;Nina Warken;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+570;Dr. Joe Weingarten;SPD;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA;NA
+571;Hubertus Zdebel;DIE LINKE;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+572;Grigorios Aggelidis;FDP;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+573;Christine Aschenberg-Dugnus;FDP;Ausschuss für Gesundheit;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+574;Thomas Bareiß;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+575;Maik Beermann;CDU;Ausschuss Digitale Agenda;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+576;Veronika Bellmann;CDU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+577;Peter Beyer;CDU;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+578;Marc Biadacz;CDU;Ausschuss für Arbeit und Soziales;Petitionsausschuss;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA
+579;Steffen Bilger;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+580;Dr. Eberhard Brecht;SPD;Verteidigungsausschuss;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+581;Sebastian Brehm;CSU;Ausschuss für Menschenrechte und humanitäre Hilfe;Finanzausschuss;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+582;Sandra Bubendorfer-Licht;FDP;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA;NA
+583;Marcus Bühl;AfD;Haushaltsausschuss;Ausschuss Digitale Agenda;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA;NA
+584;Petr Bystron;AfD;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+585;Tino Chrupalla;AfD;Ausschuss für Wirtschaft und Energie;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA
+586;Dr. Gottfried Curio;AfD;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+587;Sevim Dagdelen;DIE LINKE;Auswärtiger Ausschuss;Ausschuss für Inneres und Heimat;Ausschuss für Wirtschaft und Energie;Verteidigungsausschuss;NA;NA;NA;NA;NA
+588;Dr. Thomas de Maiziére;CDU;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+589;Michael Donth;CDU;Ausschuss für Tourismus;Ausschuss für Verkehr und digitale Infrastruktur;Haushaltsausschuss;NA;NA;NA;NA;NA;NA
+590;Siegbert Droese;AfD;Ausschuss für die Angelegenheiten der Europäischen Union;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+591;Thomas Erndl;CSU;Auswärtiger Ausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+592;Dr. Michael Espendiller;AfD;Ausschuss Digitale Agenda;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+593;Peter Felser;AfD;Ausschuss für Ernährung und Landwirtschaft;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+594;Axel Eduard Fischer;CDU;Rechnungsprüfungsausschuss;Haushaltsausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;Rechnungsprüfungsausschuss;NA;NA;NA
+595;Dr. Götz Frömming;AfD;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+596;Dr. Alexander Gauland;AfD;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+597;Michael Gerdes;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+598;Eberhard Gienger;CDU;Sportausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+599;Franziska Gminder;AfD;Ausschuss für Ernährung und Landwirtschaft;Finanzausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA
+600;Hermann Gröhe;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+601;Michael Grosse-Brömer;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+602;Astrid Grotelüschen;CDU;Ausschuss für Wirtschaft und Energie;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+603;Heike Hänsel;DIE LINKE;Auswärtiger Ausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+604;Armin Paul Hampel;AfD;Auswärtiger Ausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+605;Reginald Hanke;FDP;Sportausschuss;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA;NA
+606;Mariana Harder-Kühnel;AfD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+607;Jürgen Hardt;CDU;Auswärtiger Ausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+608;Matthias Hauer;CDU;Ausschuss Digitale Agenda;Finanzausschuss;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;Haushaltsausschuss;NA;NA;NA;NA
+609;Jochen Haug;AfD;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA;NA
+610;Peter Heidt;FDP;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Sportausschuss;NA;NA;NA;NA;NA;NA;NA
+611;Mechthild Heil;CDU;Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen;Ausschuss für Recht und Verbraucherschutz;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA
+612;Lars Herrmann;Parteilos;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+613;Martin Hess;AfD;Ausschuss für Inneres und Heimat;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+614;Prof. Dr. Heiko Heßenkemper;AfD;Ausschuss für Wirtschaft und Energie;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+615;Karsten Hilse;AfD;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+616;Manuel Höferlin;FDP;Ausschuss Digitale Agenda;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+617;Martin Hohmann;AfD;Haushaltsausschuss;Petitionsausschuss;Rechnungsprüfungsausschuss;Rechnungsprüfungsausschuss;Verteidigungsausschuss;NA;NA;NA;NA
+618;Leif-Erik Holm;AfD;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+619;Karl Holmeier;CSU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+620;Dr. Hendrik Hoppenstedt;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+621;Andrej Hunko;DIE LINKE;Ausschuss für die Angelegenheiten der Europäischen Union;Unterausschuss zu Fragen der Europäischen Union;Auswärtiger Ausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA
+622;Erich Irlstorfer;CSU;Ausschuss für Gesundheit;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA
+623;Hans-Jürgen Irmer;CDU;Ausschuss für Inneres und Heimat;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+624;Fabian Jacobi;AfD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+625;Ingmar Jung;CDU;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Sportausschuss;NA;NA;NA;NA;NA
+626;Andreas Jung;CDU;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+627;Uwe Kamann;Parteilos;Ausschuss Digitale Agenda;NA;NA;NA;NA;NA;NA;NA;NA
+628;Alois Karl;CSU;Unterausschuss zu Fragen der Europäischen Union;Haushaltsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+629;Volker Kauder;CDU;Ausschuss für Kultur und Medien;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+630;Jens Kestner;AfD;Verteidigungsausschuss;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+631;Marcel Klinge;FDP;Ausschuss für Tourismus;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+632;Jörn König;AfD;Sportausschuss;Ausschuss Digitale Agenda;Finanzausschuss;NA;NA;NA;NA;NA;NA
+633;Carsten Körber;CDU;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Wirtschaft und Energie;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+634;Carina Konrad;FDP;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA
+635;Michael Kuffer;CSU;Ausschuss für Inneres und Heimat;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;Ausschuss für Menschenrechte und humanitäre Hilfe;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA
+636;Alexander Kulitz;FDP;Auswärtiger Ausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+637;Christian Lange;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+638;Prof. Dr. Karl Lauterbach;SPD;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+639;Sylvia Lehmann;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA;NA
+640;Dr. Carsten Linnemann;CDU;Ausschuss für Tourismus;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+641;Saskia Ludwig;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+642;Dr. Birgit Malsack-Winkemann;AfD;Unterausschuss zu Fragen der Europäischen Union;Haushaltsausschuss;Finanzausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+643;Till Mansmann;FDP;Ausschuss für Arbeit und Soziales;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Finanzausschuss;NA;NA;NA;NA;NA;NA
+644;Andreas Mattfeldt;CDU;Haushaltsausschuss;Petitionsausschuss;Unterausschuss zu Fragen der Europäischen Union;Ausschuss für Wirtschaft und Energie;Rechnungsprüfungsausschuss;NA;NA;NA;NA
+645;Dr. Michael Meister;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+646;Dr. Angela Merkel;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+647;Jan Metzler;CDU;Ausschuss für Wirtschaft und Energie;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+648;Dr. h.c. Hans Michelbach;CSU;Finanzausschuss;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+649;Claudia Moll;SPD;Ausschuss für Gesundheit;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Tourismus;NA;NA;NA;NA;NA;NA
+650;Axel Müller;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Inneres und Heimat;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA;NA
+651;Dr. Gerd Müller;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+652;Michelle Müntefering;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
+653;Volker Münz;AfD;Haushaltsausschuss;Finanzausschuss;Petitionsausschuss;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+654;Christoph Neumann;AfD;Ausschuss für Tourismus;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+655;Dr. Andreas Nick;CDU;Auswärtiger Ausschuss;Ausschuss Digitale Agenda;Finanzausschuss;NA;NA;NA;NA;NA;NA
+656;Thomas Nord;DIE LINKE;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA;NA
+657;Ulrich Oehme;AfD;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Gesundheit;NA;NA;NA;NA;NA;NA;NA
+658;Wilfried Oellers;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+659;Josef Oster;CDU;Ausschuss für Inneres und Heimat;Petitionsausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+660;Ingrid Pahlmann;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+661;Thomas Rachel;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+662;Kerstin Radomski;CDU;Haushaltsausschuss;Rechnungsprüfungsausschuss;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+663;Alois Rainer;CSU;Ausschuss für Verkehr und digitale Infrastruktur;Haushaltsausschuss;Ausschuss für Ernährung und Landwirtschaft;Rechnungsprüfungsausschuss;NA;NA;NA;NA;NA
+664;Dr. Peter Ramsauer;CSU;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Ausschuss für Wirtschaft und Energie;Auswärtiger Ausschuss;NA;NA;NA;NA;NA
+665;Martin Reichardt;AfD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Bildung, Forschung u. Technikfolgenabschätzung;NA;NA;NA;NA;NA;NA;NA
+666;Martin E. Renner;AfD;Ausschuss für Kultur und Medien;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+667;Johannes Röring;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA;NA
+668;Dr. Norbert Röttgen;CDU;Auswärtiger Ausschuss;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+669;Claudia Roth;DIE GRÜNEN;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+670;Susann Rüthrich;SPD;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+671;Christian Sauter;FDP;Verteidigungsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;Petitionsausschuss;NA;NA;NA;NA;NA;NA
+672;Anita Schäfer;CDU;Verteidigungsausschuss;Ausschuss für die Angelegenheiten der Europäischen Union;NA;NA;NA;NA;NA;NA;NA
+673;Dr. Wolfgang Schäuble;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+674;Andreas Scheuer;CSU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+675;Ulla Schmidt;SPD;Ausschuss für Kultur und Medien;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+676;Charlotte Schneidewind-Hartnagel;DIE GRÜNEN;Ausschuss für Familie, Senioren, Frauen und Jugend;NA;NA;NA;NA;NA;NA;NA;NA
+677;Martin Schulz;SPD;Ausschuss für die Angelegenheiten der Europäischen Union;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA
+678;Detlef Seif;CDU;Ausschuss für die Angelegenheiten der Europäischen Union;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA;NA
+679;Reinhold Sendker;CDU;Ausschuss für Verkehr und digitale Infrastruktur;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit;NA;NA;NA;NA;NA;NA
+680;Dr. Hermann Otto Solms;FDP;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+681;Jens Spahn;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+682;Dieter Stier;CDU;Sportausschuss;Ausschuss für Ernährung und Landwirtschaft;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA
+683;Gero Storjohann;CDU;Petitionsausschuss;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA;NA
+684;Max Straubinger;CSU;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+685;Dr. Hermann-Josef Tebroke;CDU;Finanzausschuss;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Verkehr und digitale Infrastruktur;NA;NA;NA;NA;NA;NA
+686;Linda Teuteberg;FDP;Ausschuss für Inneres und Heimat;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA
+687;Gerald Ullrich;FDP;Ausschuss für die Angelegenheiten der Europäischen Union;Petitionsausschuss;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+688;Dirk Vöpel;SPD;Verteidigungsausschuss;Ausschuss für Arbeit und Soziales;Ausschuss für Inneres und Heimat;NA;NA;NA;NA;NA;NA
+689;Hans-Georg von der Marwitz;CDU;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung;NA;NA;NA;NA;NA;NA;NA
+690;Wilhelm von Gottberg;AfD;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA;NA
+691;Christian von Stetten;CDU;Finanzausschuss;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA
+692;Dr. Sahra Wagenknecht;DIE LINKE;Ausschuss für Wirtschaft und Energie;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+693;Alice Weidel;AfD;Haushaltsausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+694;Albert Weiler;CDU;Ausschuss für Arbeit und Soziales;Ausschuss für Ernährung und Landwirtschaft;NA;NA;NA;NA;NA;NA;NA
+695;Sabine Weiss;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+696;Bettina Wiesmann;CDU;Ausschuss für Familie, Senioren, Frauen und Jugend;Finanzausschuss;NA;NA;NA;NA;NA;NA;NA
+697;Dr. Christian Wirth;AfD;Ausschuss für Inneres und Heimat;Ausschuss für Ernährung und Landwirtschaft;Ausschuss für Gesundheit;Ausschuss für Recht und Verbraucherschutz;NA;NA;NA;NA;NA
+698;Stephan Brandner;AfD;Ausschuss für Recht und Verbraucherschutz;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA;NA;NA
+699;Christian Lindner;FDP;NA;NA;NA;NA;NA;NA;NA;NA;NA
+700;Dr. Gregor Gysi;DIE LINKE;Auswärtiger Ausschuss;NA;NA;NA;NA;NA;NA;NA;NA
+701;Katrin Göring-Eckardt;DIE GRÜNEN;NA;NA;NA;NA;NA;NA;NA;NA;NA
+702;Annalena Baerbock;DIE GRÜNEN;Ausschuss für Familie, Senioren, Frauen und Jugend;Ausschuss für Wirtschaft und Energie;NA;NA;NA;NA;NA;NA;NA
+703;Thomas Oppermann;SPD;Auswärtiger Ausschuss;Ausschuss für Kultur und Medien;NA;NA;NA;NA;NA;NA;NA
+704;Katja Kipping;DIE LINKE;Ausschuss für Arbeit und Soziales;NA;NA;NA;NA;NA;NA;NA;NA
+705;Dr. Anton Hofreiter;DIE GRÜNEN;NA;NA;NA;NA;NA;NA;NA;NA;NA
+706;Roderich Kiesewetter;CDU;Auswärtiger Ausschuss;Verteidigungsausschuss;NA;NA;NA;NA;NA;NA;NA
+707;Dr. Matthias Bartke;SPD;Ausschuss für Arbeit und Soziales;Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung;NA;NA;NA;NA;NA;NA;NA
+708;Ralph Brinkhaus;CDU;NA;NA;NA;NA;NA;NA;NA;NA;NA
+709;Hubertus Heil;SPD;NA;NA;NA;NA;NA;NA;NA;NA;NA
