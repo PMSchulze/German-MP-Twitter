@@ -9,18 +9,11 @@ Created on Sun Apr  5 16:12:29 2020
 import GetOldTweets3 as got
 import pandas as pd
 import pickle as pickle
-import re
 
 #-----------------------------------------------------------------------------
 ## import Bundestag data
-with open(r'/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/abg_dict.pickle',\
-          'rb') as handle:
-    abg_dict = pickle.load(handle)
-
-# convert into dataframe, add headers
-bt_data = pd.DataFrame(abg_dict).transpose()
-bt_data.columns = ['Name', 'Partei', 'Wahlart', 'Bundesland', 'Wahlkreis', \
-                  'Ausschuesse', 'Soziale Medien', 'Biografie']
+with open(r'/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/abg_df.pickle', 'rb') as handle:
+    bt_data = pickle.load(handle)
 
 # create dataframe with columns 'Name' and 'Twitter Url'
 def get_twitter_url(x):
@@ -42,11 +35,11 @@ def get_twitter_username(url):
         return('')
 
 # function to download tweets for a specific user 
-def download_tweets(username):
+def download_tweets(username, since, until):
     print(f"Downloading for {username}")
     tweetCriteria = got.manager.TweetCriteria().setUsername(username)\
-                                               .setSince("2017-09-24")\
-                                               .setUntil("2020-04-07")
+                                               .setSince(since)\
+                                               .setUntil(until)
 
     tweets = got.manager.TweetManager.getTweets(tweetCriteria)
     df = pd.DataFrame([tweet.__dict__ for tweet in tweets])
@@ -59,5 +52,6 @@ twitter_account = pd.concat([twitter_account, twitter_usernames], axis = 1)
     
 res = pd.DataFrame()
 for username in twitter_usernames[0:3]:
-    res = pd.concat([res, download_tweets(username)])
+    res = pd.concat([res, download_tweets(username, since = "2017-09-24", \
+                                          until = "2020-04-08")])
 #-----------------------------------------------------------------------------
