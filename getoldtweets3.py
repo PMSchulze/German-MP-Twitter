@@ -10,9 +10,13 @@ import GetOldTweets3 as got
 import pandas as pd
 import pickle as pickle
 
+# set local working directory
+# import os
+# os.chdir('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/')
+
 #-----------------------------------------------------------------------------
 ## import Bundestag data
-with open(r'/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/abg_df.pickle', 'rb') as handle:
+with open('abg_df.pickle', 'rb') as handle:
     bt_data = pickle.load(handle)
 
 # create dataframe with columns 'Name' and 'Twitter Url'
