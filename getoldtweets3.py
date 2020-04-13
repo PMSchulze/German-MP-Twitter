@@ -11,8 +11,8 @@ import pandas as pd
 import pickle as pickle
 
 # set local working directory
-import os
-os.chdir('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/')
+# import os
+# os.chdir('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/')
 
 #-----------------------------------------------------------------------------
 ## import Bundestag data
@@ -65,3 +65,5 @@ for username in twitter_account.iloc[0:3, 2]:
         
 # however, some tweets appear to be missing (and some rows are empty)
 # res = download_tweets('realDonaldTrump',since = "2020-04-10", until = "2020-04-14")
+
+# furthermore, retweets are not downloaded, in contrast to tweepy
