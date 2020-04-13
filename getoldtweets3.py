@@ -11,8 +11,8 @@ import pandas as pd
 import pickle as pickle
 
 # set local working directory
-# import os
-# os.chdir('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/')
+import os
+os.chdir('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/')
 
 #-----------------------------------------------------------------------------
 ## import Bundestag data
@@ -27,7 +27,7 @@ def get_twitter_url(x):
         return ''
 url = bt_data['Soziale Medien'].apply(get_twitter_url)
 twitter_account = pd.concat([bt_data['Name'], url], axis = 1, \
-                            keys = ['Name','Url'])
+                            keys = ['name','url'])
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
@@ -50,12 +50,18 @@ def download_tweets(username, since, until):
     return(df)
 
 
-twitter_usernames = twitter_account['Url'].apply(get_twitter_username)
-twitter_usernames.rename("Username", inplace = True)
+twitter_usernames = twitter_account['url'].apply(get_twitter_username)
+twitter_usernames.rename("username", inplace = True)
 twitter_account = pd.concat([twitter_account, twitter_usernames], axis = 1)
     
 res = pd.DataFrame()
-for username in twitter_usernames[0:3]:
+for username in twitter_account.iloc[0:3, 2]:
     res = pd.concat([res, download_tweets(username, since = "2017-09-24", \
                                           until = "2020-04-08")])
 #-----------------------------------------------------------------------------
+
+# possible to download more than 3200 tweets:
+# res = download_tweets('realDonaldTrump',since = "2018-09-24", until = "2020-04-08")
+        
+# however, some tweets appear to be missing (and some rows are empty)
+# res = download_tweets('realDonaldTrump',since = "2020-04-10", until = "2020-04-14")
