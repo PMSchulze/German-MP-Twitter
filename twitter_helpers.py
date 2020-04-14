@@ -49,6 +49,7 @@ def download_tweets_got3(username, since, until):
     return(df)
 
 def download_tweets_tweepy(username):
+    print(f"Downloading for {username}")
     #initialize a list to hold all the tweepy Tweets
     alltweets = []
 	
