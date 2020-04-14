@@ -37,7 +37,8 @@ def get_twitter_username(url):
     else: 
         return('')
 
-# function to download tweets for a specific user 
+# function to download tweets for a specific user with:        
+## - GetOldTweets3
 def download_tweets_got3(username, since, until):
     print(f"Downloading for {username}")
     tweetCriteria = got.manager.TweetCriteria().setUsername(username)\
@@ -48,6 +49,7 @@ def download_tweets_got3(username, since, until):
     df = pd.DataFrame([tweet.__dict__ for tweet in tweets])
     return(df)
 
+# - Tweepy
 def download_tweets_tweepy(username):
     print(f"Downloading for {username}")
     #initialize a list to hold all the tweepy Tweets
@@ -73,7 +75,9 @@ def download_tweets_tweepy(username):
 		#update the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
 			
-	#transform the tweepy tweets into a 2D array that will populate the csv	
+	#convert output to pandas DataFrame	
     outtweets = pd.DataFrame([tweet.__dict__ for tweet in alltweets])
-    #outtweets = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in alltweets]
+    #add column with username
+    outtweets.insert(0, 'username', username)
+
     return(outtweets)
