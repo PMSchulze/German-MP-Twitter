@@ -48,34 +48,33 @@ def download_tweets_got3(username, since, until):
     tweets = got.manager.TweetManager.getTweets(tweetCriteria)
     df = pd.DataFrame([tweet.__dict__ for tweet in tweets])
     return(df)
-
-# - Tweepy
+## - Tweepy
 def download_tweets_tweepy(username):
     print(f"Downloading for {username}")
     #initialize a list to hold all the tweepy Tweets
     alltweets = []
 	
-	#make initial request for most recent tweets (200 is the maximum allowed count)
+    #make initial request for most recent tweets (200 is the maximum allowed count)
     new_tweets = api.user_timeline(screen_name = username,count=200,tweet_mode="extended")
 	
-	#save most recent tweets
+    #save most recent tweets
     alltweets.extend(new_tweets)
 	
-	#save the id of the oldest tweet less one
+    #save the id of the oldest tweet less one
     oldest = alltweets[-1].id - 1
 	
-	#keep grabbing tweets until there are no tweets left to grab
+    #keep grabbing tweets until there are no tweets left to grab
     while len(new_tweets) > 0:		
-		#all subsiquent requests use the max_id param to prevent duplicates
+        #all subsiquent requests use the max_id param to prevent duplicates
         new_tweets = api.user_timeline(screen_name = username,count=200,max_id=oldest,tweet_mode="extended")
 		
-		#save most recent tweets
+        #save most recent tweets
         alltweets.extend(new_tweets)
 		
-		#update the id of the oldest tweet less one
+        #update the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
 			
-	#convert output to pandas DataFrame	
+    #convert output to pandas DataFrame	
     outtweets = pd.DataFrame([tweet.__dict__ for tweet in alltweets])
     #add column with username
     outtweets.insert(0, 'username', username)
