@@ -20,24 +20,9 @@ twitter_keys = {
 #Setup access to API
 auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
 auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
-
 api = tweepy.API(auth)
 
-# create dataframe with columns 'Name' and 'Twitter Url'
-def get_twitter_url(x):
-    if 'Twitter' in x:
-        return x['Twitter']
-    else:
-        return ''
-
-# function to get twitter usernames from twitter url
-def get_twitter_username(url):
-    if url:
-        return(url.split('/')[3].split('?')[0])
-    else: 
-        return('')
-
-# function to download tweets for a specific user with:        
+# function to download tweets for a specific user with:       
 ## - GetOldTweets3
 def download_tweets_got3(username, since, until):
     print(f"Downloading for {username}")
