@@ -29,7 +29,7 @@ twitter_account.reset_index(drop = True, inplace = True)
 
 # download most recent tweets using tweepy (at most 3200 tweets per user)
 tweepy_df = pd.DataFrame()
-for username in twitter_account['usernames']:
+for username in twitter_account['username']:
     tweepy_df = pd.concat([tweepy_df, th.download_tweets_tweepy(username)])
 # add column 'name'
 tweepy_df = twitter_account.merge(tweepy_df, on = 'username')

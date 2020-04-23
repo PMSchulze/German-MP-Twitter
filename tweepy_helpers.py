@@ -66,7 +66,7 @@ def download_tweets_tweepy(username):
         outtweets['is_retweet'] = outtweets['retweeted_status'].apply(is_rewteet)
         #retrieve full_text if tweet is retweet
         outtweets['retweet_full_text'] = [outtweets['retweeted_status'][i].full_text \
-                                  if is_rewteet(outtweets['retweeted_status'][i]) \
+                                  if outtweets['is_retweet'][i] \
                                       else '' for i in range(outtweets.shape[0])]
         #retrieve number of followers of user
         outtweets['followers_count'] = [x.followers_count for x in outtweets['author']]
