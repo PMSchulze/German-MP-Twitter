@@ -20,7 +20,7 @@ twitter_keys = {
 #Setup access to API
 auth = tweepy.OAuthHandler(twitter_keys['consumer_key'], twitter_keys['consumer_secret'])
 auth.set_access_token(twitter_keys['access_token_key'], twitter_keys['access_token_secret'])
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 
 # function to download tweets for a specific user with:       
 ## - GetOldTweets3
@@ -35,33 +35,38 @@ def download_tweets_got3(username, since, until):
     return(df)
 ## - Tweepy
 def download_tweets_tweepy(username):
-    print(f"Downloading for {username}")
     #initialize a list to hold all the tweepy Tweets
     alltweets = []
+    try:	
+        #make initial request for most recent tweets (200 is the maximum allowed count)
+        new_tweets = api.user_timeline(screen_name = username,count=200,tweet_mode="extended")
 	
-    #make initial request for most recent tweets (200 is the maximum allowed count)
-    new_tweets = api.user_timeline(screen_name = username,count=200,tweet_mode="extended")
-	
-    #save most recent tweets
-    alltweets.extend(new_tweets)
-	
-    #save the id of the oldest tweet less one
-    oldest = alltweets[-1].id - 1
-	
-    #keep grabbing tweets until there are no tweets left to grab
-    while len(new_tweets) > 0:		
-        #all subsiquent requests use the max_id param to prevent duplicates
-        new_tweets = api.user_timeline(screen_name = username,count=200,max_id=oldest,tweet_mode="extended")
-		
         #save most recent tweets
         alltweets.extend(new_tweets)
-		
-        #update the id of the oldest tweet less one
+	
+        #save the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
-			
-    #convert output to pandas DataFrame	
-    outtweets = pd.DataFrame([tweet.__dict__ for tweet in alltweets])
-    #add column with username
-    outtweets.insert(0, 'username', username)
-
+	
+        #keep grabbing tweets until there are no tweets left to grab
+        while len(new_tweets) > 0:		
+            #all subsiquent requests use the max_id param to prevent duplicates
+            new_tweets = api.user_timeline(screen_name = username,count=200,max_id=oldest,tweet_mode="extended")
+		
+            #save most recent tweets
+            alltweets.extend(new_tweets)
+		
+            #update the id of the oldest tweet less one
+            oldest = alltweets[-1].id - 1
+        #convert output to pandas DataFrame	
+        outtweets = pd.DataFrame([tweet.__dict__ for tweet in alltweets])
+        #add boolean column for availability
+        outtweets.insert(0, 'available', True)
+        #add column with username
+        outtweets.insert(0, 'username', username)
+    except:
+        print('data for user %s cannot be downloaded' %username)
+        #if user cannot be downloaded return df with two columns:
+        #username=username, available='False'
+        outtweets = pd.DataFrame([username], columns=['username'])
+        outtweets.insert(1, 'available', False)
     return(outtweets)
