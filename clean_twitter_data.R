@@ -12,11 +12,11 @@ tweepy_df <- read_delim('../programming/tweepy_df_test.csv', delim =',')
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
 # keep only relevant columns and rename columns (capitalized + in german language)
-(tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>% 
+tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>% 
     filter(available == TRUE, is_retweet == 0) %>% 
     select(c('name','username','full_text','followers_count')) %>% 
     rename(Name = name, Twitter_Username = username, 
-           Tweets = full_text, Anzahl_Follower = followers_count))
+           Tweets = full_text, Anzahl_Follower = followers_count)
 # aggregate data, i.e. concatenate all tweets of each person
 (tweepy_docs_df_test <- tweepy_df %>% group_by(Name) %>% 
   mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
@@ -43,25 +43,58 @@ drop_vars <- c("Ausschuesse","Biografie","Land","Wahlkreis-Name","Bevölkerung a
                 "Zensus 2011, Bevölkerung nach Migrationshintergrund am 09.05.2011 - ohne Migrationshintergrund (%)",
                 "Fußnoten", "Bundesland-Nr.", "CDU", "SPD", "Die Linke", "Bündnis 90/Die Grünen",
                 "CSU", "FDP", "AFD", "CDU/CSU")
-all_data <- all_data %>% select(-drop_vars)
+(all_data <- all_data %>% select(-drop_vars))
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Preprocessing of documents with the stm package -----------------------
 # ----------------------------------------------------------------------------------------------
+
 library(stm)
 library(tm)
 # perform stemming (reduce words to their root form), drop punctuation and remove stop words
-processed <- textProcessor(all_data$Tweets_Dokument, metadata = all_data[,-3])
+processed <- stm::textProcessor(all_data$Tweets_Dokument, metadata = all_data[,-3])
 str(processed)
 # drop all words below word threshold. if e.g. word threshold is 1 (default), all words
 # that appear less than 1 time in every document are dropped
-out <- prepDocuments(processed$documents, processed$vocab, processed$meta)
+out <- stm::prepDocuments(processed$documents, processed$vocab, processed$meta)
 # for every document, freqeuency for each word that word appears in this document
 docs <- out$documents
 # actual words that the indices in docs represent
 vocab <- out$vocab
 # metadata
 meta <- out$meta
+
 # ----------------------------------------------------------------------------------------------
-# preprocessing of documents with the quanteda package
+# ------------------ Preprocessing of documents with the quanteda package ----------------------
+# ----------------------------------------------------------------------------------------------
+
 library(quanteda)
+# build corpus, which by default organizes documents into types, tokens and sentences
+twitter_corpus <- corpus(all_data$Tweets_Dokument)
+summary(twitter_corpus)
+texts(twitter_corpus)[2]
+# build document-feature matrix, where a feature corresponds to a word in our case
+# stopwords, numbers and punctuation are removed and word stemming is performed
+# each word is indexed and frequency per document assigned
+twitter_dfm <- dfm(twitter_corpus, remove = stopwords("german"), remove_numbers = TRUE, 
+              stem = TRUE, remove_punct = TRUE)
+# remove all words that appear in less than at least 2 documents
+twitter_dfm <- dfm_trim(twitter_dfm, min_docfreq = 2)
+# preprocessed word stems that are left
+twitter_dfm@Dimnames$features
+# top (i.e. most frequent) word stems
+topfeatures(twitter_dfm, 20)
+# convert to stm object (this reduces memory use when fitting stm; see ?stm)
+twitter_preprocessed <- convert(twitter_dfm, to = "stm")
+# extract documents and vocabulary
+docs <- twitter_preprocessed$documents
+vocab <-  twitter_preprocessed$vocab
+# metadata is best assigned separately in the end
+meta <- all_data[,-3]
+
+# ----------------------------------------------------------------------------------------------
+# ------------------------------------ Fitting the stm -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+mod <- stm(documents = docs, vocab = vocab, K=20, prevalence =~ Partei + Geburtsjahr,
+           max.em.its = 75, data = meta, init.type = "Spectral")
