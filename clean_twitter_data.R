@@ -33,9 +33,17 @@ problems(tweepy_df)
 abg_df <- read_delim('abg_df.csv', delim =',') %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
 se_df <- read_delim('se_df.csv', delim =',') %>% 
-  rename(Wahlkreis_Nr = `Wahlkreis-Nr.`)
+  rename(Wahlkreis_Nr = `Wahlkreis-Nr.`) %>% select(-Bundesland)
 # merge data
-all_data <- tweepy_docs_df_test %>% inner_join(abg_df) %>% left_join(se_df)
+all_data <- tweepy_docs_df_test %>% inner_join(abg_df) %>% left_join(se_df, by = "Wahlkreis_Nr")
+# drop variables that are completely expressed by other variables (e.g. Bevölkerung Deutsche 
+# expressed by Bevölkerung mit Migratioshintergrund), and variables that are not easily 
+# exploitable (e.g. Biografie) or uninformative (e.g. Fußnoten)
+drop_vars <- c("Ausschuesse","Biografie","Land","Wahlkreis-Name","Bevölkerung am 31.12.2015 - Deutsche (in 1000)", 
+                "Zensus 2011, Bevölkerung nach Migrationshintergrund am 09.05.2011 - ohne Migrationshintergrund (%)",
+                "Fußnoten", "Bundesland-Nr.", "CDU", "SPD", "Die Linke", "Bündnis 90/Die Grünen",
+                "CSU", "FDP", "AFD", "CDU/CSU")
+all_data <- all_data %>% select(-drop_vars)
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Preprocessing of documents with the stm package -----------------------
@@ -43,7 +51,7 @@ all_data <- tweepy_docs_df_test %>% inner_join(abg_df) %>% left_join(se_df)
 library(stm)
 library(tm)
 # perform stemming (reduce words to their root form), drop punctuation and remove stop words
-processed <- textProcessor(tweepy_docs_df_test$all_tweets, metadata = tweepy_docs_df_test)
+processed <- textProcessor(all_data$Tweets_Dokument, metadata = all_data[,-3])
 str(processed)
 # drop all words below word threshold. if e.g. word threshold is 1 (default), all words
 # that appear less than 1 time in every document are dropped
