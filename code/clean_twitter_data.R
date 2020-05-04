@@ -106,7 +106,7 @@ dfmatrix@Dimnames$features <- dfmatrix@Dimnames$features[-union(emojis_idx, usr_
 # check most frequent words again
 quanteda::topfeatures(dfmatrix, 20)
 
-# remove all words that appear in less than 2 documents or 1% across all documents
+# remove all words that appear in less than 
 dfmatrix <- quanteda::dfm_trim(dfmatrix, min_termfreq = 5, min_docfreq = 3)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
