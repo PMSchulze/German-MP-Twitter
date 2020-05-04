@@ -30,9 +30,9 @@ tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>%
 # ----------------------------------------------------------------------------------------------
 
 # load data
-abg_df <- read_delim('abg_df.csv', delim =',') %>%
+abg_df <- read_delim('./data/abg_df.csv', delim =',') %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
-se_df <- read_delim('se_df.csv', delim =',') %>% 
+se_df <- read_delim('./data/se_df.csv', delim =',') %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`) %>% select(-Bundesland)
 # merge data
 all_data <- tweepy_docs_df_test %>% inner_join(abg_df) %>% left_join(se_df, by = "Wahlkreis_Nr")
@@ -46,55 +46,81 @@ drop_vars <- c("Ausschuesse","Biografie","Land","Wahlkreis-Name","Bevölkerung a
 (all_data <- all_data %>% select(-drop_vars))
 
 # ----------------------------------------------------------------------------------------------
-# ---------------------- Preprocessing of documents with the stm package -----------------------
-# ----------------------------------------------------------------------------------------------
-
-library(stm)
-library(tm)
-# perform stemming (reduce words to their root form), drop punctuation and remove stop words
-processed <- stm::textProcessor(all_data$Tweets_Dokument, metadata = all_data[,-3])
-str(processed)
-# drop all words below word threshold. if e.g. word threshold is 1 (default), all words
-# that appear less than 1 time in every document are dropped
-out <- stm::prepDocuments(processed$documents, processed$vocab, processed$meta)
-# for every document, freqeuency for each word that word appears in this document
-docs <- out$documents
-# actual words that the indices in docs represent
-vocab <- out$vocab
-# metadata
-meta <- out$meta
-
-# ----------------------------------------------------------------------------------------------
 # ------------------ Preprocessing of documents with the quanteda package ----------------------
 # ----------------------------------------------------------------------------------------------
 
 library(quanteda)
+library(stm)
+library(tm)
+
 # build corpus, which by default organizes documents into types, tokens and sentences
-twitter_corpus <- corpus(all_data$Tweets_Dokument)
-summary(twitter_corpus)
-texts(twitter_corpus)[2]
+corp_all_data <- quanteda::corpus(x = all_data, text_field = "Tweets_Dokument", 
+                                  docid_field = "Name")
+
 # build document-feature matrix, where a feature corresponds to a word in our case
 # stopwords, numbers and punctuation are removed and word stemming is performed
 # each word is indexed and frequency per document assigned
-twitter_dfm <- dfm(twitter_corpus, remove = stopwords("german"), remove_numbers = TRUE, 
-              stem = TRUE, remove_punct = TRUE)
-# remove all words that appear in less than at least 2 documents
-twitter_dfm <- dfm_trim(twitter_dfm, min_docfreq = 2)
-# preprocessed word stems that are left
-twitter_dfm@Dimnames$features
-# top (i.e. most frequent) word stems
-topfeatures(twitter_dfm, 20)
+stopwords_de <- 
+  read_lines("https://raw.githubusercontent.com/stopwords-iso/stopwords-de/master/stopwords-de.txt")
+
+length(stopwords_de) # 620 stopwords
+length(stopwords('de')) # 231 stopwords
+c(stopwords_de, stopwords('de')) %>% unique() %>% length() #> 620
+
+stopwords_customized <- setdiff(stopwords_de, stopwords('de'))
+# amp from '&' and innen from -innen
+stopwords_customized <- c(stopwords_customized, 'amp', 'innen')
+
+# build document-feature matrix
+dfmatrix <- quanteda::dfm(corp_all_data, 
+                remove = c(stopwords('de'),
+                           stopwords('en'),
+                           stopwords_customized,
+                           min_nchar = 2),
+                remove_numbers = TRUE,
+                remove_punct = TRUE,
+                remove_url = TRUE,
+                stem = TRUE,
+                tolower = TRUE,
+                verbose = FALSE)
+
+quanteda::topfeatures(dfmatrix, 20) # check most frequent words
+
+# remove # from hashtags
+dfmatrix@Dimnames$features <- gsub("#", "", dfmatrix@Dimnames$features)
+
+# remove emojis and @username strings
+emojis <- paste0("[\U{1f300}-\U{1f5ff}\U{1f900}-\U{1f9ff}\U{1f600}-\U{1f64f}\U{1f680}-",
+                 "\U{1f6ff}\U{2600}-\U{26ff}\U{2700}-\U{27bf}\U{1f1e6}-\U{1f1ff}\U{1f191}-",
+                 "\U{1f251}\U{1f004}\U{1f0cf}\U{1f170}-\U{1f171}\U{1f17e}-\U{1f17f}\U{1f18e}",
+                 "\U{3030}\U{2b50}\U{2b55}\U{2934}-\U{2935}\U{2b05}-\U{2b07}\U{2b1b}-\U{2b1c}",
+                 "\U{3297}\U{3299}\U{303d}\U{00a9}\U{00ae}\U{2122}\U{23f3}\U{24c2}\U{23e9}-",
+                 "\U{23ef}\U{25b6}\U{23f8}-\U{23fa}]")
+# indices of emojis in dfm
+emojis_idx <- grep(emojis,dfmatrix@Dimnames$features)
+# indices of @username
+usr_idx <- grep("@",dfmatrix@Dimnames$features)
+# remove these fields
+dfmatrix@Dimnames$features <- dfmatrix@Dimnames$features[-union(emojis_idx, usr_idx)]
+
+# check most frequent words again
+quanteda::topfeatures(dfmatrix, 20)
+
+# remove all words that appear in less than 2 documents or 1% across all documents
+dfmatrix <- quanteda::dfm_trim(dfmatrix, min_termfreq = 5, min_docfreq = 3)
+
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
-twitter_preprocessed <- convert(twitter_dfm, to = "stm")
-# extract documents and vocabulary
+twitter_preprocessed <- quanteda::convert(dfmatrix, to = "stm")
+
+# extract documents, vocabulary and metadata
 docs <- twitter_preprocessed$documents
 vocab <-  twitter_preprocessed$vocab
-# metadata is best assigned separately in the end
-meta <- all_data[,-3]
+meta <- twitter_preprocessed$meta
 
 # ----------------------------------------------------------------------------------------------
 # ------------------------------------ Fitting the stm -----------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-mod <- stm(documents = docs, vocab = vocab, K=20, prevalence =~ Partei + Geburtsjahr,
+mod <- stm::stm(documents = docs, vocab = vocab, K=20, prevalence =~ Partei,
            max.em.its = 75, data = meta, init.type = "Spectral")
+plot(mod, type = "summary", xlim = c(0, .3))
