@@ -2,7 +2,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "dplyr","ggplot2", "rjson", "jsonlite", "quanteda", "stm", "tidyverse", "tm"  
+  "dplyr","ggplot2", "quanteda", "stm", "tidyverse", "tm"  
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -90,14 +90,9 @@ meta <- out$meta
 
 # creating corpus
 corp_all_data <- quanteda::corpus(x = all_data, text_field = "Tweets_Dokument", docid_field = "Name")
-print(corp_all_data)
-
 summary(corp_all_data, 5)
 
-# # extracting document variables
-# docvars(corp_all_data, field = "Geburtsjahr")
-# corp_all_data$Geburtsjahr
-# 
+ 
 # # creating tokens
 # toks <- tokens(corp_all_data, remove_punct = TRUE)
 # toks_nostop <- tokens_select(toks, pattern = stopwords('de'), selection = 'remove')
@@ -118,7 +113,7 @@ dfmatrix <- quanteda::dfm(corp_all_data,
                 remove = c(stopwords('de'),
                            stopwords('en'),
                            stopwords_customized,
-                min_nchar = 3),
+                min_nchar = 4),
                 # remove_hyphens = TRUE,
                 remove_numbers = TRUE,
                 remove_punct = TRUE,
@@ -132,9 +127,6 @@ quanteda::topfeatures(dfmatrix, 100) # check most frequent words
 
 # remove # from hashtags
 dfmatrix@Dimnames$features <- gsub("#", "", dfmatrix@Dimnames$features)
-
-# remove special characters
-dfmatrix@Dimnames$features <- gsub("+|-|", "", dfmatrix@Dimnames$features)
 
 # # remove emojis and @username strings
 # emojis <- paste0("[\U{1f300}-\U{1f5ff}\U{1f900}-\U{1f9ff}\U{1f600}-\U{1f64f}\U{1f680}-",
