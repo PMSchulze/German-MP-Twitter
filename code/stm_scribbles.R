@@ -1,4 +1,22 @@
-library(tidyverse)
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "dplyr","ggplot2", "rjson", "jsonlite", "quanteda", "stm", "tidyverse", "tm"  
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, quietly = TRUE, character.only = TRUE)
+
 # set working directory
 setwd('C:\\Users\\Simon\\Desktop\\Twitter')
 
@@ -7,7 +25,7 @@ setwd('C:\\Users\\Simon\\Desktop\\Twitter')
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_df <- read_delim('tweepy_df_test.csv', delim =',')
+tweepy_df <- read_delim('tweepy_df_test2.csv', delim = ',')
 # inspect parsing problems
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
@@ -69,30 +87,21 @@ meta <- out$meta
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Preprocessing of documents with the quanteda package -----------------------
 # ----------------------------------------------------------------------------------------------
-library(quanteda)
-library(readtext)
-library(ggplot2)
 
 # creating corpus
-corp_all_data <- corpus(x = all_data, text_field = "Tweets_Dokument", docid_field = "Name")
+corp_all_data <- quanteda::corpus(x = all_data, text_field = "Tweets_Dokument", docid_field = "Name")
 print(corp_all_data)
 
 summary(corp_all_data, 5)
 
-# extracting document variables
-docvars(corp_all_data, field = "Geburtsjahr")
-corp_all_data$Geburtsjahr
-
-# creating tokens
-toks <- tokens(corp_all_data, remove_punct = TRUE)
-
-toks_nostop <- tokens_select(toks, pattern = stopwords('de'), selection = 'remove')
-
-# dfm
-dfmatrix <- dfm(toks_nostop)
-
-# get most frequent features
-topfeatures(dfmatrix, 10)
+# # extracting document variables
+# docvars(corp_all_data, field = "Geburtsjahr")
+# corp_all_data$Geburtsjahr
+# 
+# # creating tokens
+# toks <- tokens(corp_all_data, remove_punct = TRUE)
+# toks_nostop <- tokens_select(toks, pattern = stopwords('de'), selection = 'remove')
+# dfmatrix <- dfm(toks_nostop)
 
 # dfm stopwords
 stopwords_de <- 
@@ -104,29 +113,54 @@ c(stopwords_de, stopwords('de')) %>% unique() %>% length() #> 620
 
 stopwords_customized <- setdiff(stopwords_de, stopwords('de'))
 stopwords_customized <- c(stopwords_customized, 'amp', 'innen') # amp from '&' and innen from -innen
-# still to exclude: \U001f...
 
-dfmatrix <- dfm(corp_all_data, 
+dfmatrix <- quanteda::dfm(corp_all_data, 
                 remove = c(stopwords('de'),
                            stopwords('en'),
                            stopwords_customized,
-                min_nchar = 2),
+                min_nchar = 3),
+                # remove_hyphens = TRUE,
                 remove_numbers = TRUE,
                 remove_punct = TRUE,
+                remove_symbols = TRUE,
                 remove_url = TRUE,
                 stem = TRUE,
                 tolower = TRUE,
                 verbose = FALSE)
 
-topfeatures(dfmatrix, 20) # check most frequent words
+quanteda::topfeatures(dfmatrix, 100) # check most frequent words
 
-dfmatrix_tfidf <- dfm_tfidf(dfmatrix) # based on tfidf frequencies
+# remove # from hashtags
+dfmatrix@Dimnames$features <- gsub("#", "", dfmatrix@Dimnames$features)
+
+# remove special characters
+dfmatrix@Dimnames$features <- gsub("+|-|", "", dfmatrix@Dimnames$features)
+
+# # remove emojis and @username strings
+# emojis <- paste0("[\U{1f300}-\U{1f5ff}\U{1f900}-\U{1f9ff}\U{1f600}-\U{1f64f}\U{1f680}-",
+#                  "\U{1f6ff}\U{2600}-\U{26ff}\U{2700}-\U{27bf}\U{1f1e6}-\U{1f1ff}\U{1f191}-",
+#                  "\U{1f251}\U{1f004}\U{1f0cf}\U{1f170}-\U{1f171}\U{1f17e}-\U{1f17f}\U{1f18e}",
+#                  "\U{3030}\U{2b50}\U{2b55}\U{2934}-\U{2935}\U{2b05}-\U{2b07}\U{2b1b}-\U{2b1c}",
+#                  "\U{3297}\U{3299}\U{303d}\U{00a9}\U{00ae}\U{2122}\U{23f3}\U{24c2}\U{23e9}-",
+#                  "\U{23ef}\U{25b6}\U{23f8}-\U{23fa}]")
+# # indices of emojis in dfm
+# emojis_idx <- grep(emojis,dfmatrix@Dimnames$features)
+# # remove these fields
+# dfmatrix@Dimnames$features <- dfmatrix@Dimnames$features[-union(emojis_idx, usr_idx)]
+
+# indices of @username
+usr_idx <- grep("@",dfmatrix@Dimnames$features)
+
+dfmatrix@Dimnames$features <- dfmatrix@Dimnames$features[-usr_idx]
+
+# # based on tfidf frequencies
+# dfmatrix_tfidf <- quanteda::dfm_tfidf(dfmatrix)
 
 # select features of dfm
-dfmatrix <- dfm_trim(dfmatrix, min_termfreq = 1, min_docfreq = 0.01)
+dfmatrix <- quanteda::dfm_trim(dfmatrix, min_termfreq = 1, min_docfreq = 0.01)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
-twitter_preprocessed <- convert(dfmatrix, to = "stm")
+twitter_preprocessed <- quanteda::convert(dfmatrix, to = "stm")
 
 # extract documents and vocabulary
 docs <- twitter_preprocessed$documents
@@ -140,30 +174,24 @@ meta <- all_data[,-3]
 # ----------------------------------------------------------------------------------------------
 
 # prevalence model
-mod <- stm(documents = docs, vocab = vocab, K=20, prevalence =~ Partei,
+mod <- stm::stm(documents = docs, vocab = vocab, K=10, prevalence =~ Partei,
            max.em.its = 75, data = meta, init.type = "Spectral")
-
-
-# prevalence model
-poliblogPrevFit <- stm(documents = out$documents, vocab = out$vocab, 
-                       K = 10, prevalence =~ Partei, max.em.its = 75,
-                       data = out$meta, init.type = "Spectral")
 
 # top words per topic
 labelTopics(mod, c(1, 2, 3))
 
-thoughts3 <- findThoughts(poliblogPrevFit, texts = shortdoc, n = 2,
-                          topics = 6)$docs[[1]]
-thoughts20 <- findThoughts(poliblogPrevFit, texts = shortdoc, n = 2,
+thoughts3 <- stm::findThoughts(mod, texts = docs, n = 2,
+                          topics = 3)$docs[[1]]
+thoughts20 <- stm::findThoughts(poliblogPrevFit, texts = shortdoc, n = 2,
                            topics = 18)$docs[[1]]
 par(mfrow = c(1, 2), mar = c(0.5, 0.5, 1, 0.5))
 plotQuote(thoughts3, width = 30, main = "Topic 6")
 plotQuote(thoughts20, width = 30, main = "Topic 18")
 
 # estimating metadata/topic relationship
-out$meta$Partei <- as.factor(out$meta$Partei)
-prep <- estimateEffect(1:10 ~ Partei, poliblogPrevFit,
-                       metadata = out$meta, uncertainty = "Global")
+meta$Partei <- as.factor(meta$Partei)
+prep <- stm::estimateEffect(1:10 ~ Partei, mod,
+                       metadata = meta, uncertainty = "Global")
 summary(prep, topics = 3)
 
 # summary visualization
@@ -179,8 +207,8 @@ plot(prep, covariate = "rating", topics = c(6, 13, 18),
                                              "Bush Presidency"))
 
 # metadata/topic relationship visualization
-plot(prep, "day", method = "continuous", topics = 13,
-     model = z, printlegend = FALSE, xaxt = "n", xlab = "Time (2008)")
+plot(prep, "Partei", method = "pointestimate", topics = 6,
+     model = mod, printlegend = FALSE, xaxt = "n", xlab = "Partei")
 monthseq <- seq(from = as.Date("2008-01-01"),
                 to = as.Date("2008-12-01"), by = "month")
 monthnames <- months(monthseq)
@@ -188,9 +216,9 @@ axis(1,at = as.numeric(monthseq) - min(as.numeric(monthseq)),
      labels = monthnames)
 
 # topical content
-poliblogContent <- stm(out$documents, out$vocab, K = 10,
+mod_topic <- stm::stm(documents = docs, vocab = vocab, K = 10,
                        prevalence =~ Partei, content =~ Partei,
-                       max.em.its = 75, data = out$meta, init.type = "Spectral")
+                       max.em.its = 75, data = meta, init.type = "Spectral")
 
-plot(poliblogContent, type = "perspectives", topics = 10)
-plot(poliblogPrevFit, type = "perspectives", topics = c(8, 10))
+plot(mod_topic, type = "perspectives", topics = 10)
+plot(mod, type = "perspectives", topics = c(8, 10))
