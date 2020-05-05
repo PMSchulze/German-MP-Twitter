@@ -1,3 +1,7 @@
+# ----------------------------------------------------------------------------------------------
+# Preparation -------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
+
 # Install and load required packages
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
@@ -25,7 +29,7 @@ setwd('C:\\Users\\Simon\\Desktop\\Twitter')
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_df <- read_delim('tweepy_df_test2.csv', delim = ',')
+tweepy_df <- read_delim('tweepy_df.csv', delim = ',')
 # inspect parsing problems
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
@@ -36,11 +40,12 @@ problems(tweepy_df)
     rename(Name = name, Twitter_Username = username, 
            Tweets = full_text, Anzahl_Follower = followers_count))
 # aggregate data, i.e. concatenate all tweets of each person
-(tweepy_docs_df_test <- tweepy_df %>% group_by(Name) %>% 
+(tweepy_docs_df <- tweepy_df %>% group_by(Name) %>% 
   mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
   summarize(Twitter_Username = max(Twitter_Username), Tweets_Dokument = max(Tweets_Dokument),
             Anzahl_Follower = max(Anzahl_Follower)))
 # save aggregated data
+saveRDS(tweepy_docs_df, "tweepy_docs_df.rds")
 # write.table(tweepy_docs_df_test, file = 'tweepy_docs_df_test.csv', row.names = FALSE)
 
 # ----------------------------------------------------------------------------------------------
@@ -48,10 +53,14 @@ problems(tweepy_df)
 # ----------------------------------------------------------------------------------------------
 
 # load data
+tweepy_docs_df <- readRDS("tweepy_docs_df.rds")
+
 abg_df <- read_delim('abg_df.csv', delim =',') %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
+
 se_df <- read_delim('se_df.csv', delim =',') %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`) %>% select(-Bundesland)
+
 # merge data
 all_data <- tweepy_docs_df_test %>% inner_join(abg_df) %>% left_join(se_df, by = "Wahlkreis_Nr")
 # drop variables that are completely expressed by other variables (e.g. Bevölkerung Deutsche 
@@ -85,7 +94,7 @@ vocab <- out$vocab
 # metadata
 meta <- out$meta
 # ----------------------------------------------------------------------------------------------
-# ---------------------- Preprocessing of documents with the quanteda package -----------------------
+# ---------------------- Preprocessing of documents with the quanteda package ------------------
 # ----------------------------------------------------------------------------------------------
 
 # creating corpus
