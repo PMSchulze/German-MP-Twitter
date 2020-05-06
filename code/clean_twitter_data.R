@@ -100,8 +100,7 @@ quanteda::topfeatures(dfmatrix, 20)
 # manually remove specific tokens and all tokens with <4 characters
 dfmatrix_cleaned <- dfmatrix %>% 
   quanteda::dfm_remove(pattern = "@", min_nchar = 4, valuetype = "regex") %>% # @username
-  quanteda::dfm_remove(pattern = "(^[0-9]+)\\w{1,3}$", valuetype = "regex") # 80er
-  quanteda::dfm_remove(pattern = "(^[0-9]+[,.][0-9]+)\\w{1,3}$", valuetype = "regex") %>% # 2.5er
+  quanteda::dfm_remove(pattern = "(^[0-9]+[,.]?[0-9]+)\\w{1,3}$", valuetype = "regex") %>% # 10er, 14.00uhr,...
   quanteda::dfm_remove(pattern = "^[^a-zA-Z0-9]*$", valuetype = "regex") %>% # non-alphanumerical
   quanteda::dfm_remove(pattern = "^jaehrig", valuetype = "regex") %>% #jaehrig
   quanteda::dfm_remove(pattern = "^.*(aaa|aeae|hhh).*$", valuetype = "regex") %>% # aaaawww,...
