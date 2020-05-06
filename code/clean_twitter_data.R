@@ -56,61 +56,61 @@ library(tm)
 # build corpus, which by default organizes documents into types, tokens and sentences
 corp_all_data <- quanteda::corpus(x = all_data, text_field = "Tweets_Dokument", 
                                   docid_field = "Name")
+# convert some special german characters and remove # infront of hashtags
+corp_text_cleaned <- stringi::stri_replace_all_fixed(
+  texts(corp_all_data), 
+  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß", "#"), 
+  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss", ""), 
+  vectorize_all = FALSE)
+texts(corp_all_data) <- corp_text_cleaned
 
 # build document-feature matrix, where a feature corresponds to a word in our case
 # stopwords, numbers and punctuation are removed and word stemming is performed
 # each word is indexed and frequency per document assigned
 stopwords_de <- 
   read_lines("https://raw.githubusercontent.com/stopwords-iso/stopwords-de/master/stopwords-de.txt")
-
 length(stopwords_de) # 620 stopwords
 length(stopwords('de')) # 231 stopwords
-c(stopwords_de, stopwords('de')) %>% unique() %>% length() #> 620
 
-stopwords_customized <- setdiff(stopwords_de, stopwords('de'))
-# amp from '&' and innen from -innen
-stopwords_customized <- c(stopwords_customized, 'amp', 'innen')
+# combine all stopwords (amp from '&' and innen from -innen)
+stopwords_de_customized <- Reduce(union, list(stopwords_de, stopwords("de"), "amp", "innen"))
+# convert special characters for stopwords (otherwise many stopwords are not detected!)
+stopwords_de_customized <- stringi::stri_replace_all_fixed(
+  stopwords_de_customized, 
+  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß"), 
+  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss"), 
+  vectorize_all = FALSE)
 
 # build document-feature matrix
-dfmatrix <- quanteda::dfm(corp_all_data, 
-                remove = c(stopwords('de'),
-                           stopwords('en'),
-                           stopwords_customized,
-                           min_nchar = 2),
-                remove_numbers = TRUE,
-                remove_punct = TRUE,
-                remove_url = TRUE,
-                stem = TRUE,
-                tolower = TRUE,
-                verbose = FALSE)
+dfmatrix <- quanteda::dfm(
+  corp_all_data,
+  remove = c(stopwords_de_customized,
+             stopwords('en')),
+  remove_hyphens = TRUE,
+  remove_numbers = TRUE,
+  remove_punct = TRUE,
+  remove_url = TRUE,
+  tolower = TRUE,
+  verbose = FALSE) %>% 
+  quanteda::dfm_wordstem(language = "german")
 
-quanteda::topfeatures(dfmatrix, 20) # check most frequent words
-
-# remove # from hashtags
-dfmatrix@Dimnames$features <- gsub("#", "", dfmatrix@Dimnames$features)
-
-# remove emojis and @username strings
-emojis <- paste0("[\U{1f300}-\U{1f5ff}\U{1f900}-\U{1f9ff}\U{1f600}-\U{1f64f}\U{1f680}-",
-                 "\U{1f6ff}\U{2600}-\U{26ff}\U{2700}-\U{27bf}\U{1f1e6}-\U{1f1ff}\U{1f191}-",
-                 "\U{1f251}\U{1f004}\U{1f0cf}\U{1f170}-\U{1f171}\U{1f17e}-\U{1f17f}\U{1f18e}",
-                 "\U{3030}\U{2b50}\U{2b55}\U{2934}-\U{2935}\U{2b05}-\U{2b07}\U{2b1b}-\U{2b1c}",
-                 "\U{3297}\U{3299}\U{303d}\U{00a9}\U{00ae}\U{2122}\U{23f3}\U{24c2}\U{23e9}-",
-                 "\U{23ef}\U{25b6}\U{23f8}-\U{23fa}]")
-# indices of emojis in dfm
-emojis_idx <- grep(emojis,dfmatrix@Dimnames$features)
-# indices of @username
-usr_idx <- grep("@",dfmatrix@Dimnames$features)
-# remove these fields
-dfmatrix@Dimnames$features <- dfmatrix@Dimnames$features[-union(emojis_idx, usr_idx)]
-
-# check most frequent words again
+# check most frequent words
 quanteda::topfeatures(dfmatrix, 20)
 
+# manually remove tokens
+dfmatrix_cleaned <- dfmatrix %>% 
+  dfm_remove(pattern = "@", min_nchar = 4, valuetype = "regex") %>% # @username
+  dfm_remove(pattern = "(^[0-9]+)\\w{1,3}$", valuetype = "regex") %>% # 1000ter,...
+  dfm_remove(pattern = "^[^a-zA-Z0-9]*$", valuetype = "regex") # non-alphanumerical
+
+# check most frequent words again
+quanteda::topfeatures(dfmatrix_cleaned, 20)
+
 # remove all words that appear in less than 
-dfmatrix <- quanteda::dfm_trim(dfmatrix, min_termfreq = 5, min_docfreq = 3)
+dfmatrix_cleaned <- quanteda::dfm_trim(dfmatrix_cleaned, min_termfreq = 5, min_docfreq = 3)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
-twitter_preprocessed <- quanteda::convert(dfmatrix, to = "stm")
+twitter_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
 
 # extract documents, vocabulary and metadata
 docs <- twitter_preprocessed$documents
@@ -121,6 +121,6 @@ meta <- twitter_preprocessed$meta
 # ------------------------------------ Fitting the stm -----------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-mod <- stm::stm(documents = docs, vocab = vocab, K=20, prevalence =~ Partei,
-           max.em.its = 75, data = meta, init.type = "Spectral")
+mod <- stm::stm(documents = docs, vocab = vocab, K=10, prevalence =~ Partei,
+           max.em.its = 85, data = meta, init.type = "Spectral")
 plot(mod, type = "summary", xlim = c(0, .3))
