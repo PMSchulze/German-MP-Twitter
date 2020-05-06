@@ -67,11 +67,12 @@ texts(corp_all_data) <- corp_text_cleaned
 # build document-feature matrix, where a feature corresponds to a word in our case
 # stopwords, numbers and punctuation are removed and word stemming is performed
 # each word is indexed and frequency per document assigned
+
+# start with defining stopwords
 stopwords_de <- 
   read_lines("https://raw.githubusercontent.com/stopwords-iso/stopwords-de/master/stopwords-de.txt")
 length(stopwords_de) # 620 stopwords
 length(stopwords('de')) # 231 stopwords
-
 # combine all stopwords (amp from '&' and innen from -innen)
 stopwords_de_customized <- Reduce(union, list(stopwords_de, stopwords("de"), "amp", "innen"))
 # convert special characters for stopwords (otherwise many stopwords are not detected!)
@@ -91,23 +92,27 @@ dfmatrix <- quanteda::dfm(
   remove_punct = TRUE,
   remove_url = TRUE,
   tolower = TRUE,
-  verbose = FALSE) %>% 
-  quanteda::dfm_wordstem(language = "german")
+  verbose = FALSE)
 
 # check most frequent words
 quanteda::topfeatures(dfmatrix, 20)
 
-# manually remove tokens
+# manually remove specific tokens and all tokens with <4 characters
 dfmatrix_cleaned <- dfmatrix %>% 
-  dfm_remove(pattern = "@", min_nchar = 4, valuetype = "regex") %>% # @username
-  dfm_remove(pattern = "(^[0-9]+)\\w{1,3}$", valuetype = "regex") %>% # 1000ter,...
-  dfm_remove(pattern = "^[^a-zA-Z0-9]*$", valuetype = "regex") # non-alphanumerical
+  quanteda::dfm_remove(pattern = "@", min_nchar = 4, valuetype = "regex") %>% # @username
+  quanteda::dfm_remove(pattern = "(^[0-9]+[,.][0-9]+)\\w{1,3}$", valuetype = "regex") %>% # 1000ter,...
+  quanteda::dfm_remove(pattern = "^[^a-zA-Z0-9]*$", valuetype = "regex") %>% # non-alphanumerical
+  quanteda::dfm_remove(pattern = "^jaehrig", valuetype = "regex") %>% #jaehrig
+  quanteda::dfm_remove(pattern = "^.*(aaa|aeae|hhh).*$", valuetype = "regex") %>% # aaaawww,...
+  quanteda::dfm_remove(pattern = "^http", valuetype = "regex") # http...
+  
+# perform word stemming and remove all words that appear rarely
+dfmatrix_cleaned <- dfmatrix_cleaned %>% 
+  quanteda::dfm_wordstem(language = "german") %>% 
+  quanteda::dfm_trim(min_termfreq = 5, min_docfreq = 3)
 
 # check most frequent words again
 quanteda::topfeatures(dfmatrix_cleaned, 20)
-
-# remove all words that appear in less than 
-dfmatrix_cleaned <- quanteda::dfm_trim(dfmatrix_cleaned, min_termfreq = 5, min_docfreq = 3)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
 twitter_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
