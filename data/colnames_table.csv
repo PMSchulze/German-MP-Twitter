@@ -1,0 +1,65 @@
+,oldnames,newnames
+1,Name,Name
+2,Twitter_Username,Twitter_Username
+3,Tweets_Dokument,Tweets_Dokument
+4,Anzahl_Follower,Anzahl_Follower
+5,Partei,Partei
+6,Wahlart,Wahlart
+7,Bundesland,Bundesland
+8,Wahlkreis,Wahlkreis
+9,Wahlkreis_Nr,Wahlkreis_Nr
+10,Ausschusspositionen,Ausschusspositionen
+11,Geburtsjahr,Geburtsjahr
+12,Gemeinden am 31.12.2015 (Anzahl),v_1
+13,Flí_che am 31.12.2015 (kmŒ_),v_2
+14,Beví_lkerung am 31.12.2015 - Insgesamt (in 1000),v_3
+15,Beví_lkerung am 31.12.2015 - Auslí_nder (%),v_4
+16,Beví_lkerungsdichte am 31.12.2015 (Einwohner je kmŒ_),v_5
+17,Zu- (+) bzw. Abnahme (-) der Beví_lkerung 2015 - Geburtensaldo (je 1000 Einwohner),v_6
+18,Zu- (+) bzw. Abnahme (-) der Beví_lkerung 2015 - Wanderungssaldo (je 1000 Einwohner),v_7
+19,Alter von ... bis ... Jahren am 31.12.2015 - unter 18 (%),v_8
+20,Alter von ... bis ... Jahren am 31.12.2015 - 18-24 (%),v_9
+21,Alter von ... bis ... Jahren am 31.12.2015 - 25-34 (%),v_10
+22,Alter von ... bis ... Jahren am 31.12.2015 - 35-59 (%),v_11
+23,Alter von ... bis ... Jahren am 31.12.2015 - 60-74 (%),v_12
+24,Alter von ... bis ... Jahren am 31.12.2015 - 75 und mehr (%),v_13
+25,"Zensus 2011, Beví_lkerung nach Migrationshintergrund am 09.05.2011 - mit Migrationshintergrund (%)",v_14
+26,"Zensus 2011, Beví_lkerung nach Religionszugehí_rigkeit am 09.05.2011 - Rí_misch-katholische Kirche (%)",v_15
+27,"Zensus 2011, Beví_lkerung nach Religionszugehí_rigkeit am 09.05.2011 - Evangelische Kirche (%)",v_16
+28,"Zensus 2011, Beví_lkerung nach Religionszugehí_rigkeit am 09.05.2011 - Sonstige, keine, ohne Angabe (%)",v_17
+29,"Zensus 2011, Wohnungen in Wohngebí_uden am 09.05.2011 - Eigentí_merquote",v_18
+30,Bautí_tigkeit und Wohnungswesen - Fertiggestellte Wohnungen 2014 (je 1000 Einwohner),v_19
+31,Bautí_tigkeit und Wohnungswesen - Bestand an Wohnungen am 31.12.2015 (je 1000 Einwohner),v_20
+32,Verfí_gbares Einkommen der privaten Haushalte 2014 (Œó je Einwohner),v_21
+33,Bruttoinlandsprodukt 2014 (Œó je Einwohner),v_22
+34,Kraftfahrzeugbestand am 01.01.2016 (je 1000 Einwohner),v_23
+35,Absolventen/Abgí_nger beruflicher Schulen 2015,v_24
+36,Absolventen/Abgí_nger allgemeinbildender Schulen 2015 - insgesamt ohne Externe (je 1000 Einwohner),v_25
+37,Absolventen/Abgí_nger allgemeinbildender Schulen 2015 - ohne Hauptschulabschluss (%),v_26
+38,Absolventen/Abgí_nger allgemeinbildender Schulen 2015 - mit Hauptschulabschluss (%),v_27
+39,Absolventen/Abgí_nger allgemeinbildender Schulen 2015 - mit mittlerem Schulabschluss (%),v_28
+40,Absolventen/Abgí_nger allgemeinbildender Schulen 2015 - mit allgemeiner und Fachhochschulreife (%),v_29
+41,Kindertagesbetreuung: Betreute Kinder am 01.03.2016 (je 1000 Einwohner),v_30
+42,Unternehmensregister 2014 - Unternehmen insgesamt (je 1000 Einwohner),v_31
+43,Unternehmensregister 2014 - Handwerksunternehmen (je 1000 Einwohner),v_32
+44,Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - insgesamt (je 1000 Einwohner),v_33
+45,"Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - Land- und Forstwirtschaft, Fischerei (%)",v_34
+46,Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - Produzierendes Gewerbe (%),v_35
+47,"Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - Handel, Gastgewerbe, Verkehr (%)",v_36
+48,Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - í_ffentliche und private Dienstleister (%),v_37
+49,Sozialversicherungspflichtig Beschí_ftigte am 30.06.2016 - íìbrige Dienstleister und 'ohne Angabe' (%),v_38
+50,Empfí_nger(innen) von Leistungen nach SGB II am 31.12.2016 -  insgesamt (je 1000 Einwohner),v_39
+51,Empfí_nger(innen) von Leistungen nach SGB II am 31.12.2016 - nicht erwerbsfí_hige Hilfebedí_rftige (%),v_40
+52,Empfí_nger(innen) von Leistungen nach SGB II am 31.12.2016 - Auslí_nder (%),v_41
+53,Arbeitslosenquote Mí_rz 2017 - insgesamt,v_42
+54,Arbeitslosenquote Mí_rz 2017 - Mí_nner,v_43
+55,Arbeitslosenquote Mí_rz 2017 - Frauen,v_44
+56,Arbeitslosenquote Mí_rz 2017 - 15 bis unter 20 Jahre,v_45
+57,Arbeitslosenquote Mí_rz 2017 - 55 bis unter 65 Jahre,v_46
+58,Gesamt,v_47
+59,CDU/CSU Anteil,v_48
+60,SPD Anteil,v_49
+61,Die Linke Anteil,v_50
+62,Bí_ndnis 90/Die Grí_nen Anteil,v_51
+63,FDP Anteil,v_52
+64,AFD Anteil,v_53
