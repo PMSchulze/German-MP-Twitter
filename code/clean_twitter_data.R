@@ -64,12 +64,12 @@ tweepy_docs_df <- readRDS("./data/tweepy_docs_df.rds")
 abg_df <- read_delim('./data/abg_df.csv', delim =',') %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
 se_df <- read_delim('./data/se_df.csv', delim =',') %>% 
-  rename(Wahlkreis_Nr = `Wahlkreis-Nr.`) %>% 
+  rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
 # merge data
 all_data <- tweepy_docs_df %>% 
   inner_join(abg_df) %>% 
-  left_join(se_df, by = "Wahlkreis_Nr")
+  inner_join(se_df, by = "Wahlkreis_Nr")
 # drop variables that are completely expressed by other variables (e.g. Bevölkerung Deutsche 
 # expressed by Bevölkerung mit Migratioshintergrund), and variables that are not easily 
 # exploitable (e.g. Biografie) or uninformative (e.g. Fußnoten)
@@ -94,9 +94,22 @@ drop_vars <- c(
 all_data <- all_data %>% 
   select(-drop_vars)
 
+# drop rows where Partei==fraktionslos (1 row in total)
+all_data <- all_data %>% 
+  filter(Partei!="fraktionslos")
+
+# create new variable: voting shares of party of respective parlamentarian in his/her district
+select_party <- function(s){
+  coln <- paste(s, "Anteil", sep = " ")
+  return(coln)
+}
+for (i in 1:nrow(all_data)){
+  all_data[i, "Wahlergebnis"] <- all_data[i, select_party(all_data[i, "Partei"])]
+}
+
 # change colnames and store old names
 colnames_table <- data.frame(oldnames = colnames(all_data), 
-                            newnames = c(colnames(all_data)[1:11], paste0("v_",1:53)))
+                            newnames = c(colnames(all_data)[1:11], paste0("v_",1:54)))
 colnames(all_data) <- colnames_table[["newnames"]]
 write.csv(colnames_table, file = "./data/colnames_table.csv")
 
@@ -159,11 +172,11 @@ dfmatrix_cleaned <- dfmatrix %>%
                        valuetype = "regex") %>%
   quanteda::dfm_remove(pattern = "^[^a-zA-Z0-9]*$",  # non-alphanumerical 
                        valuetype = "regex") %>%  
-  quanteda::dfm_remove(pattern = "^jaehrig", valuetype = "regex") %>%  # jaehrig...
   quanteda::dfm_remove(pattern = "^.*(aaa|aeae|fff|hhh|uuu|www).*$",  # aaaawww etc.
                        valuetype = "regex") %>%
-  quanteda::dfm_remove(pattern = "^http", valuetype = "regex")  # http...
-
+  quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutschland|jaehrig|http)", # specific words
+                       valuetype = "regex")
+  
 # perform word stemming and remove all words that appear rarely
 dfmatrix_cleaned <- dfmatrix_cleaned %>% 
   quanteda::dfm_wordstem(language = "german") %>% 
@@ -175,17 +188,21 @@ quanteda::topfeatures(dfmatrix_cleaned, 20)
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
 twitter_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
 
-# extract documents, vocabulary and metadata
-docs <- twitter_preprocessed$documents
-vocab <-  twitter_preprocessed$vocab
-meta <- twitter_preprocessed$meta
+saveRDS(twitter_preprocessed, "./data/twitter_preprocessed.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ------------------------------------ Fitting the stm -----------------------------------------
 # ----------------------------------------------------------------------------------------------
 
+twitter_preprocessed <- readRDS("./data/twitter_preprocessed.rds")
+
+# extract documents, vocabulary and metadata
+docs <- twitter_preprocessed$documents
+vocab <-  twitter_preprocessed$vocab
+meta <- twitter_preprocessed$meta
+
 mod <- stm::stm(
-  documents = docs, vocab = vocab, K=10, prevalence =~ Partei+Bundesland,
+  documents = docs, vocab = vocab, K=5, prevalence =~ Partei,
   max.em.its = 85, data = meta, init.type = "Spectral"
 )
 plot(mod, type = "summary", xlim = c(0, .3))
