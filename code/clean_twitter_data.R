@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "quanteda","stm", "stringi", "tidyverse", "tm"
+  "quanteda", "stm", "stringi", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -29,14 +29,14 @@ setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_df <- read_delim('./data/tweepy_df.csv', delim = ',')
+tweepy_df <- read_delim("./data/tweepy_df.csv", delim = ",")
 # inspect parsing problems
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
 # keep only relevant columns and rename columns (capitalized + in german language)
 tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>% 
     filter(available == TRUE, is_retweet == 0) %>% 
-    select(c('name','username','full_text','followers_count')) %>% 
+    select(c("name", "username", "full_text", "followers_count")) %>% 
     rename(
       Name = name, 
       Twitter_Username = username, 
@@ -46,7 +46,7 @@ tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>%
 # aggregate data, i.e. concatenate all tweets of each person
 tweepy_docs_df <- tweepy_df %>% 
   group_by(Name) %>% 
-  mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
+  mutate(Tweets_Dokument = paste(Tweets, collapse = " ")) %>%
   summarize(
     Twitter_Username = max(Twitter_Username), 
     Tweets_Dokument = max(Tweets_Dokument),
@@ -61,9 +61,9 @@ tweepy_docs_df <- tweepy_df %>%
 
 # load data
 tweepy_docs_df <- readRDS("./data/tweepy_docs_df.rds")
-abg_df <- read_delim('./data/abg_df.csv', delim =',') %>%
+abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
-se_df <- read_delim('./data/se_df.csv', delim =',') %>% 
+se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
 # merge data
@@ -94,22 +94,17 @@ drop_vars <- c(
 all_data <- all_data %>% 
   select(-drop_vars)
 
-# drop rows where Partei==fraktionslos (1 row in total)
+# drop rows where Partei==fraktionslos (only one row deleted)
 all_data <- all_data %>% 
-  filter(Partei!="fraktionslos")
+  filter(Partei != "fraktionslos")
 
-# create new variable: voting shares of party of respective parlamentarian in his/her district
-select_party <- function(s){
-  coln <- paste(s, "Anteil", sep = " ")
-  return(coln)
-}
-for (i in 1:nrow(all_data)){
-  all_data[i, "Wahlergebnis"] <- all_data[i, select_party(all_data[i, "Partei"])]
-}
+# create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
+all_data$Wahlergebnis <- purrr::map2_dbl(1:nrow(all_data), paste(all_data$Partei, "Anteil"), 
+                                  function(i,j) all_data[[i,j]])
 
 # change colnames and store old names
 colnames_table <- data.frame(oldnames = colnames(all_data), 
-                            newnames = c(colnames(all_data)[1:11], paste0("v_",1:54)))
+                             newnames = c(colnames(all_data)[1:11], paste0("v_", 1:54)))
 colnames(all_data) <- colnames_table[["newnames"]]
 write.csv(colnames_table, file = "./data/colnames_table.csv")
 
@@ -153,7 +148,7 @@ stopwords_de_customized <- stringi::stri_replace_all_fixed(
 dfmatrix <- quanteda::dfm(
   corp_all_data,
   remove = c(stopwords_de_customized,
-             stopwords('en')),
+             stopwords("en")),
   remove_symbols = TRUE,
   remove_numbers = TRUE,
   remove_punct = TRUE,
@@ -201,8 +196,30 @@ docs <- twitter_preprocessed$documents
 vocab <-  twitter_preprocessed$vocab
 meta <- twitter_preprocessed$meta
 
-mod <- stm::stm(
-  documents = docs, vocab = vocab, K=5, prevalence =~ Partei,
+mod1 <- stm::stm(
+  documents = docs, vocab = vocab, K=5, prevalence =~ Partei + Bundesland + Geburtsjahr,
   max.em.its = 85, data = meta, init.type = "Spectral"
 )
-plot(mod, type = "summary", xlim = c(0, .3))
+plot(mod1, type = "summary", xlim = c(0, .5))
+
+mod2 <- stm::stm(
+  documents = docs, 
+  vocab = vocab, 
+  K=5, 
+  prevalence =~ Partei + Bundesland + Geburtsjahr + v_4 + v_22 + v_42 + v_54,
+  max.em.its = 85, 
+  data = meta, 
+  init.type = "Spectral"
+)
+plot(mod2, type = "summary", xlim = c(0, .5))
+
+mod3 <- stm::stm(
+  documents = docs, 
+  vocab = vocab, 
+  K=5, 
+  prevalence =~ Partei + Bundesland + Geburtsjahr + v_4 + s(v_22) + s(v_42) + s(v_54),
+  max.em.its = 85, 
+  data = meta, 
+  init.type = "Spectral"
+)
+plot(mod3, type = "summary", xlim = c(0, .5))
