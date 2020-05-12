@@ -30,8 +30,10 @@ setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # load data
 tweepy_df <- read_delim("./data/tweepy_df.csv", delim = ",")
+
 # inspect parsing problems
 problems(tweepy_df)
+
 # remove rows where problems occur, drop retweets and users where download failed,
 # keep only relevant columns and rename columns (capitalized + in german language)
 tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>% 
@@ -43,6 +45,7 @@ tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>%
       Tweets = full_text, 
       Anzahl_Follower = followers_count
 )
+
 # aggregate data, i.e. concatenate all tweets of each person
 tweepy_docs_df <- tweepy_df %>% 
   group_by(Name) %>% 
@@ -52,6 +55,7 @@ tweepy_docs_df <- tweepy_df %>%
     Tweets_Dokument = max(Tweets_Dokument),
     Anzahl_Follower = max(Anzahl_Follower)
 )
+
 # # save aggregated data
 # saveRDS(tweepy_docs_df, "./data/tweepy_docs_df.rds")
 
@@ -66,10 +70,12 @@ abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
 se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
+
 # merge data
 all_data <- tweepy_docs_df %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
+
 # drop variables that are completely expressed by other variables (e.g. Bevölkerung Deutsche 
 # expressed by Bevölkerung mit Migratioshintergrund), and variables that are not easily 
 # exploitable (e.g. Biografie) or uninformative (e.g. Fußnoten)
@@ -100,7 +106,7 @@ all_data <- all_data %>%
 
 # create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
 all_data$Wahlergebnis <- purrr::map2_dbl(1:nrow(all_data), paste(all_data$Partei, "Anteil"), 
-                                  function(i,j) all_data[[i,j]])
+                                         function(i,j) all_data[[i,j]])
 
 # change colnames and store old names
 colnames_table <- data.frame(oldnames = colnames(all_data), 
@@ -133,14 +139,14 @@ stopwords_de <- read_lines(
   "https://raw.githubusercontent.com/stopwords-iso/stopwords-de/master/stopwords-de.txt"
 )
 length(stopwords_de) # 620 stopwords
-length(stopwords('de')) # 231 stopwords
+length(stopwords("de")) # 231 stopwords
 # combine all stopwords (amp from '&' and innen from -innen)
 stopwords_de_customized <- Reduce(union, list(stopwords_de, stopwords("de"), "amp", "innen"))
 # convert special characters for stopwords (otherwise many stopwords are not detected!)
 stopwords_de_customized <- stringi::stri_replace_all_fixed(
   stopwords_de_customized, 
-  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß"), 
-  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss"), 
+  c("ä", "ö", "ü", "ß"), 
+  c("ae", "oe", "ue", "ss"), 
   vectorize_all = FALSE
 )
 
