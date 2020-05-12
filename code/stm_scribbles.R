@@ -34,17 +34,22 @@ tweepy_df <- read_delim('./data/tweepy_df.csv', delim = ',')
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
 # keep only relevant columns and rename columns (capitalized + in german language)
-tweepy_df <- tweepy_df[-problems(tweepy_df)$row,] %>% 
+topic <- tweepy_df %>% 
   filter(available == TRUE, is_retweet == 0) %>% 
-  select(c('name','username','full_text','followers_count')) %>% 
+  select(c('name','username', 'created_at', 'full_text','followers_count')) %>% 
   rename(
     Name = name, 
-    Twitter_Username = username, 
+    Twitter_Username = username,
+    Datum = created_at,
     Tweets = full_text, 
     Anzahl_Follower = followers_count
-  )
-# aggregate data, i.e. concatenate all tweets of each person
-tweepy_docs_df <- tweepy_df %>% 
+  ) %>%
+  mutate(Datum = lubridate::date(Datum))
+# save topic_df
+saveRDS(topic, "./data/topic.rds")
+
+# aggregate data on a per-user basis
+topic_user <- topic %>% 
   group_by(Name) %>% 
   mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
   summarize(
@@ -52,24 +57,38 @@ tweepy_docs_df <- tweepy_df %>%
     Tweets_Dokument = max(Tweets_Dokument),
     Anzahl_Follower = max(Anzahl_Follower)
   )
-# # save aggregated data
-# saveRDS(tweepy_docs_df, "./data/tweepy_docs_df.rds")
+# save
+# saveRDS(topic_user, "./data/topic_user.rds")
+
+# aggregate data on a per-week per-user basis
+# topic_user_weekly <- topic %>% 
+#   group_by(Name) %>% 
+#   mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
+#   summarize(
+#     Twitter_Username = max(Twitter_Username), 
+#     Tweets_Dokument = max(Tweets_Dokument),
+#     Anzahl_Follower = max(Anzahl_Follower)
+#   )
+# save
+# saveRDS(topic_user_weekly, "./data/topic_user_weekly.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Load and merge abg_df and se_df to Twitter data -----------------------
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_docs_df <- readRDS("./data/tweepy_docs_df.rds")
-abg_df <- read_delim('./data/abg_df.csv', delim =',') %>%
+topic_user <- readRDS("./data/topic_user.rds")
+abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
-se_df <- read_delim('./data/se_df.csv', delim =',') %>% 
+se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
+
 # merge data
-all_data <- tweepy_docs_df %>% 
+all_data <- topic_user %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
+
 # drop variables that are completely expressed by other variables (e.g. Bevölkerung Deutsche 
 # expressed by Bevölkerung mit Migratioshintergrund), and variables that are not easily 
 # exploitable (e.g. Biografie) or uninformative (e.g. Fußnoten)
@@ -94,22 +113,17 @@ drop_vars <- c(
 all_data <- all_data %>% 
   select(-drop_vars)
 
-# drop rows where Partei==fraktionslos (1 row in total)
+# drop rows where Partei==fraktionslos (only one row deleted)
 all_data <- all_data %>% 
-  filter(Partei!="fraktionslos")
+  filter(Partei != "fraktionslos")
 
-# create new variable: voting shares of party of respective parlamentarian in his/her district
-select_party <- function(s){
-  coln <- paste(s, "Anteil", sep = " ")
-  return(coln)
-}
-for (i in 1:nrow(all_data)){
-  all_data[i, "Wahlergebnis"] <- all_data[i, select_party(all_data[i, "Partei"])]
-}
+# create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
+all_data$Wahlergebnis <- purrr::map2_dbl(1:nrow(all_data), paste(all_data$Partei, "Anteil"), 
+                                         function(i,j) all_data[[i,j]])
 
 # change colnames and store old names
 colnames_table <- data.frame(oldnames = colnames(all_data), 
-                             newnames = c(colnames(all_data)[1:11], paste0("v_",1:54)))
+                             newnames = c(colnames(all_data)[1:11], paste0("v_", 1:54)))
 colnames(all_data) <- colnames_table[["newnames"]]
 write.csv(colnames_table, file = "./data/colnames_table.csv")
 
@@ -138,14 +152,14 @@ stopwords_de <- read_lines(
   "https://raw.githubusercontent.com/stopwords-iso/stopwords-de/master/stopwords-de.txt"
 )
 length(stopwords_de) # 620 stopwords
-length(stopwords('de')) # 231 stopwords
+length(stopwords("de")) # 231 stopwords
 # combine all stopwords (amp from '&' and innen from -innen)
 stopwords_de_customized <- Reduce(union, list(stopwords_de, stopwords("de"), "amp", "innen"))
 # convert special characters for stopwords (otherwise many stopwords are not detected!)
 stopwords_de_customized <- stringi::stri_replace_all_fixed(
   stopwords_de_customized, 
-  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß"), 
-  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss"), 
+  c("ä", "ö", "ü", "ß"), 
+  c("ae", "oe", "ue", "ss"), 
   vectorize_all = FALSE
 )
 
@@ -153,7 +167,7 @@ stopwords_de_customized <- stringi::stri_replace_all_fixed(
 dfmatrix <- quanteda::dfm(
   corp_all_data,
   remove = c(stopwords_de_customized,
-             stopwords('en')),
+             stopwords("en")),
   remove_symbols = TRUE,
   remove_numbers = TRUE,
   remove_punct = TRUE,
@@ -186,96 +200,127 @@ dfmatrix_cleaned <- dfmatrix_cleaned %>%
 quanteda::topfeatures(dfmatrix_cleaned, 20)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
-twitter_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
+topic_user_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
 
-# save stm object as RDS file
-saveRDS(twitter_preprocessed, "./data/twitter_preprocessed.rds")
+saveRDS(topic_user_preprocessed, "./data/topic_user_preprocessed.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- STM -----------------------
 # ----------------------------------------------------------------------------------------------
 
 # load data
-twitter_preprocessed <- readRDS("./data/twitter_preprocessed.rds")
+topic_user_preprocessed <- readRDS("./data/topic_user_preprocessed.rds")
 colnames_table <- read.csv(file = "./data/colnames_table.csv")
 
 # extract documents, vocabulary and metadata
-docs <- twitter_preprocessed$documents
-vocab <-  twitter_preprocessed$vocab
-meta <- twitter_preprocessed$meta
+docs <- topic_user_preprocessed$documents
+vocab <-  topic_user_preprocessed$vocab
+meta <- topic_user_preprocessed$meta
+
+# set CDU/CSU as reference category for variable "Partei"
+meta$Partei <- meta$Partei %>%
+  as.factor() %>%
+  relevel(ref = 3)
 
 # prevalence model
-mod_prevalence <- stm::stm(
+mod_prev <- stm::stm(
                   documents = docs,
                   vocab = vocab,
                   data = meta,
-                  K = 10,
-                  prevalence =~ Partei + Bundesland + Geburtsjahr,
-                  max.em.its = 75,
+                  K = 7,
+                  prevalence =~ Partei + Bundesland + s(Geburtsjahr) + v_4 + v_22 + v_42,
+                  max.em.its = 50,
                   init.type = "Spectral")
+
+### top words per topic
+labelTopics(mod_prev)
+
+### summary visualization
+plot(mod_prev, type = "summary", xlim = c(0, 0.3))
+
+### relationship topic/vocabulary
+plot(mod_prev, type = "perspectives", topics = c(3, 6))
+
+### estimating metadata/topic relationship
+meta$Bundesland <- as.factor(meta$Bundesland)
+prep <- stm::estimateEffect(1:6 ~ Partei + Bundesland + s(Geburtsjahr) + v_4 + v_22 + v_42,
+                      mod_prev,
+                      metadata = meta,
+                      uncertainty = "Global")
+summary(prep, topics = 1)
+
+### metadata/topic relationship visualization
+plot(prep, "Partei", method = "difference", topics = c(1,2,3,4,5,6), cov.value1 = "CDU/CSU",
+     cov.value2 = "SPD", model = mod_prev, xlab = "Partei")
+
+plot(prep, "Bundesland", method = "pointestimate", topics = 6,
+     model = mod_prev, printlegend = FALSE, xaxt = "n", xlab = "Bundesland")
+
+# monthseq <- seq(from = as.Date("2008-01-01"),
+#                 to = as.Date("2008-12-01"), by = "month")
+# monthnames <- months(monthseq)
+# axis(1,at = as.numeric(monthseq) - min(as.numeric(monthseq)),
+#      labels = monthnames)
+
+plot(prep, "v_42", method = "continuous", topics = 5,
+    model = mod_prev, printlegend = FALSE, xaxt = "n", xlab = "BIP pro Kopf")
+# unemployment_range <- seq(from = 0,
+#                 to = 0.45, by = 0.05)
+# monthnames <- months(monthseq)
+# axis(1,at = as.numeric(monthseq) - min(as.numeric(monthseq)),
+#                 labels = monthnames)
+
+# prevalence model w/ interaction
+mod_prev_int <- stm::stm(
+  documents = docs,
+  vocab = vocab,
+  data = meta,
+  K = 6,
+  prevalence =~ Partei + Bundesland + s(Geburtsjahr) + v_4 + v_22 + v_42 + Partei*v_42,
+  max.em.its = 50,
+  init.type = "Spectral")
+
+
+prep <- estimateEffect(c(3) ~ Partei * v_42, mod_prev_int,
+                          metadata = meta, uncertainty = "None")
+plot(prep, covariate = "v_42", model = mod_prev_int,
+        method = "continuous", xlab = "Unemployment", moderator = "Partei",
+        moderator.value = "CDU/CSU", linecol = "black", ylim = c(0, 0.30),
+        printlegend = FALSE)
+plot(prep, covariate = "v_42", model = mod_prev_int,
+        method = "continuous", xlab = "Unemployment", moderator = "Partei",
+        moderator.value = "SPD", linecol = "red", ylim = c(0, 0.30),
+        printlegend = FALSE, add = TRUE)
+plot(prep, covariate = "v_42", model = mod_prev_int,
+     method = "continuous", xlab = "Unemployment", moderator = "Partei",
+     moderator.value = "Bündnis 90/Die Grünen", linecol = "green", ylim = c(0, 0.30),
+     printlegend = FALSE, add = TRUE)
+plot(prep, covariate = "v_42", model = mod_prev_int,
+     method = "continuous", xlab = "Unemployment", moderator = "Partei",
+     moderator.value = "Die Linke", linecol = "purple", ylim = c(0, 0.30),
+     printlegend = FALSE, add = TRUE)
+plot(prep, covariate = "v_42", model = mod_prev_int,
+     method = "continuous", xlab = "Unemployment", moderator = "Partei",
+     moderator.value = "FDP", linecol = "yellow", ylim = c(0, 0.30),
+     printlegend = FALSE, add = TRUE)
+plot(prep, covariate = "v_42", model = mod_prev_int,
+     method = "continuous", xlab = "Unemployment", moderator = "Partei",
+     moderator.value = "AfD", linecol = "blue", ylim = c(0, 0.30),
+     printlegend = FALSE, add = TRUE)
+# legend(0, 0.06, c("CDU/CSU", "SPD"), lwd = 2,
+#         col = c("black", "red"))
+
 
 # topical content
 mod_topic <- stm::stm(
-                  documents = docs,
-                  vocab = vocab, 
-                  data = meta,
-                  K = 10,
-                  prevalence =~ Partei + Bundesland + Geburtsjahr,
-                  content =~ Partei,
-                  max.em.its = 75,
-                  init.type = "Spectral")
+  documents = docs,
+  vocab = vocab, 
+  data = meta,
+  K = 5,
+  prevalence =~ Partei + Bundesland + s(Geburtsjahr) + s(v_4) + s(v_22) + s(v_42),
+  content =~ Partei,
+  max.em.its = 75,
+  init.type = "Spectral")
 
-# top words per topic
-labelTopics(mod_prevalence, c(1, 2, 3))
-
-
-thoughts3 <- stm::findThoughts(mod_prevalence, texts = texts(corp_all_data), n = 2,
-                          topics = 3)$docs[[1]]
-thoughts20 <- stm::findThoughts(mod_prevalence, texts = texts(corp_all_data), n = 2,
-                           topics = 2)$docs[[1]]
-
-par(mfrow = c(1, 2), mar = c(0.5, 0.5, 1, 0.5))
-plotQuote(thoughts3, width = 30, main = "Topic 3")
-plotQuote(thoughts20, width = 30, main = "Topic 2")
-
-# estimating metadata/topic relationship
-meta$Partei <- as.factor(meta$Partei)
-meta$Bundesland <- as.factor(meta$Bundesland)
-prep <- stm::estimateEffect(1:10 ~ Partei + Bundesland + Geburtsjahr,
-                      mod_prevalence,
-                      metadata = meta,
-                      uncertainty = "Global")
-summary(prep, topics = 3)
-
-# summary visualization
-plot(mod, type = "summary", xlim = c(0, 0.3))
-
-# metadata/topic relationship visualization
-plot(prep, "Partei", method = "pointestimate", topics = 6,
-     model = mod_prevalence, printlegend = FALSE, xaxt = "n", xlab = "Partei")
-monthseq <- seq(from = as.Date("2008-01-01"),
-                to = as.Date("2008-12-01"), by = "month")
-monthnames <- months(monthseq)
-axis(1,at = as.numeric(monthseq) - min(as.numeric(monthseq)),
-     labels = monthnames)
-
-# topical content
-mod_topic <- stm::stm(documents = docs, vocab = vocab, K = 10,
-                       prevalence =~ Partei, content =~ Partei,
-                       max.em.its = 75, data = meta, init.type = "Spectral")
-
-plot(mod_prevalence, type = "perspectives", topics = 8)
-plot(mod, type = "perspectives", topics = c(8, 10))
-
-# word cloud
-cloud(mod_topic, topic = 3, scale = c(2, 0.25))
-
-
-# # only for a binary covariate
-# plot(prep, covariate = "rating", topics = c(6, 13, 18),
-#      model = poliblogPrevFit, method = "difference", cov.value1 = "Liberal",
-#      cov.value2 = "Conservative",
-#      xlab = "More Conservative ... More Liberal",
-#      main = "Effect of Liberal vs. Conservative", xlim = c(-0.1, 0.1),
-#      labeltype = "custom", custom.labels = c("Obama/McCain", "Sarah Palin",
-#                                              "Bush Presidency"))
+### word cloud
+cloud(mod_topic, topic = 4, scale = c(2, 0.25))
