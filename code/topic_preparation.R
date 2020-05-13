@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "quanteda", "stringi", "tidyverse"
+  "tidyverse"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -22,8 +22,8 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ----------------------------------- Prepare Twitter data ------------------------------------- 
@@ -161,7 +161,7 @@ write.csv(colnames_user, file = "./data/topic_user_colnames.csv")
 write.csv(colnames_user_weekly, file = "./data/topic_user_weekly_colnames.csv")
 
 # extract party specific dataset
-alldata_spd_user <- all_data_user %>% 
+alldata_spd_user <- alldata_user %>% 
   filter(Partei == "SPD")
 
 # save

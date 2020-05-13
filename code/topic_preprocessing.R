@@ -1,18 +1,56 @@
 # ----------------------------------------------------------------------------------------------
-# ------------------ Preprocessing of documents with the quanteda package ----------------------
+# ---------------------------------------- Preparation -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "quanteda", "stringi", "tidyverse"
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, character.only = TRUE)
+
+# set working directory
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+
+# ----------------------------------------------------------------------------------------------
+# ------------------ Choose dataset for preprocessing ------------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+file <- "topic_user"
+# file <- "topic_spd_user"
+# file <- "topic_user_weekly"
+
+filepath <- paste0("./data/", file, ".rds")
+data <- readRDS(filepath)
+
+# ----------------------------------------------------------------------------------------------
+# ------------------ Preprocessing data with the quanteda package ------------------------------
 # ----------------------------------------------------------------------------------------------
 
 # build corpus, which by default organizes documents into types, tokens and sentences
-corp_all_data <- quanteda::corpus(x = all_data, text_field = "Tweets_Dokument", 
+corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument", 
                                   docid_field = "Name")
 # convert some special german characters and remove # infront of hashtags
 corp_text_cleaned <- stringi::stri_replace_all_fixed(
-  texts(corp_all_data), 
+  texts(corp_topic), 
   c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß", "#","-"), 
   c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss", "",""), 
   vectorize_all = FALSE
 )
-texts(corp_all_data) <- corp_text_cleaned
+texts(corp_topic) <- corp_text_cleaned
 
 # build document-feature matrix, where a feature corresponds to a word in our case
 # stopwords, numbers and punctuation are removed and word stemming is performed
@@ -36,7 +74,7 @@ stopwords_de_customized <- stringi::stri_replace_all_fixed(
 
 # build document-feature matrix
 dfmatrix <- quanteda::dfm(
-  corp_all_data,
+  corp_topic,
   remove = c(stopwords_de_customized,
              stopwords("en")),
   remove_symbols = TRUE,
@@ -71,6 +109,8 @@ dfmatrix_cleaned <- dfmatrix_cleaned %>%
 quanteda::topfeatures(dfmatrix_cleaned, 20)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
-topic_user_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
+data_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
 
-saveRDS(topic_user_preprocessed, "./data/topic_user_preprocessed.rds")
+# save
+outpath <- paste0("./data/", file, "_preprocessed.rds")
+saveRDS(data_preprocessed, outpath)
