@@ -46,6 +46,14 @@ topic <- tweepy_df %>%
     Anzahl_Follower = followers_count
   ) %>%
   mutate(Datum = lubridate::date(Datum))
+
+# plot histogram of tweets per year
+hist(topic %>% mutate(Jahr = lubridate::year(Datum)) %>% pull(Jahr))
+
+# drop all tweets prior to 24.09.2017 (date of the most recent Bundestagswahl)
+topic <- topic %>% 
+  filter(Datum >= '2017-09-24')
+
 # save
 saveRDS(topic, "./data/topic.rds")
 
@@ -55,13 +63,6 @@ saveRDS(topic, "./data/topic.rds")
 
 # load data
 topic <- readRDS("./data/topic.rds")
-
-# plot histogram of tweets per year
-hist(topic %>% mutate(Jahr = lubridate::year(Datum)) %>% pull(Jahr))
-
-# drop all tweets prior to 24.09.2017 (date of the most recent Bundestagswahl)
-topic <- topic %>% 
-  filter(Datum >= '2017-09-24')
 
 # aggregate data on a per-user basis
 topic_user <- topic %>% 
@@ -87,9 +88,6 @@ topic_user_weekly <-  topic %>%
   ungroup() %>%
   arrange(Name, Jahr, Woche)
 
-hist(topic_user_weekly %>% pull(Jahr))
-topic_user_weekly %>% filter(Twitter_Username == unique(topic_user_weekly$Twitter_Username)[10])
-
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Load abg_df and se_df and merge with topic_user -----------------------
 # ----------------------------------------------------------------------------------------------
@@ -102,7 +100,11 @@ se_df <- read_delim("./data/se_df.csv", delim = ",") %>%
   select(-Bundesland)
 
 # merge data
-all_data_user <- topic_user %>% 
+alldata_user <- topic_user %>% 
+  inner_join(abg_df) %>% 
+  inner_join(se_df, by = "Wahlkreis_Nr")
+
+alldata_user_weekly <- topic_user_weekly %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
 
@@ -127,22 +129,42 @@ drop_vars <- c(
   "AFD", 
   "CDU/CSU"
 )
-all_data_user <- all_data_user %>% 
+alldata_user <- alldata_user %>% 
+  select(-drop_vars)
+alldata_user_weekly <- alldata_user_weekly %>% 
   select(-drop_vars)
 
 # drop rows where Partei==fraktionslos (only one row deleted)
-all_data_user <- all_data_user %>% 
+alldata_user <- alldata_user %>% 
+  filter(Partei != "fraktionslos")
+alldata_user_weekly <- alldata_user_weekly %>% 
   filter(Partei != "fraktionslos")
 
 # create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
-all_data_user$Wahlergebnis <- purrr::map2_dbl(1:nrow(all_data_user), paste(all_data_user$Partei, "Anteil"), 
-                                         function(i,j) all_data_user[[i,j]])
+alldata_user$Wahlergebnis <- purrr::map2_dbl(
+  1:nrow(alldata_user), paste(alldata_user$Partei, "Anteil"), 
+  function(i,j) alldata_user[[i,j]]
+)
+alldata_user_weekly$Wahlergebnis <- purrr::map2_dbl(
+  1:nrow(alldata_user_weekly), paste(alldata_user_weekly$Partei, "Anteil"), 
+  function(i,j) alldata_user_weekly[[i,j]]
+)
 
 # change colnames and store old names
-colnames_table <- data.frame(oldnames = colnames(all_data_user), 
-                             newnames = c(colnames(all_data_user)[1:11], paste0("v_", 1:54)))
-colnames(all_data_user) <- colnames_table[["newnames"]]
-write.csv(colnames_table, file = "./data/topic_user_colnames.csv")
+colnames_user <- data.frame(oldnames = colnames(alldata_user), 
+                             newnames = c(colnames(alldata_user)[1:11], paste0("v_", 1:54)))
+colnames_user_weekly <- data.frame(oldnames = colnames(alldata_user_weekly), 
+                            newnames = c(colnames(alldata_user_weekly)[1:13], paste0("v_", 1:54)))
+colnames(alldata_user) <- colnames_user[["newnames"]]
+colnames(alldata_user_weekly) <- colnames_user_weekly[["newnames"]]
+write.csv(colnames_user, file = "./data/topic_user_colnames.csv")
+write.csv(colnames_user_weekly, file = "./data/topic_user_weekly_colnames.csv")
+
+# extract party specific dataset
+alldata_spd_user <- all_data_user %>% 
+  filter(Partei == "SPD")
 
 # save
-saveRDS(all_data_user, "./data/topic_user.rds")
+saveRDS(alldata_user, "./data/topic_user.rds")
+saveRDS(alldata_spd_user, "./data/topic_spd_user.rds")
+saveRDS(alldata_user_weekly, "./data/topic_user_weekly.rds")
