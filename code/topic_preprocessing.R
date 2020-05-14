@@ -88,9 +88,9 @@ dfmatrix <- quanteda::dfm(
 # check most frequent words
 quanteda::topfeatures(dfmatrix, 20)
 
-# manually remove specific tokens and all tokens with <4 characters
+# manually remove specific tokens
 dfmatrix_cleaned <- dfmatrix %>% 
-  quanteda::dfm_remove(pattern = "@", min_nchar = 4, valuetype = "regex")  %>%   # @username
+  quanteda::dfm_remove(pattern = "@", valuetype = "regex")  %>%   # @username
   quanteda::dfm_remove(pattern = "(^[0-9]+[,.]?[0-9]+)\\w{1,3}$",  # 10er, 14.00uhr etc.
                        valuetype = "regex") %>%
   quanteda::dfm_remove(pattern = "^[^a-zA-Z0-9]*$",  # non-alphanumerical 
@@ -100,9 +100,10 @@ dfmatrix_cleaned <- dfmatrix %>%
   quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutschland|jaehrig|http)", # specific words
                        valuetype = "regex")
 
-# perform word stemming and remove all words that appear rarely
+# perform word stemming and remove all words that appear rarely as well as words with <4 characters
 dfmatrix_cleaned <- dfmatrix_cleaned %>% 
   quanteda::dfm_wordstem(language = "german") %>% 
+  quanteda::dfm_remove(min_nchar = 4) %>%
   quanteda::dfm_trim(min_termfreq = 5, min_docfreq = 3)
 
 # check most frequent words again

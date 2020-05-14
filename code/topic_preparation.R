@@ -152,9 +152,9 @@ alldata_user_weekly$Wahlergebnis <- purrr::map2_dbl(
 
 # change colnames and store old names
 colnames_user <- data.frame(oldnames = colnames(alldata_user), 
-                             newnames = c(colnames(alldata_user)[1:11], paste0("v_", 1:54)))
+                             newnames = c(colnames(alldata_user)[1:11], paste0("Struktur_", 1:54)))
 colnames_user_weekly <- data.frame(oldnames = colnames(alldata_user_weekly), 
-                            newnames = c(colnames(alldata_user_weekly)[1:13], paste0("v_", 1:54)))
+                            newnames = c(colnames(alldata_user_weekly)[1:13], paste0("Struktur_", 1:54)))
 colnames(alldata_user) <- colnames_user[["newnames"]]
 colnames(alldata_user_weekly) <- colnames_user_weekly[["newnames"]]
 write.csv(colnames_user, file = "./data/topic_user_colnames.csv")
