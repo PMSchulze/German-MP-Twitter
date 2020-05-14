@@ -29,9 +29,9 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-file <- "topic_user"
+# file <- "topic_user"
 # file <- "topic_spd_user"
-# file <- "topic_user_weekly"
+file <- "topic_user_weekly"
 
 filepath <- paste0("./data/", file, ".rds")
 data <- readRDS(filepath)
@@ -40,9 +40,18 @@ data <- readRDS(filepath)
 # ------------------ Preprocessing data with the quanteda package ------------------------------
 # ----------------------------------------------------------------------------------------------
 
+if (file == "topic_user_weekly") {
+  data$docid <- paste0(data$Name, "_", data$Jahr, "_", data$Woche)
+}
+if (file == "topic_user_weekly") {
+  docid_field <- "docid"
+} else {
+  docid_field <- "Name"
+}
+
 # build corpus, which by default organizes documents into types, tokens and sentences
 corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument", 
-                                  docid_field = "Name")
+                                  docid_field = docid_field)
 # convert some special german characters and remove # infront of hashtags
 corp_text_cleaned <- stringi::stri_replace_all_fixed(
   texts(corp_topic), 
@@ -84,6 +93,7 @@ dfmatrix <- quanteda::dfm(
   tolower = TRUE,
   verbose = FALSE
 )
+
 
 # check most frequent words
 quanteda::topfeatures(dfmatrix, 20)
