@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "quanteda","stm", "stringi", "tidyverse", "tm"
+  "stm", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
