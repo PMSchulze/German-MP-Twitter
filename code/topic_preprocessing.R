@@ -55,8 +55,8 @@ corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument",
 # convert some special german characters and remove # infront of hashtags
 corp_text_cleaned <- stringi::stri_replace_all_fixed(
   texts(corp_topic), 
-  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß", "#","-"), 
-  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss", "",""), 
+  c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß","-"), 
+  c("ae", "oe", "ue", "Ae", "Oe", "Ue", "ss",""), 
   vectorize_all = FALSE
 )
 texts(corp_topic) <- corp_text_cleaned
@@ -100,6 +100,7 @@ quanteda::topfeatures(dfmatrix, 20)
 
 # manually remove specific tokens
 dfmatrix_cleaned <- dfmatrix %>% 
+  quanteda::dfm_remove(pattern = "#", valuetype = "regex") %>%  # hashtags
   quanteda::dfm_remove(pattern = "@", valuetype = "regex")  %>%   # @username
   quanteda::dfm_remove(pattern = "(^[0-9]+[,.]?[0-9]+)\\w{1,3}$",  # 10er, 14.00uhr etc.
                        valuetype = "regex") %>%
