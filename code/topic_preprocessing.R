@@ -30,8 +30,8 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ----------------------------------------------------------------------------------------------
 
 # file <- "topic_user"
-# file <- "topic_spd_user"
-file <- "topic_user_weekly"
+file <- "topic_spd_user"
+# file <- "topic_user_weekly"
 
 filepath <- paste0("./data/", file, ".rds")
 data <- readRDS(filepath)
@@ -124,5 +124,5 @@ quanteda::topfeatures(dfmatrix_cleaned, 20)
 data_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
 
 # save
-outpath <- paste0("./data/", file, "_preprocessed.rds")
+outpath <- paste0("./data/", file, "_preprocessed_no#.rds")
 saveRDS(data_preprocessed, outpath)

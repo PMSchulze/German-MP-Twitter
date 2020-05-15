@@ -161,10 +161,10 @@ write.csv(colnames_user, file = "./data/topic_user_colnames.csv")
 write.csv(colnames_user_weekly, file = "./data/topic_user_weekly_colnames.csv")
 
 # extract party specific dataset
-alldata_spd_user <- alldata_user %>% 
-  filter(Partei == "SPD")
+alldata_afd_user <- alldata_user %>% 
+  filter(Partei == "AfD")
 
 # save
 saveRDS(alldata_user, "./data/topic_user.rds")
-saveRDS(alldata_spd_user, "./data/topic_spd_user.rds")
+saveRDS(alldata_afd_user, "./data/topic_afd_user.rds")
 saveRDS(alldata_user_weekly, "./data/topic_user_weekly.rds")

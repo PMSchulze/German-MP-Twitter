@@ -30,8 +30,8 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ----------------------------------------------------------------------------------------------
 
 # load data
-data <- readRDS("./data/topic_user_preprocessed.rds")
-colnames_table <- read.csv(file = "./data/topic_user_colnames.csv")
+data <- readRDS("./data/topic_user_weekly_preprocessed.rds")
+colnames_table <- read.csv(file = "./data/topic_user_weekly_colnames.csv")
 
 # extract documents, vocabulary and metadata
 docs <- data$documents
@@ -101,7 +101,7 @@ mod_prev <- stm::stm(
   vocab = vocab,
   data = meta,
   K = 6,
-  prevalence =~ Partei + Bundesland + s(Struktur_4)
+  prevalence =~ Partei + Bundesland + s(Geburtsjahr) + s(Struktur_4)
   + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
   max.em.its = 75,
   init.type = "Spectral")
@@ -128,7 +128,7 @@ plot(mod_prev, type = "perspectives", topics = c(3, 6))
 
 ## metadata/topic relationship
 meta$Bundesland <- as.factor(meta$Bundesland)
-prep <- stm::estimateEffect(1:6 ~ Partei + Bundesland + s(Struktur_4)
+prep <- stm::estimateEffect(1:6 ~ Partei + Bundesland + s(Geburtsjahr) + s(Struktur_4)
                             + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
                             mod_prev,
                             metadata = meta,
@@ -154,12 +154,6 @@ axis(1, tick = TRUE)
 plot(prep, "Struktur_4", method = "continuous", topics = 1,
      model = mod_prev, printlegend = FALSE, xaxt = "n", xlab = "% immigrants",
      ylim = c(0.05, 0.25))
-axis(1, tick = TRUE)
-
-### impact of immigrant share on prevalence of topic "green/climate"
-plot(prep, "Struktur_4", method = "continuous", topics = 4,
-     model = mod_prev, printlegend = FALSE, xaxt = "n", xlab = "% immigrants",
-     ylim = c(0.1, 0.25))
 axis(1, tick = TRUE)
 
 ### impact of immigrant share on prevalence of topic "Europe"
@@ -284,7 +278,7 @@ mod_topic <- stm::stm(
   vocab = vocab, 
   data = meta,
   K = 6,
-  prevalence =~ Partei + Bundesland + s(Struktur_4)
+  prevalence =~ Partei + Bundesland + s(Geburtsjahr) + s(Struktur_4)
   + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
   content =~ Partei,
   max.em.its = 75,
