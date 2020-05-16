@@ -29,8 +29,8 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-# file <- "topic_user"
-file <- "topic_spd_user"
+file <- "topic_user"
+# file <- "topic_spd_user"
 # file <- "topic_user_weekly"
 
 filepath <- paste0("./data/", file, ".rds")
