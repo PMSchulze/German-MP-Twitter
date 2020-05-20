@@ -83,14 +83,30 @@ meta <- meta %>%
 
 # ----------------------------------------------------------------------------------------------
 
+search_mods <- stm::searchK(
+    documents = docs,
+    vocab = vocab,
+    data = meta,
+    K = c(5,6,7,8),
+    prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+      s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+    max.em.its = 85,
+    init.type = "Spectral"
+)
+
+plot(search_mods)
+
+# set number of topics to 6
+n_topics = 6
+
 # prevalence model
 mod_prev <- stm::stm(
   documents = docs,
   vocab = vocab,
   data = meta,
-  K = 7,
-  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + bs(Struktur_22) + s(Struktur_42),
-  max.em.its = 50,
+  K = n_topics,
+  prevalence =~ Anzahl_Follower,
+  max.em.its = 85,
   init.type = "Spectral")
 
 ### top words per topic
@@ -104,7 +120,7 @@ plot(mod_prev, type = "perspectives", topics = c(3, 6))
 
 ### estimating metadata/topic relationship
 meta$Bundesland <- as.factor(meta$Bundesland)
-prep <- stm::estimateEffect(1:7 ~ s(Struktur_22, df = 5),
+prep <- stm::estimateEffect(1:6 ~ s(Struktur_4),
                             mod_prev,
                             # documents = docs,
                             metadata = meta,
@@ -120,7 +136,7 @@ plot(prep, "Anzahl_Follower", method = "continuous", topics = 3, ci.level = 0.8,
      model = mod_prev, printlegend = FALSE, ylim = c(0,1), main = "Arbeit & Soziales",
      xlab = "Anzahl Twitter-Follower", ylab = "Themenanteil", 
      yaxs="i", xaxs="i")
-plot(prep, "Struktur_4", method = "continuous", topics = 3, ci.level = 0.9,
+plot(prep, "Struktur_4", method = "continuous", topics = 3, ci.level = 0.8,
      model = mod_prev, printlegend = FALSE, ylim = c(0,1), main = "Arbeit & Soziales",
      xlab = "Ausländeranteil", ylab = "Themenanteil", 
      yaxs="i", xaxs="i")
@@ -133,6 +149,20 @@ plot(prep, "Struktur_42", method = "continuous", topics = 3, ci.level = 0.8,
      xlab = "Arbeitslosenquote", ylab = "Themenanteil", main = "Arbeit & Soziales",
      yaxs="i", xaxs="i")
 
+# ----------------------------------------------------------------------------------------------
+
+# simulate topic proportions for each document (500 simulations/doc) and average
+theta_sim <- thetaPosterior(mod_prev, nsims = 500, type = "Local", documents = docs) %>%
+  lapply(colMeans) %>% 
+  (function(s) do.call(rbind,s)) %>% 
+  as_tibble() %>% 
+  setNames(paste0("Topic", 1:n_topics))
+# link topic proportions to names of parliamentarians
+docs_topics <- tibble("Name" = names(docs), theta_sim)
+# e.g. list parliamentarians with highest proportion of topic 3
+arrange(docs_topics, desc(Topic3))
+
+# ----------------------------------------------------------------------------------------------
 # unemployment_range <- seq(from = 0,
 #                 to = 0.45, by = 0.05)
 # monthnames <- months(monthseq)
