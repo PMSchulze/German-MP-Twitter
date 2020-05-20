@@ -22,7 +22,8 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+# setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
 # setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
@@ -164,7 +165,30 @@ write.csv(colnames_user_weekly, file = "./data/topic_user_weekly_colnames.csv")
 alldata_afd_user <- alldata_user %>% 
   filter(Partei == "AfD")
 
+alldata_spd_user <- alldata_user %>% 
+  filter(Partei == "SPD")
+
 # save
 saveRDS(alldata_user, "./data/topic_user.rds")
 saveRDS(alldata_afd_user, "./data/topic_afd_user.rds")
+saveRDS(alldata_spd_user, "./data/topic_spd_user.rds")
 saveRDS(alldata_user_weekly, "./data/topic_user_weekly.rds")
+
+# reload and split
+set.seed(123)
+alldata_afd_user <- readRDS("./data/topic_afd_user.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_afd_user), p*nrow(alldata_afd_user))
+alldata_afd_user_train <- alldata_afd_user[idx_train,]
+alldata_afd_user_test <- alldata_afd_user[-idx_train,]
+saveRDS(alldata_afd_user_train, "./data/topic_afd_user_train.rds")
+saveRDS(alldata_afd_user_test, "./data/topic_afd_user_test.rds")
+
+set.seed(123)
+alldata_spd_user <- readRDS("./data/topic_spd_user.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_afd_user), p*nrow(alldata_afd_user))
+alldata_afd_user_train <- alldata_afd_user[idx_train,]
+alldata_afd_user_test <- alldata_afd_user[-idx_train,]
+saveRDS(alldata_afd_user_train, "./data/topic_spd_user_train.rds")
+saveRDS(alldata_afd_user_test, "./data/topic_spd_user_test.rds")
