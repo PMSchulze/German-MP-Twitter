@@ -29,7 +29,12 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-file <- "topic_user"
+file <- "topic_afd_user_train"
+# file <- "topic_afd_user_test"
+# file <- "topic_spd_user_train"
+# file <- "topic_spd_user_test"
+# file <- "topic_user"
+# file <- "topic_afd_user"
 # file <- "topic_spd_user"
 # file <- "topic_user_weekly"
 
@@ -122,6 +127,53 @@ quanteda::topfeatures(dfmatrix_cleaned, 20)
 
 # convert to stm object (this reduces memory use when fitting stm; see ?stm)
 data_preprocessed <- quanteda::convert(dfmatrix_cleaned, to = "stm")
+
+# --------------------------- Generate dummy variables for Ausschuss ---------------------------
+
+# Bundestagsauschuesse
+ausschuesse <- c(
+  "Ausschuss für Arbeit und Soziales",
+  "Auswärtiger Ausschuss",
+  "Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen",
+  "Ausschuss für Bildung, Forschung und Technikfolgenabschätzung",
+  "Ausschuss Digitale Agenda",
+  "Ausschuss für Ernährung und Landwirtschaft",
+  "Ausschuss für die Angelegenheiten der Europäischen Union",
+  "Ausschuss für Familie, Senioren, Frauen und Jugend",
+  "Finanzausschuss",
+  "Ausschuss für Gesundheit",
+  "Haushaltsausschuss",
+  "Ausschuss für Inneres und Heimat",
+  "Ausschuss für Kultur und Medien",
+  "Ausschuss für Menschenrechte und humanitäre Hilfe",
+  "Petitionsausschuss",
+  "Ausschuss für Recht und Verbraucherschutz",
+  "Sportausschuss",
+  "Ausschuss für Tourismus",
+  "Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit",
+  "Ausschuss für Verkehr und digitale Infrastruktur",
+  "Verteidigungsausschuss",
+  "Wahlprüfungsausschuss",
+  "Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung",
+  "Ausschuss für Wirtschaft und Energie",
+  "Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung"
+)
+
+# create a column for each Ausschuss and check membership (1 = yes, 0 = no)
+meta <- data_preprocessed$meta
+ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
+  as.numeric(stringi::stri_detect_fixed(meta$Ausschusspositionen, s))
+}
+)
+colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
+
+# add columns to the data frame (and delete inital Ausschuss variable)
+meta <- meta %>% 
+  add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
+  select(-"Ausschusspositionen")
+data_preprocessed$meta <- meta
+# ----------------------------------------------------------------------------------------------
+
 
 # save
 outpath <- paste0("./data/", file, "_preprocessed_no#.rds")

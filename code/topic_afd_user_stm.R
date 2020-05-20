@@ -30,81 +30,52 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ----------------------------------------------------------------------------------------------
 
 # load data
-data <- readRDS("./data/topic_spd_user_preprocessed.rds")
+data_train <- readRDS("./data/topic_afd_user_train_preprocessed_no#.rds")
+data_test <- readRDS("./data/topic_afd_user_test_preprocessed_no#.rds")
 colnames_table <- read.csv(file = "./data/topic_user_colnames.csv")
 
 # extract documents, vocabulary and metadata
-docs <- data$documents
-vocab <-  data$vocab
-meta <- data$meta
+docs_train <- data_train$documents
+vocab_train <-  data_train$vocab
+meta_train <- data_train$meta
 
-# --------------------------- Generate dummy variables for Ausschuss ---------------------------
-
-# Bundestagsauschuesse
-ausschuesse <- c(
-  "Ausschuss für Arbeit und Soziales",
-  "Auswärtiger Ausschuss",
-  "Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen",
-  "Ausschuss für Bildung, Forschung und Technikfolgenabschätzung",
-  "Ausschuss Digitale Agenda",
-  "Ausschuss für Ernährung und Landwirtschaft",
-  "Ausschuss für die Angelegenheiten der Europäischen Union",
-  "Ausschuss für Familie, Senioren, Frauen und Jugend",
-  "Finanzausschuss",
-  "Ausschuss für Gesundheit",
-  "Haushaltsausschuss",
-  "Ausschuss für Inneres und Heimat",
-  "Ausschuss für Kultur und Medien",
-  "Ausschuss für Menschenrechte und humanitäre Hilfe",
-  "Petitionsausschuss",
-  "Ausschuss für Recht und Verbraucherschutz",
-  "Sportausschuss",
-  "Ausschuss für Tourismus",
-  "Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit",
-  "Ausschuss für Verkehr und digitale Infrastruktur",
-  "Verteidigungsausschuss",
-  "Wahlprüfungsausschuss",
-  "Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung",
-  "Ausschuss für Wirtschaft und Energie",
-  "Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung"
-)
-
-# create a column for each Ausschuss and check membership (1 = yes, 0 = no)
-ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
-  as.numeric(stringi::stri_detect_fixed(meta$Ausschusspositionen, s))
-}
-)
-colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
-
-# add columns to the data frame (and delete inital Ausschuss variable)
-meta <- meta %>% 
-  add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
-  dplyr::select(-"Ausschusspositionen")
-
-# ----------------------------------------------------------------------------------------------
+# search hyperparameter space for optimal K
+hyperparameter_search <- searchK(documents = docs,
+                                 vocab = vocab,
+                                 K = c(5,6,7,8,9,10),
+                                 init.type = "Spectral",
+                                 proportion = 0.2, heldout.seed = 123, M = 10)
 
 # set CDU/CSU as reference category for variable "Partei"
 meta$Partei <- meta$Partei %>%
   as.factor() %>%
   relevel(ref = 3)
 
-# search hyperparameter space for optimal K
-hyperparameter_search <- searchK(documents = docs,
-        vocab = vocab,
-        K = c(5,6,7,8,9,10),
-        init.type = "Spectral",
-        proportion = 0.2, heldout.seed = 123, M = 10)
-
 # topical prevalence
 mod_prev <- stm::stm(
-  documents = docs,
-  vocab = vocab,
-  data = meta,
+  documents = docs_train,
+  vocab = vocab_train,
+  data = meta_train,
   K = 6,
-  prevalence =~ Partei + Bundesland + s(Struktur_4)
-  + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  prevalence =~ Bundesland,
   max.em.its = 75,
   init.type = "Spectral")
+
+# align corpus
+data_test <- alignCorpus(new = data_test, old.vocab = mod_prev$vocab, verbose = TRUE)
+
+docs_test <- data_test$documents
+vocab_test <-  data_test$vocab
+meta_test <- data_test$meta
+
+# fit new documents
+test <- fitNewDocuments(model = mod_prev, documents = docs_test, newData = meta_test,
+                origData = meta_train,
+                prevalence =~ Bundesland,
+                returnPosterior = FALSE,
+                returnPriors = FALSE, designMatrix = NULL, test = TRUE,
+                verbose = TRUE)
+
 
 ### top words per topic
 labelTopics(mod_prev)
@@ -128,7 +99,7 @@ plot(mod_prev, type = "perspectives", topics = c(2, 4))
 
 ### global topic correlation
 mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = -0.25,
-          verbose = TRUE)
+                           verbose = TRUE)
 plot.topicCorr(mod_prev_corr)
 
 ## metadata/topic relationship
