@@ -168,11 +168,15 @@ alldata_afd_user <- alldata_user %>%
 alldata_spd_user <- alldata_user %>% 
   filter(Partei == "SPD")
 
+alldata_cdu_user <- alldata_user %>% 
+  filter(Partei == "CDU/CSU")
+
 # save
 saveRDS(alldata_user, "./data/topic_user.rds")
 saveRDS(alldata_afd_user, "./data/topic_afd_user.rds")
 saveRDS(alldata_spd_user, "./data/topic_spd_user.rds")
 saveRDS(alldata_user_weekly, "./data/topic_user_weekly.rds")
+saveRDS(alldata_cdu_user, "./data/topic_cdu_user.rds")
 
 # reload and split
 set.seed(123)
@@ -192,3 +196,12 @@ alldata_spd_user_train <- alldata_spd_user[idx_train,]
 alldata_spd_user_test <- alldata_spd_user[-idx_train,]
 saveRDS(alldata_spd_user_train, "./data/topic_spd_user_train.rds")
 saveRDS(alldata_spd_user_test, "./data/topic_spd_user_test.rds")
+
+set.seed(123)
+alldata_cdu_user <- readRDS("./data/topic_cdu_user.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_cdu_user), p*nrow(alldata_cdu_user))
+alldata_cdu_user_train <- alldata_cdu_user[idx_train,]
+alldata_cdu_user_test <- alldata_cdu_user[-idx_train,]
+saveRDS(alldata_cdu_user_train, "./data/topic_cdu_user_train.rds")
+saveRDS(alldata_cdu_user_test, "./data/topic_cdu_user_test.rds")
