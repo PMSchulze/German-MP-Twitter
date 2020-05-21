@@ -160,18 +160,16 @@ ausschuesse <- c(
 )
 
 # create a column for each Ausschuss and check membership (1 = yes, 0 = no)
-meta <- data_preprocessed$meta
 ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
-  as.numeric(stringi::stri_detect_fixed(meta$Ausschusspositionen, s))
+  as.numeric(stringi::stri_detect_fixed(data_preprocessed$meta$Ausschusspositionen, s))
 }
 )
 colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
 
 # add columns to the data frame (and delete inital Ausschuss variable)
-meta <- meta %>% 
-  add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
-  select(-"Ausschusspositionen")
-data_preprocessed$meta <- meta
+data_preprocessed$meta <- data_preprocessed$meta %>% 
+  cbind(ausschuesse_dummy) %>%
+  dplyr::select(-"Ausschusspositionen")
 # ----------------------------------------------------------------------------------------------
 
 
