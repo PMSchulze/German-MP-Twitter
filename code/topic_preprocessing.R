@@ -22,17 +22,21 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
 # file <- "topic_afd_user_train"
-file <- "topic_afd_user_test"
+# file <- "topic_afd_user_test"
 # file <- "topic_spd_user_train"
 # file <- "topic_spd_user_test"
+# file <- "topic_cdu_user_train"
+# file <- "topic_cdu_user_test"
+# file <- "topic_user_train"
+file <- "topic_user_test"
 # file <- "topic_user"
 # file <- "topic_afd_user"
 # file <- "topic_spd_user"
@@ -176,3 +180,4 @@ data_preprocessed$meta <- data_preprocessed$meta %>%
 # save
 outpath <- paste0("./data/", file, "_preprocessed_no#.rds")
 saveRDS(data_preprocessed, outpath)
+

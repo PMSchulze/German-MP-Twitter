@@ -205,3 +205,12 @@ alldata_cdu_user_train <- alldata_cdu_user[idx_train,]
 alldata_cdu_user_test <- alldata_cdu_user[-idx_train,]
 saveRDS(alldata_cdu_user_train, "./data/topic_cdu_user_train.rds")
 saveRDS(alldata_cdu_user_test, "./data/topic_cdu_user_test.rds")
+
+set.seed(123)
+alldata_user <- readRDS("./data/topic_user.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_user), p*nrow(alldata_user))
+alldata_user_train <- alldata_user[idx_train,]
+alldata_user_test <- alldata_user[-idx_train,]
+saveRDS(alldata_user_train, "./data/topic_user_train.rds")
+saveRDS(alldata_user_test, "./data/topic_user_test.rds")
