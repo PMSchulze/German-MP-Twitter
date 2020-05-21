@@ -30,13 +30,14 @@ setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
 # ----------------------------------------------------------------------------------------------
 
 # load data
-topic_user_preprocessed <- readRDS("./data/topic_spd_user_preprocessed.rds")
+data_train <- readRDS("./data/topic_spd_user_train_preprocessed_no#.rds")
+data_test <- readRDS("./data/topic_spd_user_test_preprocessed_no#.rds")
 colnames_table <- read.csv(file = "./data/topic_user_colnames.csv")
 
 # extract documents, vocabulary and metadata
-docs <- topic_user_preprocessed$documents
-vocab <-  topic_user_preprocessed$vocab
-meta <- topic_user_preprocessed$meta
+docs_train <- data_train$documents
+vocab_train <-  data_train$vocab
+meta_train <- data_train$meta
 
 # --------------------------- Generate dummy variables for Ausschuss ---------------------------
 
@@ -71,52 +72,75 @@ ausschuesse <- c(
 
 # create a column for each Ausschuss and check membership (1 = yes, 0 = no)
 ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
-  as.numeric(stringi::stri_detect_fixed(meta$Ausschusspositionen, s))
+  as.numeric(stringi::stri_detect_fixed(meta_train$Ausschusspositionen, s))
 }
 )
 colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
 
 # add columns to the data frame (and delete inital Ausschuss variable)
-meta <- meta %>% 
+meta_train <- meta_train %>% 
   add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
   select(-"Ausschusspositionen")
 
 # ----------------------------------------------------------------------------------------------
 
-search_mods <- stm::searchK(
-    documents = docs,
-    vocab = vocab,
-    data = meta,
-    K = c(5,6,7,8),
-    prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
-      s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
-    max.em.its = 85,
-    init.type = "Spectral"
+# search hyperparameter space for optimal K
+hyperparameter_search <- searchK(
+  documents = docs_train,
+  vocab = vocab_train,
+  data = meta_train,
+  K = c(5,6,7,8,9,10),
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  max.em.its = 50,
+  init.type = "Spectral"
 )
 
-plot(search_mods)
+n_topics <- 6
 
-# set number of topics to 6
-n_topics = 6
-
-# prevalence model
+# topical prevalence
 mod_prev <- stm::stm(
-  documents = docs,
-  vocab = vocab,
-  data = meta,
-  K = n_topics,
-  prevalence =~ Anzahl_Follower,
-  max.em.its = 85,
-  init.type = "Spectral")
+  documents = docs_train,
+  vocab = vocab_train,
+  data = meta_train,
+  K = 6,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  max.em.its = 75,
+  init.type = "Spectral"
+)
 
 ### top words per topic
 labelTopics(mod_prev)
 
 ### summary visualization
-plot(mod_prev, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev, type = "summary", labeltype = "frex", xlim = c(0, 0.5))
 
 ### relationship topic/vocabulary
 plot(mod_prev, type = "perspectives", topics = c(3, 6))
+
+# align corpus
+data_test <- alignCorpus(new = data_test, old.vocab = mod_prev$vocab, verbose = TRUE)
+
+docs_test <- data_test$documents
+vocab_test <-  data_test$vocab
+meta_test <- data_test$meta
+
+# fit new documents
+test <- fitNewDocuments(
+  model = mod_prev, 
+  documents = docs_test, 
+  newData = meta_test,
+  origData = meta_train,
+  prevalence =~ Bundesland,
+  returnPosterior = FALSE,
+  returnPriors = FALSE, 
+  designMatrix = NULL, 
+  test = TRUE,
+  verbose = TRUE
+)
+
+# ----------------------------------------------------------------------------------------------
 
 ### estimating metadata/topic relationship
 meta$Bundesland <- as.factor(meta$Bundesland)

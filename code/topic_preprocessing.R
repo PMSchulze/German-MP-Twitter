@@ -22,15 +22,15 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-file <- "topic_afd_user_train"
-# file <- "topic_afd_user_test"
+# file <- "topic_afd_user_train"
+file <- "topic_afd_user_test"
 # file <- "topic_spd_user_train"
 # file <- "topic_spd_user_test"
 # file <- "topic_user"
@@ -113,7 +113,7 @@ dfmatrix_cleaned <- dfmatrix %>%
                        valuetype = "regex") %>%  
   quanteda::dfm_remove(pattern = "^.*(aaa|aeae|fff|hhh|uuu|www).*$",  # aaaawww etc.
                        valuetype = "regex") %>%
-  quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutschland|jaehrig|http)", # specific words
+  quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutsch|land|jaehrig|http)", # specific words
                        valuetype = "regex")
 
 # perform word stemming and remove all words that appear rarely as well as words with <4 characters
