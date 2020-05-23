@@ -28,117 +28,197 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------------- STM -------------------------------------------
 # ----------------------------------------------------------------------------------------------
-
 # load data
-data <- readRDS("./data/topic_spd_user_preprocessed.rds")
+data_train <- readRDS("./data/topic_user_train_preprocessed_no#.rds")
+data_test <- readRDS("./data/topic_user_test_preprocessed_no#.rds")
 colnames_table <- read.csv(file = "./data/topic_user_colnames.csv")
 
 # extract documents, vocabulary and metadata
-docs <- data$documents
-vocab <-  data$vocab
-meta <- data$meta
-
-# --------------------------- Generate dummy variables for Ausschuss ---------------------------
-
-# Bundestagsauschuesse
-ausschuesse <- c(
-  "Ausschuss für Arbeit und Soziales",
-  "Auswärtiger Ausschuss",
-  "Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen",
-  "Ausschuss für Bildung, Forschung und Technikfolgenabschätzung",
-  "Ausschuss Digitale Agenda",
-  "Ausschuss für Ernährung und Landwirtschaft",
-  "Ausschuss für die Angelegenheiten der Europäischen Union",
-  "Ausschuss für Familie, Senioren, Frauen und Jugend",
-  "Finanzausschuss",
-  "Ausschuss für Gesundheit",
-  "Haushaltsausschuss",
-  "Ausschuss für Inneres und Heimat",
-  "Ausschuss für Kultur und Medien",
-  "Ausschuss für Menschenrechte und humanitäre Hilfe",
-  "Petitionsausschuss",
-  "Ausschuss für Recht und Verbraucherschutz",
-  "Sportausschuss",
-  "Ausschuss für Tourismus",
-  "Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit",
-  "Ausschuss für Verkehr und digitale Infrastruktur",
-  "Verteidigungsausschuss",
-  "Wahlprüfungsausschuss",
-  "Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung",
-  "Ausschuss für Wirtschaft und Energie",
-  "Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung"
-)
-
-# create a column for each Ausschuss and check membership (1 = yes, 0 = no)
-ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
-  as.numeric(stringi::stri_detect_fixed(meta$Ausschusspositionen, s))
-}
-)
-colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
-
-# add columns to the data frame (and delete inital Ausschuss variable)
-meta <- meta %>% 
-  add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
-  dplyr::select(-"Ausschusspositionen")
-
-# ----------------------------------------------------------------------------------------------
-
-# set CDU/CSU as reference category for variable "Partei"
-meta$Partei <- meta$Partei %>%
-  as.factor() %>%
-  relevel(ref = 3)
+docs_train <- data_train$documents
+vocab_train <-  data_train$vocab
+meta_train <- data_train$meta
 
 # search hyperparameter space for optimal K
-hyperparameter_search <- searchK(documents = docs,
-        vocab = vocab,
-        K = c(5,6,7,8,9,10),
-        init.type = "Spectral",
-        proportion = 0.2, heldout.seed = 123, M = 10)
+hyperparameter_search <- searchK(
+  documents = docs_train,
+  vocab = vocab_train,
+  data = meta_train,
+  K = c(5,6,7,8,9,10),
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  max.em.its = 50,
+  init.type = "Spectral"
+)
 
-# topical prevalence
+# topic prevalence --------------------------------------------------------
+
+# choose covariates
+prev_var <- c("Partei*Bundesland", "Partei*s(Anzahl_Follower)", "Partei*s(Struktur_4)",
+                    "Partei*s(Struktur_22)", "Partei*s(Struktur_42)", "Partei*s(Struktur_54)")
+
+outcome <- ""
+prevalence <- as.formula(paste(outcome, paste(prev_var, collapse = "+"), sep = "~")) 
+
+# fit model
 mod_prev <- stm::stm(
-  documents = docs,
-  vocab = vocab,
-  data = meta,
+  documents = docs_train,
+  vocab = vocab_train,
+  data = meta_train,
   K = 6,
-  prevalence =~ Partei + Bundesland + s(Struktur_4)
-  + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
-  max.em.its = 75,
+  prevalence = prevalence,
+  gamma.prior='L1',
+  max.em.its = 300,
   init.type = "Spectral")
 
-### top words per topic
+# mod_prev$mu # corpus mean of topic prevalence and coefficients
+# mod_prev$beta # word probabilities for each topic
+# mod_prev$sigma # covariance matrix
+# mod_prev$theta # topic proportions
+
+# top words per topic
 labelTopics(mod_prev)
 
-### all topics with overall proportions
-plot(mod_prev, type = "summary", xlim = c(0, 0.3))
+logbeta_matrix <- mod_prev$beta$logbeta[[1]]
+mod_prev$vocab[which.max(logbeta_matrix[6,])] # highest prob (frequency) word for topic 6
 
-### manually label topics
-mod_prev_labels <- c("miscellaneous",
-                     "left/social",
+# manually label topics
+mod_prev_labels <- c("right/national",
+                     "green/climate",
+                     "future/digital",
                      "Europe",
-                     "right/national",
-                     "miscellaneous",
-                     "green/climate")
+                     "left/social",
+                     "miscellaneous")
 
-### word clouds
+# align corpus for test data
+data_test <- alignCorpus(new = data_test, old.vocab = mod_prev$vocab, verbose = TRUE)
+
+docs_test <- data_test$documents
+vocab_test <-  data_test$vocab
+meta_test <- data_test$meta
+
+# fit new documents
+test <- fitNewDocuments(
+  model = mod_prev, 
+  documents = docs_test, 
+  newData = meta_test,
+  origData = meta_train,
+  prevalence = prevalence,
+  returnPosterior = FALSE,
+  returnPriors = FALSE, 
+  designMatrix = NULL, 
+  test = TRUE,
+  verbose = TRUE
+)
+
+# all topics w/ global proportions (prints topic words with their corpus frequency)
+plot(mod_prev, type = "summary", xlim = c(0, 0.3)) # average thetas across all MPs 
+
+### training data
+doc_lengths <- lapply(docs_train[], length)
+weights <- c()
+i <- 1
+while (i <= length(doc_lengths)) {
+  weights[[i]] <- doc_lengths[[i]]/2
+  i <- i + 1}
+mean_weight <- mean(weights)
+frequency <- colMeans(mod_prev$theta[,1:6])
+weighted_frequency <- colMeans((mod_prev$theta*weights/mean_weight)[, 1:6])
+frequency
+weighted_frequency
+
+### test data
+doc_lengths <- lapply(docs_test[], length)
+weights <- c()
+i <- 1
+while (i <= length(doc_lengths)) {
+  weights[[i]] <- doc_lengths[[i]]/2
+  i <- i + 1}
+mean_weight <- mean(weights)
+frequency <- colMeans(test$theta[,1:6])
+weighted_frequency <- colMeans((test$theta*weights/mean_weight)[, 1:6])
+frequency
+weighted_frequency
+
+# word clouds (for training data only)
 cloud(mod_prev, topic = 6, scale = c(2, 0.25))
 
-### vocabulary usage across two topics
+# vocabulary usage across two topics (for training data only)
 plot(mod_prev, type = "perspectives", topics = c(2, 4))
 
-### global topic correlation
-mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = -0.25,
-          verbose = TRUE)
+# global topic correlation
+mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = -0.20,
+          verbose = TRUE) # based on correlations between mod_prev$theta
 plot.topicCorr(mod_prev_corr)
 
-## metadata/topic relationship
-meta$Bundesland <- as.factor(meta$Bundesland)
-prep <- stm::estimateEffect(1:6 ~ Partei + Bundesland + s(Struktur_4)
-                            + s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+### training data
+cormat <- cor(mod_prev$theta)
+cormat
+
+### test data
+cormat <- cor(test$theta)
+cormat
+
+# metadata/topic relationship ---------------------------------------------
+covar <- c("Partei", "Bundesland", "Anzahl_Follower", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")
+
+# factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
+meta_train$Partei <- meta_train$Partei %>%
+  as.factor() %>%
+  relevel(ref = 3)
+meta_train$Bundesland <- as.factor(meta_train$Bundesland)
+
+meta_test$Partei <- meta_test$Partei %>%
+  as.factor() %>%
+  relevel(ref = 3)
+meta_test$Bundesland <- as.factor(meta_test$Bundesland)
+
+# training data
+topic_props_train <- make.dt(
+  mod_prev, 
+  meta_train[covar])
+
+topic_props_train %>%
+  ggplot(aes(Partei, Topic6)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_point() +
+  labs(y = "Themenanteil", 
+       title = "'right/national' - topic proportion by party")
+
+topic_props_train %>%
+  ggplot(aes(Struktur_22,Topic4)) +
+  geom_smooth(method = "lm", formula = y ~ s(x)) +
+  labs(x = "BIP pro Kopf", y = "Themenanteil", 
+       title = "BIP vs. Thema 'Arbeit & Soziales'")
+
+# test data
+topic_props_test <- make.dt(
+  test,
+  meta_test[covar])
+
+topic_props_test %>%
+  ggplot(aes(Partei, Topic6)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_point() +
+  labs(y = "topic proportion", 
+       title = "'right/national' - topic proportion by party")
+
+topic_props_test %>%
+  ggplot(aes(Struktur_22, Topic4)) +
+  geom_smooth(method = "lm", formula = y ~ s(x)) +
+  labs(x = "GDP p.c.", y = "topic proportion", 
+       title = "GDP vs. Thema 'Arbeit & Soziales'")
+
+## 
+outcome <- "1:6"
+prevalence <- as.formula(paste(outcome, paste(prev_var, collapse = "+"), sep = "~")) 
+
+prep <- stm::estimateEffect(1:6 ~ Partei + Bundesland + s(Anzahl_Follower) + 
+                              s(Struktur_4) + s(Struktur_22) + s(Struktur_42) + 
+                              s(Struktur_54),
                             mod_prev,
-                            metadata = meta,
+                            metadata = meta_train,
                             uncertainty = "Global")
-summary(prep, topics = 6)
+summary(prep, topics = 1)
 
 ### difference between two parties regarding topic prevalence
 plot(prep, "Partei", method = "difference", topics = c(1,2,3,4,5,6), cov.value1 = "CDU/CSU",
@@ -173,7 +253,9 @@ plot(prep, "Struktur_4", method = "continuous", topics = 3,
      ylim = c(0.1, 0.25))
 axis(1, tick = TRUE)
 
-## prevalence model w/ interaction
+# prevalence model w/ interaction -----------------------------------------
+
+# fit model
 mod_prev_int <- stm::stm(
   documents = docs,
   vocab = vocab,
@@ -283,7 +365,9 @@ plot(prep, covariate = covariate, model = mod_prev_int,
      moderator.value = "AfD", linecol = "blue", ylim = c(0, 0.70),
      printlegend = FALSE, add = TRUE)
 
-# topical content
+
+# topical content -------------------------------------------------------
+
 mod_topic <- stm::stm(
   documents = docs,
   vocab = vocab, 
