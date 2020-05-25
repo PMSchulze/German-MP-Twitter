@@ -22,25 +22,26 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-# file <- "topic_afd_user_train"
-# file <- "topic_afd_user_test"
-# file <- "topic_spd_user_train"
-# file <- "topic_spd_user_test"
-# file <- "topic_cdu_user_train"
-# file <- "topic_cdu_user_test"
-# file <- "topic_user_train"
-file <- "topic_user_test"
-# file <- "topic_user"
-# file <- "topic_afd_user"
-# file <- "topic_spd_user"
-# file <- "topic_user_weekly"
+# file <- "prep"
+# file <- "prep_train"
+# file <- "prep_test"
+# file <- "prep_cdu"
+# file <- "prep_cdu_train"
+# file <- "prep_cdu_test"
+
+file <- "prep_monthly"
+# file <- "prep_monthly_train"
+# file <- "prep_monthly_test"
+# file <- "prep_cdu_monthly"
+# file <- "prep_cdu_monthly_train"
+# file <- "prep_cdu_monthly_test"
 
 filepath <- paste0("./data/", file, ".rds")
 data <- readRDS(filepath)
@@ -49,10 +50,12 @@ data <- readRDS(filepath)
 # ------------------ Preprocessing data with the quanteda package ------------------------------
 # ----------------------------------------------------------------------------------------------
 
-if (file == "topic_user_weekly") {
-  data$docid <- paste0(data$Name, "_", data$Jahr, "_", data$Woche)
-}
-if (file == "topic_user_weekly") {
+if (grepl("monthly", file)) {
+  data$docid <- paste0(data$Twitter_Username, "_", data$Jahr, "_", data$Monat)
+  data$Datum <- with(data, sprintf("%d-%02d", Jahr, Monat))
+  data <- data %>% 
+    select(-c("Jahr", "Monat")) %>% 
+    relocate(docid, .after = c)
   docid_field <- "docid"
 } else {
   docid_field <- "Name"
@@ -176,8 +179,11 @@ data_preprocessed$meta <- data_preprocessed$meta %>%
   dplyr::select(-"Ausschusspositionen")
 # ----------------------------------------------------------------------------------------------
 
-
 # save
-outpath <- paste0("./data/", file, "_preprocessed_no#.rds")
+outpath <- paste0(
+  "./data/", 
+  stringi::stri_replace_all_fixed(file, "prep", "preprocessed"), 
+  ".rds"
+)
 saveRDS(data_preprocessed, outpath)
 

@@ -23,8 +23,8 @@ lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
 # setwd('C:\\Users\\Simon\\Desktop\\Twitter')
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ----------------------------------- Prepare Twitter data ------------------------------------- 
@@ -76,10 +76,10 @@ topic_user <- topic %>%
   ) %>%
   ungroup()
 
-# aggregate data on a per-week per-user basis
-topic_user_weekly <-  topic %>% 
-  mutate(Jahr = lubridate::year(Datum), Woche = lubridate::isoweek(Datum)) %>%
-  group_by(Name, Jahr, Woche) %>% 
+# aggregate data on a per-month per-user basis
+topic_user_monthly <-  topic %>% 
+  mutate(Jahr = lubridate::year(Datum), Monat = lubridate::month(Datum)) %>%
+  group_by(Name, Jahr, Monat) %>% 
   mutate(Tweets_Dokument = paste(Tweets, collapse = ' ')) %>%
   summarize(
     Twitter_Username = max(Twitter_Username), 
@@ -87,7 +87,7 @@ topic_user_weekly <-  topic %>%
     Anzahl_Follower = max(Anzahl_Follower)
   ) %>%
   ungroup() %>%
-  arrange(Name, Jahr, Woche)
+  arrange(Name, Jahr, Monat)
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Load abg_df and se_df and merge with topic_user -----------------------
@@ -105,7 +105,7 @@ alldata_user <- topic_user %>%
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
 
-alldata_user_weekly <- topic_user_weekly %>% 
+alldata_user_monthly <- topic_user_monthly %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
 
@@ -132,13 +132,13 @@ drop_vars <- c(
 )
 alldata_user <- alldata_user %>% 
   select(-drop_vars)
-alldata_user_weekly <- alldata_user_weekly %>% 
+alldata_user_monthly <- alldata_user_monthly %>% 
   select(-drop_vars)
 
 # drop rows where Partei==fraktionslos (only one row deleted)
 alldata_user <- alldata_user %>% 
   filter(Partei != "fraktionslos")
-alldata_user_weekly <- alldata_user_weekly %>% 
+alldata_user_monthly <- alldata_user_monthly %>% 
   filter(Partei != "fraktionslos")
 
 # create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
@@ -146,71 +146,68 @@ alldata_user$Wahlergebnis <- purrr::map2_dbl(
   1:nrow(alldata_user), paste(alldata_user$Partei, "Anteil"), 
   function(i,j) alldata_user[[i,j]]
 )
-alldata_user_weekly$Wahlergebnis <- purrr::map2_dbl(
-  1:nrow(alldata_user_weekly), paste(alldata_user_weekly$Partei, "Anteil"), 
-  function(i,j) alldata_user_weekly[[i,j]]
+alldata_user_monthly$Wahlergebnis <- purrr::map2_dbl(
+  1:nrow(alldata_user_monthly), paste(alldata_user_monthly$Partei, "Anteil"), 
+  function(i,j) alldata_user_monthly[[i,j]]
 )
 
 # change colnames and store old names
 colnames_user <- data.frame(oldnames = colnames(alldata_user), 
                              newnames = c(colnames(alldata_user)[1:11], paste0("Struktur_", 1:54)))
-colnames_user_weekly <- data.frame(oldnames = colnames(alldata_user_weekly), 
-                            newnames = c(colnames(alldata_user_weekly)[1:13], paste0("Struktur_", 1:54)))
+colnames_user_monthly <- data.frame(oldnames = colnames(alldata_user_monthly), 
+                                    newnames = c(colnames(alldata_user_monthly)[1:13], paste0("Struktur_", 1:54)))
 colnames(alldata_user) <- colnames_user[["newnames"]]
-colnames(alldata_user_weekly) <- colnames_user_weekly[["newnames"]]
-write.csv(colnames_user, file = "./data/topic_user_colnames.csv")
-write.csv(colnames_user_weekly, file = "./data/topic_user_weekly_colnames.csv")
+colnames(alldata_user_monthly) <- colnames_user_monthly[["newnames"]]
+write.csv(colnames_user, file = "./data/topic_colnames.csv")
+write.csv(colnames_user_monthly, file = "./data/topic_monthly_colnames.csv")
 
 # extract party specific dataset
-alldata_afd_user <- alldata_user %>% 
-  filter(Partei == "AfD")
-
-alldata_spd_user <- alldata_user %>% 
-  filter(Partei == "SPD")
-
 alldata_cdu_user <- alldata_user %>% 
+  filter(Partei == "CDU/CSU")
+alldata_cdu_user_monthly <- alldata_user_monthly %>% 
   filter(Partei == "CDU/CSU")
 
 # save
-saveRDS(alldata_user, "./data/topic_user.rds")
-saveRDS(alldata_afd_user, "./data/topic_afd_user.rds")
-saveRDS(alldata_spd_user, "./data/topic_spd_user.rds")
-saveRDS(alldata_user_weekly, "./data/topic_user_weekly.rds")
-saveRDS(alldata_cdu_user, "./data/topic_cdu_user.rds")
+saveRDS(alldata_user, "./data/prep.rds")
+saveRDS(alldata_cdu_user, "./data/prep_cdu.rds")
+saveRDS(alldata_user_monthly, "./data/prep_monthly.rds")
+saveRDS(alldata_cdu_user_monthly, "./data/prep_cdu_monthly.rds")
+
 
 # reload and split
 set.seed(123)
-alldata_afd_user <- readRDS("./data/topic_afd_user.rds")
-p <- 0.5
-idx_train <- sample(1:nrow(alldata_afd_user), p*nrow(alldata_afd_user))
-alldata_afd_user_train <- alldata_afd_user[idx_train,]
-alldata_afd_user_test <- alldata_afd_user[-idx_train,]
-saveRDS(alldata_afd_user_train, "./data/topic_afd_user_train.rds")
-saveRDS(alldata_afd_user_test, "./data/topic_afd_user_test.rds")
-
-set.seed(123)
-alldata_spd_user <- readRDS("./data/topic_spd_user.rds")
-p <- 0.5
-idx_train <- sample(1:nrow(alldata_spd_user), p*nrow(alldata_spd_user))
-alldata_spd_user_train <- alldata_spd_user[idx_train,]
-alldata_spd_user_test <- alldata_spd_user[-idx_train,]
-saveRDS(alldata_spd_user_train, "./data/topic_spd_user_train.rds")
-saveRDS(alldata_spd_user_test, "./data/topic_spd_user_test.rds")
-
-set.seed(123)
-alldata_cdu_user <- readRDS("./data/topic_cdu_user.rds")
+alldata_cdu_user <- readRDS("./data/prep_cdu.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_cdu_user), p*nrow(alldata_cdu_user))
 alldata_cdu_user_train <- alldata_cdu_user[idx_train,]
 alldata_cdu_user_test <- alldata_cdu_user[-idx_train,]
-saveRDS(alldata_cdu_user_train, "./data/topic_cdu_user_train.rds")
-saveRDS(alldata_cdu_user_test, "./data/topic_cdu_user_test.rds")
+saveRDS(alldata_cdu_user_train, "./data/prep_cdu_train.rds")
+saveRDS(alldata_cdu_user_test, "./data/prep_cdu_test.rds")
 
 set.seed(123)
-alldata_user <- readRDS("./data/topic_user.rds")
+alldata_user <- readRDS("./data/prep.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_user), p*nrow(alldata_user))
 alldata_user_train <- alldata_user[idx_train,]
 alldata_user_test <- alldata_user[-idx_train,]
-saveRDS(alldata_user_train, "./data/topic_user_train.rds")
-saveRDS(alldata_user_test, "./data/topic_user_test.rds")
+saveRDS(alldata_user_train, "./data/prep_train.rds")
+saveRDS(alldata_user_test, "./data/prep_test.rds")
+
+
+set.seed(123)
+alldata_cdu_user_monthly <- readRDS("./data/prep_cdu_monthly.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_cdu_user_monthly), p*nrow(alldata_cdu_user_monthly))
+alldata_cdu_user_monthly_train <- alldata_cdu_user_monthly[idx_train,]
+alldata_cdu_user_monthly_test <- alldata_cdu_user_monthly[-idx_train,]
+saveRDS(alldata_cdu_user_monthly_train, "./data/prep_cdu_monthly_train.rds")
+saveRDS(alldata_cdu_user_monthly_test, "./data/prep_cdu_monthly_test.rds")
+
+set.seed(123)
+alldata_user_monthly <- readRDS("./data/prep_monthly.rds")
+p <- 0.5
+idx_train <- sample(1:nrow(alldata_user_monthly), p*nrow(alldata_user_monthly))
+alldata_user_monthly_train <- alldata_user_monthly[idx_train,]
+alldata_user_monthly_test <- alldata_user_monthly[-idx_train,]
+saveRDS(alldata_user_monthly_train, "./data/prep_monthly_train.rds")
+saveRDS(alldata_user_monthly_test, "./data/prep_monthly_test.rds")
