@@ -1,0 +1,68 @@
+---
+title: 'draft data section'
+author: "Simon"
+date: "May 2020"
+output: html_document
+# bibliography: bibliography.bib
+# biblio-style: myabbrvnat
+# link-citations: yes
+# linkcolor: blue
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \captionsetup{labelformat=empty}
+  - \usepackage{multirow}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Preparation, include=FALSE}
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------------- Preparation -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "stringi", "tidyverse", "tm", "knitr"
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, character.only = TRUE)
+
+# set working directory
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+
+```
+
+### Data
+
+Data (2-3 Seiten):
+
+- web scraping
+- twitter scraping
+- socioeconomic variables
+- election variables
+- preprocessing
+- sentiment analysis: training corpus
+
+timeline
+
+graphics
+
+As a first step towards applying the STM to German political entities, we constructed a database with personal information about all    

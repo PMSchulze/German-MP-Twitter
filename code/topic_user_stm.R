@@ -66,7 +66,8 @@ mod_prev <- stm::stm(
   data = meta_train,
   K = 6,
   prevalence = prevalence,
-  gamma.prior='L1',
+  gamma.prior = 'L1',
+  seed = 123,
   max.em.its = 300,
   init.type = "Spectral")
 
@@ -178,7 +179,7 @@ topic_props_train <- make.dt(
   meta_train[covar])
 
 topic_props_train %>%
-  ggplot(aes(Partei, Topic6)) +
+  ggplot(aes(Partei, Topic1)) +
   geom_boxplot(outlier.shape = NA) +
   geom_point() +
   labs(y = "Themenanteil", 
@@ -196,7 +197,7 @@ topic_props_test <- make.dt(
   meta_test[covar])
 
 topic_props_test %>%
-  ggplot(aes(Partei, Topic6)) +
+  ggplot(aes(Partei, Topic1)) +
   geom_boxplot(outlier.shape = NA) +
   geom_point() +
   labs(y = "topic proportion", 
