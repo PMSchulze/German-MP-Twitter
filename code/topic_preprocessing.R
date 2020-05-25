@@ -38,10 +38,10 @@ setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # file <- "prep_monthly"
 # file <- "prep_monthly_train"
-# file <- "prep_monthly_test"
+file <- "prep_monthly_test"
 # file <- "prep_cdu_monthly"
 # file <- "prep_cdu_monthly_train"
-file <- "prep_cdu_monthly_test"
+# file <- "prep_cdu_monthly_test"
 
 filepath <- paste0("./data/", file, ".rds")
 data <- readRDS(filepath)
@@ -105,7 +105,6 @@ dfmatrix <- quanteda::dfm(
   verbose = FALSE
 )
 
-
 # check most frequent words
 quanteda::topfeatures(dfmatrix, 20)
 
@@ -168,7 +167,7 @@ ausschuesse <- c(
 # create a column for each Ausschuss and check membership (1 = yes, 0 = no)
 ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
   as.numeric(stringi::stri_detect_fixed(data_preprocessed$meta$Ausschusspositionen, s))
-}
+  }
 )
 colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
 
@@ -176,13 +175,12 @@ colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
 data_preprocessed$meta <- data_preprocessed$meta %>% 
   cbind(ausschuesse_dummy) %>%
   dplyr::select(-"Ausschusspositionen")
+
 # ----------------------------------------------------------------------------------------------
 
 # save
 outpath <- paste0(
-  "./data/", 
-  stringi::stri_replace_all_fixed(file, "prep", "preprocessed"), 
-  ".rds"
+  stringi::stri_replace_all_fixed(filepath, "prep", "preprocessed")
 )
 saveRDS(data_preprocessed, outpath)
 
