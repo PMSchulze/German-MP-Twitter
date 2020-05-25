@@ -36,12 +36,12 @@ setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 # file <- "prep_cdu_train"
 # file <- "prep_cdu_test"
 
-file <- "prep_monthly"
+# file <- "prep_monthly"
 # file <- "prep_monthly_train"
 # file <- "prep_monthly_test"
 # file <- "prep_cdu_monthly"
 # file <- "prep_cdu_monthly_train"
-# file <- "prep_cdu_monthly_test"
+file <- "prep_cdu_monthly_test"
 
 filepath <- paste0("./data/", file, ".rds")
 data <- readRDS(filepath)
@@ -54,8 +54,7 @@ if (grepl("monthly", file)) {
   data$docid <- paste0(data$Twitter_Username, "_", data$Jahr, "_", data$Monat)
   data$Datum <- with(data, sprintf("%d-%02d", Jahr, Monat))
   data <- data %>% 
-    select(-c("Jahr", "Monat")) %>% 
-    relocate(docid, .after = c)
+    select(-c("Jahr", "Monat"))
   docid_field <- "docid"
 } else {
   docid_field <- "Name"
