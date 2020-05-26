@@ -22,8 +22,8 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ------------------ Choose dataset for preprocessing ------------------------------------------
@@ -31,14 +31,14 @@ setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # file <- "prep"
 # file <- "prep_train"
-# file <- "prep_test"
+file <- "prep_test"
 # file <- "prep_cdu"
 # file <- "prep_cdu_train"
 # file <- "prep_cdu_test"
 
 # file <- "prep_monthly"
 # file <- "prep_monthly_train"
-file <- "prep_monthly_test"
+# file <- "prep_monthly_test"
 # file <- "prep_cdu_monthly"
 # file <- "prep_cdu_monthly_train"
 # file <- "prep_cdu_monthly_test"
@@ -116,7 +116,7 @@ dfmatrix_cleaned <- dfmatrix %>%
                        valuetype = "regex") %>%
   quanteda::dfm_remove(pattern = "^[^a-zA-Z0-9]*$",  # non-alphanumerical 
                        valuetype = "regex") %>%  
-  quanteda::dfm_remove(pattern = "^.*(aaa|aeae|fff|hhh|uuu|www).*$",  # aaaawww etc.
+  quanteda::dfm_remove(pattern = "^.*(aaa|aeae|fff|hhh|uuu|www).*$",  # interjections (aaaawww etc.)
                        valuetype = "regex") %>%
   quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutsch|land|jaehrig|http)", # specific words
                        valuetype = "regex")
