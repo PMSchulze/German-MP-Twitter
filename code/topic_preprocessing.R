@@ -179,8 +179,6 @@ data_preprocessed$meta <- data_preprocessed$meta %>%
 # ----------------------------------------------------------------------------------------------
 
 # save
-outpath <- paste0(
-  stringi::stri_replace_all_fixed(filepath, "prep", "preprocessed")
-)
+outpath <- stringi::stri_replace_all_fixed(filepath, "prep", "preprocessed")
 saveRDS(data_preprocessed, outpath)
 
