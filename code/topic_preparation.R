@@ -84,18 +84,7 @@ resigned <- c(
   "Veith, Oswin"
 )
 
-topic <- topic["Name"] %in% resigned
-sapply(
-  topic$Name,
-  stri_detect_fixed,
-  resigned
-)
-
-purrr::map_lgl(
-  topic$Name,
-  match,
-  resigned
-)
+topic <- topic[which(!topic$Name %in% resigned),]
 
 # save
 saveRDS(topic, "./data/topic.rds")
