@@ -22,8 +22,8 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-setwd('C:\\Users\\Simon\\Desktop\\Twitter')
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
 # setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
@@ -242,3 +242,4 @@ alldata_user_monthly_train <- alldata_user_monthly[idx_train,]
 alldata_user_monthly_test <- alldata_user_monthly[-idx_train,]
 saveRDS(alldata_user_monthly_train, "./data/prep_monthly_train.rds")
 saveRDS(alldata_user_monthly_test, "./data/prep_monthly_test.rds")
+
