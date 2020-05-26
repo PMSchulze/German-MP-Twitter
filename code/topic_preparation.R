@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "tidyverse"
+  "stringi", "tidyverse"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -22,9 +22,9 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-# setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+setwd('C:\\Users\\Simon\\Desktop\\Twitter')
 # setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
 # ----------------------------------- Prepare Twitter data ------------------------------------- 
@@ -51,9 +51,51 @@ topic <- tweepy_df %>%
 # plot histogram of tweets per year
 hist(topic %>% mutate(Jahr = lubridate::year(Datum)) %>% pull(Jahr))
 
-# drop all tweets prior to 24.09.2017 (date of the most recent Bundestagswahl)
+# drop all tweets prior to September 24, 2017 (date of the most recent Bundestagswahl)
 topic <- topic %>% 
   filter(Datum >= '2017-09-24')
+
+# drop all MPs who resigned / passed away since September 24, 2017
+resigned <- c(
+  "Andreae, Kerstin",
+  "Barley, Dr. Katarina",
+  "Beer, Nicola",
+  "Brauksiepe, Dr. Ralf",
+  "Buchholz, Dr. Bernd",
+  "Burkert, Martin",
+  "Freudenstein, Dr. Astrid",
+  "Gabriel, Sigmar",
+  "Harbarth, Dr. Stephan",
+  "Högl, Dr. Eva",
+  "Kahrs, Johannes",
+  "Kelber, Ulrich",
+  "Kemmerich, Thomas L.",
+  "Leyen, Dr. Ursula von der",
+  "Lischka, Burkhard",
+  "Mortler, Marlene",
+  "Nahles, Andrea",
+  "Reimann, Dr. Carola",
+  "Ruppert, Dr. Stefan",
+  "Schick, Dr. Gerhard",
+  "Schüle, Dr. Manja",
+  "Schulz, Jimmy",
+  "Schurer, Ewald",
+  "Stübgen, Michael",
+  "Veith, Oswin"
+)
+
+topic <- topic["Name"] %in% resigned
+sapply(
+  topic$Name,
+  stri_detect_fixed,
+  resigned
+)
+
+purrr::map_lgl(
+  topic$Name,
+  match,
+  resigned
+)
 
 # save
 saveRDS(topic, "./data/topic.rds")

@@ -1,0 +1,92 @@
+---
+title: 'draft data section'
+author: "Simon"
+date: "May 2020"
+output: html_document
+# bibliography: bibliography.bib
+# biblio-style: myabbrvnat
+# link-citations: yes
+# linkcolor: blue
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \captionsetup{labelformat=empty}
+  - \usepackage{multirow}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Preparation, include=FALSE}
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------------- Preparation -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "stringi", "tidyverse", "tm", "knitr"
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, character.only = TRUE)
+
+# set working directory
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+
+```
+
+### Data
+
+Data (2-3 Seiten):
+
+- web scraping
+- twitter scraping
+- socioeconomic variables
+- election variables
+- preprocessing
+- sentiment analysis: training corpus
+
+timeline
+
+graphics
+
+As a first step towards applying the STM to German political entities, we constructed a database with personal information about all German MPs. Using Python's BeautifulSoup web scraping tool as well as a selenium webdriver, we gathered data such as name, party, and electoral district from the [official parliament website](https://www.bundestag.de/abgeordnete) for all of the 709 current members of the German parliament during its 19th election period, elected on September 24, 2017. (Footnote: MPs who resigned or passed away since this date, who are also listed on the website and were thus additionally included initially, were excluded from further analysis.)
+
+Since information on social media profiles was scarce and incomplete on the official parliament website, we scraped official party homepages for each of the six political parties represented in the current parliament. To complement personal data, we also gathered socioeconomic data such as GDP per capita or unemployment rate as well as 2017 election results on a electoral district-level for all of the 299 electoral districts, from the [official electoral website](https://www.bundeswahlleiter.de).
+
+After removing all MPs who do not possess a Twitter account as well as those without a specific electoral district assigned to them (for matchability with socioeconomic data), the final dataset included 454 MPs. Using Python's tweepy library to access the official Twitter API, we scraped all tweets by German MPs from September 24, 2017 through April 24, 2020, i.e., during a total of 31 months. (Footnote: tweepy restricts the total number of retrievable tweets to 3,200. For those MPs who exceed this number, the most recent 3,200 tweets are taken into account. However, this only affects very few MPs.) The total number of tweets gathered amounted to 345,914. The table below shows total monthly tweet frequencies for our period of analysis, September 24, 2017 through April 24, 2020. As can be seen, tweet frequencies - though fluctuating - increase over time, peaking at almost 25,000 in March 2020.
+
+```{r echo=FALSE, fig.align='center', fig.asp=.6, fig.width=10, warning=FALSE, out.width='82%'}
+
+topic <- readRDS("../data/topic.rds")
+topic_adj <- topic %>% mutate(Jahr = lubridate::year(Datum), Monat = lubridate::month(Datum))
+topic_adj$date <- with(topic_adj, sprintf("%d-%02d", Jahr, Monat))
+ggplot(topic_adj, aes(x = date)) + geom_histogram(stat = "count") +
+  labs(x = "time", y = "# tweets")  +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+        axis.title.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 12, face = "bold"))
+
+
+```
+
+
+
+
+
