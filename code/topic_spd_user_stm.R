@@ -30,95 +30,269 @@ setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
 # ----------------------------------------------------------------------------------------------
 
 # load data
+data_full <- readRDS("./data/topic_spd_user_preprocessed_no#.rds")
 data_train <- readRDS("./data/topic_spd_user_train_preprocessed_no#.rds")
 data_test <- readRDS("./data/topic_spd_user_test_preprocessed_no#.rds")
+full_corpus <- readRDS("./data/topic_spd_user.rds")
 colnames_table <- read.csv(file = "./data/topic_user_colnames.csv")
-
-# extract documents, vocabulary and metadata
-docs_train <- data_train$documents
-vocab_train <-  data_train$vocab
-meta_train <- data_train$meta
-
-# --------------------------- Generate dummy variables for Ausschuss ---------------------------
-
-# Bundestagsauschuesse
-ausschuesse <- c(
-  "Ausschuss für Arbeit und Soziales",
-  "Auswärtiger Ausschuss",
-  "Ausschuss für Bau, Wohnen, Stadtentwicklung und Kommunen",
-  "Ausschuss für Bildung, Forschung und Technikfolgenabschätzung",
-  "Ausschuss Digitale Agenda",
-  "Ausschuss für Ernährung und Landwirtschaft",
-  "Ausschuss für die Angelegenheiten der Europäischen Union",
-  "Ausschuss für Familie, Senioren, Frauen und Jugend",
-  "Finanzausschuss",
-  "Ausschuss für Gesundheit",
-  "Haushaltsausschuss",
-  "Ausschuss für Inneres und Heimat",
-  "Ausschuss für Kultur und Medien",
-  "Ausschuss für Menschenrechte und humanitäre Hilfe",
-  "Petitionsausschuss",
-  "Ausschuss für Recht und Verbraucherschutz",
-  "Sportausschuss",
-  "Ausschuss für Tourismus",
-  "Ausschuss für Umwelt, Naturschutz und nukleare Sicherheit",
-  "Ausschuss für Verkehr und digitale Infrastruktur",
-  "Verteidigungsausschuss",
-  "Wahlprüfungsausschuss",
-  "Ausschuss für Wahlprüfung, Immunität und Geschäftsordnung",
-  "Ausschuss für Wirtschaft und Energie",
-  "Ausschuss für wirtschaftliche Zusammenarbeit und Entwicklung"
-)
-
-# create a column for each Ausschuss and check membership (1 = yes, 0 = no)
-ausschuesse_dummy <- purrr::map_dfc(ausschuesse, function(s) {
-  as.numeric(stringi::stri_detect_fixed(meta_train$Ausschusspositionen, s))
-}
-)
-colnames(ausschuesse_dummy) <- paste0("Ausschuss_", 1:25)
-
-# add columns to the data frame (and delete inital Ausschuss variable)
-meta_train <- meta_train %>% 
-  add_column(ausschuesse_dummy, .after = "Ausschusspositionen") %>%
-  select(-"Ausschusspositionen")
-
-# ----------------------------------------------------------------------------------------------
 
 # search hyperparameter space for optimal K
 hyperparameter_search <- searchK(
-  documents = docs_train,
-  vocab = vocab_train,
-  data = meta_train,
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
   K = c(5,6,7,8,9,10),
   prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
     s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  heldout.seed = 123,
   max.em.its = 50,
-  init.type = "Spectral"
+  init.type = "Spectral", 
+  cores = 2
 )
 
 n_topics <- 6
 
+# ----------------------------------------------------------------------------------------------
 # topical prevalence
-mod_prev <- stm::stm(
-  documents = docs_train,
-  vocab = vocab_train,
-  data = meta_train,
-  K = 6,
+## try different covariate specifications
+
+## start with model without prevalence covariates
+mod_prev1 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral"
+)
+## add prevalence covariates
+mod_prev2 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
   prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
     s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral"
+)
+## modify prevalence prior
+mod_prev3 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  gamma.prior = "L1"
+)
+## modify prevalence prior
+mod_prev4 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  gamma.prior = "L1",
+  control = list(gamma.enet = 0)
+)
+## modify prevalence prior
+mod_prev5 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  sigma.prior = 1
+)
+
+# evaluate
+## semantic coherence & exclusivity
+topicQuality(mod_prev1, documents = docs_train)
+topicQuality(mod_prev2, documents = docs_train)
+topicQuality(mod_prev3, documents = docs_train)
+topicQuality(mod_prev4, documents = docs_train)
+topicQuality(mod_prev5, documents = docs_train)
+
+## top words per topic
+labelTopics(mod_prev1)
+labelTopics(mod_prev2)
+labelTopics(mod_prev3)
+labelTopics(mod_prev4)
+labelTopics(mod_prev5)
+
+## topic proportions and top words per topic
+plot(mod_prev1, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev2, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev3, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev4, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev5, type = "summary", xlim = c(0, 0.5))
+
+# ----------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------
+# topical prevalence with heldout likelihood
+
+# prepare object used for evaluating heldout likelihood
+heldout <- make.heldout(docs_train, vocab_train, seed = 123)
+
+## again, start with model without prevalence covariates
+mod_prev_heldout1 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  seed = 123,
   max.em.its = 75,
   init.type = "Spectral"
 )
 
-### top words per topic
-labelTopics(mod_prev)
+## again, add prevalence covariates
+mod_prev_heldout2 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral"
+)
 
-### summary visualization
-plot(mod_prev, type = "summary", labeltype = "frex", xlim = c(0, 0.5))
+## again, modify prevalence prior
+mod_prev_heldout3 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  gamma.prior = "L1"
+)
 
-### relationship topic/vocabulary
-plot(mod_prev, type = "perspectives", topics = c(3, 6))
+## again, modify prevalence prior
+mod_prev_heldout4 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  gamma.prior = "L1",
+  control = list(gamma.enet = 0)
+)
 
+## again, modify prevalence prior
+mod_prev_heldout5 <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral",
+  sigma.prior = 1
+)
+
+# evaluate
+eval.heldout(mod_prev_heldout1, heldout$missing)
+eval.heldout(mod_prev_heldout2, heldout$missing)
+eval.heldout(mod_prev_heldout3, heldout$missing)
+eval.heldout(mod_prev_heldout4, heldout$missing)
+eval.heldout(mod_prev_heldout5, heldout$missing)
+topicQuality(mod_prev_heldout1, documents = heldout$documents)
+topicQuality(mod_prev_heldout2, documents = heldout$documents)
+topicQuality(mod_prev_heldout3, documents = heldout$documents)
+topicQuality(mod_prev_heldout4, documents = heldout$documents)
+topicQuality(mod_prev_heldout5, documents = heldout$documents)
+
+## main result: prevalence specification does not affect evaluation metrics! due to regularizing prior?
+# ----------------------------------------------------------------------------------------------
+
+## main model for subsequent analyses
+mod_prev <- stm::stm(
+  documents = data_full$documents,
+  vocab = data_full$vocab,
+  data = data_full$meta,
+  K = n_topics,
+  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
+    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
+  seed = 123,
+  max.em.its = 75,
+  init.type = "Spectral"
+)
+
+# ----------------------------------------------------------------------------------------------
+
+# label topics 
+
+## topic proportions and top words per topic
+plot(mod_prev, type = "summary", xlim = c(0, 0.5))
+
+# create most frequent words per topic (for all topics)
+topic_words <- labelTopics(mod_prev, n = 20)
+
+## table of MAP topic proportions per document (for all topics)
+topic_props <- make.dt(
+  mod_prev, 
+  data_full$meta[
+    c("Bundesland", "Anzahl_Follower", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
+) %>% cbind(Name = names(data_full$documents), .)
+
+
+## labeling workflow (for each topic): 
+### (1) inspect most frequent words per topic
+### (2) evaluate most representative documents per topic
+### (3) assign label
+
+## (1) inspect most frequent words per topic
+topic_words$prob[1,]
+
+## (2) evaluate most representative documents per topic
+topic_props %>%
+  arrange(desc(Topic1)) %>%
+  .[1:5,c("Name", "Topic1")] %>%
+  left_join(full_corpus) %>%
+  select(c("Name", "Topic1", "Tweets_Dokument"))
+
+## (3) assign label
+
+## choose labels
+topic_labels <- list(
+  Topic_1 = "Hamburg/Johannes Kahrs",
+  Topic_2 = "nicht zuordbar",
+  Topic_3 = "Berlin/Bundesregierung",
+  Topic_4 = "Arbeit&Soziales",
+  Topic_5 = "Europa",
+  Topic_6 = "nicht zuordbar"
+)
+
+## relationship topic/vocabulary
+plot(mod_prev, type = "perspectives", topics = c(4, 5))
+
+# ----------------------------------------------------------------------------------------------
 # align corpus
 data_test <- alignCorpus(new = data_test, old.vocab = mod_prev$vocab, verbose = TRUE)
 
@@ -140,15 +314,61 @@ test <- fitNewDocuments(
   verbose = TRUE
 )
 
+# plots for test set
+topic_props_test <- make.dt(
+  test, meta_test[c("Bundesland", "Anzahl_Follower", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
+)
+
+topic_props_test %>%
+  ggplot(aes(Bundesland,Topic4)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_point() +
+  labs(y = "Themenanteil", 
+       title = "'Arbeit & Soziales' - Themenanteil pro Bundesland")
+
+topic_props_test %>%
+  ggplot(aes(Struktur_22,Topic4)) +
+  geom_smooth(method = "lm", formula = y ~ s(x)) +
+  labs(x = "BIP pro Kopf", y = "Themenanteil", 
+       title = "BIP vs. Thema 'Arbeit & Soziales'")
+
+# same plots for training data
+topic_props_train <- make.dt(
+  mod_prev, 
+  meta_train[c("Bundesland", "Anzahl_Follower", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
+)
+
+topic_props_train %>%
+  ggplot(aes(Bundesland,Topic4)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_point() +
+  labs(y = "Themenanteil", 
+       title = "'Arbeit & Soziales' - Themenanteil pro Bundesland")
+
+topic_props_train %>%
+  ggplot(aes(Struktur_22,Topic4)) +
+  geom_smooth(method = "lm", formula = y ~ s(x)) +
+  labs(x = "BIP pro Kopf", y = "Themenanteil", 
+       title = "BIP vs. Thema 'Arbeit & Soziales'")
+
+topic_props_train %>%
+  ggplot(aes(Struktur_4,Topic4)) +
+  geom_smooth(method = "lm", formula = y ~ s(x)) +
+  labs(x = "Ausländeranteil", y = "Themenanteil", 
+       title = "BIP vs. Thema 'Arbeit & Soziales'")
+# ----------------------------------------------------------------------------------------------
+
 # ----------------------------------------------------------------------------------------------
 
 ### estimating metadata/topic relationship
 meta$Bundesland <- as.factor(meta$Bundesland)
-prep <- stm::estimateEffect(1:6 ~ s(Struktur_4),
-                            mod_prev,
-                            # documents = docs,
-                            metadata = meta,
-                            uncertainty = "Global")
+prep <- stm::estimateEffect(
+  1:6 ~ s(Struktur_4, df=5),
+  mod_prev,
+  documents = docs_train,
+  metadata = meta_train,
+  uncertainty = "Local"
+)
 summary(prep, topics = 1)
 
 ### metadata/topic relationship visualization
@@ -174,17 +394,6 @@ plot(prep, "Struktur_42", method = "continuous", topics = 3, ci.level = 0.8,
      yaxs="i", xaxs="i")
 
 # ----------------------------------------------------------------------------------------------
-
-# simulate topic proportions for each document (500 simulations/doc) and average
-theta_sim <- thetaPosterior(mod_prev, nsims = 500, type = "Local", documents = docs) %>%
-  lapply(colMeans) %>% 
-  (function(s) do.call(rbind,s)) %>% 
-  as_tibble() %>% 
-  setNames(paste0("Topic", 1:n_topics))
-# link topic proportions to names of parliamentarians
-docs_topics <- tibble("Name" = names(docs), theta_sim)
-# e.g. list parliamentarians with highest proportion of topic 3
-arrange(docs_topics, desc(Topic3))
 
 # ----------------------------------------------------------------------------------------------
 # unemployment_range <- seq(from = 0,
