@@ -22,8 +22,8 @@ if (length(not_installed) > 0) {
 lapply(packages_required, library, character.only = TRUE)
 
 # set working directory
-setwd('C:\\Users\\Simon\\Desktop\\Twitter')
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd('C:\\Users\\Simon\\Desktop\\Twitter')
+setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
 # setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
 
 # ----------------------------------------------------------------------------------------------
@@ -132,6 +132,10 @@ se_df <- read_delim("./data/se_df.csv", delim = ",") %>%
   select(-Bundesland)
 
 # merge data
+alldata <- topic %>% 
+  inner_join(abg_df) %>% 
+  inner_join(se_df, by = "Wahlkreis_Nr")
+
 alldata_user <- topic_user %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
@@ -161,12 +165,17 @@ drop_vars <- c(
   "AFD", 
   "CDU/CSU"
 )
+
+alldata <- alldata %>% 
+  select(-drop_vars)
 alldata_user <- alldata_user %>% 
   select(-drop_vars)
 alldata_user_monthly <- alldata_user_monthly %>% 
   select(-drop_vars)
 
 # drop rows where Partei==fraktionslos (only one row deleted)
+alldata <- alldata %>% 
+  filter(Partei != "fraktionslos")
 alldata_user <- alldata_user %>% 
   filter(Partei != "fraktionslos")
 alldata_user_monthly <- alldata_user_monthly %>% 
@@ -242,3 +251,4 @@ alldata_user_monthly_train <- alldata_user_monthly[idx_train,]
 alldata_user_monthly_test <- alldata_user_monthly[-idx_train,]
 saveRDS(alldata_user_monthly_train, "./data/prep_monthly_train.rds")
 saveRDS(alldata_user_monthly_test, "./data/prep_monthly_test.rds")
+
