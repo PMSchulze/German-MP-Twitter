@@ -44,9 +44,8 @@ hyperparameter_search <- searchK(
   vocab = vocab_train,
   data = meta_train,
   K = c(5,6,7,8,9,10),
-  prevalence =~ Bundesland + s(Anzahl_Follower) + s(Struktur_4) + 
-    s(Struktur_22) + s(Struktur_42) + s(Struktur_54),
-  max.em.its = 50,
+  prevalence =~ Partei,
+  max.em.its = 150,
   init.type = "Spectral"
 )
 
@@ -161,7 +160,7 @@ cormat <- cor(mod_prev$theta)
 cormat
 
 # metadata/topic relationship ---------------------------------------------
-covar <- c("Partei", "Bundesland", "Anzahl_Follower", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")
+covar <- c("Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")
 
 # factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
 meta_train$Partei <- meta_train$Partei %>%
