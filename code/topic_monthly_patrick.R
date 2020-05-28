@@ -42,12 +42,15 @@ mod_prev <- stm::stm(
   vocab = data$vocab,
   data = data$meta,
   K = n_topics,
-  prevalence =~ as.factor(Partei) + as.factor(Bundesland) + s(4) + s(22) + s(42) + s(54) + s(t),
+  prevalence =~ as.factor(Partei) + as.factor(Bundesland) + 
+    s(Struktur_4) + s(Struktur_22) + s(Struktur_42) + s(Struktur_54) + s(t),
   gamma.prior = 'L1',
   seed = 123,
   max.em.its = 100,
   init.type = "Spectral"
 )
+
+saveRDS(mod_prev, "./data/mod_prev_monthly.rds")
 
 plot(mod_prev, type = "summary", xlim = c(0, 0.5), n=8)
 
