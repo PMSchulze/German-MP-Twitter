@@ -188,10 +188,8 @@ if (grepl("monthly", file)) {
   # reorder columns for monthly data
   data_preprocessed$meta <- data_preprocessed$meta %>%
     select(Name, Twitter_Username, t, Datum, everything())
-}
-
-# reorder columns for non-monthly data
-if (!grepl("monthly", file)) {
+} else {
+  # reorder columns for non-monthly data
   data_preprocessed$meta <- data_preprocessed$meta %>%
     select(Name, Twitter_Username, Datum, everything())
 }
