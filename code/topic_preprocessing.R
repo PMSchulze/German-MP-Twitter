@@ -29,9 +29,9 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ------------------ Choose dataset for preprocessing ------------------------------------------
 # ----------------------------------------------------------------------------------------------
 
-# file <- "prep"
+file <- "prep"
 # file <- "prep_train"
-file <- "prep_test"
+# file <- "prep_test"
 # file <- "prep_cdu"
 # file <- "prep_cdu_train"
 # file <- "prep_cdu_test"
@@ -50,19 +50,18 @@ data <- readRDS(filepath)
 # ------------------ Preprocessing data with the quanteda package ------------------------------
 # ----------------------------------------------------------------------------------------------
 
+# build corpus, which by default organizes documents into types, tokens and sentences
 if (grepl("monthly", file)) {
   data$docid <- paste0(data$Twitter_Username, "_", data$Jahr, "_", data$Monat)
   data$Datum <- with(data, sprintf("%d-%02d", Jahr, Monat))
   data <- data %>% 
     select(-c("Jahr", "Monat"))
   docid_field <- "docid"
+  corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument", docid_field = docid)
 } else {
-  docid_field <- "Name"
+  corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument")
 }
 
-# build corpus, which by default organizes documents into types, tokens and sentences
-corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument", 
-                                  docid_field = docid_field)
 # convert some special german characters and remove # infront of hashtags
 corp_text_cleaned <- stringi::stri_replace_all_fixed(
   texts(corp_topic), 
