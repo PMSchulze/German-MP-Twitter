@@ -30,11 +30,14 @@ setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
 # ----------------------------------------------------------------------------------------------
 
 # load data
-filepath <- "./data/preprocessed_monthly.rds"
-data <- readRDS(filepath)
+filepath <- "./data/preprocessed_cdu_monthly.rds"
+data_preprocessed <- readRDS(filepath)
 
-num_year <- (data$meta$Datum %>% substr(1,4) %>% as.numeric)%%2017
-num_month <- (data$meta$Datum %>% substr(6,8) %>% as.numeric)
-data$meta$t <- ((num_year*12)+num_month)-8
+num_year <- (data_preprocessed$meta$Datum %>% substr(1,4) %>% as.numeric)%%2017
+num_month <- (data_preprocessed$meta$Datum %>% substr(6,8) %>% as.numeric)
+data_preprocessed$meta$t <- ((num_year*12)+num_month)-8
 
-saveRDS(data, filepath)
+data_preprocessed$meta <- data_preprocessed$meta %>%
+  select(Name, Twitter_Username, t, Datum, everything())
+
+saveRDS(data_preprocessed, filepath)

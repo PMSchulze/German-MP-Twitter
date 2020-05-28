@@ -177,6 +177,19 @@ data_preprocessed$meta <- data_preprocessed$meta %>%
 
 # ----------------------------------------------------------------------------------------------
 
+# ----------------------------------- Generate time index t-------------------------------------
+
+# from t = 1, which corresponds to 09/2017, ....., to t = 32, which corresponds to 04/2020
+num_year <- (data_preprocessed$meta$Datum %>% substr(1,4) %>% as.numeric)%%2017
+num_month <- (data_preprocessed$meta$Datum %>% substr(6,8) %>% as.numeric)
+data_preprocessed$meta$t <- ((num_year*12)+num_month)-8
+
+# reorder columns
+data_preprocessed$meta <- data_preprocessed$meta %>%
+  select(Name, Twitter_Username, t, Datum, everything())
+
+# ----------------------------------------------------------------------------------------------
+
 # save
 outpath <- stringi::stri_replace_all_fixed(filepath, "prep", "preprocessed")
 saveRDS(data_preprocessed, outpath)
