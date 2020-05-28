@@ -35,21 +35,21 @@ data_corpus <- readRDS("./data/prep_monthly.rds")
 # data_train <- readRDS("./data/preprocessed_monthly_train.rds")
 # data_test <- readRDS("./data/preprocessed_monthly_test.rds")
 
-n_topics <- 6
+n_topics <- 15
 
 mod_prev <- stm::stm(
   documents = data$documents,
   vocab = data$vocab,
   data = data$meta,
   K = n_topics,
-  prevalence =~ as.factor(Partei) + as.factor(Bundesland),
+  prevalence =~ as.factor(Partei) + as.factor(Bundesland) + s(4) + s(22) + s(42) + s(54) + s(t),
   gamma.prior = 'L1',
   seed = 123,
-  max.em.its = 327,
+  max.em.its = 100,
   init.type = "Spectral"
 )
 
-plot(mod_prev, type = "summary", xlim = c(0, 0.5))
+plot(mod_prev, type = "summary", xlim = c(0, 0.5), n=8)
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------- Labelling -------------------------------------------
@@ -90,7 +90,7 @@ topic_labels <- list(
 # ----------------------------------------------------------------------------------------------
 
 # specify topic that should be labelled
-topic_number <- 6
+topic_number <- 2
 
 # ----------------------------------------------------------------------------------------------
 
