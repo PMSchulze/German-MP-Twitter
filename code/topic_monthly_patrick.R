@@ -93,7 +93,7 @@ topic_labels <- list(
 # ----------------------------------------------------------------------------------------------
 
 # specify topic that should be labelled
-topic_number <- 2
+topic_number <- 3
 
 # ----------------------------------------------------------------------------------------------
 
@@ -104,14 +104,13 @@ cloud(mod_prev, topic = topic_number, scale = c(2.5, 0.25)) # word cloud
 topic_words$prob[topic_number,] # 20 most frequent words
 
 ## (2) evaluate most representative documents per topic
-topic_name <- paste0("Topic", topic_number)
+data_corpus$docname <- data_corpus[,c("Twitter_Username", "Jahr", "Monat")] %>% 
+  unite("docname", sep = "_") %>% .$docname
 repr_docs <-  topic_props %>%
-  arrange(desc(!!as.symbol(topic_name))) %>%
-  .[1:docs_number, c("Name", "Partei", topic_name)] %>%
-  left_join(data_corpus[,c("Tweets_Dokument", "Twitter_Username")], 
-            by = "Twitter_Username") %>%
-  mutate(Tweets_Dokument = substr(Tweets_Dokument, 50000, 52000))
-repr_docs[1,] # view i-th most representative document
+  arrange(desc(!!as.symbol(paste0("Topic", topic_number)))) %>%
+  .[1:docs_number, c("docname", "Name", "Partei", paste0("Topic", topic_number))] %>%
+  left_join(data_corpus[,c("docname", "Tweets_Dokument")], by = "docname")
+repr_docs[5,] # view i-th most representative document
 
 ## (3) assign label
 topic_labels[[topic_number]] <- "Green"
@@ -135,14 +134,101 @@ topic_labels[[topic_number]] <- "Green"
 # ----------------------------------- Estimate Effects -----------------------------------------
 # ----------------------------------------------------------------------------------------------
 
+# factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
+data$meta$Partei <- data$meta$Partei %>%
+  as.factor() %>%
+  relevel(ref = 3)
+data$meta$Bundesland <- as.factor(data$meta$Bundesland)
+
 prep <- stm::estimateEffect(
-  1:6 ~ as.factor(Partei),
+  1:15 ~ s(t, df=20),
   mod_prev,
-  documents = data$documents,
+  #documents = data$documents,
   metadata = data$meta,
-  uncertainty = "Local"
+  uncertainty = "Global"
 )
 summary(prep, topics = 1)
 
-plot(prep, "Partei", method = "difference", topics = c(5,6), cov.value1 = "Bündnis 90/Die Grünen",
-     cov.value2 = "AfD", model = mod_prev, xlab = "Partei")
+par(mfrow=c(3,3))
+for (i in 1:9){
+  plot(prep, "t", method = "continuous", topics = i, 
+       main = paste0(mod_labels[i,], collapse = ", "), 
+       printlegend = F, xlab = "t")
+}
+par(mfrow=c(3,3))
+for (i in 1:9){
+  plot(prep, "Partei", method = "pointestimate", topics = i, labeltype = "custom",
+       custom.labels = c("CDU/CSU", "FDP", "Die Linke", "SPD", "Bündnis 90/Die Grünen", "AfD"), 
+       main = paste0(mod_labels[i,], collapse = ", "), 
+       printlegend = F, xlab = "Expected Topic Proportion")
+}
+
+# ----------------------------------------------------------------------------------------------
+
+library("betareg")
+library("mvtnorm")
+
+# ------------------------------- Create helper functions --------------------------------------
+
+sigmoid <- function(x) exp(x)/(1+exp(x))
+
+majority <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+sample_normal <- function(mod) {
+  mu <- mod$coefficients$mean
+  var <- mod$vcov[1:length(mu), 1:length(mu)]
+  mvtnorm::rmvnorm(1, mean = mu, sigma = var)
+}
+
+sample_coefs_beta <- function(stmobj, formula, metadata, nsims = 25){
+  topic_n <- as.numeric(as.character(formula)[2])
+  topic_nam <- paste0("Topic", topic_n)
+  theta_sim <- do.call(rbind, stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,topic_n]
+  theta_sim <- lapply(split(1:(length(theta_sim)), 1:nsims), 
+                      function(i) setNames(data.frame(theta_sim[i]), topic_nam))
+  f <- paste(topic_nam, "~", as.character(formula)[3])
+  est_beta <- lapply(theta_sim, 
+                     function(x) betareg::betareg(as.formula(f), data = cbind(x, metadata)))
+  res <- lapply(est_beta, sample_normal)
+  return(res)
+}
+
+predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
+  dat <- metadata[, -which(names(metadata) == est_var)]
+  dat <- lapply(dat, function(x) if(is.numeric(x)) median(x) else majority(x))
+  if (is.numeric(metadata[,est_var])) {
+    dat_fit <- data.frame(
+      dat, fitvar = seq(min(metadata[,est_var]), max(metadata[,est_var]), length.out = 500)
+    )
+  } else {
+    dat_fit <- data.frame(dat, fitvar = unique(metadata[,est_var]))
+  }
+  names(dat_fit) <- c(names(dat),est_var)
+  f <- paste("~",as.character(formula)[3])
+  xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
+  fit_vals <- rowMeans(do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x)))))
+  res <- data.frame(dat_fit[[est_var]], fit_vals)
+  names(res) <- c(est_var, "Proportions")
+  return(res)
+}
+
+# ----------------------------------------------------------------------------------------------
+
+# ----------------------------- Actual Model Prediction ----------------------------------------
+
+# formula always in form "i~var1+var2+...", where i = topic number
+formula <- 3~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
+# obtain list of nsims beta regression outputs (for respective topic)
+beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25)
+# estimate effect for variable while other variables held as median/majority value
+preds <- predict_props_beta(beta_coefs, "t", formula, data$meta)
+
+# example plots
+par(mfrow=c(3,3))
+for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")) {
+  plot(predict_props_beta(beta_coefs, v, formula, data$meta), type = "l", col = "blue")
+}
