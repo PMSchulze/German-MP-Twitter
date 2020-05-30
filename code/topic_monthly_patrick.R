@@ -242,20 +242,103 @@ for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_
 
 library(grid)
 library(gridExtra)
+library(scales)
 
 varlist <- c(
   "t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54"
 )
+varlist_fullnames <- c(
+  "Time", "Party", "Federal State", "Immigrants (%)", "GDP per capita", 
+  "Unemployement Rate (%)", "Share of Votes (%)"
+)
 
-preds_varlist <- lapply(varlist, function(v) predict_props_beta(beta_coefs, v, formula, data$meta))
-names(preds_varlist) <- varlist
+# ---------
 
+## Topic 3: Green/Climate
+formula_3 <- 3~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
+beta_coefs_3 <- sample_coefs_beta(mod_prev, formula_3, data$meta, nsims = 25)
+preds_varlist_3 <- lapply(varlist, function(v) predict_props_beta(beta_coefs_3, v, formula_3, data$meta))
+names(preds_varlist_3) <- varlist
+
+### Continuous Plots
 for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   plot_nam <- paste0("plot_", v)
-  assign(plot_nam, ggplot(preds_varlist[[v]], aes(!!as.symbol(v))) + 
+  assign(plot_nam, ggplot(preds_varlist_3[[v]], aes(!!as.symbol(v))) + 
+           geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
+           xlab(varlist_fullnames[varlist==v]) +
+           ylab("Expected Topic Proportion") +
+           geom_line(aes(y = proportion)) +
+           scale_x_continuous(labels = scales::comma))
+}
+gridExtra::grid.arrange(
+  plot_t, plot_Struktur_4, plot_Struktur_22, plot_Struktur_42, ncol=2, 
+  top = grid::textGrob("Topic 3: Green/Climate", gp=grid::gpar(fontsize=16, fontface = "bold"))
+)
+
+### Categorial Plots
+(plot_party_3 <- ggplot(preds_varlist_3$Partei, aes(y=proportion, x = Partei)) +
+  geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
+  xlab("Party") +
+  ylab("Expected Topic Proportion") +
+  ggtitle("Topic 3: Green/Climate")+
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+
+# ---------
+
+## Topic 4: Social/Housing
+formula_4 <- 4~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
+beta_coefs_4 <- sample_coefs_beta(mod_prev, formula_4, data$meta, nsims = 25)
+preds_varlist_4 <- lapply(varlist, 
+                          function(v) predict_props_beta(beta_coefs_4, v, formula_4, data$meta))
+names(preds_varlist_4) <- varlist
+
+### Continuous Plots
+for(v in setdiff(varlist, c("Partei", "Bundesland"))){
+  plot_nam <- paste0("plot_", v)
+  assign(plot_nam, ggplot(preds_varlist_4[[v]], aes(!!as.symbol(v))) + 
     geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
     ylab("Expected Topic Proportion") +
-    geom_line(aes(y = proportion)))
+    xlab(varlist_fullnames[varlist==v]) +
+    geom_line(aes(y = proportion)) +
+    scale_x_continuous(labels = scales::comma))
 }
-gridExtra::grid.arrange(plot_t, plot_Struktur_4, plot_Struktur_22, plot_Struktur_42, ncol=2, 
-                        top = grid::textGrob("Topic 4: Social/Housing", gp=gpar(fontsize=16)))
+gridExtra::grid.arrange(
+  plot_t, plot_Struktur_4, plot_Struktur_22, plot_Struktur_42, ncol=2, 
+  top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
+)
+
+### Categorial Plots
+(plot_party_4 <- ggplot(preds_varlist_4$Partei, aes(y=proportion, x = Partei)) +
+  geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
+  xlab("Party") +
+  ylab("Expected Topic Proportion") +
+  ggtitle("Topic 4: Social/Housing")+
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+
+# ---------
+
+## Topic 1: Right/Nationalist
+formula_1 <- 1~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
+beta_coefs_1 <- sample_coefs_beta(mod_prev, formula_1, data$meta, nsims = 25)
+preds_varlist_1 <- lapply(varlist, 
+                          function(v) predict_props_beta(beta_coefs_1, v, formula_1, data$meta))
+names(preds_varlist_1) <- varlist
+
+# ---------
+
+gridExtra::grid.arrange(plot_party_3, plot_party_4)
+
+preds_varlist_1$Partei$Topic <- "Right/Nationalist"
+preds_varlist_3$Partei$Topic <- "Green/Climate"
+preds_varlist_4$Partei$Topic <- "Social/Housing"
+party_data <- rbind(preds_varlist_1$Partei, preds_varlist_3$Partei, preds_varlist_4$Partei)
+(plot_party <- ggplot(party_data, aes(y=proportion, x = Partei, fill = Topic)) +
+    geom_col(position = "dodge") +
+    scale_fill_manual(values=c("green", "blue", "red")) +
+    xlab("Party") +
+    ylab("Expected Topic Proportion") +
+    ggtitle("Topic Proportions per Party")+
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
