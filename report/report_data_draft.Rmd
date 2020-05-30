@@ -1,5 +1,5 @@
 ---
-title: 'Data Collection, Preparation, and Preprocessing'
+title: 'Draft May 2020'
 author: "Simon"
 date: "May 2020"
 output:
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE)
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "ggcorrplot", "gridExtra", "huge", "knitr", "scales", "stm", "stringi", "tidyverse", "tm"
+  "ggcorrplot", "gridExtra", "htmltools", "huge", "knitr", "scales", "stm", "stringi", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -45,20 +45,9 @@ if (length(not_installed) > 0) {
   )
 }
 lapply(packages_required, library, character.only = TRUE)
-
 ```
 
-### Introduction
-* TBD
-* define / translate / introduce German political concepts (Abgeordnete(r), Bundestag, Legislaturperiode, Wahlkreis, Ausschüsse, Parteienlandschaft)
-
-### Theoretical Framework
-* Introduce topic analysis vocabulary (documents, tokens, ...)
-
 ### Data
-
-Data (2-3 Seiten):
-* sentiment analysis: training corpus
 
 ```{r echo=FALSE, include=FALSE}
 # load twitter data and aggregate on a per-user basis
@@ -126,15 +115,7 @@ data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) 
 
 As the result of preprocessing, one empty MP-level document was dropped, so that a total of `r nrow(data$meta)` MP-level documents were eventually analyzed, each one associated with `r ncol(data$meta)` covariates.
 
-### Results (15-20 Seiten insgesamt):
-- topic analysis:
-	- main analyses w/ graphs, starting with main dataset
-	- use party-specific and time-wise dataframes punctually to investigate specific relationships further
-	- use input from Thurner & Heumann
-	- go into detail regarding estimateEffect, topic prevalence, and topical content estimation (partially relate back to theoretical framework)
-
-- sentiment analysis:
-	- TBD
+### Results
 
 ```{r include=FALSE}
 # extract documents, vocabulary and metadata
@@ -257,7 +238,7 @@ topic_number <- 1
 topic_number_long <- paste0("Topic", topic_number)
 
 ## number of top documents to be printed in step (2)
-docs_number <- 5
+docs_number <- 10
 
 ## initialize list with empty labels
 topic_labels <- list(
@@ -318,11 +299,11 @@ repr_docs <-  topic_props %>%
 
 For instance, the most representative document for topic `r topic_number`, with a proportion of `r scales::percent(repr_docs[topic_number_long][1,1], accuracy = 0.01)` is the one by MP `r repr_docs$Name[1]`, a member of the `r repr_docs$Partei[1]` party from `r repr_docs$Bundesland[1]`, from `r repr_docs$Datum[1]` which starts with:
 
-```{r echo=FALSE, results = "asis"}
+```{r echo=FALSE, null_x, results = "asis"}
 substr(repr_docs$Tweets_Dokument[1], 0, 256) # view most representative document
 ```
 
-The second most representative document, still for topic `r topic_number`, with a proportion of `r scales::percent(repr_docs[topic_number_long][2,1], accuracy = 0.01)` is the one by MP `r repr_docs$Name[2]`, a member of the `r repr_docs$Partei[2]` party from `r repr_docs$Bundesland[2]`, from `r repr_docs$Datum[2]` which starts with:
+The second most representative document, still for topic `r topic_number`, has a proportion of `r scales::percent(repr_docs[topic_number_long][2,1], accuracy = 0.01)`. Its author is the same as for the first document, `r repr_docs$Name[2]`, but the date now is `r repr_docs$Datum[2]`. The document starts with:
 
 ```{r echo=FALSE, results = "asis"}
 substr(repr_docs$Tweets_Dokument[2], 0, 255) # view 2nd most representative document
@@ -360,7 +341,8 @@ topic_labels <- list(
 
 ```{r echo=FALSE}
 topic_labels %>%
-  kable
+  matrix(dimnames = list(names(topic_labels))) %>%
+  kable()
 ```
 
 ```{r include=FALSE}
@@ -418,9 +400,11 @@ Most topics are negatively correlated with each other, which does not come as a 
 We can also visualize these correlations using a network graph, where topics are connected whenever they are positively correlated. Most topics are only related to two other topics, while none are related to more than three. The only "isolated" topic is topic 8, `r topic_labels[8]`, which makes sense since it only entered the public sphere in early 2020, i.e., during the last months of our data collection period. In general, the relationships between the topics, as depicted below, are very much in line with their labelling.
 
 ```{r echo=FALSE}
+set.seed(111)
 mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = 0.00,
                            verbose = TRUE) # based on correlations between mod_prev$theta
-plot.topicCorr(mod_prev_corr, vlabels = topic_labels)
+vertex_sizes <- rep(20, K)
+plot.topicCorr(mod_prev_corr, vlabels = topic_labels, vertex.label.cex = 1, vertex.size = vertex_sizes)
 ```
 
 ```{r echo=FALSE}
@@ -430,5 +414,7 @@ plot.topicCorr(mod_prev_corr, vlabels = topic_labels)
 ```{r echo=FALSE}
 
 ```
+
+After this global-level analysis of topics, in particular their labeling and proportions, we now proceed to analyze metadata information (i.e., document-level covariates) and its impact on topic proportions.
 
 ### Literature
