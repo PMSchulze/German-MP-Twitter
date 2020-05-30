@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "huge", "reshape2", "stm", "stringi", "tidyverse", "tm"
+  "betareg", "huge", "mvtnorm", "reshape2", "stm", "stringi", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -77,6 +77,8 @@ mod_prev <- stm::stm(
   seed = 123,
   max.em.its = 350,
   init.type = "Spectral")
+
+mod_prev <- readRDS("./data/mod_prev_monthly.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------- Labelling -------------------------------------------
@@ -214,3 +216,156 @@ plot.topicCorr(mod_prev_corr)
 
 cormat <- cor(mod_prev$theta)
 cormat
+
+# ----------------------------------------------------------------------------------------------
+# ----------------------------------- Estimate Effects -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
+data$meta$Partei <- data$meta$Partei %>%
+  as.factor() %>%
+  relevel(ref = 3)
+data$meta$Bundesland <- as.factor(data$meta$Bundesland)
+
+prep <- stm::estimateEffect(
+  1:15 ~ s(t, df=20),
+  mod_prev,
+  #documents = data$documents,
+  metadata = data$meta,
+  uncertainty = "Global"
+)
+summary(prep, topics = 1)
+
+par(mfrow=c(3,3))
+for (i in 1:9){
+  plot(prep, "t", method = "continuous", topics = i, 
+       main = paste0(mod_labels[i,], collapse = ", "), 
+       printlegend = F, xlab = "t")
+}
+par(mfrow=c(3,3))
+for (i in 1:9){
+  plot(prep, "Partei", method = "pointestimate", topics = i, labeltype = "custom",
+       custom.labels = c("CDU/CSU", "FDP", "Die Linke", "SPD", "Bündnis 90/Die Grünen", "AfD"), 
+       main = paste0(mod_labels[i,], collapse = ", "), 
+       printlegend = F, xlab = "Expected Topic Proportion")
+}
+
+# ----------------------------------------------------------------------------------------------
+
+library("betareg")
+library("mvtnorm")
+
+# ------------------------------- Create helper functions --------------------------------------
+
+sigmoid <- function(x) exp(x)/(1+exp(x))
+
+majority <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+sample_normal <- function(mod) {
+  mu <- mod$coefficients$mean
+  var <- mod$vcov[1:length(mu), 1:length(mu)]
+  mvtnorm::rmvnorm(1, mean = mu, sigma = var)
+}
+
+sample_coefs_beta <- function(stmobj, formula, metadata, nsims = 25){
+  topic_n <- as.numeric(as.character(formula)[2])
+  topic_nam <- paste0("Topic", topic_n)
+  theta_sim <- do.call(rbind, stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,topic_n]
+  theta_sim <- lapply(split(1:(length(theta_sim)), 1:nsims), 
+                      function(i) setNames(data.frame(theta_sim[i]), topic_nam))
+  f <- paste(topic_nam, "~", as.character(formula)[3])
+  est_beta <- lapply(theta_sim, 
+                     function(x) betareg::betareg(as.formula(f), data = cbind(x, metadata)))
+  res <- lapply(est_beta, sample_normal)
+  return(res)
+}
+
+sample_all_betas <- function(covar, nsims, topics = K) {
+  res <- vector(mode = "list", length = topics)
+  for (topic in 1:topics) {
+    outcome <- topic
+    formula <- as.formula(paste(outcome, covar, sep = "~"))
+    res[[topic]] <- sample_coefs_beta(mod_prev, formula, data$meta, nsims)
+  }
+  return(res)
+}
+
+predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
+  dat <- metadata[, -which(names(metadata) == est_var)]
+  dat <- lapply(dat, function(x) if(is.numeric(x)) median(x) else majority(x))
+  if (is.numeric(metadata[,est_var])) {
+    dat_fit <- data.frame(
+      dat, fitvar = seq(min(metadata[,est_var]), max(metadata[,est_var]), length.out = 500)
+    )
+  } else {
+    dat_fit <- data.frame(dat, fitvar = unique(metadata[,est_var]))
+  }
+  names(dat_fit) <- c(names(dat),est_var)
+  f <- paste("~",as.character(formula)[3])
+  xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
+  fit_vals <- do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x))))
+  mu <- rowMeans(fit_vals)
+  ci <- apply(fit_vals, 1, function(x) quantile(x, probs = c(0.025, 0.975)))
+  res <- data.frame(dat_fit[[est_var]], mu, ci[1,], ci[2,])
+  names(res) <- c(est_var, "proportion", "ci_lower", "ci_upper")
+  return(res)
+}
+
+# ----------------------------------------------------------------------------------------------
+
+# ----------------------------- Actual Model Prediction ----------------------------------------
+
+# covariates
+covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
+# formula always in form "i~var1+var2+...", where i = topic number
+outcome <- 4
+formula <- as.formula(paste(outcome, covar, sep = "~"))
+# obtain list of nsims beta regression outputs
+nsims <- 100
+
+beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25) # for topic = outcome only
+
+start.time <- Sys.time()
+all_betas <- sample_all_betas(covar = covar, nsims = nsims, topics = K)
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+
+saveRDS(all_betas, "./data/all_betas.rds")
+
+# estimate effect for variable while other variables held as median/majority value
+preds <- predict_props_beta(beta_coefs, "t", formula, data$meta)
+
+# example plots
+par(mfrow=c(3,3))
+for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")) {
+  plot(predict_props_beta(beta_coefs, v, formula, data$meta)[,1:2], type = "l", col = "blue")
+}
+
+# ----------------------------------------------------------------------------------------------
+
+# -------------------------------------- Some plots with ggplot --------------------------------
+
+library(grid)
+library(gridExtra)
+
+varlist <- c(
+  "t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54"
+)
+
+preds_varlist <- lapply(varlist, function(v) predict_props_beta(beta_coefs, v, formula, data$meta))
+names(preds_varlist) <- varlist
+
+for(v in setdiff(varlist, c("Partei", "Bundesland"))){
+  plot_nam <- paste0("plot_", v)
+  assign(plot_nam, ggplot(preds_varlist[[v]], aes(!!as.symbol(v))) + 
+           geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
+           ylab("Expected Topic Proportion") +
+           geom_line(aes(y = proportion)))
+}
+gridExtra::grid.arrange(plot_t, plot_Struktur_4, plot_Struktur_22, plot_Struktur_42, ncol=2, 
+                        top = grid::textGrob("Topic 4: Social/Housing", gp=gpar(fontsize=16)))
