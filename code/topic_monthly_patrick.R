@@ -32,6 +32,7 @@ setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
 # load data
 data <- readRDS("./data/preprocessed_monthly.rds")
 data_corpus <- readRDS("./data/prep_monthly.rds")
+data_corpus <- readRDS("./data/prep_monthly.rds")
 # data_train <- readRDS("./data/preprocessed_monthly_train.rds")
 # data_test <- readRDS("./data/preprocessed_monthly_test.rds")
 
@@ -209,9 +210,11 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
   names(dat_fit) <- c(names(dat),est_var)
   f <- paste("~",as.character(formula)[3])
   xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
-  fit_vals <- rowMeans(do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x)))))
-  res <- data.frame(dat_fit[[est_var]], fit_vals)
-  names(res) <- c(est_var, "Proportions")
+  fit_vals <- do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x))))
+  mu <- rowMeans(fit_vals)
+  ci <- apply(fit_vals, 1, function(x) quantile(x, probs = c(0.025, 0.975)))
+  res <- data.frame(dat_fit[[est_var]], mu, ci[1,], ci[2,])
+  names(res) <- c(est_var, "proportion", "ci_lower", "ci_upper")
   return(res)
 }
 
@@ -220,7 +223,7 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
 # ----------------------------- Actual Model Prediction ----------------------------------------
 
 # formula always in form "i~var1+var2+...", where i = topic number
-formula <- 3~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+formula <- 4~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
 # obtain list of nsims beta regression outputs (for respective topic)
 beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25)
@@ -230,5 +233,29 @@ preds <- predict_props_beta(beta_coefs, "t", formula, data$meta)
 # example plots
 par(mfrow=c(3,3))
 for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")) {
-  plot(predict_props_beta(beta_coefs, v, formula, data$meta), type = "l", col = "blue")
+  plot(predict_props_beta(beta_coefs, v, formula, data$meta)[,1:2], type = "l", col = "blue")
 }
+
+# ----------------------------------------------------------------------------------------------
+
+# -------------------------------------- Some plots with ggplot --------------------------------
+
+library(grid)
+library(gridExtra)
+
+varlist <- c(
+  "t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54"
+)
+
+preds_varlist <- lapply(varlist, function(v) predict_props_beta(beta_coefs, v, formula, data$meta))
+names(preds_varlist) <- varlist
+
+for(v in setdiff(varlist, c("Partei", "Bundesland"))){
+  plot_nam <- paste0("plot_", v)
+  assign(plot_nam, ggplot(preds_varlist[[v]], aes(!!as.symbol(v))) + 
+    geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
+    ylab("Expected Topic Proportion") +
+    geom_line(aes(y = proportion)))
+}
+gridExtra::grid.arrange(plot_t, plot_Struktur_4, plot_Struktur_22, plot_Struktur_42, ncol=2, 
+                        top = grid::textGrob("Topic 4: Social/Housing", gp=gpar(fontsize=16)))
