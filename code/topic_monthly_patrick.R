@@ -98,7 +98,7 @@ topic_number <- 3
 
 # ----------------------------------------------------------------------------------------------
 
-# actual labelling porcess
+# actual labelling process
 
 ## (1) inspect most frequent words per topic
 cloud(mod_prev, topic = topic_number, scale = c(2.5, 0.25)) # word cloud
@@ -184,9 +184,10 @@ sample_normal <- function(mod) {
   mvtnorm::rmvnorm(1, mean = mu, sigma = var)
 }
 
-sample_coefs_beta <- function(stmobj, formula, metadata, nsims = 25){
+sample_coefs_beta <- function(stmobj, formula, metadata, nsims = 25, seed = NULL){
   topic_n <- as.numeric(as.character(formula)[2])
   topic_nam <- paste0("Topic", topic_n)
+  set.seed(seed)
   theta_sim <- do.call(rbind, stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,topic_n]
   theta_sim <- lapply(split(1:(length(theta_sim)), 1:nsims), 
                       function(i) setNames(data.frame(theta_sim[i]), topic_nam))
@@ -211,7 +212,7 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
   f <- paste("~",as.character(formula)[3])
   xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
   fit_vals <- do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x))))
-  mu <- rowMeans(fit_vals)
+  mu <- quanteda::rowMeans(fit_vals)
   ci <- apply(fit_vals, 1, function(x) quantile(x, probs = c(0.025, 0.975)))
   res <- data.frame(dat_fit[[est_var]], mu, ci[1,], ci[2,])
   names(res) <- c(est_var, "proportion", "ci_lower", "ci_upper")
