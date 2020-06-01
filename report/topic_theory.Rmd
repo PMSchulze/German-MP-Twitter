@@ -3,7 +3,7 @@ title: "Theoretical Considerations"
 output:
   pdf_document: default
   html_document: default
-bibliography: literature.bib
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}

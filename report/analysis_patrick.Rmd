@@ -3,20 +3,21 @@ title: "Method of composition"
 output:
   pdf_document: default
   html_document: default
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Let $\theta_{(k)} \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. Suppose that we want to perform a regression of these topic proportions $\theta_{(k)}$ on a subset $\tilde{X} \in \mathbb{R}^{D \times \tilde{P}}$ of prevalence covariates $X$. The true topic proportions are unknown, but the STM produces an estimate of the approximate posterior  $q(\theta_{(k)} | \Gamma, \Sigma, X)$ of $\theta_{(k)}$, where $\Gamma := \Gamma(w,X,Y)$ and $\Sigma := \Sigma(w,X,Y)$. A naïve approach would be to regress the estimated mode or mean of the approximate posterior distribution on $\tilde{X}$. However, this approach neglects much of the information contained in the distribution. Instead, sampling $\theta_{(k)}^*$ from the posterior distribution, performing a regression for each sampled $\theta_{(k)}^*$ on $\tilde{X}$, and then sampling from the estimated distributions of regression coefficients, provides an i.i.d.\ sample from the marginal posterior distribution of regression coefficients.
+Let $\theta_{(k)} \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. Suppose that we want to perform a regression of these topic proportions $\theta_{(k)}$ on a subset $\tilde{X} \in \mathbb{R}^{D \times \tilde{P}}$ of prevalence covariates $X$. The true topic proportions are unknown, but the STM produces an estimate of the approximate posterior  $q(\theta_{(k)} | \Gamma, \Sigma, X)$ of $\theta_{(k)}$, where $\Gamma := \Gamma(w,X,Y)$ and $\Sigma := \Sigma(w,X,Y)$. A naïve approach would be to regress the estimated mode of the approximate posterior distribution on $\tilde{X}$. However, this approach neglects much of the information contained in the distribution. Instead, sampling $\theta_{(k)}^*$ from the posterior distribution, performing a regression for each sampled $\theta_{(k)}^*$ on $\tilde{X}$, and then sampling from the estimated distributions of regression coefficients, provides an i.i.d.\ sample from the marginal posterior distribution of regression coefficients. This procedure is known as the method of composition in the social sciences [@tanner2012tools, p.52]
 
-Formally, let $\xi$ denote the regression coefficients and $q(\xi| \theta_{(k)}, \tilde{X})$ the approximate distribution of these coefficients, given design matrix $\tilde{X}$ and response $\theta_{(k)}$. In case of a beta regression $q(\xi| \theta_{(k)}, \tilde{X})$ is a normal distribution. 
+Formally, let $\xi$ denote the regression coefficients from a regression of $\theta_{(k)}$ on $\tilde{X}$, and let $q(\xi| \theta_{(k)}, \tilde{X})$ be the approximate posterior distribution of these coefficients, i.e.\ given design matrix $\tilde{X}$ and response $\theta_{(k)}$.  To adequate model the topic proportions we perform a beta regression, because the sampled proportions are restricted to the interval $(0,1)$. More information on why the beta regression is useful in such a scenario can be found in @ferrari2004beta. In case of a beta regression $q(\xi| \theta_{(k)}, \tilde{X})$ is a normal distribution (see e.g.\ @ferrari2004beta, p.\ 17). In contrast to our approach, the R package *stm* implements a simple OLS regression. As expected, using this framework we frequently observed predicted proportions outside of $(0,1)$. Moreover, credible intervals are not informative, due to violated model assumptions.
 
-Repeat $m$ times:
+The method of composition can now be described by repeating the following process $m$ times:
 \begin{enumerate}
 \item Draw $\theta_{(k)}^* \sim q(\theta_{(k)} | \Gamma, \Sigma, X)$.
-\item Draw $\xi^* \sim p(\xi| \theta_{(k)}^*, \tilde{X})$.
+\item Draw $\xi^* \sim q(\xi| \theta_{(k)}^*, \tilde{X})$.
 \end{enumerate}
 
 Then, $\xi_1^*, \dots, \xi_m^*$ is an i.i.d.\ sample from the marginal posterior
