@@ -3,8 +3,9 @@ title: 'Draft June 2020'
 author: "Patrick Schulze, Simon Wiegrebe"
 date: "June 2020"
 output:
-  pdf_document: default
-    # number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
   html_document: default
 bibliography: bibliography.bib
 biblio-style: myabbrvnat
@@ -32,7 +33,8 @@ knitr::opts_chunk$set(echo = TRUE)
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "betareg", "grid", "gridExtra", "huge", "knitr", "mvtnorm", "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
+  "betareg", "ggcorrplot", "grid", "gridExtra", "huge", "knitr", "mvtnorm", 
+  "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -183,9 +185,9 @@ As the result of preprocessing, one empty MP-level document was dropped, so that
 searchK_data <- readRDS("../data/searchK_large_data.rds")
 ```
 
-Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The STM has a single hyperparameter K, the number of topics. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the *searchK* function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
+Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The most important choice when fitting an STM is the number of topics, K. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the *searchK* function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
 
-Another aspect to be taken into account when choosing K (or, to be precise, when choosing a search grid for searchK) is interpretability. While a large K certainly allows for a more fine-grained determination of topics, the resulting topics might be rather hard to label. Furthermore, for large K we might get many topics which themselves could easily be considered sub-topics of those topics that we would get when using a smaller value for K. The graphs below shows the four metrics, as introduced above, for values of K between 5 and 40 (in steps of 5).
+Another aspect to be taken into account when choosing K (or, to be precise, when choosing a search grid for searchK) is interpretability. While a large K certainly allows for a more fine-grained determination of topics, the resulting topics might be rather difficult to label. Furthermore, for large K we would obtain many topics which could be considered sub-topics of the topics we would obtain when using a smaller value for K. The graph below shows the four metrics, as introduced above, for values of K between 5 and 40 (in steps of 5).
 
 ```{r echo=FALSE}
 plot_heldout <- ggplot(data = searchK_data$results, aes(x = K, y = heldout)) +
@@ -256,7 +258,7 @@ mod_prev <- readRDS("../data/mod_prev_monthly.rds")
 
 ## Labelling
 
-The first thing to do after fitting the model is to (visually) inspect the topics, in particular their best words, as demonstrated in the output below. There are different metrics for evaluating which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*. The first one, *highest probability*, simply outputs for each topic those words in the topic-specific word vector, $\beta_{d,n}$, with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. *FREX* takes into account not only how frequent but also how exclusive words are: for a given topic, it is calculated by taking the harmonic mean of i) the word's rank by probability within the topic (frequency) and ii) the topic's rank by  word frequency  across all topics (exclusivity). Further information on the estimation of *FREX*, *Lift*, and *Score* can be found in @bischof2012summarizing, in the R package *lda* (@chang2010package), and in @taddy2012estimation, respectively.
+As a starting point subsequent to model fitting, we visually inspect the resulting topics, in particular their best words, as demonstrated in the output below. There are different metrics for evaluating which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*. The first one, *highest probability*, simply outputs for each topic those words in the topic-specific word vector, $\beta_{d,n}$, with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. *FREX* takes into account not only how frequent but also how exclusive words are: for a given topic, it is calculated by taking the harmonic mean of i) the word's rank by probability within the topic (frequency) and ii) the topic's rank by  word frequency  across all topics (exclusivity). Further information on the estimation of *FREX*, *Lift*, and *Score* can be found in @bischof2012summarizing, in the R package *lda* (@chang2010package), and in @taddy2012estimation, respectively.
 
 ```{r echo=FALSE}
 # labeling workflow (for each topic): 
@@ -427,7 +429,7 @@ While labelling tells us which words best represent each topic - and thus, what 
 plot(mod_prev, type = "perspectives", topics = c(3, 6), n = 30)
 ```
 
-More generally, we can evaluate the connectedness between different topics through the topic correlation matrix, which is simply based on the correlations between document-level topic proportions $\theta_d$. This is visualized in the graph below.
+More generally, we can evaluate the connectedness between different topics with the topic correlation matrix of the correlations between document-level topic proportions $\theta_d$. This is visualized in the graph below.
 
 ```{r echo=FALSE}
 # global topic correlation
@@ -463,7 +465,7 @@ Let $\theta_{(k)} \in [0,1]^{D}$ denote the proportions of the $k$-th topic for 
 
 Formally, let $\xi$ denote the regression coefficients from a regression of $\theta_{(k)}$ on $\tilde{X}$, and let $q(\xi| \theta_{(k)}, \tilde{X})$ be the approximate posterior distribution of these coefficients, i.e.\ given design matrix $\tilde{X}$ and response $\theta_{(k)}$.
 
-The R package *stm* implements a simple OLS regression through its *estimateEffect* function. Using this framework we frequently observe predicted proportions outside of $(0,1)$, given that the restricted domain of $\theta_{(k)}$ is not taken into account. Moreover, credible intervals are non-informative, due to violated model assumptions. Therefore, to adequately model the topic proportions we perform a beta regression, since the sampled proportions are restricted to the interval $(0,1)$. More information on why beta regression is useful in such a scenario can be found in @ferrari2004beta. In case of a beta regression, $q(\xi| \theta_{(k)}, \tilde{X})$ is a normal distribution (see e.g.\ @ferrari2004beta, p.\ 17). 
+The R package *stm* implements a simple OLS regression through its *estimateEffect* function. Using this framework we frequently observe predicted proportions outside of $(0,1)$, given that the restricted domain of $\theta_{(k)}$ is not taken into account. Moreover, credible intervals are non-informative, due to violated model assumptions. Therefore, to adequately model the topic proportions we perform a beta regression (with logit-link), since the sampled proportions are restricted to the interval $(0,1)$. More information on why beta regression is useful in such a scenario can be found in @ferrari2004beta. In case of a beta regression, $q(\xi| \theta_{(k)}, \tilde{X})$ is a normal distribution (see e.g.\ @ferrari2004beta, p.\ 17). 
 
 The method of composition can now be described by repeating the following process $m$ times:
 \begin{enumerate}
@@ -622,12 +624,11 @@ varlist_fullnames <- c(
 )
 ```
 
-We can now apply the method of composition, based on a beta regression, in order to quantify covariate effects. Setting the number of simulations to `r nsims`, we thus draw `r nsims` times 
-out of the (approximate) marginal distribution of $\xi^*$, $q(\xi | \Gamma, \Sigma, X)$. To finally obtain draws from the topic proportions, $\theta_{(k)}$, we simply input $\xi^*$ and the design matrix $\tilde{X}$ into the sigmoid function, which is the response function corresponding to beta regression. When visualizing the impact of a particular covariate, all other covariates are held at their median, in line with the methodology employed in the *stm* package.
+We can now apply the method of composition, based on a beta regression, in order to quantify covariate effects. Setting the number of simulations to `r nsims`, we thus sample $\xi^*_1, \dots, \xi^*_{100}$ from the approximate posterior distribution $q(\xi | \Gamma, \Sigma, X)$. In order to plot the predicted effects, we input $\tilde{X}\xi^*$ into the sigmoid function, which is the response function corresponding to a beta regression with logit-link, and calculate the predicted proportions. When visualizing the impact of a particular covariate, all other covariates are held at their median, in line with the methodology employed in the *stm* package.
 
 We discuss the impact of covariates on topic proportions for topics 3 (`r topic_labels[[3]]`) and 4 (`r topic_labels[[4]]`), sub-dividing the analysis into smooth effects (time, immigration, GDP, and unemployment) and categorical variables (party and state). For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the *mean*, the shaded area represents 95% credible intervals.
 
-By looking at the smooth effects for topic 3 below, we find that its proportion increases over time until the 25th month, corresponding to September 2019, decreasing sharply afterwards. However this sharp decline is to be taken with caution due to the instability of splines at the borders of the covariate domain. Note that the absolute changes in topic proportions over time for the `r topic_labels[[3]]` topic are rather small (around 4%). The effect of immigrants (as percentage of the total population) is negative across the entire domain, and rather steadily so. The impact of GDP per capita on topic 3 is unclear/constant, while unemployment rate show an overall positive effect. For all smooth effect except time, the prevalence change of the `r topic_labels[[3]]` topic due to covariate variation is about 8%.
+By looking at the smooth effects for topic 3 below, we find that its proportion increases over time until the 25th month, corresponding to September 2019, decreasing sharply afterwards. However this sharp decline is to be taken with caution due to the instability of splines at the borders of the covariate domain. Note that the absolute changes in topic proportions over time for the `r topic_labels[[3]]` topic are rather small (around 4%). The effect of immigrants (as percentage of the total population) is negative across the entire domain, and rather steadily so. The impact of GDP per capita on topic 3 is unclear/constant, while unemployment rate show an overall positive effect.
 
 ```{r echo=FALSE}
 ## Topic 3: Green/Climate
@@ -703,12 +704,6 @@ The effect of political party on the relevance assigned to the `r topic_labels[[
   ggtitle("Topic 4: Social/Housing")+
   theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 ```
-
-
-topics 1, 3, and 4 for all parties:
-* AfD very unimodel (more than 40% of the content tweeted by AfD party members is about right-wing national / immigration), other topics at around 5%
-* for other parties: topic 1 at around 3-4%
-* topics 3 and 4 as described above
 
 Finally, the graph below shows a summary comparison of topic prevalence across all parties, for topics `r topic_labels[[1]]`, `r topic_labels[[3]]`, and `r topic_labels[[4]]`. The results are generally consistent with expectations. The proportions of topics `r topic_labels[[3]]`and `r topic_labels[[4]]` vary between 4% and 12% and between 5% and 10%, respectively. For topic 1,  `r topic_labels[[1]]`, note how topic prevalence for the AfD party amounts to more than 40%, implying that more than 40% of the total content tweeted by AfD party members is about right-wing/nationalist issues, particulary immigration; for all other parties, topic 1 is rather marginal at 3-4%.
 
