@@ -1,9 +1,10 @@
 ---
-title: 'Draft May 2020'
-author: "Simon"
-date: "May 2020"
+title: 'Draft June 2020'
+author: "Patrick Schulze, Simon Wiegrebe"
+date: "June 2020"
 output:
   pdf_document: default
+    # number_sections: true
   html_document: default
 bibliography: bibliography.bib
 biblio-style: myabbrvnat
@@ -31,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE)
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "betareg", "grid", "gridExtra", "huge", "mvtnorm", "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
+  "betareg", "grid", "gridExtra", "huge", "knitr", "mvtnorm", "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -51,7 +52,45 @@ lapply(packages_required, library, character.only = TRUE)
 # setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
 ```
 
-### Data
+# Introduction
+
+TBD
+
+# Theoretical Framework
+
+## STM - Introduction
+
+The Structural Topic Model (STM) is a topic model which extends classical topic models such as Latent Dirichlet Allocation (LDA) by incorporating information of covariates. Topic models can be used to infer topics from a large text corpus grouped into documents. In topic modelling it is assumed that this corpus is generated from a small number of distributions over words, the topics. The proportions of these topics are document-specific. In contrast to simpler topic models such as LDA, the STM relates topic proportions to document-level covariates. Furthermore, each distribution over words, i.e. each topic, can vary for different documents dependent on the covariate values of this document.
+
+The detailed mechanism underlying the STM can be illustrated using its graphical model representation (see Figure 1). As outlined above, for each document indexed by $d \in \{1,\dots,D\}$ there exists a $K-1$-dimensional vector $\theta_d$ of topic proportions. Topic proportions are assumed to depend on $P$ document-specific so-called topical prevalence covariates $X \in \mathbb{R}^{D \times P}$, by following a logistic normal distribution with mean $X_d\Gamma$, where $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance $\Sigma$. Each of the $N_d$ words in document $d$ is subsequently assigned to one of the $K$ topics dependent on the topic proportions $\theta_d$; this per-word topic assignment is captured by the latent variable $z_{d,n} \sim \text{Multinomial}_K(\theta_d)$, where $n \in \{1,\dots,N_d\}$ denotes the word index. As stated, the distribution over words that characterizes a topic can vary for each document dependent on document-specific covariates $Y \in \mathbb{R}^{D \times A}$, the so-called topical content covariates. A word $w_{d,n}$ is then the result of the assigned topic, expressed by $z_{d,n}$, the content covariates $Y_d$, and their interactions. More precisely, this last step is intuitively best understood as a multinomial logistic regression of the words on the latter variables. A word $w_{d,n}$ then ultimately follows a multinomial distribution with probabilities $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, i.e.\ $w_{d,n} \sim \text{Multinomial}_V(\beta_{d,n})$, where $V$ denotes the total number of distinct words in the corpus; for details on the exact specification of $\beta_{d,n}$ see p.\ 991, @roberts2016. Thus the occurence of a word (which is equivalent to being drawn from a corresponding multinomial distribution) depends on the topic assignment as well as on the topical content covariates, where the topic assignment itself is a function of the topical prevalence covariates.
+
+![Graphical model representation of the STM](../data/stm_graphical.png)
+
+## STM - Scope
+
+Topic models are unsupervised learning methods, since the true topics from which the text was generated are not known. Thus, traditionally topic models have been used as an exploratory tool providing a concise summary of topics, where it is hoped that the posterior induces a good decomposition of the corpus. Topic models have also been used for tasks such as collaborative filtering and classification (see e.g.\ @blei2003latent). In particular, they can be used as a dimensionality reducing method in semi-supervised learning methods. Such a process can in general be described as a two-stage approach, where in the first stage topic proportions and content are learned, and in the second stage a supervised method such as regression takes this learned representation as input. 
+
+The fundamental idea of STMs is to combine these two steps: Topics and their relation to covariates are jointly estimated. For instance, the estimated effect of topical prevalence covariates $X_d$ on topic proportions is reflected in the estimate of $\Gamma$. However, since the topic proportions $\theta_d$ are random variables, it is a better approach to incorporate the uncertainty of $\theta_d$, accesible through the estimated approximation of the posterior $p(\theta_d | \Gamma, \Sigma, X)$, when determinig the effect of covariates on topic proportions. This is achieved by what is called the "method of composition" in social sciences: By sampling from the approximate posterior for $\theta$ and subsequently regressing these topic proportions on $X$ it is possible to integrate out the topic proportions (since these are latent variables!) and obtain an i.i.d.\ sample from the marginal posterior of the regression coefficients for the topical prevalence covariates.
+
+A problem we see with this approach is, however, that the same covariates and in general the same data used to infer the topical structure are subsequently used to determine effetcs of the former on the latter (or vice versa). This problem has recently also been adressed by @egami2018make. In practice, in case of the regression coefficients for the topical prevalence covariates (obtained using the method of composition as outlined above), due to the regularizing priors for $\Gamma$ we have found that the prevalence covariates have almost no influence on the estimated topic proportions. Thus the regression coefficients (with the topic proportions as the dependent variable) should not be largely affected by this problem. However, the question then appears why the covariate variables have been used to obtain the topical structure in the first place. In an empirical evaluation @roberts2016 showed that the STM consistently outperformed other topic models such as LDA, when comparing the respective heldout likelihoods in different settings. This indicates that the STM performs better at predicting the topical structure by incorporating covariates, regardless of the concrete specification of these covariates.
+
+Nevertheless, it should in each case be investigated whether the relationship of variables implied by the STM is valid. For instance, we have split our data into training and test sets and found that the topical structure predicted on the test set differs starkly from the structure on the training set. This could of course be caused by a misspecification of the topical prevalence and content variables. However, since the topical prevalence covariates have almost no influence on the estimated topic proportions on the training set due to the regularizing priors (and e.g.\ likewise on the heldout likelihood that can be used for validation), it is practically impossible to validate a good prevalence specification.
+
+## Posterior Distribution
+
+The posterior given on p.\ 992, @roberts2016, can be derived as follows:
+
+\begin{align*}
+p(\eta, z, \kappa, \Gamma, \Sigma | w, X, Y) & \propto \underbrace{p(w | \eta, z, \kappa, \Gamma, \Sigma, X, Y)}_{=p(w | z, \kappa, Y)} p(\eta, z, \kappa, \Gamma, \Sigma | X, Y) \\
+& \propto p(w | z, \kappa, Y) p(z | \eta) p(\eta | \Gamma, \Sigma, X) \prod p(\kappa) \prod p(\Gamma)p(\Sigma) \\
+& \propto \Big\{ \prod_{d=1}^{D} p(\eta_d | \Gamma, \Sigma, X_d) \Big( \prod_{n=1}^{N} p(w_n | \beta_{d, n}) p(z_{d,n} | \theta_d) \Big) \Big\} \prod p(\kappa) \prod p(\Gamma) p(\Sigma) \\
+& \propto \Big\{ \prod_{d=1}^{D} \text{Normal}(\eta_d | X_d \Gamma, \Sigma) \Big( \prod_{n=1}^{N} \text{Multinomial}(z_{n,d}| \theta_d) \\
+& \ \ \ \ \times \text{Multinomial}(w_n | \beta_{d,n}) \Big) \Big\} \times \prod p(\kappa) \prod p(\Gamma) p(\Sigma),
+\end{align*}
+
+where $\beta_{d, n}:= \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$ with entries $\beta_{d, k, \nu} \propto \exp(m_{\nu} + \kappa_{k,\nu}^{(t)} + \kappa_{y_d,\nu}^{(c)} + \kappa_{y_d, k,\nu}^{(i)})$, $\nu \in \{1,\dots,V\}$, and $\theta_d := \text{softmax}(\eta_d)$.
+
+# Data
 
 ```{r echo=FALSE, include=FALSE}
 # load twitter data and aggregate on a per-user basis
@@ -84,6 +123,8 @@ alldata <- alldata %>%
 
 ```
 
+## Data Collection
+
 As a first step towards applying the STM to German political entities, we constructed a database with personal information about all German MPs. Using Python's BeautifulSoup web scraping tool as well as a selenium webdriver, we gathered data such as name, party, and electoral district from the [official parliament website](https://www.bundestag.de/abgeordnete) for all of the 709 members of the German parliament during its 19th election period, elected on September 24, 2017. (Footnote: MPs who resigned or passed away since this date were also listed on the website and thus included initially; they were manually excluded from further analysis.)
 
 Since information on social media profiles was scarce and incomplete on the official parliament website, we scraped official party homepages for each of the six political parties represented in the current parliament. MPs who did not provide a Twitter account either on the official parliament website or on their party's official homepage were excluded. Using Python's tweepy library to access the official Twitter API, we scraped all tweets by German MPs from September 24, 2017 through April 24, 2020, i.e., during a total of 31 months. (Footnote: tweepy restricts the total number of retrievable tweets to 3,200. For those MPs with a larger number of tweets, the most recent 3,200 tweets are taken into account. However, this only affects two MPs.) This initially yielded `r nrow(topic)` tweets from a total of `r nrow(topic_user)` members of parliament.
@@ -104,7 +145,9 @@ ggplot(data_adj, aes(x = date)) + geom_histogram(stat = "count") +
 
 Next, data were grouped and tweets concatenated on a per-user level (thus aggregating tweets across the entire 31 months) as well as on a per-user per-month level, yielding a user-level and a (user-level) monthly dataset. This means that a document represents the concatenation of *all* of a single MP's tweets for the user-level dataset and a single MP's *monthly* tweets for the monthly dataset. This also means that MP-level metadata such as personal information and socioeconomic data (through the electoral district matching) can be used as document-level covariates. For the monthly dataset, the temporal component (year and month) constitutes an additional covariate. At this point, the data preparation was completed, thus marking the starting point of the preprocessing required for topic analysis, which is identical for both datasets.
 
-We used the quanteda package within the R programming language for preprocessing. As a first step, we built a quanteda corpus from all documents, already transcribing German umlauts *ä/Ä*, *ö/Ö*, *ü/Ü* as well as German ligature *ß* as *ae/Ae*, *oe/Oe*, *ue/Ue*, and *ss* and removed hyphens. Next, we transformed the text data into a quanteda document-feature matrix (DFM), which essentially tokenizes texts, thereby convering all characters to lowercase. From the DFM, we removed an extensive list of German stopwords, using the [stopwords-iso GitHub repository](https://github.com/stopwords-iso/stopwords-iso), as well as English stopwords included in the quanteda package. Moreover, hashtags, usernames, quantities and units (e.g., *10kg* or *14.15uhr*), interjections (e.g., *aaahhh* or *ufff*), terms containing non-alphanumerical characters, meaningless word stumps (e.g., *innen* from the German female plural declension or *amp*, the remainder left after removing the ampersand sign, *&*) were removed. Terms with less than four characters and terms with a term frequency (overall number of occurrences) below five or with a document frequency (number of documents containing the word) below three were excluded. Finally, we manually removed over-frequent terms that would diminish the distinguishability of topics, such as *bundestag* or *polit*. 
+## Data Preprocessing
+
+We used the *quanteda* package within the R programming language for preprocessing. As a first step, we built a quanteda corpus from all documents, already transcribing German umlauts *ä/Ä*, *ö/Ö*, *ü/Ü* as well as German ligature *ß* as *ae/Ae*, *oe/Oe*, *ue/Ue*, and *ss* and removed hyphens. Next, we transformed the text data into a quanteda document-feature matrix (DFM), which essentially tokenizes texts, thereby convering all characters to lowercase. From the DFM, we removed an extensive list of German stopwords, using the [stopwords-iso GitHub repository](https://github.com/stopwords-iso/stopwords-iso), as well as English stopwords included in the *quanteda* package. Moreover, hashtags, usernames, quantities and units (e.g., *10kg* or *14.15uhr*), interjections (e.g., *aaahhh* or *ufff*), terms containing non-alphanumerical characters, meaningless word stumps (e.g., *innen* from the German female plural declension or *amp*, the remainder left after removing the ampersand sign, *&*) were removed. Terms with less than four characters and terms with a term frequency (overall number of occurrences) below five or with a document frequency (number of documents containing the word) below three were excluded. Finally, we manually removed over-frequent terms that would diminish the distinguishability of topics, such as *bundestag* or *polit*. 
 
 We also performed word-stemming, which means cutting off word endings to remove discrepancies arising purely from declensions or conjugations - of particular importance for the German language. Due to the nature of the German language, the additional gains of lemmatization (which aims at identifying the base form of each word) would only be small as compared to the large increase in complexity, which is why we decided to use stemming only. Another issue when dealing with German language documents are compound words, which are sometimes hyphenated, basically leading to a distinction where semantically there is none. We addressed this issue by removing hyphens in the very beginning of the preprocessing and converting all terms to lowercase, thus "gluing together" compound words; this way, terms like *Bundesregierung* and *Bundes-Regierung* are both transformed into *bundesregierung* (and, after stemming, into *bundesregier*). Finally, automatic segmentation techniques were not necesssary for the German language (@lucas2015computer).
 
@@ -119,7 +162,9 @@ data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) 
 
 As the result of preprocessing, one empty MP-level document was dropped, so that a total of `r nrow(data$meta)` MP-level documents were eventually analyzed, each one associated with `r ncol(data$meta)` covariates.
 
-### Results
+# Results
+
+## Hyperparameter Search and Model Fitting
 
 ```{r include=FALSE}
 # # search hyperparameter space for optimal K
@@ -138,7 +183,7 @@ As the result of preprocessing, one empty MP-level document was dropped, so that
 searchK_data <- readRDS("../data/searchK_large_data.rds")
 ```
 
-Throughout the topic analysis, we use the stm package, which is implemented in the R programming language. The STM has a single hyperparameter K, the number of topics. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the searchK function to get to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the searchK function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
+Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The STM has a single hyperparameter K, the number of topics. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the *searchK* function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
 
 Another aspect to be taken into account when choosing K (or, to be precise, when choosing a search grid for searchK) is interpretability. While a large K certainly allows for a more fine-grained determination of topics, the resulting topics might be rather hard to label. Furthermore, for large K we might get many topics which themselves could easily be considered sub-topics of those topics that we would get when using a smaller value for K. The graphs below shows the four metrics, as introduced above, for values of K between 5 and 40 (in steps of 5).
 
@@ -209,7 +254,9 @@ prevalence <- as.formula(paste(outcome, paste(prev_var, collapse = "+"), sep = "
 mod_prev <- readRDS("../data/mod_prev_monthly.rds")
 ```
 
-The first thing to do after fitting the model is to (visually) inspect the topics, in particular their best words, as demonstrated in the output below. There are different metrics for evaluating which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*. The first one, *highest probability*, simply outputs for each topic those words in the topic-specific word vector, $\beta_{d,n}$, with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. *FREX* takes into account not only how frequent but also how exclusive words are: for a given topic, it is calculated by taking the harmonic mean of i) the word's rank by probability within the topic (frequency) and ii) the topic's rank by  word frequency  across all topics (exclusivity). Further information on the estimation of *FREX*, *Lift*, and *Score* can be found in @bischof2012summarizing, in the [lda package by Jonathan Chang (2015)](https://www.rdocumentation.org/packages/lda/versions/1.4.2/topics/lda-package), and in @taddy2012estimation, respectively.
+## Labelling
+
+The first thing to do after fitting the model is to (visually) inspect the topics, in particular their best words, as demonstrated in the output below. There are different metrics for evaluating which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*. The first one, *highest probability*, simply outputs for each topic those words in the topic-specific word vector, $\beta_{d,n}$, with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. *FREX* takes into account not only how frequent but also how exclusive words are: for a given topic, it is calculated by taking the harmonic mean of i) the word's rank by probability within the topic (frequency) and ii) the topic's rank by  word frequency  across all topics (exclusivity). Further information on the estimation of *FREX*, *Lift*, and *Score* can be found in @bischof2012summarizing, in the R package *lda* (@chang2010package), and in @taddy2012estimation, respectively.
 
 ```{r echo=FALSE}
 # labeling workflow (for each topic): 
@@ -339,8 +386,10 @@ topic_labels <- list(
 ```{r echo=FALSE}
 topic_labels %>%
   matrix(dimnames = list(names(topic_labels))) %>%
-  kable()
+  knitr::kable()
 ```
+
+## Global-level Topic Analysis
 
 ```{r include=FALSE}
 doc_lengths <- lapply(data$documents[], length)
@@ -404,7 +453,32 @@ vertex_sizes <- rep(20, K)
 plot.topicCorr(mod_prev_corr, vlabels = topic_labels, vertex.label.cex = 1, vertex.size = vertex_sizes)
 ```
 
-After this analysis of topics at a global level, in particular of their labeling and proportions, we now proceed to analyze metadata information (i.e., document-level covariates) and its impact on topic proportions. As mentioned before, the covariates we include are party, state (both categorical), date (smooth effect), percentage of immigrants, GDP per capita, unemployment rate, and the 2017 vote share (the last four as smooth effects, on an electoral-district level).
+## Covariate-level Topic Analysis
+
+After this analysis of topics at a global level, in particular of their labeling and proportions, we now proceed to analyze metadata information (i.e., document-level covariates) and its impact on topic proportions. As mentioned before, the covariates included are party, state (both categorical), date (smooth effect), percentage of immigrants, GDP per capita, unemployment rate, and the 2017 vote share (the last four as smooth effects, on an electoral-district level). Since the target variable $\theta_{(k)}$ is not observable and being estimated itself during the estimation of the STM, we recur to the method of composition to account for the uncertainty contained within $\theta_{(k)}$.
+
+### Method of Composition
+
+Let $\theta_{(k)} \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. Suppose that we want to perform a regression of these topic proportions $\theta_{(k)}$ on a subset $\tilde{X} \in \mathbb{R}^{D \times \tilde{P}}$ of prevalence covariates $X$. The true topic proportions are unknown, but the STM produces an estimate of the approximate posterior of $\theta_{(k)}$, $q(\theta_{(k)} | \Gamma, \Sigma, X)$, where $\Gamma := \Gamma(w,X,Y)$ and $\Sigma := \Sigma(w,X,Y)$. A naïve approach would be to regress the estimated mode of the approximate posterior distribution on $\tilde{X}$. However, this approach neglects much of the information contained in the distribution. Instead, sampling $\theta_{(k)}^*$ from the posterior distribution, performing a regression for each sampled $\theta_{(k)}^*$ on $\tilde{X}$, and then sampling from the estimated distributions of regression coefficients, provides an i.i.d.\ sample from the marginal posterior distribution of regression coefficients. This procedure is known as the method of composition in the social sciences [@tanner2012tools, p.52].
+
+Formally, let $\xi$ denote the regression coefficients from a regression of $\theta_{(k)}$ on $\tilde{X}$, and let $q(\xi| \theta_{(k)}, \tilde{X})$ be the approximate posterior distribution of these coefficients, i.e.\ given design matrix $\tilde{X}$ and response $\theta_{(k)}$.
+
+The R package *stm* implements a simple OLS regression through its *estimateEffect* function. Using this framework we frequently observe predicted proportions outside of $(0,1)$, given that the restricted domain of $\theta_{(k)}$ is not taken into account. Moreover, credible intervals are non-informative, due to violated model assumptions. Therefore, to adequately model the topic proportions we perform a beta regression, since the sampled proportions are restricted to the interval $(0,1)$. More information on why beta regression is useful in such a scenario can be found in @ferrari2004beta. In case of a beta regression, $q(\xi| \theta_{(k)}, \tilde{X})$ is a normal distribution (see e.g.\ @ferrari2004beta, p.\ 17). 
+
+The method of composition can now be described by repeating the following process $m$ times:
+\begin{enumerate}
+\item Draw $\theta_{(k)}^* \sim q(\theta_{(k)} | \Gamma, \Sigma, X)$.
+\item Draw $\xi^* \sim q(\xi| \theta_{(k)}^*, \tilde{X})$.
+\end{enumerate}
+
+Then, $\xi_1^*, \dots, \xi_m^*$ is an i.i.d.\ sample from the marginal posterior
+\begin{align*}
+q(\xi | \Gamma, \Sigma, X) := \int_{\theta_{(k)}} q(\xi| \theta_{(k)}, \tilde{X}) q(\theta_{(k)} | \Gamma, \Sigma, X) \text{d} \theta_{(k)} = \int_{\theta_{(k)}} q(\xi, \theta_{(k)} | \Gamma, \Sigma, X) \text{d} \theta_{(k)}, 
+\end{align*}
+
+where $q(\xi, \theta_{(k)} | \Gamma, \Sigma, X) := q(\xi| \theta_{(k)}, \tilde{X}) q(\theta_{(k)} | \Gamma, \Sigma, X)$. Thus, by integrating over $\theta_{(k)}$, this approach allows incorporating uncertainty about $\theta_{(k)}$ when determining $\xi$.
+
+### Visualization
 
 ```{r echo=FALSE}
 # factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
@@ -492,7 +566,7 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
   }
   names(dat_fit) <- c(names(dat),est_var)
   f <- paste("~",as.character(formula)[3])
-  xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
+  xmat <- stm::makeDesignMatrix(as.formula(f), metadata, dat_fit)
   fit_vals <- do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x))))
   mu <- quanteda::rowMeans(fit_vals)
   ci <- apply(fit_vals, 1, function(x) quantile(x, probs = c(0.025, 0.975)))
@@ -514,17 +588,13 @@ formula <- as.formula(paste(topic_number, covar, sep = "~"))
 # obtain list of nsims beta regression outputs
 nsims <- 100
 
-beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25) # for topic = outcome only
-# 
+# beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25) # for topic = outcome only
+
 # set.seed(123)
-# start.time <- Sys.time()
-# all_betas <- sample_all_betas(covar = varlist, nsims = nsims, topics = K)
-# end.time <- Sys.time()
-# time.taken <- end.time - start.time
-# time.taken
+# all_betas <- sample_all_betas(covar = varlist, metadata = data$meta, nsims = nsims, topics = K)
 # saveRDS(all_betas, "./data/all_betas.rds")
 
-# all_betas <- readRDS("./data/all_betas.rds")
+all_betas <- readRDS("../data/all_betas.rds")
 
 # estimate effect for variable while other variables held as median/majority value
 # preds <- predict_props_beta(beta_coefs, "t", formula, data$meta)
@@ -532,7 +602,7 @@ beta_coefs <- sample_coefs_beta(mod_prev, formula, data$meta, nsims = 25) # for 
 # example plots
 # par(mfrow=c(3,3))
 # for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")) {
-#   plot(predict_props_beta(beta_coefs, v, formula, data$meta)[,1:2], type = "l", col = "blue")
+#   plot(predict_props_beta(all_betas[[topic_number]], v, formula, data$meta)[,1:2], type = "l", col = "blue")
 # }
 ```
 
@@ -552,25 +622,18 @@ varlist_fullnames <- c(
 )
 ```
 
-We discuss the impact of covariates on topic proportions for topics 3 (`r topic_labels[[3]]`) and 4 (`r topic_labels[[4]]`), sub-dividing the analysis into smooth effects (time, immigration, GDP, and unemployment) and categorical variables (party and state). For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them.
+We can now apply the method of composition, based on a beta regression, in order to quantify covariate effects. Setting the number of simulations to `r nsims`, we thus draw `r nsims` times 
+out of the (approximate) marginal distribution of $\xi^*$, $q(\xi | \Gamma, \Sigma, X)$. To finally obtain draws from the topic proportions, $\theta_{(k)}$, we simply input $\xi^*$ and the design matrix $\tilde{X}$ into the sigmoid function, which is the response function corresponding to beta regression. When visualizing the impact of a particular covariate, all other covariates are held at their median, in line with the methodology employed in the *stm* package.
 
-By looking at the smooth effects for topic 3, we find that its proportion increases over time until the 25th month, corresponding to September 2019, decreasing sharply afterwards. However this sharp decline is to be taken with caution due to the instability of splines at the borders of the covariate domain. Note that the absolute changes in topic proportions over time for the `r topic_labels[[3]]` topic are rather small (around 4%). The effect of immigrants (as percentage of the total population) is negative across the entire domain, and rather steadily so. The impact of GDP per capita on topic 3 is unclear/constant, while unemployment rate show an overall positive effect. For all smooth effect except time, the proportion of the `r topic_labels[[3]]` topic due to covariate variation is about 8%.  
+We discuss the impact of covariates on topic proportions for topics 3 (`r topic_labels[[3]]`) and 4 (`r topic_labels[[4]]`), sub-dividing the analysis into smooth effects (time, immigration, GDP, and unemployment) and categorical variables (party and state). For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the *mean*, the shaded area represents 95% credible intervals.
 
-topic 3 smooth:
-* time: increasing effect over time until sep2019, then falling (margins!); low overall proportions
-* immigrants: steady (appr. linear) negative effect
-* GDP per capita: no clear effect
-* unemployment rate: increasing tendency
-* topic proportions vary by a total of around 8%
-
-
-We exemplify this using topics 3 (`r topic_labels[[3]]`) and 4 (`r topic_labels[[4]]`). First considering the smooth effects for topic 3, we take  `r topic_labels[[3]]` topic increases in importance over time until the 25th month, which corresponds to September 2019, decreasing sharply afterwards. However, since time is modelled as smooth effect, the margins are inherently unstable, which is why one should refraim from (over-)interpreting them.
+By looking at the smooth effects for topic 3 below, we find that its proportion increases over time until the 25th month, corresponding to September 2019, decreasing sharply afterwards. However this sharp decline is to be taken with caution due to the instability of splines at the borders of the covariate domain. Note that the absolute changes in topic proportions over time for the `r topic_labels[[3]]` topic are rather small (around 4%). The effect of immigrants (as percentage of the total population) is negative across the entire domain, and rather steadily so. The impact of GDP per capita on topic 3 is unclear/constant, while unemployment rate show an overall positive effect. For all smooth effect except time, the prevalence change of the `r topic_labels[[3]]` topic due to covariate variation is about 8%.
 
 ```{r echo=FALSE}
 ## Topic 3: Green/Climate
 formula_3 <- 3~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
-beta_coefs_3 <- sample_coefs_beta(mod_prev, formula_3, data$meta, nsims = 25)
+beta_coefs_3 <- all_betas[[3]]
 preds_varlist_3 <- lapply(varlist, function(v) predict_props_beta(beta_coefs_3, v, formula_3, data$meta))
 names(preds_varlist_3) <- varlist
 
@@ -590,9 +653,7 @@ gridExtra::grid.arrange(
 )
 ```
 
-topic 3 categorical:
-* party: absolute effect sizes similar to those of the smooth effects (8%)
-* green and liberal party with strongest effect
+Regarding the effect of categorical variables on topic `r topic_labels[[3]]`, we consider the political party, arguably the most decisive covariate. As was to be expected, we find high topic prevalence for the green party, yet the liberal party is, somewhat surprisingly, the party with the highest prevalence. Similar to the smooth effects, total variation in topic proportions across parties amounts to approximately 8%, as can be seen in the graph below.
 
 ```{r echo=FALSE}
 ### Categorial Plots
@@ -604,17 +665,13 @@ topic 3 categorical:
   theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 ```
 
-topic 4 smooth:
-* most variables have a small impact (in absolute terms, 4% (vs 8% for topic 3))
-* time: similar to effect on topic 3
-* no clear effect for most of them
+As for topic 4, `r topic_labels[[4]]`, we observe that most (quasi-)continuous variables have a small effect in absolute terms: the absolute variation in topic proportion across the covariate domains merely amounts to 4%, compared to around 8% for the `r topic_labels[[3]]` topic. The time effect is similar to the one for topic 3, particularly the decreasing topic prevalence since September 2019. For the other variables, no clear effect is discernible.
 
 ```{r echo=FALSE}
-# ---------
 ## Topic 4: Social/Housing
 formula_4 <- 4~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
-beta_coefs_4 <- sample_coefs_beta(mod_prev, formula_4, data$meta, nsims = 25)
+beta_coefs_4 <- all_betas[[4]]
 preds_varlist_4 <- lapply(varlist, 
                           function(v) predict_props_beta(beta_coefs_4, v, formula_4, data$meta))
 names(preds_varlist_4) <- varlist
@@ -635,9 +692,7 @@ gridExtra::grid.arrange(
 )
 ```
 
-topic 4 categorical:
-* party: high topic prevalence for left parties, as was to be expected
-* overall effect sizes a bit stronger than those of smooth effect for topic 4 (differece of 5%-6%)
+The effect of political party on the relevance assigned to the `r topic_labels[[4]]` topic is very much in line with a priori expectations: the left party and social democrats have the highest topic prevalence, at around 10%, the nationalist party the lowest one at 5%. The overall effect of covariate party is thus similar for topics `r topic_labels[[3]]` and `r topic_labels[[4]]`.
 
 ```{r echo=FALSE}
 ### Categorial Plots
@@ -649,25 +704,26 @@ topic 4 categorical:
   theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 ```
 
+
 topics 1, 3, and 4 for all parties:
 * AfD very unimodel (more than 40% of the content tweeted by AfD party members is about right-wing national / immigration), other topics at around 5%
 * for other parties: topic 1 at around 3-4%
 * topics 3 and 4 as described above
 
-
+Finally, the graph below shows a summary comparison of topic prevalence across all parties, for topics `r topic_labels[[1]]`, `r topic_labels[[3]]`, and `r topic_labels[[4]]`. The results are generally consistent with expectations. The proportions of topics `r topic_labels[[3]]`and `r topic_labels[[4]]` vary between 4% and 12% and between 5% and 10%, respectively. For topic 1,  `r topic_labels[[1]]`, note how topic prevalence for the AfD party amounts to more than 40%, implying that more than 40% of the total content tweeted by AfD party members is about right-wing/nationalist issues, particulary immigration; for all other parties, topic 1 is rather marginal at 3-4%.
 
 ```{r echo=FALSE}
 ## Topic 1: Right/Nationalist
 formula_1 <- 1~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)
-beta_coefs_1 <- sample_coefs_beta(mod_prev, formula_1, data$meta, nsims = 25)
+beta_coefs_1 <- all_betas[[1]]
 preds_varlist_1 <- lapply(varlist, 
                           function(v) predict_props_beta(beta_coefs_1, v, formula_1, data$meta))
 names(preds_varlist_1) <- varlist
 
 # ---------
 
-gridExtra::grid.arrange(plot_party_3, plot_party_4)
+# gridExtra::grid.arrange(plot_party_3, plot_party_4)
 
 preds_varlist_1$Partei$Topic <- "Right/Nationalist"
 preds_varlist_3$Partei$Topic <- "Green/Climate"
@@ -678,16 +734,17 @@ party_data <- rbind(preds_varlist_1$Partei, preds_varlist_3$Partei, preds_varlis
     scale_fill_manual(values=c("green", "blue", "red")) +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
-    ggtitle("Topic Proportions per Party")+
+    ggtitle("Topic Proportions by Party")+
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 ```
 
+## Train-Test-Split
 
+* causal inference within a topic analysis setting (see @egami2018make)
+* "predictive power" of covariates
 
-### Literature
+# Conclusion
 
+TBD
 
-
-```{r echo=FALSE}
-
-```
+# Bibliography

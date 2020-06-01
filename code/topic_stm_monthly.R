@@ -354,7 +354,7 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
   }
   names(dat_fit) <- c(names(dat),est_var)
   f <- paste("~",as.character(formula)[3])
-  xmat <- stm::makeDesignMatrix(as.formula(f), data$meta, dat_fit)
+  xmat <- stm::makeDesignMatrix(as.formula(f), metadata, dat_fit)
   fit_vals <- do.call(cbind, lapply(beta_coefs, function(x) sigmoid(xmat %*% t(x))))
   mu <- quanteda::rowMeans(fit_vals)
   ci <- apply(fit_vals, 1, function(x) quantile(x, probs = c(0.025, 0.975)))
@@ -372,7 +372,7 @@ predict_props_beta <- function(beta_coefs, est_var, formula, metadata){
 covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
 # formula always in form "i~var1+var2+...", where i = topic number
-topic_number <- 1
+topic_number <- 4
 formula <- as.formula(paste(topic_number, covar, sep = "~"))
 # obtain list of nsims beta regression outputs
 nsims <- 100
@@ -395,7 +395,7 @@ preds <- predict_props_beta(beta_coefs, "t", formula, data$meta)
 # example plots
 par(mfrow=c(3,3))
 for (v in c("t", "Partei", "Bundesland", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")) {
-  plot(predict_props_beta(all_betas[[1]], v, formula, data$meta)[,1:2], type = "l", col = "blue")
+  plot(predict_props_beta(all_betas[[topic_number]], v, formula, data$meta)[,1:2], type = "l", col = "blue")
 }
 
 # ----------------------------------------------------------------------------------------------
