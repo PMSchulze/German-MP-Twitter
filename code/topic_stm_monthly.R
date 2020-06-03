@@ -545,3 +545,31 @@ party_data <- rbind(preds_varlist_1$Partei, preds_varlist_3$Partei, preds_varlis
     ylab("Expected Topic Proportion") +
     ggtitle("Topic Proportions per Party")+
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------- Content Model Fitting ----------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# choose covariates and number of topics
+covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
+content_var <- "Partei"
+outcome <- ""
+
+prevalence <- as.formula(paste(outcome, covar, sep = "~"))
+content <- as.formula(paste(outcome, content_var, sep = "~"))
+
+# fit model
+mod_cont <- stm::stm(
+  documents = data$documents,
+  vocab = data$vocab,
+  data = data$meta,
+  K = K,
+  prevalence = prevalence,
+  content = content,
+  gamma.prior = 'L1',
+  seed = 123,
+  max.em.its = 500,
+  init.type = "Spectral")
+
+saveRDS(mod_cont, "./data/mod_cont_monthly.rds")
