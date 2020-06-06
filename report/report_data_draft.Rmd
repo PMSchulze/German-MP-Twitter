@@ -64,7 +64,7 @@ TBD
 
 The Structural Topic Model (STM) is a topic model which extends classical topic models such as Latent Dirichlet Allocation (LDA) by incorporating information of covariates. Topic models can be used to infer topics from a large text corpus grouped into documents. In topic modelling it is assumed that this corpus is generated from a small number of distributions over words, the topics. The proportions of these topics are document-specific. In contrast to simpler topic models such as LDA, the STM relates topic proportions to document-level covariates. Furthermore, each distribution over words, i.e. each topic, can vary for different documents dependent on the covariate values of this document.
 
-The detailed mechanism underlying the STM can be illustrated using its graphical model representation (see Figure 1). As outlined above, for each document indexed by $d \in \{1,\dots,D\}$ there exists a $K-1$-dimensional vector $\theta_d$ of topic proportions. Topic proportions are assumed to depend on $P$ document-specific so-called topical prevalence covariates $X \in \mathbb{R}^{D \times P}$, by following a logistic normal distribution with mean $X_d\Gamma$, where $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance $\Sigma$. Each of the $N_d$ words in document $d$ is subsequently assigned to one of the $K$ topics dependent on the topic proportions $\theta_d$; this per-word topic assignment is captured by the latent variable $z_{d,n} \sim \text{Multinomial}_K(\theta_d)$, where $n \in \{1,\dots,N_d\}$ denotes the word index. As stated, the distribution over words that characterizes a topic can vary for each document dependent on document-specific covariates $Y \in \mathbb{R}^{D \times A}$, the so-called topical content covariates. A word $w_{d,n}$ is then the result of the assigned topic, expressed by $z_{d,n}$, the content covariates $Y_d$, and their interactions. More precisely, this last step is intuitively best understood as a multinomial logistic regression of the words on the latter variables. A word $w_{d,n}$ then ultimately follows a multinomial distribution with probabilities $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, i.e.\ $w_{d,n} \sim \text{Multinomial}_V(\beta_{d,n})$, where $V$ denotes the total number of distinct words in the corpus; for details on the exact specification of $\beta_{d,n}$ see @roberts2016model, p.\ 991. Thus the occurence of a word (which is equivalent to being drawn from a corresponding multinomial distribution) depends on the topic assignment as well as on the topical content covariates, where the topic assignment itself is a function of the topical prevalence covariates.
+The detailed mechanism underlying the STM can be illustrated using its graphical model representation (see Figure 1). As outlined above, for each document indexed by $d \in \{1,\dots,D\}$ there exists a $K-1$-dimensional vector $\theta_d$ of topic proportions. Topic proportions are assumed to depend on $P$ document-specific so-called topical prevalence covariates $X \in \mathbb{R}^{D \times P}$, by following a logistic normal distribution with mean $X_d\Gamma$, where $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance $\Sigma$. Each of the $N_d$ words in document $d$ is subsequently assigned to one of the $K$ topics, depending on the topic proportions $\theta_d$; this per-word topic assignment is captured by the latent variable $z_{d,n} \sim \text{Multinomial}_K(\theta_d)$, where $n \in \{1,\dots,N_d\}$ denotes the word index. As stated, the distribution over words that characterizes a topic can vary across documents according to the value of a so-called topical content variable $Y$, giving rise to $\bf{Y}$$\in \mathbb{R}^{D \times A}$, where $A$ denotes the number of levels of the topical content variable. Then, a word $w_{d,n}$ is the result of the assigned topic, expressed by $z_{d,n}$, (the level of) content variable $Y_d$, and their interactions. More precisely, this last step is intuitively best understood as a multinomial logistic regression of the words on the latter variables. A word $w_{d,n}$ then ultimately follows a multinomial distribution with probabilities $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, i.e.\ $w_{d,n} \sim \text{Multinomial}_V(\beta_{d,n})$, where $V$ denotes the total number of distinct words in the corpus; for details on the exact specification of $\beta_{d,n}$ see @roberts2016model, p.\ 991. Thus the occurence of a word (which is equivalent to being drawn from a corresponding multinomial distribution) depends on the topic assignment as well as on the topical content variable, where the topic assignment itself is a function of the topical prevalence covariates.
 
 ![Graphical model representation of the STM (from @roberts2016model, p. 990)](../data/stm_graphical.png)
 
@@ -127,11 +127,25 @@ alldata <- alldata %>%
 
 ## Data Collection
 
-As a first step towards applying the STM to German political entities, we constructed a database with personal information about all German MPs. Using Python's BeautifulSoup web scraping tool as well as a selenium webdriver, we gathered data such as name, party, and electoral district from the [official parliament website](https://www.bundestag.de/abgeordnete) for all of the 709 members of the German parliament during its 19th election period, elected on September 24, 2017. (Footnote: MPs who resigned or passed away since this date were also listed on the website and thus included initially; they were manually excluded from further analysis.)
 
-Since information on social media profiles was scarce and incomplete on the official parliament website, we scraped official party homepages for each of the six political parties represented in the current parliament. MPs who did not provide a Twitter account either on the official parliament website or on their party's official homepage were excluded. Using Python's tweepy library to access the official Twitter API, we scraped all tweets by German MPs from September 24, 2017 through April 24, 2020, i.e., during a total of 31 months. (Footnote: tweepy restricts the total number of retrievable tweets to 3,200. For those MPs with a larger number of tweets, the most recent 3,200 tweets are taken into account. However, this only affects two MPs.) This initially yielded `r nrow(topic)` tweets from a total of `r nrow(topic_user)` members of parliament.
+more detail!!!
 
-To complement personal data, we also gathered socioeconomic data such as GDP per capita and unemployment rate as well as 2017 election results on an electoral-district level for all of the 299 electoral districts, from the [official electoral website](https://www.bundeswahlleiter.de). After removing  independent MPs as well as MPs without a specific electoral district assigned to them (for matchability with socioeconomic data), the final dataset counted `r nrow(prep)` MPs. The corresponding total number of tweets amounted to `r nrow(alldata)`. The table below shows total monthly tweet frequencies for our period of analysis, September 24, 2017 through April 24, 2020. As can be seen, tweet frequencies - though fluctuating - increase over time, peaking at almost 20,000 in March 2020.
+
+As a first step towards a topic model based on text data of German political entities, database: not just for this analysis, broader!!!
+
+we constructed a database with personal information about all German MPs. Using Python's *BeautifulSoup* web scraping tool as well as a selenium webdriver, we gathered data such as name, party, and electoral district from the [official parliament website](https://www.bundestag.de/abgeordnete) for all of the 709 members of the German parliament during its 19th election period, elected on September 24, 2017.
+
+(Footnote: As of March 30, 2020, the official parliament website contained information on 730 MPs. This is because MPs who resigned or passed away since the beginning of the election period are also listed on the website. These MPs were manually excluded from further analysis.)
+
+Since information on social media profiles was scarce and incomplete on the official parliament website, we scraped official party homepages for each of the six political parties represented in the current parliament. MPs who did not provide a Twitter account either on the official parliament website or on their party's official homepage were excluded. Using Python's *tweepy* library to access the official Twitter API, we scraped all tweets by German MPs from September 24, 2017 through April 24, 2020, i.e., during a total of 31 months. The *tweepy* library offers a variety of additional features to be extracted apart from the mere tweet texts, such as the number of followers of an account, retweets, or how many times a tweet was like or retweeted. We included the most relevant of these additional features for use in future analyses with this dataset.
+
+(Footnote: tweepy restricts the total number of tweets retrievable to 3,200. For those MPs who tweeted more than 3,200 tweets during our period of analysis, the most recent 3,200 tweets were taken into account. However, this only applied to two MPs.)
+
+This initially yielded `r nrow(topic)` tweets from a total of `r nrow(topic_user)` members of parliament.
+
+To complement personal data, we also gathered socioeconomic data such as GDP per capita and unemployment rate as well as 2017 election results on an electoral-district level for all of the 299 electoral districts from the [official electoral website](https://www.bundeswahlleiter.de). After removing the only independent MP as well as MPs without a specific electoral district assigned to them (for matchability with socioeconomic data), the final dataset counted `r nrow(prep)` MPs. The corresponding total number of tweets amounted to `r nrow(alldata)`. Since there is only a single independent MP, this means that `r nrow(topic_user) - nrow(alldata) - 1` MPs do not have an electoral district assigned to them. For those MPs, electoral district-level socioeconomic variables could potentially be imputed by using state averages or values of nearby / similar districts. However, given that this only applies to `r nrow(topic_user) - nrow(alldata) - 1` out of the remaining `r nrow(prep)` MPs and since imputing covariates would introduce further uncertainty, we opted for excluding those MPs.
+
+The table below shows total monthly tweet frequencies for our period of analysis, September 24, 2017 through April 24, 2020. As can be seen, tweet frequencies - though fluctuating - show an increasing trend over time, peaking at almost 20,000 in March 2020.
 
 ```{r echo=FALSE, fig.align='center', fig.asp=.6, fig.width=10, warning=FALSE, out.width='82%'}
 
@@ -145,7 +159,11 @@ ggplot(data_adj, aes(x = date)) + geom_histogram(stat = "count") +
         axis.title.y = element_text(size = 12, face = "bold"))
 ```
 
-Next, data were grouped and tweets concatenated on a per-user level (thus aggregating tweets across the entire 31 months) as well as on a per-user per-month level, yielding a user-level and a (user-level) monthly dataset. This means that a document represents the concatenation of *all* of a single MP's tweets for the user-level dataset and a single MP's *monthly* tweets for the monthly dataset. This also means that MP-level metadata such as personal information and socioeconomic data (through the electoral district matching) can be used as document-level covariates. For the monthly dataset, the temporal component (year and month) constitutes an additional covariate. At this point, the data preparation was completed, thus marking the starting point of the preprocessing required for topic analysis, which is identical for both datasets.
+Next, data were grouped and tweets were concatenated on a per-user level (thus aggregating tweets across the entire 31 months) as well as on a per-user per-month level, yielding a user-level and a monthly dataset. This means that a document represents the concatenation of *all* of a single MP's tweets for the user-level dataset and a single MP's *monthly* tweets for the monthly dataset. This also means that MP-level metadata such as personal information and socioeconomic data (through the electoral district matching) can be used as document-level covariates. For the monthly dataset, the temporal component (year and month) constitutes an additional covariate. Since it is reasonable to assume that the importance of topics varies over time and due to the smaller resulting document lengths, we chose the monthly dataset for further analysis.
+
+(Footnote: For instance, as explained further below, one topic is about COVID-19, which is clearly a relatively recent topic. The monthly dataset allows for tracing the development of this topic over time, specifically a flat curve until January 2020 and a sharp subsequent increase in topic proportion. The user-level dataset, on the other hand, would simply assign a low overall proportion to this topic.)
+
+At this point, the data preparation was completed, thus marking the starting point of the preprocessing required for topic analysis, which is identical for both datasets.
 
 ## Data Preprocessing
 
@@ -184,6 +202,8 @@ As the result of preprocessing, one empty MP-level document was dropped, so that
 # load searchK results
 searchK_data <- readRDS("../data/searchK_large_data.rds")
 ```
+
+more detail!!! check stm paper
 
 Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The most important choice when fitting an STM is the number of topics, K. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the *searchK* function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
 
@@ -231,7 +251,7 @@ gridExtra::grid.arrange(plot_heldout, plot_semcoh, plot_exclus, plot_residual, n
 K <- 15
 ```
 
-Both 15 and 20 topics seem to be good trade-offs between the metrics used. Taking into account the interpretability aspect, we opt for K = `r K`.
+Both 15 and 20 topics seem to be good trade-offs between the metrics used. As mentioned above, no true or optimal K exists. Taking into account the interpretability aspect, we opt for K = `r K`. For comparison, we also conducted the subsequent analysis for a small (and easily interpretable) number of topics, K = 6, as well as for K = 20. In general, topics generated are similar, but for K = 6 only around three are clear-cut, while for K = 20 some topics could easily be grouped together. This only confirms that K = 15 indeed seems to be a good trade-off. 
 
 Before fitting the model, we need to choose the document-level covariates we want to include. Since a topic model is explorative by definition, we simply include those covariates that seem to be most influential *a priori*: party and state (both categorical), date (as smooth effect), as well as percentage of immigrants, GDP per capita, unemployment rate, and the 2017 election results of the MP's respective party (the last four as smooth effects and on an electoral-district level).
 
@@ -374,7 +394,7 @@ topic_labels <- list(
   Topic5 = "Europe_english",
   Topic6 = "mobility",
   Topic7 = "Europe",
-  Topic8 = "Corona",
+  Topic8 = "corona",
   Topic9 = "left/anti-war",
   Topic10 = "Twitter/politics_1",
   Topic11 = "Twitter/politics_2",
@@ -729,8 +749,157 @@ party_data <- rbind(preds_varlist_1$Partei, preds_varlist_3$Partei, preds_varlis
     scale_fill_manual(values=c("green", "blue", "red")) +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
-    ggtitle("Topic Proportions by Party")+
+    ggtitle("Topic Proportions by Party") +
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+```
+
+### Topical Content
+
+```{r echo=FALSE}
+# choose covariates and number of topics
+covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
+content_var <- "Partei"
+outcome <- ""
+
+prevalence <- as.formula(paste(outcome, covar, sep = "~"))
+content <- as.formula(paste(outcome, content_var, sep = "~"))
+
+# fit model
+mod_cont <- stm::stm(
+  documents = data$documents,
+  vocab = data$vocab,
+  data = data$meta,
+  K = K,
+  prevalence = prevalence,
+  content = content,
+  gamma.prior = 'L1',
+  seed = 123,
+  max.em.its = 200,
+  init.type = "Spectral")
+saveRDS(mod_cont, "./data/mod_cont_monthly.rds")
+
+mod_cont <- readRDS("./data/mod_cont_monthly.rds")
+```
+
+The STM provides an additional way to integrate covariate effects into the model, apart from prevalence variables that impact topic proportions across documents. To be specific, a categorical variable can be selected as topical content variable. While the prevalence variables influence the propensity of the $K$ topics for each document, the content variable now allows for the word distributions for a given topic to vary across documents, according to content variable levels. Note that this is a completely new model, which is why one should not expect the resulting topics to be similar. 
+
+Formally, recall that the word distribution used to eventually pick a word is $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, where $z_{d,n}$ is a (latent) indicator variable determining the word's topic assignation and $Y_{d}$ is the document-level topical content variable. In the prevalence model, since no (document-level) topical content variable is specified, implying $\beta_{d,n} = \beta(z_{d,n})$, and since $z_{d,n}$ is a word-level variable, $\beta_{d,n}$ is constant across all documents for a given topic $k$. When specifying a content variable $Y$, however, $\beta_{d,n}$ now varies for each document, according to the level $a \in \{1, ..., A\}$ the content variable takes on for document $d$. That is, the total number of $\beta$-vectors, each one of length $V$, now increases from $K$ to $K \times A$.
+
+For our specific case, since the topical content variable needs to be categorical, we choose the variable *party*, being categorical by definition and as it  is arguably the most significant factor in determining topic prevalence. When choosing *party* as *topical content* variable, however, we thereby additionally postulate that given a topic, an MP's party also influences the vocabulary used when tweeting about that specific topic. For instance, this implies that an AfD party member tweets about immigration issues in a different linguistic manner than, say, a green MP. Since for the 2017 election period the German parliament contains members of `r mod_cont$settings$dim$A` parties, $\bf{Y}$ is now a matrix with `r mod_cont$settings$dim$N` rows and `r mod_cont$settings$dim$A` columns, yielding a total of `r K*mod_cont$settings$dim$A` $\beta$-vectors.
+
+After fitting the model, we proceed as for the prevelance model, that is, by inspecting top words and identifying topic labels. An additional difficulty, however, is that we do not have clear-cut top words per topic anymore; instead, we now have topic-level top words for each of the `r K` parties, party-level top words for each of the `r mod_cont$settings$dim$A` parties, as well as interaction top words for each of the `r K*mod_cont$settings$dim$A` topic-party combinations. The table below presents topic labels for all `r K` topics, identified by using the same 3-step procedure as for the prevalence model before. As can be seen, five topics are labelled as *miscellaneous*, reflecting the complexity caused by the large number of $\beta$-vectors.
+
+```{r echo=FALSE}
+# labeling workflow (for each topic): 
+
+## (1) inspect most frequent words per topic (using different metrics as well as word cloud)
+## (2) evaluate most representative documents per topic
+## (3) assign label
+
+# first, prepare objects/variables needed for labelling process
+
+## table of MAP topic proportions per document (for all topics)
+topic_props <- make.dt(
+  mod_cont, 
+  data$meta[c("Name", "Partei","Datum", "Bundesland")]) %>% 
+  cbind(docname = names(data$documents), .)
+
+## top words per topic (for all topics)
+topic_words <- labelTopics(mod_cont, n = 15)
+
+## topic to be evaluated
+topic_number <- 1
+topic_number_long <- paste0("Topic", topic_number)
+
+## number of top documents to be printed in step (2)
+docs_number <- 5
+
+## initialize list with empty labels
+## initialize list with empty labels
+topic_cont_labels <- list(
+  Topic1 = NULL,
+  Topic2 = NULL,
+  Topic3 = NULL,
+  Topic4 = NULL,
+  Topic5 = NULL,
+  Topic6 = NULL,
+  Topic7 = NULL,
+  Topic8 = NULL,
+  Topic9 = NULL,
+  Topic10 = NULL,
+  Topic11 = NULL,
+  Topic12 = NULL,
+  Topic13 = NULL,
+  Topic14 = NULL,
+  Topic15 = NULL
+)
+
+# actual labelling porcess
+
+## (1) inspect most frequent words per topic
+topic_words$prob[topic_number,] # 20 most frequent words
+
+# logbeta_matrix <- mod_prev$beta$logbeta[[1]]
+# mod_prev$vocab[which.max(logbeta_matrix[topic_number,])] # most frequent word directly from (log)beta vector
+
+## (2) evaluate most representative documents per topic
+data_corpus$docname <- paste0(data_corpus$Twitter_Username, "_", data_corpus$Jahr, "_", data_corpus$Monat)
+
+repr_docs <-  topic_props %>%
+  arrange(desc(!!as.symbol(topic_number_long))) %>%
+  .[1:docs_number, c("Name", "docname", "Datum", "Partei", "Bundesland", topic_number_long)] %>%
+  left_join(data_corpus[,c("Tweets_Dokument", "docname")], 
+            by = "docname")
+
+substr(repr_docs$Tweets_Dokument[1], 0, 256) # view most representative document
+topic_number # topic
+scales::percent(repr_docs[topic_number_long][1,1], accuracy = 0.01) # proportion
+repr_docs$Name[1] # author/MP
+repr_docs$Partei[1] # party
+repr_docs$Bundesland[1] # state
+repr_docs$Datum[1] # date
+
+## (3) assign label
+topic_cont_labels[[topic_number]] <- "right/nationalist"
+
+## (3) assign label
+topic_cont_labels <- list(
+  Topic1 = "right/nationalist_1",
+  Topic2 = "miscellaneous_1",
+  Topic3 = "left/humanitarian",
+  Topic4 = "housing",
+  Topic5 = "innovation",
+  Topic6 = "green/energy",
+  Topic7 = "miscellaneous_2",
+  Topic8 = "corona",
+  Topic9 = "foreign affairs",
+  Topic10 = "election",
+  Topic11 = "right/nationalist_2",
+  Topic12 = "miscellaneous_3",
+  Topic13 = "miscellaneous_4",
+  Topic14 = "Twitter/politics",
+  Topic15 = "miscellaneous_5"
+)
+
+topic_cont_labels %>%
+  matrix(dimnames = list(names(topic_labels))) # print w/ topic number
+```
+
+```{r echo=FALSE}
+topic_number <- 8
+```
+
+The topical content model allows for vocabulary usage to differ across political parties, given a topic. In the graph below, we visualize this effect for the `r topic_labels[[topic_number]]` topic, contrasting the green party "Bündnis 90/Die Grünen" with the right-wing nationalist party "AfD". The result is very insightful: even for a topic as clear-cut and novel as COVID-19, stark differences in terms of vocabulary usage arise. In particular, the AfD uses language suitable to describe immigration (*migration*, *grenz*) in order to discuss corona, which very much reflects the unimodality of the party's political orientation. The green party, on the other hand, seems to address the topic much more specifically, mentioning key words like *massnahm* or *kind*.
+
+```{r echo=FALSE}
+plot(mod_cont, type = "perspectives", topics = topic_number, covarlevels = c("Bündnis 90/Die Grünen", "AfD"), text.cex = 0.8, plabels = c("Bündnis 90/Die Grünen", "AfD"))
+```
+
+While this type of visualization is indeed insightful, several concerns regarding the topical content model prevail: first of all, there is no natural candidate for the content variable, which - for labelling and interpretational purposes - should ideally be binary. Our dataset contains very few categorical variables, none of them binary. Furhermore, there is no natural, non-arbitrary way to binarize any of the covariates; for instance, binarizing the variable *party*, say, into *conservative* and *liberal* would misclassify at least one party. Therefore, our choice to use *party* as content variable is the result of a lack of alternatives, rather than being based on sound statistical or theoretical considerations. This, in turn, is reflected in the difficult labelling; for instance, one third of all topics were eventually being labelled as *miscellaneous*. And while the previous illustration of inter-party differences in vocabulary usage is indeed insightful in terms of topic exploration and visualization, the aforementioned doubts lead us to choose the initial prevalence-only model for further analysis.
+
+```{r echo=FALSE}
+
 ```
 
 ## Train-Test-Split

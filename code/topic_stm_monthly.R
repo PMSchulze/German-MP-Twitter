@@ -204,7 +204,7 @@ topic_labels <- list(
   Topic5 = "Europe_english",
   Topic6 = "mobility",
   Topic7 = "Europe",
-  Topic8 = "Corona",
+  Topic8 = "corona",
   Topic9 = "left/anti-war",
   Topic10 = "Twitter/politics_1",
   Topic11 = "Twitter/politics_2",
@@ -569,7 +569,159 @@ mod_cont <- stm::stm(
   content = content,
   gamma.prior = 'L1',
   seed = 123,
-  max.em.its = 500,
+  max.em.its = 200,
   init.type = "Spectral")
-
 saveRDS(mod_cont, "./data/mod_cont_monthly.rds")
+
+mod_cont <- readRDS("./data/mod_cont_monthly.rds")
+
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------------- Labelling -------------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# labeling workflow (for each topic): 
+
+## (1) inspect most frequent words per topic (using different metrics as well as word cloud)
+## (2) evaluate most representative documents per topic
+## (3) assign label
+
+# ----------------------------------------------------------------------------------------------
+
+# first, prepare objects/variables needed for labelling process
+
+## table of MAP topic proportions per document (for all topics)
+topic_props <- make.dt(
+  mod_cont, 
+  data$meta[c("Name", "Partei","Datum", "Bundesland")]) %>% 
+  cbind(docname = names(data$documents), .)
+
+## top words per topic (for all topics)
+topic_words <- labelTopics(mod_cont, n = 20)
+
+## topic to be evaluated
+topic_number <- 2
+topic_number_long <- paste0("Topic", topic_number)
+
+## number of top documents to be printed in step (2)
+docs_number <- 5
+
+## initialize list with empty labels
+## initialize list with empty labels
+topic_cont_labels <- list(
+  Topic1 = NULL,
+  Topic2 = NULL,
+  Topic3 = NULL,
+  Topic4 = NULL,
+  Topic5 = NULL,
+  Topic6 = NULL,
+  Topic7 = NULL,
+  Topic8 = NULL,
+  Topic9 = NULL,
+  Topic10 = NULL,
+  Topic11 = NULL,
+  Topic12 = NULL,
+  Topic13 = NULL,
+  Topic14 = NULL,
+  Topic15 = NULL
+)
+
+# ----------------------------------------------------------------------------------------------
+
+# actual labelling porcess
+
+## (1) inspect most frequent words per topic
+topic_words$prob[topic_number,] # 20 most frequent words
+
+# logbeta_matrix <- mod_prev$beta$logbeta[[1]]
+# mod_prev$vocab[which.max(logbeta_matrix[topic_number,])] # most frequent word directly from (log)beta vector
+
+## (2) evaluate most representative documents per topic
+data_corpus$docname <- paste0(data_corpus$Twitter_Username, "_", data_corpus$Jahr, "_", data_corpus$Monat)
+
+repr_docs <-  topic_props %>%
+  arrange(desc(!!as.symbol(topic_number_long))) %>%
+  .[1:docs_number, c("Name", "docname", "Datum", "Partei", "Bundesland", topic_number_long)] %>%
+  left_join(data_corpus[,c("Tweets_Dokument", "docname")], 
+            by = "docname")
+
+substr(repr_docs$Tweets_Dokument[1], 0, 256) # view most representative document
+topic_number # topic
+scales::percent(repr_docs[topic_number_long][1,1], accuracy = 0.01) # proportion
+repr_docs$Name[1] # author/MP
+repr_docs$Partei[1] # party
+repr_docs$Bundesland[1] # state
+repr_docs$Datum[1] # date
+
+## (3) assign label
+topic_cont_labels[[topic_number]] <- "right/nationalist"
+
+## (3) assign label
+topic_cont_labels <- list(
+  Topic1 = "right/nationalist_1",
+  Topic2 = "miscellaneous_1",
+  Topic3 = "left/humanitarian",
+  Topic4 = "housing",
+  Topic5 = "innovation",
+  Topic6 = "green/energy",
+  Topic7 = "miscellaneous_2",
+  Topic8 = "corona",
+  Topic9 = "foreign affairs",
+  Topic10 = "election",
+  Topic11 = "right/nationalist_2",
+  Topic12 = "miscellaneous_3",
+  Topic13 = "miscellaneous_4",
+  Topic14 = "Twitter/politics",
+  Topic15 = "miscellaneous_5"
+)
+
+topic_cont_labels %>%
+  matrix(dimnames = list(names(topic_labels))) # print w/ topic number
+
+# ----------------------------------------------------------------------------------------------
+# -------------------------------- Global Topic Inspection -------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# all topics w/ global proportions (prints topic words with their corpus frequency)
+plot(mod_cont, type = "summary", xlim = c(0, 0.3), custom.labels = topic_cont_labels) # average thetas across all MPs 
+
+doc_lengths <- lapply(data$documents[], length)
+weights <- c()
+i <- 1
+while (i <= length(doc_lengths)) {
+  weights[[i]] <- doc_lengths[[i]]/2
+  i <- i + 1}
+mean_weight <- mean(weights)
+props_unweighted <- colMeans(mod_prev$theta[,1:K])
+props_weighted <- colMeans((mod_prev$theta*weights/mean_weight)[, 1:K])
+
+topic_labels_unlisted <- unlist(topic_labels, use.names = FALSE)
+
+props_df <- data.frame(topic_labels_unlisted, props_unweighted, props_weighted) %>% reshape2::melt(id = "topic_labels_unlisted")
+colnames(props_df) <- c("topic", "variable", "proportion")
+
+ggplot(data = props_df, aes(x = topic, y = proportion, fill = variable)) + 
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("grey40","grey80")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+        axis.title.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 12, face = "bold"))
+
+# vocabulary usage comparison for two topics
+plot(mod_cont, type = "perspectives", topics = c(3, 6), n = 30)
+
+# global topic correlation
+mod_cont_corr <- topicCorr(mod_cont, method = "simple", cutoff = -0.20,
+                           verbose = TRUE) # based on correlations between mod_cont$theta
+plot.topicCorr(mod_cont_corr)
+
+# global topic correlation
+cormat <- cor(mod_cont$theta)
+ggcorrplot::ggcorrplot(cormat) +
+  scale_x_continuous(breaks = seq(1, 15, by = 1)) +
+  scale_y_continuous(breaks = seq(1, 15, by = 1)) +
+  labs(x = "topic number", y = "topic number") +
+  theme_minimal() +
+  theme(axis.title.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 12, face = "bold"))
+
