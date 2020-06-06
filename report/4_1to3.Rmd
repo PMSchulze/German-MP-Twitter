@@ -1,0 +1,359 @@
+---
+title: "4_1to3"
+author: "Patrick Schulze, Simon Wiegrebe"
+date: "June 2020"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+  html_document: default
+bibliography: bibliography.bib
+biblio-style: myabbrvnat
+link-citations: yes
+linkcolor: blue
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \captionsetup{labelformat=empty}
+  - \usepackage{multirow}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Preparation, include=FALSE}
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------------- Preparation -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "betareg", "ggcorrplot", "grid", "gridExtra", "huge", "knitr", "mvtnorm", 
+  "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, character.only = TRUE)
+
+# set working directory
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+```
+
+# Results
+
+```{r include=FALSE}
+# load data
+data <- readRDS("../data/preprocessed_monthly.rds")
+colnames_table <- read.csv(file = "../data/topic_monthly_colnames.csv")
+data_corpus <- readRDS("../data/prep_monthly.rds")
+
+# data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) data
+```
+
+## Hyperparameter Search and Model Fitting
+
+```{r include=FALSE}
+# # search hyperparameter space for optimal K
+# hyperparameter_search <- searchK(
+#   documents = data$documents,
+#   vocab = data$vocab,
+#   data = data$meta,
+#   # K = c(5,6,7,8,9,10),
+#   K = c(5,10,15,20,25,30,35,40),
+#   prevalence =~ Partei,
+#   max.em.its = 150,
+#   init.type = "Spectral"
+# )
+
+# load searchK results
+searchK_data <- readRDS("../data/searchK_large_data.rds")
+```
+
+more detail!!! check stm paper
+
+Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The most important choice when fitting an STM is the number of topics, K. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get an understanding of the impact of K on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*. As for the first one, the *searchK* function randomly holds out a proportion of some of the documents. This set of held-out words is then used to evaluate their probability given the trained model, giving rise to the *held-out likelihood*. Regarding the second metric, a model with K topics is *semantically coherent* whenever those words that characterize a specific topic (i.e., the most frequent words within a topic) also do appear in the same documents. *Exclusivity* basically tells us to which degree a topic's word *only* occur in that topic (for more detail, see the *FREX* methodology further below). Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
+
+Another aspect to be taken into account when choosing K (or, to be precise, when choosing a search grid for searchK) is interpretability. While a large K certainly allows for a more fine-grained determination of topics, the resulting topics might be rather difficult to label. Furthermore, for large K we would obtain many topics which could be considered sub-topics of the topics we would obtain when using a smaller value for K. The graph below shows the four metrics, as introduced above, for values of K between 5 and 40 (in steps of 5).
+
+```{r echo=FALSE}
+plot_heldout <- ggplot(data = searchK_data$results, aes(x = K, y = heldout)) +
+                  geom_line() +
+                  geom_point() +
+                  labs(y = "held-out likelihood") +
+                  theme_minimal() +
+                  theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                        axis.title.x = element_text(size = 12, face = "bold"),
+                        axis.title.y = element_text(size = 12, face = "bold"))
+
+plot_semcoh <- ggplot(data = searchK_data$results, aes(x = K, y = semcoh)) + 
+                  geom_line() +
+                  geom_point() +
+                  labs(y = "semantic coherence") +
+                  theme_minimal() +
+                  theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                        axis.title.x = element_text(size = 12, face = "bold"),
+                        axis.title.y = element_text(size = 12, face = "bold"))
+
+plot_exclus <- ggplot(data = searchK_data$results, aes(x = K, y = exclus)) +
+                  geom_line() +
+                  geom_point() +
+                  labs(y = "exclusivity") +
+                  theme_minimal() +
+                  theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                        axis.title.x = element_text(size = 12, face = "bold"),
+                        axis.title.y = element_text(size = 12, face = "bold"))
+
+plot_residual <- ggplot(data = searchK_data$results, aes(x = K, y = residual)) + 
+                  geom_line() +
+                  geom_point() +
+                  labs(y = "residuals") +
+                  theme_minimal() +
+                  theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                        axis.title.x = element_text(size = 12, face = "bold"),
+                        axis.title.y = element_text(size = 12, face = "bold"))
+
+gridExtra::grid.arrange(plot_heldout, plot_semcoh, plot_exclus, plot_residual, ncol=2)
+
+K <- 15
+```
+
+Both 15 and 20 topics seem to be good trade-offs between the metrics used. As mentioned above, no true or optimal K exists. Taking into account the interpretability aspect, we opt for K = `r K`. For comparison, we also conducted the subsequent analysis for a small (and easily interpretable) number of topics, K = 6, as well as for K = 20. In general, topics generated are similar, but for K = 6 only around three are clear-cut, while for K = 20 some topics could easily be grouped together. This only confirms that K = 15 indeed seems to be a good trade-off. 
+
+Before fitting the model, we need to choose the document-level covariates we want to include. Since a topic model is explorative by definition, we simply include those covariates that seem to be most influential *a priori*: party and state (both categorical), date (as smooth effect), as well as percentage of immigrants, GDP per capita, unemployment rate, and the 2017 election results of the MP's respective party (the last four as smooth effects and on an electoral-district level).
+
+```{r echo=FALSE}
+# choose covariates and number of topics
+prev_var <- c("Partei", "Bundesland", "Datum", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")
+outcome <- ""
+prevalence <- as.formula(paste(outcome, paste(prev_var, collapse = "+"), sep = "~")) 
+
+# # fit model
+# mod_prev <- stm::stm(
+#   documents = data$documents,
+#   vocab = data$vocab,
+#   data = data$meta,
+#   K = K,
+#   prevalence = prevalence,
+#   # gamma.prior = 'L1',
+#   seed = 123,
+#   max.em.its = 200,
+#   init.type = "Spectral")
+
+mod_prev <- readRDS("../data/mod_prev_monthly.rds")
+```
+
+## Labelling
+
+As a starting point subsequent to model fitting, we visually inspect the resulting topics, in particular their best words, as demonstrated in the output below. There are different metrics for evaluating which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*. The first one, *highest probability*, simply outputs for each topic those words in the topic-specific word vector, $\beta_{d,n}$, with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. *FREX* takes into account not only how frequent but also how exclusive words are: for a given topic, it is calculated by taking the harmonic mean of i) the word's rank by probability within the topic (frequency) and ii) the topic's rank by  word frequency  across all topics (exclusivity). Further information on the estimation of *FREX*, *Lift*, and *Score* can be found in @bischof2012summarizing, in the R package *lda* (@chang2010package), and in @taddy2012estimation, respectively.
+
+```{r echo=FALSE}
+# labeling workflow (for each topic): 
+
+## (1) inspect most frequent words per topic (using different metrics as well as word cloud)
+## (2) evaluate most representative documents per topic
+## (3) assign label
+
+# first, prepare objects/variables needed for labelling process
+
+## table of MAP topic proportions per document (for all topics)
+topic_props <- make.dt(
+  mod_prev, 
+  data$meta[c("Name", "Partei", "Datum", "Bundesland")]) %>% 
+  cbind(docname = names(data$documents), .)
+
+## top words per topic (for all topics)
+n <- 5
+topic_words <- labelTopics(mod_prev, n = n)
+
+## topic to be evaluated
+topic_number <- 1
+topic_number_long <- paste0("Topic", topic_number)
+
+## number of top documents to be printed in step (2)
+docs_number <- 10
+
+## initialize list with empty labels
+topic_labels <- list(
+  Topic1 = NULL,
+  Topic2 = NULL,
+  Topic3 = NULL,
+  Topic4 = NULL,
+  Topic5 = NULL,
+  Topic6 = NULL,
+  Topic7 = NULL,
+  Topic8 = NULL,
+  Topic9 = NULL,
+  Topic10 = NULL,
+  Topic11 = NULL,
+  Topic12 = NULL,
+  Topic13 = NULL,
+  Topic14 = NULL,
+  Topic15 = NULL
+)
+```
+
+The output below shows, for each topic, the `r n` top words for each of the four topic-word evaluation metrics.
+
+```{r echo=FALSE}
+# top words for all topics
+topic_words
+```
+
+A key task of topic analysis is to actually ascribe a meaning to the topics identified, i.e., labelling them. While this is clearly where human judgment should and does come into play, we attempt to conduct the labelling in a more stratetic (and thus less subjective) manner, following a 3-step procedure. This procedure is exemplified using topic `r topic_number`.
+
+First, we consider the *words* contained in the topic, for instance by simply inspecting the top words (see output above). For a better visualization, we use a word cloud. As shown below, for a given topic (i.e., conditional upon a specific topic being chosen), it shows words weighted by their frequency. For instance, by judging at first sight topic `r topic_number` appears to be about right-wing nationalist issues, particularly immigration.
+
+```{r echo=FALSE}
+# word cloud
+cloud(mod_prev, topic = topic_number, scale = c(2.0, 0.25))
+```
+
+Second, to get a more thorough insight into the topic, we take a look into actual *documents*, specifically into those showing the highest proportion for topic `r topic_number`.
+
+```{r include=FALSE}
+# actual labelling porcess
+
+## (1) inspect most frequent words per topic
+# cloud(mod_prev, topic = topic_number, scale = c(2.5, 0.25)) # word cloud
+# topic_words$prob[topic_number,] # 20 most frequent words
+# logbeta_matrix <- mod_prev$beta$logbeta[[1]]
+# mod_prev$vocab[which.max(logbeta_matrix[topic_number,])] # most frequent word directly from (log)beta vector
+
+## (2) evaluate most representative documents per topic
+data_corpus$docname <- paste0(data_corpus$Twitter_Username, "_", data_corpus$Jahr, "_", data_corpus$Monat)
+
+repr_docs <-  topic_props %>%
+  arrange(desc(!!as.symbol(topic_number_long))) %>%
+  .[1:docs_number, c("Name", "docname", "Datum", "Partei", "Bundesland", topic_number_long)] %>%
+  left_join(data_corpus[,c("Tweets_Dokument", "docname")], 
+            by = "docname")
+```
+
+For instance, the most representative document for topic `r topic_number`, with a proportion of `r scales::percent(repr_docs[topic_number_long][1,1], accuracy = 0.01)` is the one by MP `r repr_docs$Name[1]`, a member of the `r repr_docs$Partei[1]` party from `r repr_docs$Bundesland[1]`, from `r repr_docs$Datum[1]` which starts with:
+
+```{r echo=FALSE, null_x, results = "asis"}
+substr(repr_docs$Tweets_Dokument[1], 0, 256) # view most representative document
+```
+
+The second most representative document, still for topic `r topic_number`, has a proportion of `r scales::percent(repr_docs[topic_number_long][2,1], accuracy = 0.01)`. Its author is the same as for the first document, `r repr_docs$Name[2]`, but the date now is `r repr_docs$Datum[2]`. The document starts with:
+
+```{r echo=FALSE, results = "asis"}
+substr(repr_docs$Tweets_Dokument[2], 0, 255) # view 2nd most representative document
+```
+
+```{r echo=FALSE}
+## (3) assign label
+topic_labels[[topic_number]] <- "right/nationalist"
+```
+
+The documents confirm the first impression gained through top words and the word cloud: `r topic_number` concerns right-wing nationalist issues, in particular immigration. Thus, as a third step, we finally label the topic: in this case, as `r topic_labels[topic_number]`.
+
+We repeat this 3-step procedure (inspecting top words and word cloud, reading through top documents, assigning a 1- or 2-word label) for all remaining topics, arriving at the following manual labels:.
+
+```{r echo=FALSE}
+## (3) assign label
+topic_labels <- list(
+  Topic1 = "right/nationalist",
+  Topic2 = "miscellaneous_1",
+  Topic3 = "green/climate",
+  Topic4 = "social/housing",
+  Topic5 = "Europe_english",
+  Topic6 = "mobility",
+  Topic7 = "Europe",
+  Topic8 = "corona",
+  Topic9 = "left/anti-war",
+  Topic10 = "Twitter/politics_1",
+  Topic11 = "Twitter/politics_2",
+  Topic12 = "miscellaneous_2",
+  Topic13 = "Twitter/politics_3",
+  Topic14 = "right-wing extremism",
+  Topic15 = "social/health"
+)
+```
+
+```{r echo=FALSE}
+topic_labels %>%
+  matrix(dimnames = list(names(topic_labels))) %>%
+  knitr::kable()
+```
+
+## Global-level Topic Analysis
+
+```{r include=FALSE}
+doc_lengths <- lapply(data$documents[], length)
+weights <- c()
+i <- 1
+while (i <= length(doc_lengths)) {
+  weights[[i]] <- doc_lengths[[i]]/2
+  i <- i + 1}
+mean_weight <- mean(weights)
+props_unweighted <- colMeans(mod_prev$theta[,1:K])
+props_weighted <- colMeans((mod_prev$theta*weights/mean_weight)[, 1:K])
+
+topic_labels_unlisted <- unlist(topic_labels, use.names = FALSE)
+
+props_df <- data.frame(topic_labels_unlisted, props_unweighted, props_weighted) %>% reshape2::melt(id = "topic_labels_unlisted")
+colnames(props_df) <- c("topic", "variable", "proportion")
+```
+
+Next, we identify two ways to calculate global topic proportions: either as the simple (unweighted) average of $\theta_d$ across all documents (i.e., as the average of MP-level proportions across all MPs); or by weighting each $\theta_d$ by the number of words in the respective documents, $N_d$. The table below shows all topics with their respective global proportions, for both weighting methodologies. We observe that for most topics, weighted and unweighted proportions are rather similar, but there are exceptions. In particular, the topics concerned with everyday political tweets have much higher unweighted than weighted frequencies; this makes sense, however, since such "diplomatic" tweets tend to be shorter than those which actually discuss a specific content.
+
+```{r echo=FALSE}
+ggplot(data = props_df, aes(x = topic, y = proportion, fill = variable)) + 
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("grey40","grey80")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+        axis.title.x = element_text(size = 12, face = "bold"),
+        axis.title.y = element_text(size = 12, face = "bold"))
+```
+
+While labelling tells us which words best represent each topic - and thus, what each topic truly represents - it does not yet tell us to which extent individual topics are related to each other. In the graph below, we visualize the similarity of two topics, Topic 3 (`r topic_labels[3]`) and Topic 6 (`r topic_labels[6]`), in terms of their vocabulary usage. As suggested by the topic labels already, there is a significant overlap in vocabulary usage.
+
+```{r echo=FALSE}
+# vocabulary usage comparison for two topics
+plot(mod_prev, type = "perspectives", topics = c(3, 6), n = 30)
+```
+
+More generally, we can evaluate the connectedness between different topics with the topic correlation matrix of the correlations between document-level topic proportions $\theta_d$. This is visualized in the graph below.
+
+```{r echo=FALSE}
+# global topic correlation
+cormat <- cor(mod_prev$theta)
+ggcorrplot::ggcorrplot(cormat) +
+  scale_x_continuous(breaks = seq(1, 15, by = 1)) +
+  scale_y_continuous(breaks = seq(1, 15, by = 1)) +
+  labs(x = "topic number", y = "topic number") +
+  theme_minimal() +
+    theme(axis.title.x = element_text(size = 12, face = "bold"),
+          axis.title.y = element_text(size = 12, face = "bold"))
+```
+
+Most topics are negatively correlated with each other, which does not come as a surprise, given the relatively low total number of topics, `r K`, and that topic proportions are "supplements": the higher one topic proportion, the lower the total of the others. Moreover, most topic correlations are rather weak in absolute size: the strongest negative  correlation (`r scales::percent(cormat[1,7], accuracy = 0.01)`)is the one between  topic  1 (`r topic_labels[[1]]`) and topic 7 (`r topic_labels[[1]]`), while the strongest positive correlation (`r scales::percent(cormat[3,6], accuracy = 0.01)`) is the one shown before, between (`r topic_labels[3]`) and (`r topic_labels[6]`).
+
+We can also visualize these correlations using a network graph, where topics are connected whenever they are positively correlated. Most topics are only related to two other topics, while none are related to more than three. The only "isolated" topic is topic 8, `r topic_labels[8]`, which makes sense since it only entered the public sphere in early 2020, i.e., during the last months of our data collection period. In general, the relationships between the topics, as depicted below, are very much in line with their labelling.
+
+```{r echo=FALSE}
+set.seed(111)
+mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = 0.00,
+                           verbose = TRUE) # based on correlations between mod_prev$theta
+vertex_sizes <- rep(20, K)
+plot.topicCorr(mod_prev_corr, vlabels = topic_labels, vertex.label.cex = 1, vertex.size = vertex_sizes)
+```
+
+
