@@ -90,10 +90,6 @@ alldata <- alldata %>%
 
 ## Data Collection
 
-
-more detail!!!
-
-
 In order to analyze German political entities based on text data, we constructed a broad database containing personal and Twitter data on an MP level as well as socioeconomic and election data on an electoral-district level, as detailed in the rest of this section. While parts of this database were used in the subsequent topic model analysis, it is also to be used in future text-based analyses regarding German politics.
 
 As a first step in constructing the database, we gathered personal information on all German MPs. Using Python's *BeautifulSoup* web scraping tool as well as a selenium webdriver, we gathered data such as name, party, biographical information, electoral district, and social media accounts from the [official parliament website](https://www.bundestag.de/abgeordnete) for all of the 709 members of the German parliament during its 19th election period, elected on September 24, 2017.

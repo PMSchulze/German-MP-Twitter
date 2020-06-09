@@ -84,11 +84,9 @@ data_corpus <- readRDS("../data/prep_monthly.rds")
 searchK_data <- readRDS("../data/searchK_large_data.rds")
 ```
 
-more detail!!! check stm paper
+Throughout this topic analysis we use the *stm* package, which is implemented in the R programming language (@stm). The most important hyperparameter choice when fitting an STM is the number of topics, $K$. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get an understanding of the impact of $K$ on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*.
 
-Throughout the topic analysis, we use the *stm* package, which is implemented in the R programming language (@stm). The most important hyperparameter choice when fitting an STM is the number of topics, $K$. While there is no *true* or *optimal* number of topics, we explore the hyperparameter space using the *searchK* function to get an understanding of the impact of $K$ on model fit. We use four of the metrics that come with this function, *held-out likelihood*, *semantic coherence*, *exclusivity*, and *residuals*.
-
-The *held-out likelihood* approach is based on document completion. The *searchK* function randomly holds out a proportion of some of the documents, both the number of documents and the respective proportions being user-specified. For this set of held-out words, their likelihood is calculated, given the trained model. Thus, the higher this held-out likelihood, the more predictive power the model has on average. For more detailed information on this and other types of held-out likelihoods, see @wallach2009evaluation.
+The *held-out likelihood* approach is based on document completion. The *searchK* function randomly holds out a proportion of some of the documents; both the number of documents from which a portion is held out and the respective held-out proportions can be specified by the user. This gives rise to a set of held-out words, for which the likelihood is calculated, given the trained model. Thus, the higher this held-out likelihood, the more predictive power the model has on average. For more detailed information on held-out likelihood based on document completion and other types of held-out likelihoods, see @wallach2009evaluation.
 
 Regarding the second metric, first introduced by @mimno2011optimizing, a model with $K$ topics is *semantically coherent* whenever those words that characterize a specific topic $k$ (i.e., the most frequent words within topic $k$) also do appear in the same documents. In order to formally define semantic coherence, let first $D(v)$ be the *document frequency* of word $v$ (that is, the number of documents where $v$ occurs at least once) and let $D(v, v')$ be the *co-document frequency* of words $v$ and $v'$ (that is, the number of documents where both $v$ *and* $v'$ occur at least once). Furthermore, consider the $M$ most probable words in a given topic $k$. Then, semantic coherence for topic $k$, $C_{k}$, is defined as follows:
 
@@ -96,21 +94,17 @@ Regarding the second metric, first introduced by @mimno2011optimizing, a model w
 C_{k} &= \sum_{i=2}^{M}\sum_{j=2}^{i-1}\log(\frac{D(v_{i}, v_{j})+1}{D(v_{j})}).
 \end{align*}
 
-That is, semantic coherence is the sum of the (logarithmized) proportion of word co-occurrences to total word occurrences, the additive factor $1$ in the numerator just being a smoothness adjustment. It becomes apparent that by having some words that are very frequent across a couple of documents, we could achieve high semantic coherence without our topics being semantically coherent at all once we look beyond those common words (@stm, @mimno2011optimizing). As a partial remedy, we previously excluded some of these overly frequent words (see section 3.2).
+That is, semantic coherence is the sum of (logarithmized) proportions of word co-occurrences to total word occurrences, the additive factor $1$ in the numerator just being a smoothness adjustment. It becomes apparent that by having some words that are very frequent across a couple of documents, we could achieve high semantic coherence without our topics being semantically coherent at all once we look beyond those common words (@stm, @mimno2011optimizing). As a partial remedy, we previously excluded some of these overly frequent words (see section 3.2).
 
-\[
-    \sum_{i=1}^{\infty} \frac{1}{i}
-\]
-
-A natural "counter-metric" of semantic coherence is *exclusivity*, which basically tells us to which degree a topic's words *only* occur in that topic. To be specific, for a given word $v\in{V}$, the empirical frequencies of $v$ in topic $k$, $beta_{k,v}$, are normalized across all topics $k\in\{1,...,K\}$. This way, these normalized frequencies now represent the probability of observing topic $k$, conditional upon the word being $v$; that is, the exclusivity of word $v$ regarding topic $k$. Formally, exclusivity of word $v$ to topic $k$, $E_{k,v}$, is thus defined as:
+A natural "counter-metric" of semantic coherence is *exclusivity*, which basically tells us to which degree a topic's words *only* occur in that topic. To be specific, for a given word $v\in{V}$, the empirical frequencies of $v$ in topic $k$, $\beta_{k,v}$, are normalized across all topics $k\in\{1,...,K\}$. This way, these normalized frequencies now represent the probability of observing topic $k$, conditional upon the word being $v$ - that is, the exclusivity of word $v$ regarding topic $k$. Formally, exclusivity of word $v$ to topic $k$, $E_{k,v}$, is thus defined as:
 
 \begin{align*}
 E_{k,v} &= \beta_{k,v}/\sum_{j=1}^{K}\beta_{j,v}.
-\end{align*}.
+\end{align*}
 
 Combining a word's frequency and exclusivity finally yields its Frequency-Exclusivity (*FREX*) score, explained in more detail in section 4.2 below (@bischof2012summarizing).
 
-Finally, *residuals* is a metric based on residual dispersion, which theoretically should be equal to one; so if the observed residuals exceed this value, the number of topics was most likely chosen *insufficiently small*.
+Finally, *residuals* is a metric based on residual dispersion. Recall that $z_{d,n}$ is drawn from a $K$-category multinomial distribution, which is a member of the exponential family. Therefore, its dispersion parameter is equal to one, according to theory. This way, an observed residual dispersion larger than one roughly indicates that the number of topics $K$ was most likely chosen insufficiently small. See @taddy2012estimation for a detailed derivation.
 
 Another aspect to be taken into account when choosing $K$ (or, to be precise, when choosing a search grid for searchK) is interpretability. While a large K certainly allows for a more fine-grained determination of topics, the resulting topics might be rather difficult to label. Furthermore, for large K we would obtain many topics which could be considered sub-topics of the topics we would obtain when using a smaller value for K. The graph below shows the four metrics, as introduced above, for values of K between 5 and 40 (in steps of 5).
 
@@ -156,15 +150,18 @@ gridExtra::grid.arrange(plot_heldout, plot_semcoh, plot_exclus, plot_residual, n
 K <- 15
 ```
 
-Both 15 and 20 topics seem to be good trade-offs between the metrics used. As mentioned above, no true or optimal K exists. Taking into account the interpretability aspect, we opt for K = `r K`. For comparison, we also conducted the subsequent analysis for a small (and easily interpretable) number of topics, K = 6, as well as for K = 20. In general, topics generated are similar, but for K = 6 only around three are clear-cut, while for K = 20 some topics could easily be grouped together. This only confirms that K = 15 indeed seems to be a good trade-off. 
+Both 15 and 20 topics seem to be good trade-offs between the metrics used. As mentioned above, no true or optimal K exists. Taking into account the interpretability aspect, we opt for $K$ = `r K`. For comparison, we also conducted the subsequent analysis for a small (and easily interpretable) number of topics, $K$ = 6, as well as for $K$ = 20. In general, topics generated are similar, but for $K$ = 6 only around three are clear-cut, while for $K$ = 20 some topics could easily be grouped together. This further corroborates our choice that $K$ = `r K` indeed seems to be a good trade-off. 
 
 Before fitting the model, we need to choose the document-level covariates we want to include. Since a topic model is explorative by definition, we simply include those covariates that seem to be most influential *a priori*: party and state (both categorical), date (as smooth effect), as well as percentage of immigrants, GDP per capita, unemployment rate, and the 2017 election results of the MP's respective party (the last four as smooth effects and on an electoral-district level).
 
 ```{r echo=FALSE}
 # choose covariates and number of topics
-prev_var <- c("Partei", "Bundesland", "Datum", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")
+covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
+content_var <- "Partei"
 outcome <- ""
-prevalence <- as.formula(paste(outcome, paste(prev_var, collapse = "+"), sep = "~")) 
+
+prevalence <- as.formula(paste(outcome, covar, sep = "~")) 
 
 # # fit model
 # mod_prev <- stm::stm(
@@ -183,10 +180,9 @@ mod_prev <- readRDS("../data/mod_prev_monthly.rds")
 
 ## Labelling
 
-As a starting point subsequent to model fitting, we visually inspect the resulting topics, in particular their best words, as demonstrated in the output below. Different metrics exist to evaluate which words are most representative of a topic. The STM comes with four such metrics: *highest probability*, *FREX*, *Lift*, and *Score*.
+As a first step after fitting the model, we would like to visually inspect the resulting topics, in particular their most representative words. However, representativeness of words for a given topic depends on the weighting metric used. The STM comes with four topic-word metrics - *highest probability*, *FREX*, *Lift*, and *Score* - which are discussed in the following.
 
-Given a topic $k$, *highest probability* simply outputs those words in the topic-specific word vector with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. Using the same notation as in section 4.1 above, let $\beta_{k,v}$ again be the (empirical) frequency of word $v$ within topic $k$. Then, the highest probability word within topic $k$ is simply $\underset{v \in V}{\operatorname{argmax\beta_{k,v}}}$.
-This relatively simple measure only takes into account how often words occur in absolute terms, but not how specific those words are to the given topic. This is why we observe words like *wichtig*, *berlin*, or *frag* within the highest probability words for several topics. And since such words are very common, unspecific words, they are not particularly useful for distinguishing or labelling topics.
+Given a topic $k$, *highest probability* simply outputs those words in the topic-specific word vector $\beta_{k}$ with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents. Using the same notation as in section 4.1 above, let $\beta_{k,v}$ again be the (empirical) frequency of word $v$ within topic $k$. Then the highest probability word within topic $k$ is simply $\underset{v \in V}{\operatorname{argmax\beta_{k,v}}}$. This relatively simple measure only takes into account how often words occur in absolute terms, but not how specific those words are to the given topic. This is why we observe words like *wichtig*, *berlin*, or *frag* within the highest probability words for several topics. And since such words are very common, unspecific words, they are not particularly useful for distinguishing or labelling topics.
 
 To also account for the degree to which a word *exclusively* belongs to a certain topic, we also consider the top words according to the *FREX* metric. It takes into account not only how frequent but also how exclusive words are. Formally, the FREX score of word $v$ with respect to topic $k$ is calculated as follows:
 
@@ -194,9 +190,9 @@ To also account for the degree to which a word *exclusively* belongs to a certai
 FREX_{k,v} &= (\frac{\omega}{ECDF(\beta_{k,v}/\sum_{j=1}^{K}\beta_{j,v})} + \frac{1-\omega}{ECDF(\beta_{k,v})})^{-1} &= (\frac{\omega}{ECDF(E_{k,v})} + \frac{1-\omega}{ECDF(\beta_{k,v})})^{-1},
 \end{align*}
 
-where $\omega$ is the weight  assigned to exclusivity (set to 0.7 by default in the STM), $E_{k,v}$ is the word's exclusivity as defined in section 4.1, and *ECDF* is the empirical CDF. Thus, for a given topic, $FREX_{k,v}$ is simply the harmonic mean of i) the rank of word $v$ by probability within topic $k$ (frequency) and ii) the rank of topic $k$ by the frequency of word $v$, across all topics $j \in \{1,...,K\}$ (exclusivity). Further information on the estimation of *FREX* can be found in @stm and @bischof2012summarizing.
+where $\omega$ is the weight  assigned to exclusivity (set to 0.7 by default in the STM), $E_{k,v}$ is the word's exclusivity as defined in section 4.1, and *ECDF* is the empirical CDF. Thus, for a given topic, $FREX_{k,v}$ is simply the harmonic mean of i) the rank of word $v$ by probability within topic $k$ (frequency rank) and ii) the rank of topic $k$ by the frequency of word $v$, across all topics $j \in \{1,...,K\}$ (exclusivity rank). Further information on the estimation of *FREX* can be found in @stm and in @bischof2012summarizing.
 
-*Lift* is another metric, where the frequency of word $v$ within topic $k$,  $\beta_{k,v}$, is weighted by the inverse of $v$'s relative frequency across the entire corpus, i.e., $v$'s empirical corpus probability. Formally:
+*Lift* is another topic-word metric, where the frequency of word $v$ within topic $k$,  $\beta_{k,v}$, is weighted by the inverse of $v$'s relative frequency across the entire corpus, i.e., $v$'s empirical corpus probability. Formally:
 
 \begin{align*}
 Lift_{k,v} &= \beta_{k,v}/(\omega_{v}/\sum_{v}\omega_{v}).
@@ -210,7 +206,7 @@ Finally, the *Score* metric for word $v$ and topic $k$ is formally defined as:
 Score_{k,v} &= \beta_{k,v}(\log\beta_{k,v} - 1/K\sum_{j}^{K}\log\beta_{j,v})
 \end{align*}
 
-Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. Or equivalently: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package *lda* (@chang2010package).
+Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. This can roughly (but not exactly) be seen as: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package *lda* (@chang2010package).
 
 ```{r echo=FALSE}
 # labeling workflow (for each topic): 
@@ -258,7 +254,7 @@ topic_labels <- list(
 )
 ```
 
-The output below shows, for each topic, the `r n` top words for each of the four topic-word evaluation metrics.
+To get a broad overview of which words characterize each one of the topics, the output below shows, for each topic $k$, the `r n` top words according to each of the four topic-word evaluation metrics.
 
 ```{r echo=FALSE}
 # top words for all topics
