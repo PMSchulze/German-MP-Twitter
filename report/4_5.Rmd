@@ -74,8 +74,8 @@ data <- readRDS("../data/preprocessed_monthly.rds")
 data_train <- readRDS("../data/preprocessed_monthly_train.rds")
 data_test <- readRDS("../data/preprocessed_monthly_test.rds")
 colnames_table <- read.csv(file = "../data/topic_monthly_colnames.csv")
-data_corpus <- readRDS("../data/prep_monthly.rds")
 
+# data_corpus <- readRDS("../data/prep_monthly.rds")
 # data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) data
 ```
 
@@ -218,7 +218,7 @@ covariate <- "Partei"
 We compare training and test data proportions for another topic, "`r topic_labels_train[topic_number]`", again across all parties. As shown in the graph below, the distribution of topic proportions when fitting previously unseen documents to the estimated model, is again very similar for all parties. Moreover, the results are very much in line with those of the "green" topic in Figure XXX (section 4.4), obtained by fitting the model on the entire dataset and by applying the method of composition. (Recall that we are simply plotting the posterior modes here.)
 
 ```{r echo=FALSE}
-plot8_train_party <- topic_props_train %>%
+plot9_train_party <- topic_props_train %>%
                       ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
                       geom_boxplot(outlier.shape = NA) +
                       geom_point() +
@@ -231,7 +231,7 @@ plot8_train_party <- topic_props_train %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
 
-plot8_test_party <-  topic_props_test %>%
+plot9_test_party <-  topic_props_test %>%
                       ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
                       geom_boxplot(outlier.shape = NA) +
                       geom_point() +
@@ -243,7 +243,7 @@ plot8_test_party <-  topic_props_test %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
 
-gridExtra::grid.arrange(plot8_train_party, plot8_test_party, ncol = 2)
+gridExtra::grid.arrange(plot9_train_party, plot9_test_party, ncol = 2)
 ```
 
 Next, one might also want to know how well the model predicts the evolution of topic revelance over time for a new set of documents. To do so, we simply calculate the monthly median across all document-level topic proportions, $\theta_{k,d}$, for each month from September 2017 through April 2020.
@@ -261,7 +261,7 @@ We visualize the comparison between training and test data over time for the `r 
 
 ```{r echo=FALSE}
 ## topic proportions over time (averaged monthly across all corresponding documents)
-plot1_train_time <-  topic_props_train %>%
+plot9_train_time <-  topic_props_train %>%
                       select(,topic_number+1) %>%
                       aggregate(list(topic_props_train[[covariate]]), median) %>%
                       ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
@@ -274,7 +274,7 @@ plot1_train_time <-  topic_props_train %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
                     
-plot1_test_time <-   topic_props_test %>%
+plot9_test_time <-   topic_props_test %>%
                       select(,topic_number+1) %>%
                       aggregate(list(topic_props_test[[covariate]]), median) %>%
                       ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
@@ -287,7 +287,7 @@ plot1_test_time <-   topic_props_test %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
 
-gridExtra::grid.arrange(plot1_train_time, plot1_test_time, ncol = 2)
+gridExtra::grid.arrange(plot9_train_time, plot9_test_time, ncol = 2)
 ```
 
 ```{r echo=FALSE}
@@ -301,7 +301,7 @@ As a final example, we show the development of the `r topic_labels_train[topic_n
 
 ```{r echo=FALSE}
 ## topic proportions over time (averaged monthly across all corresponding documents)
-plot1_train_time <-  topic_props_train %>%
+plot14_train_time <-  topic_props_train %>%
                       select(,topic_number+1) %>%
                       aggregate(list(topic_props_train[[covariate]]), median) %>%
                       ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
@@ -314,7 +314,7 @@ plot1_train_time <-  topic_props_train %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
                     
-plot1_test_time <-   topic_props_test %>%
+plot14_test_time <-   topic_props_test %>%
                       select(,topic_number+1) %>%
                       aggregate(list(topic_props_test[[covariate]]), median) %>%
                       ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
@@ -327,7 +327,7 @@ plot1_test_time <-   topic_props_test %>%
                             axis.title.x = element_text(size = 12, face = "bold"),
                             axis.title.y = element_text(size = 12, face = "bold"))
 
-gridExtra::grid.arrange(plot1_train_time, plot1_test_time, ncol = 2)
+gridExtra::grid.arrange(plot14_train_time, plot14_test_time, ncol = 2)
 ```
 
 The main idea of the train-test split is to gauge the *predictive power* of the model: big differences between topic proportions in the training data and those in the test data would indicate that the estimated topics (and their proportions) are not very meaningful in summarizing texts, except the ones the model was trained with; this, in turn, would imply overfitting. Our results show that topic proportions for new documents, both across parties and over time, are distributed very similarly to those on training data. Intuitively, this means that the topics "make sense".
