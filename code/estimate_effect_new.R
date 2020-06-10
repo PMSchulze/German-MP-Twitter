@@ -52,6 +52,7 @@ make_median_xmat <- function(est_var, formula, metadata, range_est_var) {
 # helper function to sample from normal distribution of regression coefficients;
 ## allowed types are beta regression or quasibinomial glm
 sample_normal <- function(mod, type) {
+  mu <- var <- NULL
   if (type == "beta"){
     mu <- mod$coefficients$mean
     var <- mod$vcov[1:length(mu), 1:length(mu)]
@@ -102,29 +103,18 @@ sample_coefs <- function(stmobj, formula, type, metadata, nsims = 25, seed = NUL
   f <- paste(topic_nam, "~", as.character(formula)[3])
   res <- vector(mode = "list", length = length(topic_n))
   set.seed(seed)
-  # (1) perform nsim regressions 
-  if (type == "beta"){
-    for (k in 1:length(topic_n)) {
-      theta_sim <- do.call(rbind, stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,k]
-      theta_sim <- lapply(split(1:(NROW(theta_sim)), 1:nsims), 
-                          function(i) setNames(data.frame(theta_sim[i]), topic_nam[k]))
-      res[[k]] <- lapply(theta_sim, 
-                         function(x) betareg::betareg(as.formula(f[k]), data = cbind(x, metadata)))
-    }
-  } else if (type == "quasibinomial"){
-    for (k in 1:length(topic_n)) {
-      theta_sim <- do.call(rbind, stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,k]
-      theta_sim <- lapply(split(1:(NROW(theta_sim)), 1:nsims), 
-                          function(i) setNames(data.frame(theta_sim[i]), topic_nam[k]))
-      res[[k]] <- lapply(theta_sim, 
-                         function(x) glm(as.formula(f[k]), family = quasibinomial(link = "logit"), 
-                                         data = cbind(x, metadata)))
-    }
-  } else {
-    stop("Error: Please set type='beta' or type='quasibinomial'")
-  }
-  # (2) sample from resulting distributions of regression coefficents
+  formals(glm)$family <- quasibinomial(link = "logit")
+  fit_reg <- if (type == "beta") betareg::betareg else if (type == "quasibinomial") glm
   for (k in 1:length(topic_n)) {
+    theta_sim <- do.call(rbind, 
+                         stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,topic_n[k]]
+    theta_sim <- lapply(split(1:(NROW(theta_sim)), 1:nsims),
+                        function(i) setNames(data.frame(theta_sim[i]), topic_nam[k]))
+    # (1) perform nsim regressions
+    res[[k]] <- lapply(theta_sim,
+                       function(x) fit_reg(formula = as.formula(f[k]), data = cbind(x, metadata)))
+
+    # (2) sample from resulting distributions of regression coefficents
     res[[k]] <- lapply(res[[k]], sample_normal, type)
   }
   names(res) <- topic_nam
