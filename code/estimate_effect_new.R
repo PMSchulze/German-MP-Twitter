@@ -6,7 +6,7 @@
 os <- Sys.info()[["sysname"]] # Get operating system information
 itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
 packages_required <- c(
-  "betareg", "matrixStats", "MASS", "mvtnorm", "quanteda", "stm"
+  "betareg", "matrixStats", "mvtnorm", "quanteda", "stm"
 )
 not_installed <- packages_required[!packages_required %in%
                                      installed.packages()[, "Package"]]
@@ -45,8 +45,7 @@ make_median_xmat <- function(est_var, formula, metadata, range_est_var) {
   dat_fit <- data.frame(dat_new, range_est_var)
   names(dat_fit) <- c(names(dat_new),est_var)
   f <- paste("~",as.character(formula)[3])
-  res <- stm::makeDesignMatrix(as.formula(f), metadata, dat_fit)
-  return(res)
+  return(stm::makeDesignMatrix(as.formula(f), metadata, dat_fit))
 }
 
 # helper function to sample from normal distribution of regression coefficients;
@@ -62,31 +61,29 @@ sample_normal <- function(mod, type) {
   } else {
     stop("Error: Please set type='beta' or type='quasibinomial'")
   }
-  mvtnorm::rmvnorm(1, mean = mu, sigma = var)
+  return(mvtnorm::rmvnorm(1, mean = mu, sigma = var))
 }
 
 # helper function to simulate theta (either mean or quantile p) from LogisticNormal 
 ## for single document, given mean mu_d of gaussian
-sim_theta_d <- function(mu_d, Sigma, mean = TRUE, p = NULL, nsims) {
-  eta_sim <- cbind(MASS::mvrnorm(nsims, mu_d, Sigma),0)
+sim_theta_d <- function(mu_d, Sigma, nsims, p = "mean") {
+  eta_sim <- cbind(mvtnorm::rmvnorm(nsims, mu_d, Sigma),0)
   theta_sim <- exp(eta_sim - matrixStats::rowLogSumExps(eta_sim))
   colnames(theta_sim) <- c()
-  res <- apply(theta_sim, 2, function(x) if(mean) mean(x) else quantile(x, probs = p))
-  return(res)
+  return(apply(theta_sim, 2, function(x) if(p=="mean") mean(x) else quantile(x, probs = p)))
 }
 
 # helper function to simulate mean as well as quantiles ci_lower, ci_upper of LogisticNormal,
 ## for all documents
 sim_theta <- function(mu, Sigma, nsims, ci_lower, ci_upper) {
   topic_n <- ncol(mu)+1
-  mean_emp <- apply(mu, 1, sim_theta_d, Sigma = Sigma, nsims = nsims)
-  ci_lower <- apply(mu, 1, sim_theta_d, Sigma = Sigma, mean = FALSE, p = ci_lower, nsims = nsims)
-  ci_upper <- apply(mu, 1, sim_theta_d, Sigma = Sigma, mean = FALSE, p = ci_upper, nsims = nsims)
+  mean_emp <- apply(mu, 1, sim_theta_d, Sigma = Sigma, p = "mean", nsims = nsims)
+  ci_lower <- apply(mu, 1, sim_theta_d, Sigma = Sigma, p = ci_lower, nsims = nsims)
+  ci_upper <- apply(mu, 1, sim_theta_d, Sigma = Sigma, p = ci_upper, nsims = nsims)
   nm <- c("proportion", "ci_lower", "ci_upper")
   res <- lapply(1:topic_n, 
                 function(i) setNames(data.frame(mean_emp[i,], ci_lower[i,], ci_upper[i,]), nm))
-  names(res) <- paste0("Topic", 1:topic_n)
-  return(res)
+  return(setNames(res, paste0("Topic", 1:topic_n)))
 }
 
 # ----------------------------------------------------------------------------------------------
@@ -101,7 +98,7 @@ sample_coefs <- function(stmobj, formula, type, metadata, nsims = 25, seed = NUL
   topic_n <- eval(parse(text=response))
   topic_nam <- paste0("Topic", topic_n)
   f <- paste(topic_nam, "~", as.character(formula)[3])
-  res <- vector(mode = "list", length = length(topic_n))
+  res <- list()
   set.seed(seed)
   formals(glm)$family <- quasibinomial(link = "logit")
   fit_reg <- if (type == "beta") betareg::betareg else if (type == "quasibinomial") glm
@@ -110,15 +107,12 @@ sample_coefs <- function(stmobj, formula, type, metadata, nsims = 25, seed = NUL
                          stm::thetaPosterior(stmobj, nsims = nsims, type = "Global"))[,topic_n[k]]
     theta_sim <- lapply(split(1:(NROW(theta_sim)), 1:nsims),
                         function(i) setNames(data.frame(theta_sim[i]), topic_nam[k]))
-    # (1) perform nsim regressions
-    res[[k]] <- lapply(theta_sim,
-                       function(x) fit_reg(formula = as.formula(f[k]), data = cbind(x, metadata)))
-
-    # (2) sample from resulting distributions of regression coefficents
-    res[[k]] <- lapply(res[[k]], sample_normal, type)
+    res[[k]] <- lapply(theta_sim, function(x) {
+      res_tmp <- fit_reg(formula = as.formula(f[k]), data = cbind(x, metadata))
+      sample_normal(res_tmp, type)}
+    )
   }
-  names(res) <- topic_nam
-  return(res)
+  return(setNames(res, topic_nam))
 }
 
 # obtain theta proportions and credible intervals (given set of previously sampled coefficients)
@@ -142,8 +136,7 @@ predict_props <- function(beta_coefs, est_var, formula,
     res[[k]] <- data.frame(range_est_var, mu, ci[1,], ci[2,])
     names(res[[k]]) <- c(est_var, "proportion", "ci_lower", "ci_upper")
   }
-  names(res) <- topic_nam
-  return(res)
+  return(setNames(res, topic_nam))
 }
 
 # ----------------------------------------------------------------------------------------------
