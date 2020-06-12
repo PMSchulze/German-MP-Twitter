@@ -140,7 +140,9 @@ topic_labels_train <- list(
 ```{r include=FALSE}
 # align corpus
 data_test <- stm::alignCorpus(new = data_test, old.vocab = mod_train$vocab, verbose = TRUE)
+```
 
+```{r include=FALSE}
 # fit new documents
 test <- stm::fitNewDocuments(
   model = mod_train, 
