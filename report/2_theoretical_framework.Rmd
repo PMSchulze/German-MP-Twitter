@@ -60,15 +60,99 @@ TBD
 
 # Theoretical Framework
 
-## STM - Introduction
+## Topic Modelling - Overview
 
-The Structural Topic Model (STM) is a topic model which extends classical topic models such as Latent Dirichlet Allocation (LDA) by incorporating information of covariates. Topic models can be used to infer topics from a large text corpus grouped into documents. In topic modelling it is assumed that this corpus is generated from a small number of distributions over words, the topics. The proportions of these topics are document-specific. In contrast to simpler topic models such as LDA, the STM relates topic proportions to document-level covariates. Furthermore, each distribution over words, i.e. each topic, can vary for different documents dependent on the covariate values of this document.
+Topic models seek to discover latent thematic clusters, called topics, within a collection of discrete data, usually text; therefore, topic modelling can be regarded as dimensionality reduction technique. Information retrieval (IR) research generally proposes the reduction of text documents to vectors of real numbers, each number representing (modified) counts of "words" or "terms". An instance of this proposed methodology is the *tf-idf* scheme by @salton1983information, which for a collection of documents returns a term-by-document matrix with rows being the documents in the corpus and the columns containing the respective *tf-idf* term count. Since only words in a vocabulary of fixed length $V$ are considered, documents of unrestricted length are being reduced to vectors of a fixed length $V$. To further reduce dimensionality, the *latent semantic indexing* (LSI) by @deerwester1990indexing applied singular value decomposition (SVD) to the *tf-idf* document-term matrix. However, as @blei2003latent put it, the idea should be to develop a generative probabilistic model of text, in order to estimate to which extent the LSI methodology can align data with the generative text model; yet, given such a model, "it is not clear why one should adopt the LSI methodology — one can attempt to proceed more directly, fitting the model to data using maximum likelihood or Bayesian methods" (p. 994). Picking up this shortcoming of LSI, @hofmann1999probabilistic introduced the *probabilistic LSI* (pLSI) model. This generative data model allows for individual words to be sampled from a mixture model: they are drawn from a multinomial distribution, with latent random variables determining the mixture proportions, which in turn can be viewed as topics. However, the pLSI can only be regarded as partly probabilistic text model, since the mixing components themselves are fixed on a document level, thus lacking a probabilistic generating process.
 
-The detailed mechanism underlying the STM can be illustrated using its graphical model representation (see Figure 1). As outlined above, for each document indexed by $d \in \{1,\dots,D\}$ there exists a $K-1$-dimensional vector $\theta_d$ of topic proportions. Topic proportions are assumed to depend on $P$ document-specific so-called topical prevalence covariates $X \in \mathbb{R}^{D \times P}$, by following a logistic normal distribution with mean $X_d\Gamma$, where $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance $\Sigma$. Each of the $N_d$ words in document $d$ is subsequently assigned to one of the $K$ topics, depending on the topic proportions $\theta_d$; this per-word topic assignment is captured by the latent variable $z_{d,n} \sim \text{Multinomial}_K(\theta_d)$, where $n \in \{1,\dots,N_d\}$ denotes the word index. As stated, the distribution over words that characterizes a topic can vary across documents according to the value of a so-called topical content variable $Y$, giving rise to $\bf{Y}$$\in \mathbb{R}^{D \times A}$, where $A$ denotes the number of levels of the topical content variable. Then, a word $w_{d,n}$ is the result of the assigned topic, expressed by $z_{d,n}$, (the level of) content variable $Y_d$, and their interactions. More precisely, this last step is intuitively best understood as a multinomial logistic regression of the words on the latter variables. A word $w_{d,n}$ then ultimately follows a multinomial distribution with probabilities $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, i.e.\ $w_{d,n} \sim \text{Multinomial}_V(\beta_{d,n})$, where $V$ denotes the total number of distinct words in the corpus. It is important to recall that $z_{d,n}$ singles out the topic $k$ for word $w_{d,n}$, so that $\beta_{d,n}$ is already topic-specific, even though it does not explicitly have a $k$-subscript; for details on the exact specification of $\beta_{d,n}$ see @roberts2016model, p.\ 991. Thus the occurence of a word (which is equivalent to being drawn from a corresponding multinomial distribution) depends on the topic assignment as well as on the topical content variable, where the topic assignment itself is a function of the topical prevalence covariates.
+In their *Latent Dirichlet Allocation* (LDA) model, @blei2003latent included the generation of topic proportions into the generative probabilistic model, the resulting 3-level hierarchical Bayesian mixture model marking the starting point of modern topic modelling. In order to present the main idea of LDA, we first introduce some notation and terminology that we will use throughout the remainder of this paper.
+
+* A *word* (also called *term*) is the smallest unit of discrete text data. Words are elements of a vocabulary of length $V$ and can thus be indexed by $\{1,...,V\}$. Mathematically, the $v$-th word in the vocabulary can be represented as a vector of length $V$, whose $v$-th component equals one, with all other components equalling zero. We will sometimes refer to the $v$-th word of the vocabulary simply as $v$. Apart from document-level covariates, words are the only random variables within the topic model that we actually observe, the rest being latent.
+
+* A *document* $d \in \{1,...,D\}$ is a sequence of words of length $N_{d}$. For a given document $d$, we denote its words by $d=(w_{d,1},...,w_{d,N_{d}})$. Consequently, the $n$-th word of document $d$ is denoted by $w_{d,n}$.
+
+* A *corpus* is a collection (or set) of $D$ documents. Therefore, $d \in \{1,...,D\}$ means that our corpus contains $D$ documents.
+
+* A *topic* is a latent thematic cluster within a text corpus. The idea is that any collection of documents is made up of $K$ such topics, where the number of topics $K$ is an (unknown) hyperparameter which needs to be determined ex ante (see Section 4.1 for hyperparameter determination in our specific use case). We will refer to topics simply by the actual *topic index* (or *topic number*) $k \in \{1,...,K\}$.
+
+* A *topic-word distribution* $\beta$ is a probability distribution over words, i.e., over the vocabulary. This is what actually characterizes a topic. For a model containing $K$ topics (and no topical content variable, see section 2.XXX), topic-word distributions do not vary across documents and uniquely characterize a topic: we denote the word distribution corresponding to the $k$-th topic by $\beta_k$ and the matrix whose $k$-th column is topic $\beta_k$ by $B:=\beta_{1:K}=[\beta_1|...|\beta_K]$. Each vector $\beta_k$ thus has length $V$, while $B$ is a $V \times K$-matrix. Therefore, $k$ refers to the latent thematic cluster with topic index $k$ in general, and $\beta_k$ refers to the underlying word distribution in particular.
+
+* A *topic assignment* $z_{d,n}$ is the assignment of the $n$-th word of document $d$ to a specific topic $k \in \{1,...,K\}$ (i.e., to the corresponding word distribution $\beta_k$). Therefore, $z_{d,n}$ is simply a vector of length $K$ whose $k$-th entry equals one and all other entries equal zero. This way, we can represent the word distribution corresponding to the $n$-th word in document $d$ as $\beta_{d,n}:=Bz_{d,n}$ (again, for a model without topical content variable).
+
+* For a given document $d$, the corresponding *topic proportions*, denoted by $\theta_d$, are the proportions of the document's terms assigned to each of the topics $k \in \{1,...,K\}$. Topic proportions vary across documents. Since for each document $d$ the proportions of all $K$ topics must add up to one ($\sum_{k=1}^{K}\theta_{d,k}=1, \forall d \in \{1,...,D\}$), topic proportions are probabilities.
+
+* The *bag-of-word* assumption is an assumption used in all (probabilistic) text models referenced in this paper, including LSI and pLSI, and states that only words themselves, as well as their counts carry meaning, while word order or grammar do not. Statistically, this is equivalent to assuming that words within a document are *exchangeable* (aldous1985exchangeability).
+
+As mentioned above, LDA is the first generative probabilistic model of an entire text corpus. (Recall that pLSI is only probabilisitic for a fixed document.) Now, LDA can be neatly described by the following 2-step procedure, given the hyperparameter (number of topics) $K$:
+
+For each document $d \in \{1,...,D\}$:
+
+1) Draw topic proportions $\theta_d \sim Dir_K(\alpha)$.
+2) For each word $n \in \{1,...,N_d\}$:
+    a) Draw a topic assignment $z_{d,n} \sim Multinomial_K(\theta_d)$.
+    b) Draw a word $w_{d,n} \sim Multinomial_V(\beta_{d,n})$.
+
+Thus, topic proportions are drawn from a Dirichlet distribution with $K$-dimensional hyperparameter vector $\alpha$, all components $\alpha_k > 0$. This means that for each document $d \in \{1,...,D\}$, the corresponding topic proportions $\theta_d$ represent a $K$-dimensional vector which can take on values on the ($K-1$)-simplex: $\theta_{d,k} \geq 0, \sum_{k=1}^{K}\theta_{d,k}=1$. Also note that the Dirichlet distribution is the conjugate prior of the multinomial distribution, which greatly facilitates estimation (see section 2.3 on variational inference below). Put simply, for each document LDA first generates topic proportions, which are then used as weights for topic assignment. Finally, each "word spot" - which now already has a topic assigned to it - is filled with a draw from the topic-specific word distribution (i.e., from the topic itself, according to our above definition). These topic-specific word distributions $\beta_k$ need to be estimated from data.
+
+Note that LDA is a very simple, restrictive model in (at least) three ways:
+
+i) By using the Dirichlet distribution to generate topic proportions, potential correlations between topics cannot be captured due to the neutrality of the Dirichlet distribution. (Footnote: Due to the constraint $\sum_{k=1}^{K}\theta_{k}=1$, there is clearly some degree of dependence between topic proportions. However, the degree of dependence is minimal, as the Dirichlet distribution is characterized by complete neutrality: the (components ) $\theta_1/(1-S_0), \theta_2/(1-S_1),..., \theta_K(1-S_{K-1})$ are mutually independent, where $S_0:=0$ and $S_k = \sum_{i=1}^{k}\theta_k, k \in \{1,...,K\}$. Stated differently, for each component $\theta_k, k \in \{1,...,K\}$, it holds that $\theta_k/(1-S_{k-1})$ is independent of the vector constructed by weighting all *remaining* components by their total proportion (@james1980new). As a consequence, the occurrence of one topic within a document is not correlated with the occurrence of another topic (@blei2007correlated). This is a restrictive simplification, as topics such as "sports" and "health" are much more likely to co-occur within a document than, say, "sports" and "war".
+
+ii) Second, while topic proportions vary stochastically across documents, they do so given a single, global hyperparameter vector $\alpha$, essentially implying that topic proportions are generated based merely on word counts (occurrences and co-occurrences). This is another unrealistic and limiting simplification, since researchers usually possess further document-specific information indicative of the topics addressed within the individual documents.
+
+iii) Third, the actual topics (i.e., the topic-specific word distributions) $\beta_k$ are estimated identically for all documents by construction. Similarly to the second restriction, this prevents researchers from using (document-level) information which might potentially influence the weighting of specific words within a topic.
+
+Due to its simplicity and the resulting restrictions, the LDA has been used used as building block for more advanced (and usually more specified) generative topic models.
+
+One model that builds on LDA but addresses some of its shortcomings is the *Correlated Topic Model* (CTM) by @blei2007correlated. Specifically, the CTM addresses the first one of the abovementioned restrictions: the inability to cope with inter-topic correlations. Specifically, the CTM no longer uses a Dirichlet distribution to sample topic proportions; instead, a logistic normal distribution is employed, which can capture correlations between topics due to the incorporated covariance structure between its components (@atchison1980logistic). The resulting generative process for the CTM can be stated as follows:
+
+For each document $d \in \{1,...,D\}$:
+
+1) Draw unnormalized topic proportions $\eta_d \sim N_{K-1}(\mu, \Sigma)$, with $\eta_{d,k}$ set to zero for model identifiability.
+2) Normalize $\eta_d$ by mapping it to the simplex: $\theta_{d,k} = \frac{exp(\eta_{d,k})}{\sum_{j=1}^{K}exp(\eta_{d,j})}, \forall k \in \{1,...,K\}$.
+3) For each word $n \in \{1,...,N_d\}$:
+    a) Draw a topic assignment $z_{d,n} \sim Multinomial_K(\theta_d)$.
+    b) Draw a word $w_{d,n} \sim Multinomial_V(\beta_{d,n})$.
+
+Steps 1 and 2 constitute the sampling from a logistic normal distribution: a $K$-dimensional vector $\eta_d$ is drawn from a multivariate normal distribution and subsequently transformed to a vector of proportions (or probabilities) by applying the *softmax* function to each of its elements. The number of topics $K$ as well as the parameters of the normal distribution in step 1, $\mu \in \mathbb{R}^{K-1}$ and $\Sigma \in \mathbb{R}^{(K-1) \times (K-1)}$, are hyperparameters which must be determined ex ante. As for LDA, the topic-specific word distributions $\beta_k$ need to be estimated from the data. As mentioned above, this process now allows for inter-topic correlation. Yet this comes at a cost: unlike the Dirichlet distribution, the logistic normal distribution is no longer conjugate to the multinomial distribution. As explained in more detail in section 2.3 below, this renders standard variational inference algorithms inapplicable, as these rely on conjugacy and the implied closed-form solutions. However, using Laplace variational inference, developed by @wang2013variational, which is a generic method for variational inference when dealing with nonconjugate models, solves the inference problem for the CTM.
+
+Addressing the second restriction: DMR (add to bibliography, search OPAC)
+
+Third restriction: SAGE @eisenstein2011sparse
+
+Based on the foundational LDA as well as its extensions/modifications, @roberts2013structural developed the *Structural Topic Model* (STM), which combines the improvements over the original LDA discussed in this section. Due to its flexibility regarding the incorporation of document-level information, we choose the STM for our specific use case, a text-based analysis of German political entities (TBD, depends on final title of paper). Therefore, we discuss the model in greater detail in section 2.2 below.
+
+## The Structural Topic Model
+
+### Overview
+
+* explicitly write out the algorithm (step-wise)
+* review notation (in particular, $\beta_{k}$)
+
+The STM addresses the three main shortcomings of the LDA, as discussed in the previous section. In this subsection, we explain the corresponding modifications with respect to LDA and present the generative process of the STM.
+
+i) To allow for correlation among topics, the STM uses a logistic normal distribution to sample topic proportions. In fact, if no document-level metadata is fed into the STM, it simply reduces to the CTM.
+
+ii) The STM allows for the incorporation and use of document-level metadata when determining topic proportions. To be precise, topic proportions $(\theta_1,...,\theta_D)^T$ are assumed to depend on $P$ document-level *topical prevalence variables* (such as the author's name, her political party or her popularity on Twitter) by following a multivariate logistic normal distribution with mean vector $X_d\Gamma$, where $X \in \mathbb{R}^{D \times P}$ and $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance matrix $\Sigma$. This way, the model accounts for the fact that document-level covariates might influence how much (that is, which percentage of the total number of words) the corresponding documents attribute to the different topics. (TBD: connection to DMR!!!)
+
+iii) Within the STM, document-level covariate information can also be used to fine-tune the topic-word distributions $\beta_k$. In particular, the STM allows for specifying a single categorical document-level *topical content variable* $Y$ with $A$ levels: $Y_d \in \{1,...,A\}, \forall d \in \{1,...,D\}$ (@stm). Consequently, each topic $k \in \{1,...,K\}$ is now associated with a total of $A$ topic-word distributions $\beta_{k,a}, a \in \{1,...,A\}$ instead of a single one, $\beta_k$. For a given document $d$, this means the $K$ topic-word distributions $\beta_k$ are determined according to the level $a$ assumed by $Y_d$ and are identical across all documents with $Y_d = a$ (@roberts2016model). This way, for a given document $d$, document-level metadata can not only impact the weighting of topics $\theta_d$, but also the weighting over words for each topic $\beta_k$. (TBD: connection to SAGE!!!)
+
+The detailed mechanism underlying the STM can be illustrated using its graphical model representation (see Figure 1).
+
+As outlined above, for each document indexed by $d \in \{1,\dots,D\}$ there exists a $K-1$-dimensional vector $\theta_d$ of topic proportions. Topic proportions are assumed to depend on $P$ document-specific so-called topical prevalence covariates $X \in \mathbb{R}^{D \times P}$, by following a logistic normal distribution with mean $X_d\Gamma$, where $\Gamma = [\gamma_1|\dots|\gamma_k]$, and covariance $\Sigma$.
+
+Each of the $N_d$ words in document $d$ is subsequently assigned to one of the $K$ topics, depending on the topic proportions $\theta_d$; this per-word topic assignment is captured by the latent variable $z_{d,n} \sim \text{Multinomial}_K(\theta_d)$, where $n \in \{1,\dots,N_d\}$ denotes the word index.
+
+As stated, the distribution over words that characterizes a topic can vary across documents according to the value of a so-called topical content variable $Y$, giving rise to $\bf{Y}$$\in \mathbb{R}^{D \times A}$, where $A$ denotes the number of levels of the topical content variable.
+
+Then, a word $w_{d,n}$ is the result of the assigned topic, expressed by $z_{d,n}$, (the level of) content variable $Y_d$, and their interactions. More precisely, this last step is intuitively best understood as a multinomial logistic regression of the words on the latter variables.
+
+A word $w_{d,n}$ then ultimately follows a multinomial distribution with probabilities $\beta_{d,n} := \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$, i.e.\ $w_{d,n} \sim \text{Multinomial}_V(\beta_{d,n})$, where $V$ denotes the total number of distinct words in the corpus.
+
+It is important to recall that $z_{d,n}$ singles out the topic $k$ for word $w_{d,n}$, so that $\beta_{d,n}$ is already topic-specific, even though it does not explicitly have a $k$-subscript; for details on the exact specification of $\beta_{d,n}$ see @roberts2016model, p.\ 991. Thus the occurence of a word (which is equivalent to being drawn from a corresponding multinomial distribution) depends on the topic assignment as well as on the topical content variable, where the topic assignment itself is a function of the topical prevalence covariates.
 
 ![Graphical model representation of the STM (from @roberts2016model, p. 990)](../data/stm_graphical.png)
 
-## STM - Scope
+### Scope
 
 Topic models are unsupervised learning methods, since the true topics from which the text was generated are not known. Thus, traditionally topic models have been used as an exploratory tool providing a concise summary of topics, where it is hoped that the posterior induces a good decomposition of the corpus. Topic models have also been used for tasks such as collaborative filtering and classification (see e.g.\ @blei2003latent). In particular, they can be used as a dimensionality reducing method in semi-supervised learning methods. Such a process can in general be described as a two-stage approach, where in the first stage topic proportions and content are learned, and in the second stage a supervised method such as regression takes this learned representation as input. 
 
@@ -78,7 +162,7 @@ A problem we see with this approach is, however, that the same covariates and in
 
 Nevertheless, it should in each case be investigated whether the relationship of variables implied by the STM is valid. For instance, we have split our data into training and test sets and found that the topical structure predicted on the test set differs starkly from the structure on the training set. This could of course be caused by a misspecification of the topical prevalence and content variables. However, since the topical prevalence covariates have almost no influence on the estimated topic proportions on the training set due to the regularizing priors (and e.g.\ likewise on the heldout likelihood that can be used for validation), it is practically impossible to validate a good prevalence specification.
 
-## Posterior Distribution
+### Posterior Distribution
 
 The posterior given on p.\ 992, @roberts2016model, can be derived as follows:
 
@@ -91,3 +175,11 @@ p(\eta, z, \kappa, \Gamma, \Sigma | w, X, Y) & \propto \underbrace{p(w | \eta, z
 \end{align*}
 
 where $\beta_{d, n}:= \beta(z_{d,n}, Y_d) \in \mathbb{R}^V$ with entries $\beta_{d, k, \nu} \propto \exp(m_{\nu} + \kappa_{k,\nu}^{(t)} + \kappa_{y_d,\nu}^{(c)} + \kappa_{y_d, k,\nu}^{(i)})$, $\nu \in \{1,\dots,V\}$, and $\theta_d := \text{softmax}(\eta_d)$.
+
+## Estimation
+
+* variational inference generally (mean-field variational Bayes)
+* EM algorithm used in LDA
+* no generally applicable algorithm for CTM in CTM itself
+* non-conjugacy: blei and wang 2013: laplace approximation
+* an approximate variational EM algorithm using a Laplace approximation

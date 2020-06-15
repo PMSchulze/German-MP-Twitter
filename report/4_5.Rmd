@@ -147,7 +147,7 @@ data_test <- stm::alignCorpus(new = data_test, old.vocab = mod_train$vocab, verb
 test <- stm::fitNewDocuments(
   model = mod_train, 
   documents = data_test$documents, 
-  newData = data_test$meta,
+  # newData = data_test$meta,
   origData = data_train$meta,
   prevalence = prevalence,
   prevalencePrior = "Average",
@@ -339,6 +339,10 @@ This section demonstrated how the double usage of text documents - both in estim
 To be addressed:
 * metadata for test data is entirely meaningless, does not affect topic proportions at all
 * manipulating covariate values neither
+* train/test: once words are given, covariates do not have any further impact: change party for MD (or exclude newData), show: no effect on predicted topic proportions (-> for future research: predict topic proportions based on document covariates only)
+* train/test: change formulation, since covariates do not really "generate" topic proportions; don't mention causal inference
+* train/test: main point of section: validate model: do topics (and their proportions) make sense?
+* additional paragraph for two-step procedure (+ 1 top graph)
 
 ## Two-step Approach
 
