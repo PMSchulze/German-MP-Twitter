@@ -50,5 +50,5 @@ all_betas <- sample_coefs(mod_prev, formula2, type = "beta",
                           data$meta, nsims = 2, seed = 123)
 all_quasibin <- sample_coefs(mod_prev, formula2, type = "quasibinomial",
                              data$meta, nsims = 2, seed = 123)
-preds_beta <- predict_props(all_quasibin, "t", formula2, data$meta)
+preds_beta <- predict_props(all_betas, "t", formula2, data$meta)
 preds_quasibin <- predict_props(all_quasibin, "t", formula2, data$meta)
