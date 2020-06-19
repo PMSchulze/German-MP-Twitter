@@ -21,10 +21,6 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/code")
-
 # ----------------------------------------------------------------------------------------------
 # ------------------------------ Write general helper functions --------------------------------
 # ----------------------------------------------------------------------------------------------
