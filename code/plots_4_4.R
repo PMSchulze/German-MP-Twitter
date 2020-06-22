@@ -103,7 +103,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            xlab(varlist_fullnames[varlist==v]) +
            ylab("Expected Topic Proportion") +
            geom_line(aes(y = proportion)) +
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(
   plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
@@ -117,7 +119,8 @@ gridExtra::grid.arrange(
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 3: Green/Climate") +
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
 
 ## Topic 4: Social/Housing -- Quasibinomial GLM
 ### Continuous Plots
@@ -128,7 +131,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) +
            geom_line(aes(y = proportion)) +
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+           axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(
   plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, 
@@ -144,7 +149,8 @@ gridExtra::grid.arrange(
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 4: Social/Housing")+
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
 
 ## Topics 1,3, and 4 -- Quasibinomial GLM
 ### Categorial Plots
@@ -159,8 +165,7 @@ party_data <- rbind(preds_quasibin$Partei$Topic1, preds_quasibin$Partei$Topic3,
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic Proportions by Party") +
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
-          axis.text.x = element_text(angle = 45, hjust = 1)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 
 # ----------------------------------------------------------------------------------------------
 
@@ -175,7 +180,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            xlab(varlist_fullnames[varlist==v]) +
            ylab("Expected Topic Proportion") +
            geom_line(aes(y = proportion)) +
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(
   plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
@@ -189,7 +196,8 @@ gridExtra::grid.arrange(
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 3: Green/Climate") +
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
 
 ## Topic 4: Social/Housing -- Beta regression
 ### Continuous Plots
@@ -200,7 +208,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) +
            geom_line(aes(y = proportion)) +
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(
   plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
@@ -213,7 +223,8 @@ gridExtra::grid.arrange(
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 4: Social/Housing")+
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
 
 ## Topics 1,3, and 4 -- Beta regression
 ### Categorial Plots
@@ -227,8 +238,7 @@ party_data <- rbind(preds_beta$Partei$Topic1, preds_beta$Partei$Topic3, preds_be
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic Proportions by Party") +
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
-          axis.text.x = element_text(angle = 45, hjust = 1)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
 
 # ----------------------------------------------------------------------------------------------
 # ------------------- Plots with stmprevalence: Direct assessment ------------------------------
@@ -254,7 +264,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            geom_smooth(color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
@@ -279,7 +291,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
                        color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
@@ -293,7 +307,8 @@ gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4,
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 3: Green/Climate")+
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
 
 
 # For topic 4, we show our plots in appendix
@@ -306,7 +321,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            geom_smooth(color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
@@ -331,7 +348,9 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
                        color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
-           scale_x_continuous(labels = scales::comma))
+           scale_x_continuous(labels = scales::comma) +
+           theme(axis.text=element_text(size=12), 
+                 axis.title.x = element_text(size=16)))
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
@@ -345,4 +364,5 @@ gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4,
     xlab("Party") +
     ylab("Expected Topic Proportion") +
     ggtitle("Topic 4: Social/Housing")+
-    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5)))
+    theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+          axis.title.x = element_text(size=16)))
