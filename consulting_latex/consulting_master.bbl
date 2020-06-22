@@ -1,0 +1,51 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Atchison and Shen(1980)]{atchison1980logistic}
+J~Atchison and Sheng~M Shen.
+\newblock Logistic-normal distributions: Some properties and uses.
+\newblock \emph{Biometrika}, 67\penalty0 (2):\penalty0 261--272, 1980.
+
+\bibitem[Blei et~al.(2007)Blei, Lafferty, et~al.]{blei2007correlated}
+David~M Blei, John~D Lafferty, et~al.
+\newblock A correlated topic model of science.
+\newblock \emph{The Annals of Applied Statistics}, 1\penalty0 (1):\penalty0
+  17--35, 2007.
+
+\bibitem[Fahrmeir et~al.(2007)Fahrmeir, Kneib, Lang, and
+  Marx]{fahrmeir2007regression}
+Ludwig Fahrmeir, Thomas Kneib, Stefan Lang, and Brian Marx.
+\newblock \emph{Regression}.
+\newblock Springer, 2007.
+
+\bibitem[Ferrari and Cribari-Neto(2004)]{ferrari2004beta}
+Silvia Ferrari and Francisco Cribari-Neto.
+\newblock Beta regression for modelling rates and proportions.
+\newblock \emph{Journal of applied statistics}, 31\penalty0 (7):\penalty0
+  799--815, 2004.
+
+\bibitem[Roberts et~al.(2013)Roberts, Stewart, Tingley, Airoldi,
+  et~al.]{roberts2013structural}
+Margaret~E Roberts, Brandon~M Stewart, Dustin Tingley, Edoardo~M Airoldi,
+  et~al.
+\newblock The structural topic model and applied social science.
+\newblock In \emph{Advances in neural information processing systems workshop
+  on topic models: computation, application, and evaluation}, pages 1--20.
+  Harrahs and Harveys, Lake Tahoe, 2013.
+
+\bibitem[Roberts et~al.(2016)Roberts, Stewart, and Airoldi]{roberts2016model}
+Margaret~E. Roberts, Brandon~M. Stewart, and Edoardo~M. Airoldi.
+\newblock A model of text for experimentation in the social sciences.
+\newblock \emph{Journal of the American Statistical Association}, 111\penalty0
+  (515):\penalty0 988--1003, 2016.
+
+\bibitem[Tanner(2012)]{tanner2012tools}
+Martin~A Tanner.
+\newblock \emph{Tools for statistical inference}.
+\newblock Springer, 2012.
+
+\end{thebibliography}

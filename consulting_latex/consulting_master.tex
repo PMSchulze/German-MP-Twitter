@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{enumerate}
+\usepackage{accents}
+\usepackage{enumitem}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{cite}
+\usepackage[round]{natbib}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{float}
+
+\newtheorem*{theorem}{Theorem} 
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{remark}{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{examples}{Examples}
+\newcommand*{\QEDB}{\hfill\ensuremath{\square}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks
+\geometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2cm,
+  bottom=2cm,
+}
+
+\begin{document}
+\numberwithin{equation}{section}
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Ludwig-Maximilians-Universit\"at M\"unchen \par}
+	\vspace{1cm}
+	{\scshape\Large Statistical Consulting Project \par}
+	\vspace{1.5cm}
+	{\huge\bfseries E-Complaints of Citizens and Responsiveness Strategies of Political Candidates and Parties: Investigating Large-Scale Unstructured Text  \par}	
+	\vspace{0.8cm}	
+	{\Large  Comparison of homepages of national and local political entities \par}
+	\vspace{2cm}
+	\vspace{2cm}
+	{\Large\itshape Simon Wiegrebe, Patrick Schulze \par}
+	\vfill
+	supervised by\par
+	Prof. Dr. Christian Heumann and Prof. Dr. Paul W. Thurner
+
+	\vfill
+
+	{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+
+\include{./kapitel/4_4_covariate_analysis}
+\newpage
+\input{./kapitel/appendix}
+
+\clearpage
+
+\bibliography{./kapitel/bibliography}
+\bibliographystyle{plainnat}
+
+\end{document}

@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: consulting_master.aux
+A level-1 auxiliary file: ./kapitel/4_4_covariate_analysis.aux
+The style file: plainnat.bst
+Database file #1: ./kapitel/bibliography.bib
+You've used 7 entries,
+            2773 wiz_defined-function locations,
+            640 strings with 6105 characters,
+and the built_in function-call counts, 3346 in all, are:
+= -- 292
+> -- 197
+< -- 4
++ -- 67
+- -- 60
+* -- 278
+:= -- 521
+add.period$ -- 22
+call.type$ -- 7
+change.case$ -- 37
+chr.to.int$ -- 7
+cite$ -- 14
+duplicate$ -- 152
+empty$ -- 276
+format.name$ -- 71
+if$ -- 694
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 9
+newline$ -- 43
+num.names$ -- 28
+pop$ -- 80
+preamble$ -- 1
+purify$ -- 32
+quote$ -- 0
+skip$ -- 112
+stack$ -- 0
+substring$ -- 130
+swap$ -- 13
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 67
+warning$ -- 0
+while$ -- 32
+width$ -- 0
+write$ -- 97
