@@ -154,7 +154,7 @@ Both 15 and 20 topics seem to be good trade-offs between the metrics used. As me
 
 Before fitting the model, we need to choose the document-level covariates we want to include. Since a topic model is explorative by definition, we simply include those covariates that seem to be most influential *a priori*: party and state (both categorical), date (as smooth effect), as well as percentage of immigrants, GDP per capita, unemployment rate, and the 2017 election results of the MP's respective party (the last four as smooth effects and on an electoral-district level).
 
-```{r echo=FALSE}
+```{r include=FALSE}
 # choose covariates and number of topics
 covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
@@ -163,18 +163,19 @@ outcome <- ""
 
 prevalence <- as.formula(paste(outcome, covar, sep = "~")) 
 
-# # fit model
+# fit model
 # mod_prev <- stm::stm(
 #   documents = data$documents,
 #   vocab = data$vocab,
 #   data = data$meta,
 #   K = K,
 #   prevalence = prevalence,
-#   # gamma.prior = 'L1',
+#   gamma.prior = 'L1',
 #   seed = 123,
 #   max.em.its = 200,
 #   init.type = "Spectral")
-
+# saveRDS(mod_prev, "../data/mod_prev_monthly.rds")
+ 
 mod_prev <- readRDS("../data/mod_prev_monthly.rds")
 ```
 
@@ -300,7 +301,7 @@ substr(repr_docs$Tweets_Dokument[1], 0, 256) # view most representative document
 The second most representative document, still for topic `r topic_number`, has a proportion of `r scales::percent(repr_docs[topic_number_long][2,1], accuracy = 0.01)`. Its author is the same as for the first document, `r repr_docs$Name[2]`, but the date now is `r repr_docs$Datum[2]`. The document starts with:
 
 ```{r echo=FALSE, results = "asis"}
-substr(repr_docs$Tweets_Dokument[2], 0, 255) # view 2nd most representative document
+substr(repr_docs$Tweets_Dokument[2], 0, 254) # view 2nd most representative document
 ```
 
 ```{r echo=FALSE}
@@ -317,10 +318,10 @@ We repeat this 3-step procedure (inspecting top words and word cloud, reading th
 topic_labels <- list(
   Topic1 = "right/nationalist",
   Topic2 = "miscellaneous_1",
-  Topic3 = "green/climate",
+  Topic3 = "green/climate_1",
   Topic4 = "social/housing",
-  Topic5 = "Europe_english",
-  Topic6 = "mobility",
+  Topic5 = "digital/future",
+  Topic6 = "green/climate_2",
   Topic7 = "Europe",
   Topic8 = "corona",
   Topic9 = "left/anti-war",
@@ -329,7 +330,7 @@ topic_labels <- list(
   Topic12 = "miscellaneous_2",
   Topic13 = "Twitter/politics_3",
   Topic14 = "right-wing extremism",
-  Topic15 = "social/health"
+  Topic15 = "society/solidarity"
 )
 ```
 
@@ -391,9 +392,9 @@ ggcorrplot::ggcorrplot(cormat) +
           axis.title.y = element_text(size = 12, face = "bold"))
 ```
 
-Most topics are negatively correlated with each other, which does not come as a surprise, given the relatively low total number of topics, `r K`, and that topic proportions are "supplements": the higher one topic proportion, the lower the total of the others. Moreover, most topic correlations are rather weak in absolute size: the strongest negative  correlation (`r scales::percent(cormat[1,7], accuracy = 0.01)`)is the one between  topic  1 (`r topic_labels[[1]]`) and topic 7 (`r topic_labels[[1]]`), while the strongest positive correlation (`r scales::percent(cormat[3,6], accuracy = 0.01)`) is the one shown before, between (`r topic_labels[3]`) and (`r topic_labels[6]`).
+Most topics are negatively correlated with each other, which does not come as a surprise, given the relatively low total number of topics, `r K`, and that topic proportions are "supplements": the higher one topic proportion, the lower the total of the others. Moreover, most topic correlations are rather weak in absolute size: the strongest negative  correlation (`r scales::percent(cormat[1,15], accuracy = 0.01)`) is the one between  topic  1 (`r topic_labels[[1]]`) and topic 15 (`r topic_labels[[15]]`), while the strongest positive correlation (`r scales::percent(cormat[10,13], accuracy = 0.01)`) is the one shown before, between (`r topic_labels[10]`) and (`r topic_labels[13]`).
 
-We can also visualize these correlations using a network graph, where topics are connected whenever they are positively correlated. Most topics are only related to two other topics, while none are related to more than three. The only "isolated" topic is topic 8, `r topic_labels[8]`, which makes sense since it only entered the public sphere in early 2020, i.e., during the last months of our data collection period. In general, the relationships between the topics, as depicted below, are very much in line with their labelling.
+We can also visualize these correlations using a network graph, where topics are connected whenever they are positively correlated. We observe three small clusters as well as some isolated topics, one of them being topic 8, `r topic_labels[8]`, which makes sense since it only entered the public sphere in early 2020, i.e., during the last months of our data collection period. In general, the relationships between the topics, as depicted below, are in line with their labelling.
 
 ```{r echo=FALSE}
 set.seed(111)

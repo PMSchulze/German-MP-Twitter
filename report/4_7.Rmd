@@ -1,0 +1,355 @@
+---
+title: "4_5"
+author: "Patrick Schulze, Simon Wiegrebe"
+date: "June 2020"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+  html_document: default
+bibliography: bibliography.bib
+biblio-style: myabbrvnat
+link-citations: yes
+linkcolor: blue
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \captionsetup{labelformat=empty}
+  - \usepackage{multirow}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Preparation, include=FALSE}
+# ----------------------------------------------------------------------------------------------
+# ---------------------------------------- Preparation -----------------------------------------
+# ----------------------------------------------------------------------------------------------
+
+# Install and load required packages
+os <- Sys.info()[["sysname"]] # Get operating system information
+itype <- ifelse(os == "Linux", "source", "binary") # Set corresponding installation type
+packages_required <- c(
+  "betareg", "ggcorrplot", "grid", "gridExtra", "huge", "knitr", "mvtnorm", 
+  "quanteda", "reshape2", "scales", "stm", "stringi", "tidyverse", "tm"
+)
+not_installed <- packages_required[!packages_required %in%
+                                     installed.packages()[, "Package"]]
+if (length(not_installed) > 0) {
+  lapply(
+    not_installed,
+    install.packages,
+    repos = "http://cran.us.r-project.org",
+    dependencies = TRUE,
+    type = itype
+  )
+}
+lapply(packages_required, library, character.only = TRUE)
+
+# set working directory
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
+# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+```
+
+# Results
+
+## Hyperparameter Search and Model Fitting
+
+## Labelling
+
+## Global-level Topic Analysis
+
+## Covariate-level Topic Analysis
+
+## Content Model
+
+## Train-test Split
+
+```{r include=FALSE}
+# load data
+data <- readRDS("../data/preprocessed_monthly.rds")
+data_train <- readRDS("../data/preprocessed_monthly_train.rds")
+data_test <- readRDS("../data/preprocessed_monthly_test.rds")
+colnames_table <- read.csv(file = "../data/topic_monthly_colnames.csv")
+
+# data_corpus <- readRDS("../data/prep_monthly.rds")
+# data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) data
+```
+
+```{r echo=FALSE}
+K <- 15
+```
+
+In section 4.4, we analyzed the relationship between metadata and topic proportions. From classical statistical modelling, we are used to interpret such relationships, oftentimes ascribing a causal interpretation to the corresponding coefficients; in our case, this would go along the lines of stating, for instance, that "a higher percentage of immigrants within an electoral district makes politicians prioritize issues that are not related to climate", refering to Figure XXX.
+
+Topic models, however, present a crucial difference as compared to classical statistical models: the target variable - $\theta$ - is latent and is thus itself being estimated. For explorative or descriptive purposes, this does not pose a problem, because there is only a single step: discovering topics in the text documents. Yet whenever in a second step, after estimating the model, we wish to conduct causal inference, we face an overfitting problem, since the *same* documents are used in both steps.
+
+In their paper on causal inference for text data, @egami2018make introduce a train-test framework which avoids the aforementioned problem, since the model is fitted on training data and the fitted model is then used to predict topic proportions for the new, previously unseen test data, using the metadata corresponding to the test documents. This can be seen as predicting new values, given already estimated parameters and new covariate values, just like in classical statistical modelling.
+
+```{r echo=FALSE}
+# choose covariates and number of topics
+covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
+  s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
+outcome <- ""
+prevalence <- as.formula(paste(outcome, covar, sep = "~")) 
+
+# # fit model on training data
+# mod_train <- stm::stm(
+#   documents = data_train$documents,
+#   vocab = data_train$vocab,
+#   data = data_train$meta,
+#   K = K,
+#   prevalence = prevalence,
+#   gamma.prior = 'L1',
+#   seed = 123,
+#   max.em.its = 300,
+#   init.type = "Spectral")
+# saveRDS(mod_train, "../data/mod_monthly_train.rds")
+
+mod_train <- readRDS("../data/mod_monthly_train.rds")
+```
+
+```{r echo=FALSE}
+# label topics
+n <- 10
+topic_words_train <- labelTopics(mod_train, n = n)
+
+topic_labels_train <- list(
+  Topic1 = "arms industry/war",
+  Topic2 = "English",
+  Topic3 = "Twitter/politics_1",
+  Topic4 = "Twitter/politics_2",
+  Topic5 = "miscellaneous_1",
+  Topic6 = "right/nationalist_1",
+  Topic7 = "Twitter/politics_3",
+  Topic8 = "Europe",
+  Topic9 = "green/climate",
+  Topic10 = "income/taxation",
+  Topic11 = "Twitter/politics_3",
+  Topic12 = "emancipation",
+  Topic13 = "left/social",
+  Topic14 = "corona",
+  Topic15 = "right/nationalist_2
+  "
+)
+```
+
+```{r include=FALSE}
+# align corpus
+data_test <- stm::alignCorpus(new = data_test, old.vocab = mod_train$vocab, verbose = TRUE)
+```
+
+```{r include=FALSE}
+# fit new documents
+test <- stm::fitNewDocuments(
+  model = mod_train, 
+  documents = data_test$documents, 
+  # newData = data_test$meta,
+  origData = data_train$meta,
+  prevalence = prevalence,
+  prevalencePrior = "Average",
+  returnPosterior = FALSE,
+  returnPriors = FALSE, 
+  designMatrix = NULL, 
+  test = TRUE,
+  verbose = TRUE
+)
+```
+
+```{r include=FALSE}
+# comparison plots training vs test data
+## prepare dataframes
+topic_props_train <- make.dt(
+  mod_train, data_train$meta[c("Partei", "Bundesland", "Datum", "t", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
+)
+
+topic_props_test <- make.dt(
+  test, data_test$meta[c("Partei", "Bundesland", "Datum", "t", "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
+)
+```
+
+```{r echo=FALSE}
+## topic proportions by party
+topic_number <- 1
+topic_number_long <- paste0("Topic", topic_number)
+covariate <- "Partei"
+```
+
+In this section, we pursue the same strategy as @egami2018make: we split the data into equally sized training and test sets, train the model on the training set and predict topic proportions for the documents in the test set, using the *fitNewDocuments* function. In doing so, it is important to set the priors for the prevalence covariates, $\mu$ and $\Sigma$, so that they are not document-specific functions of the covariates. Therefore, we choose an average global prior, which can roughly be seen as average about training-data priors (see @egami2018make for further details).
+
+The graph below shows the difference in topic proportions between training and test data for the `r topic_labels_train[topic_number]` topic, across all parties. It is important to note that, as the method of composition does not apply here, the values plotted - for both training and test data - are the simple modes of the posterior distributions of $\theta_{d}$. As can be seen, the topic proportions are very similar on the training and test set for all parties, even for the left party with an average topic proportion of almost 10%.
+
+```{r echo=FALSE}
+plot1_train_party <- topic_props_train %>%
+                      ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
+                      geom_boxplot(outlier.shape = NA) +
+                      geom_point() +
+                      labs(y = "topic proportion", 
+                           title = "'arms industry/war' - training data") +
+                      ylim(0,1) +
+                      # scale_color_manual(values = c("blue", "green", "black", "purple", "yellow", "red")) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+plot1_test_party <-  topic_props_test %>%
+                      ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
+                      geom_boxplot(outlier.shape = NA) +
+                      geom_point() +
+                      labs(y = "topic proportion", 
+                           title = "'arms industry/war' - test data") +
+                      ylim(0,1) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+gridExtra::grid.arrange(plot1_train_party, plot1_test_party, ncol = 2)
+```
+
+```{r echo=FALSE}
+topic_number <- 9
+topic_number_long <- paste0("Topic", topic_number)
+covariate <- "Partei"
+```
+
+We compare training and test data proportions for another topic, "`r topic_labels_train[topic_number]`", again across all parties. As shown in the graph below, the distribution of topic proportions when fitting previously unseen documents to the estimated model, is again very similar for all parties. Moreover, the results are very much in line with those of the "green" topic in Figure XXX (section 4.4), obtained by fitting the model on the entire dataset and by applying the method of composition. (Recall that we are simply plotting the posterior modes here.)
+
+```{r echo=FALSE}
+plot9_train_party <- topic_props_train %>%
+                      ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
+                      geom_boxplot(outlier.shape = NA) +
+                      geom_point() +
+                      labs(y = "topic proportion", 
+                           title = "'green/climate' - training data") +
+                      ylim(0,1) +
+                      # scale_color_manual(values = c("blue", "green", "black", "purple", "yellow", "red")) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+plot9_test_party <-  topic_props_test %>%
+                      ggplot(aes(!!as.symbol(covariate), !!as.symbol(topic_number_long))) +
+                      geom_boxplot(outlier.shape = NA) +
+                      geom_point() +
+                      labs(y = "topic proportion", 
+                           title = "'green/climate' - test data") +
+                      ylim(0,1) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+gridExtra::grid.arrange(plot9_train_party, plot9_test_party, ncol = 2)
+```
+
+Next, one might also want to know how well the model predicts the evolution of topic revelance over time for a new set of documents. To do so, we simply calculate the monthly median across all document-level topic proportions, $\theta_{k,d}$, for each month from September 2017 through April 2020.
+
+(Footnote: We chose the median because topic proportions tend to be heavily right-skewed and therefore, the average would not properly represent what holds for the "majority" of documents. The right-skewedness stems from the fact that there will always be some "specialized" MPs who tweet almost exclusively about a single topic, thus causing the respective topic proportions for some documents to be close to 100%. By choosing the median, our results are are also much more in line with those reported in section 4.4)
+
+```{r echo=FALSE}
+## topic proportions over time (averaged monthly across all corresponding documents)
+topic_number <- 9
+topic_number_long <- paste0("Topic", topic_number)
+covariate <- "t"
+```
+
+We visualize the comparison between training and test data over time for the `r topic_labels_train[topic_number]` topic. As demonstrated in the graph below, the trend is similar across the two datasets: the relevance of the topic increases steadily until September 2019, falls slightly for the last quarter of 2019 and then plunges in 2020. Note, again, that we observed the same trend in Figure 4.4.
+
+```{r echo=FALSE}
+## topic proportions over time (averaged monthly across all corresponding documents)
+plot9_train_time <-  topic_props_train %>%
+                      select(,topic_number+1) %>%
+                      aggregate(list(topic_props_train[[covariate]]), median) %>%
+                      ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
+                      geom_point() +
+                      labs(x = "time", y = "topic proportion", 
+                           title = "'green/climate' - training data") +
+                      ylim(0, 0.10) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+                    
+plot9_test_time <-   topic_props_test %>%
+                      select(,topic_number+1) %>%
+                      aggregate(list(topic_props_test[[covariate]]), median) %>%
+                      ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
+                      geom_point() +
+                      labs(x = "time", y = "topic proportion", 
+                           title = "'green/climate' - test data") +
+                      ylim(0, 0.10) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+gridExtra::grid.arrange(plot9_train_time, plot9_test_time, ncol = 2)
+```
+
+```{r echo=FALSE}
+## topic proportions over time (averaged monthly across all corresponding documents)
+topic_number <- 14
+topic_number_long <- paste0("Topic", topic_number)
+covariate <- "t"
+```
+
+As a final example, we show the development of the `r topic_labels_train[topic_number]` topic over time. As can be seen in the graph below, the topic is practically non-existent until early 2020, but its relevance increases sharply in March and April 2020. This is also a key explanatory factor of the plunge in relevance of the green/climate topic, as discussed above.
+
+```{r echo=FALSE}
+## topic proportions over time (averaged monthly across all corresponding documents)
+plot14_train_time <-  topic_props_train %>%
+                      select(,topic_number+1) %>%
+                      aggregate(list(topic_props_train[[covariate]]), median) %>%
+                      ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
+                      geom_point() +
+                      labs(x = "time", y = "topic proportion", 
+                           title = "'corona' - training data") +
+                      ylim(0, 0.60) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+                    
+plot14_test_time <-   topic_props_test %>%
+                      select(,topic_number+1) %>%
+                      aggregate(list(topic_props_test[[covariate]]), median) %>%
+                      ggplot(aes(Group.1, !!as.symbol(topic_number_long))) +
+                      geom_point() +
+                      labs(x = "time", y = "topic proportion", 
+                           title = "'corona' - test data") +
+                      ylim(0, 0.60) +
+                      theme_minimal() +
+                      theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1),
+                            axis.title.x = element_text(size = 12, face = "bold"),
+                            axis.title.y = element_text(size = 12, face = "bold"))
+
+gridExtra::grid.arrange(plot14_train_time, plot14_test_time, ncol = 2)
+```
+
+The main idea of the train-test split is to gauge the *predictive power* of the model: big differences between topic proportions in the training data and those in the test data would indicate that the estimated topics (and their proportions) are not very meaningful in summarizing texts, except the ones the model was trained with; this, in turn, would imply overfitting. Our results show that topic proportions for new documents, both across parties and over time, are distributed very similarly to those on training data. Intuitively, this means that the topics "make sense".
+
+This section demonstrated how the double usage of text documents - both in estimating the model and in making inference - and the resulting overfitting can be avoided by using a split-sample framework as in @egami2018make. Since the STM distinguishes itself from the baseline LDA by incorporating covariate information into the modelling process, parameters for covariates and the target variable are estimated jointly. However, since the values of the target variable (i.e., the topic proportions) are estimated based on covariate values, we are still facing the problem of double usage of the covariates: they are used in estimating the model (which, in turn, estimates the latent target variable) and, subsequently, their coefficients are to be interpreted. Clearly, we cannot use the train-test framework to address this problem; indeed, it would only be exacerbated by *generating* topic proportions for the test documents, using (previously fitted) parameters and document metadata as covariates, and subsequently making inference about the effect of those covariates on the previously generated topic proportions. We address this issue in the next section.
+
+To be addressed:
+* metadata for test data is entirely meaningless, does not affect topic proportions at all
+* manipulating covariate values neither
+* train/test: once words are given, covariates do not have any further impact: change party for MD (or exclude newData), show: no effect on predicted topic proportions (-> for future research: predict topic proportions based on document covariates only)
+* train/test: change formulation, since covariates do not really "generate" topic proportions; don't mention causal inference
+* train/test: main point of section: validate model: do topics (and their proportions) make sense?
+* additional paragraph for two-step procedure (+ 1 top graph)
+
+## Two-step Approach
+
+To avoid overfitting due to double usage of covariates, we decide to fit a simple CTM without including any covariates in the model estimation, and to estimate the relationship between topic proportions and covariates in a second, isolated step. That is, we forgo the potential (though limited) gains of joint estimation of the STM in favor of a clear-cut two-step procedure which avoids overfitting.
+
+
+```{r echo=FALSE}
+
+```
+
