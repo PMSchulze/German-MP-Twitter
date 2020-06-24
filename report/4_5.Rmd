@@ -101,7 +101,7 @@ Formally, recall that the word distribution used to eventually pick a word is $\
 
 For our specific case, since the topical content variable needs to be categorical, we choose the variable *party*, being categorical by definition and as it  is arguably the most significant factor in determining topic prevalence. IN doing so, we additionally posit that for a given topic, an MP's party also influences the vocabulary used when tweeting about that specific topic. For instance, this implies that an AfD party member tweets about immigration issues in a different linguistic manner than, say, a green MP. Since for the 2017 election period the German parliament contains members of `r mod_cont$settings$dim$A` parties, $\bf{Y}$ is now a matrix with `r mod_cont$settings$dim$N` rows and `r mod_cont$settings$dim$A` columns, yielding a total of `r K*mod_cont$settings$dim$A` $\beta$-vectors.
 
-After fitting the model, we proceed as for the prevelance model, that is, by inspecting top words and identifying topic labels. An additional difficulty, however, is that we do not have clear-cut top words per topic anymore; instead, we now have topic-level top words for each of the `r K` topics, party-level top words for each of the `r mod_cont$settings$dim$A` parties, as well as interaction top words for each of the `r K*mod_cont$settings$dim$A` topic-party combinations. The table below presents topic labels for all `r K` topics, identified by using the same 3-step procedure as for the prevalence model before. As can be seen, five topics are labelled as *miscellaneous*, reflecting the complexity caused by the large number of $\beta$-vectors.
+After fitting the model, we proceed as for the prevelance model, that is, by inspecting top words and identifying topic labels. An additional difficulty, however, is that we do not have clear-cut top words per topic anymore; instead, we now have topic-level top words for each of the `r K` topics, party-level top words for each of the `r mod_cont$settings$dim$A` parties, as well as interaction top words for each of the `r K*mod_cont$settings$dim$A` topic-party combinations. The table below presents topic labels for all `r K` topics, identified by using the same 3-step procedure as for the prevalence model before. As can be seen, five topics are labeled as *miscellaneous*, reflecting the complexity caused by the large number of $\beta$-vectors.
 
 ```{r include=FALSE}
 # labeling workflow (for each topic): 
@@ -110,7 +110,7 @@ After fitting the model, we proceed as for the prevelance model, that is, by ins
 ## (2) evaluate most representative documents per topic
 ## (3) assign label
 
-# first, prepare objects/variables needed for labelling process
+# first, prepare objects/variables needed for labeling process
 
 ## table of MAP topic proportions per document (for all topics)
 topic_props <- make.dt(
@@ -148,7 +148,7 @@ topic_cont_labels <- list(
   Topic15 = NULL
 )
 
-# actual labelling porcess
+# actual labeling porcess
 
 ## (1) inspect most frequent words per topic
 topic_words$prob[topic_number,] # 20 most frequent words
@@ -175,21 +175,21 @@ topic_cont_labels[[topic_number]] <- "right/nationalist"
 
 ## (3) assign label
 topic_cont_labels <- list(
-  Topic1 = "right/nationalist_1",
-  Topic2 = "miscellaneous_1",
-  Topic3 = "left/humanitarian",
-  Topic4 = "housing",
-  Topic5 = "innovation",
-  Topic6 = "green/energy",
-  Topic7 = "miscellaneous_2",
-  Topic8 = "corona",
-  Topic9 = "foreign affairs",
-  Topic10 = "election",
-  Topic11 = "right/nationalist_2",
-  Topic12 = "miscellaneous_3",
-  Topic13 = "miscellaneous_4",
-  Topic14 = "Twitter/politics",
-  Topic15 = "miscellaneous_5"
+  Topic1 = "Right/Nationalist 1",
+  Topic2 = "Miscellaneous 1",
+  Topic3 = "Left/Humanitarian",
+  Topic4 = "Housing",
+  Topic5 = "Innovation",
+  Topic6 = "Green/Energy",
+  Topic7 = "Miscellaneous 2",
+  Topic8 = "Corona",
+  Topic9 = "Foreign Affairs",
+  Topic10 = "Election",
+  Topic11 = "Right/Nationalist 2",
+  Topic12 = "Miscellaneous 3",
+  Topic13 = "Miscellaneous 4",
+  Topic14 = "Twitter/Politics",
+  Topic15 = "Miscellaneous 5"
 )
 
 topic_cont_labels %>%
@@ -206,4 +206,5 @@ The topical content model allows for vocabulary usage to differ across political
 plot(mod_cont, type = "perspectives", topics = topic_number, covarlevels = c("Bündnis 90/Die Grünen", "AfD"), text.cex = 0.8, plabels = c("Bündnis 90/Die Grünen", "AfD"))
 ```
 
-While this type of visualization is indeed insightful, several concerns regarding the topical content model prevail: first of all, there is no natural candidate for the content variable, which - for labelling and interpretational purposes - should ideally be binary. Our dataset contains very few categorical variables, none of them binary. Furhermore, there is no natural, non-arbitrary way to binarize any of the covariates; for instance, binarizing the variable *party*, say, into *conservative* and *liberal* would misclassify at least one party. Therefore, our choice to use *party* as content variable is the result of a lack of alternatives, rather than being based on sound statistical or theoretical considerations. This, in turn, is reflected in the difficult labelling; for instance, one third of all topics were eventually being labelled as *miscellaneous*. And while the previous illustration of inter-party differences in vocabulary usage is indeed insightful in terms of topic exploration and visualization, the aforementioned doubts lead us to discard the topical content variable for further analysis. In fact, in the next section we consider a model without any covariates in order to perform a clean 2-step procedure for covariate effect estimation.
+
+
