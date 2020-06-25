@@ -10,7 +10,7 @@ g_k(\text{struct}_d) = g_{k}^{(1)}(\text{GDP}_d)+g_{k}^{(2)}(\text{unemployment}
 \end{align*} 
 That is, the political party and federal state of the respective parliamentarian associated with a document are specified as simple categorial dummy effects, while date and electoral-district structural covariates (GDP per capita, unemployment rate, percentage of immigrants, and the 2017 vote share) are modeled as additive smooth functions.
 
-Note that approximate inference implies replacing $\mu_{d,k}$ with $\lambda_{d,k}$, i.e.\ with the mean of the approximate gaussian posterior $q(\eta_{d,k})$. The estimates of $\Gamma = [\gamma_1, \dots, \gamma_K]$ are updated in a bayesian linear regression during each iteration of the EM algorithm in the M-step; for details see \cite{roberts2013structural}, p.\ 993.
+Note that approximate inference implies replacing $\mu_{d,k}$ with $\lambda_{d,k}$, i.e., with the mean of the approximate Gaussian posterior $q(\eta_{d,k})$. The estimates of $\Gamma = [\gamma_1 | \dots | \gamma_K]$ are updated in a Bayesian linear regression during each iteration of the EM algorithm in the M-step; for details see \cite{roberts2013structural}, p.\ 993.
 
 While topical prevalence has an effect on the estimated topic proportions, the exact specification of topical prevalence is not a decisive factor. Both estimated topic proportions as well as heldout likelihood are in general only marginally affected by the concrete choice of the functional form. However, completely removing topical prevalence, in which case the model reduces to a CTM, does result in different topic proportions, as we show in section XXX. Since evaluation metrics such as heldout likelihood are mostly unaffected by the exact choice of topical prevalence and because the computational cost of fitting an stm is rather high, automatic model selection methods w.r.t.\ topical prevalence are not available. A reasonable specification of topical prevalence therefore relies on the domain knowledge of the researcher.
 
@@ -32,7 +32,7 @@ Sampling $\theta_{(k)}^*$ is achieved by first sampling the unnormalized topic p
 The method of composition can now be described by repeating the following process $m$ times:
 \begin{enumerate}
 \item Draw $\theta_{(k)}^* \sim q(\theta_{(k)} | X, Y, W)$.
-\item Draw $\xi^* \sim q(\xi| \theta_{(k)}^*, \tilde{X})$.
+\item Draw $\xi^* \sim q(\xi | \theta_{(k)}^*, \tilde{X})$.
 \end{enumerate}
 
 It then holds that $\xi_1^*, \dots, \xi_m^*$ is an i.i.d.\ sample from the marginal posterior
@@ -52,9 +52,9 @@ The R package \textit{stm} implements a simple OLS regression through its \texti
     \includegraphics[width=\linewidth]{../plots/4_4/estEffect_topic1.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/estEffect_topic3.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/estEffect_topic6.pdf}
   \end{subfigure}
-  \caption{Estimated prevalence of topics 1 and 3 over time, generated using \textit{estimateEffect} from the \textit{stm} package}
+  \caption{Estimated prevalence of topics 1 and 6 over time, generated using \textit{estimateEffect} from the \textit{stm} package}
   \label{fig:coffee}
 \end{figure}
 
@@ -72,16 +72,16 @@ Note that $q(\xi| \theta_{(k)}, \tilde{X})$ is asymptotically normal for both th
 
 We now apply the method of composition, based on either a beta regression or a quasibinomial GLM, in order to visualize covariate effects. Here we only visualize the results obtained by the quasibinomial GLM; the results of the beta regression, which show similar trends, are found in the appendix. Setting the number of simulations to 100, we sample $\xi^*_1, \dots, \xi^*_{100}$ from the  marginal posterior distribution $q(\xi | \Gamma, \Sigma, X)$. In order to plot the predicted effects, we input $\tilde{X}\xi^*$ into the sigmoid function, which is the response function corresponding to a regression with logit-link, and calculate the predicted proportions. As mentioned, when visualizing the impact of a particular covariate, all other covariates are held at their median (or majority vote, if categorial), in line with the methodology employed in the \textit{stm} package.
 
-We exemplarily illustrate the relationship of covariates and topic proportions for topics 3 ("green/climate") and 4 ("social/housing") for a subset of prevalence covariates. However, the linear predictor of our regressions takes the same form as in  \eqref{prevalence}, i.e.\ we do not use a subset $\tilde{X}$, but the full set of prevalence covariates $X$, to estimate the effects. For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the mean, and the shaded area represents 95\% credible intervals.
+We exemplarily illustrate the relationship of covariates and topic proportions for 4 ("Social/Housing") and topics 6 ("Climate Protection") for a subset of prevalence covariates. However, the linear predictor of our regressions takes the same form as in  \eqref{prevalence}, i.e., we do not use a subset $\tilde{X}$, but the full set of prevalence covariates $X$, in order to estimate the effects. For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the mean, and the shaded area represents 95\% credible intervals.
 
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t3_cont.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t4_cont.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t4_cont.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t6_cont.pdf}
   \end{subfigure}
   \caption{Mean and 95\% credible intervals for smooth effects, obtained using a quasibinomial GLM.}
   \label{fig:coffee}
@@ -91,36 +91,36 @@ We exemplarily illustrate the relationship of covariates and topic proportions f
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t3_cat.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t4_cat.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t4_cat.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/quasi_t6_cat.pdf}
   \end{subfigure}
   \caption{Mean and 95\% credible intervals for different political parties, obtained using a quasibinomial GLM.}
   \label{fig:coffee}
 \end{figure}
 
-For the smooth effects of topic 3, we observe its proportion increases over time until September 2019, corresponding to month t=25, decreasing afterwards. The absolute changes in topic proportions over time are rather small (around 4\%). The percentage of immigrants within an electoral district shows a negative and rather steady relation to topic 3. Furthermore, topic 3 tends to be discussed more frequently if GDP is high, although the link to GDP is somewhat ambiguous. Finally, the unemployment rate is positively linked to topic 3.
+For topic 4, "Social/Housing", we observe that most continuous variables have a small effect in absolute terms: the absolute variation in topic proportion across the covariate domains merely amounts to 4\%, compared to 8\% for topic 6. For most covariates the trend is rather ambiguous. Somewhat surprisingly, a very high unemployment rate is negatively linked to prevalence of topic 4.
 
-Regarding the effect of categorical variables on topic "green/climate", we consider the political party, arguably the most decisive covariate. As to be expected, we find high topic prevalence for the green party, yet the liberal party is, somewhat surprisingly, the party with the highest prevalence. Similar to the smooth effects, total variation in topic proportions across parties amounts to approximately 8\%.
+The effect of the political party on the relevance assigned to the topic "Social/Housing" is very much in line with a priori expectations: the left party and social democrats have the highest topical prevalence (15\% and 10\%, respectively), and the nationalist party the lowest (2\%).
 
-As for topic 4, "social/housing", we observe that most continuous variables have a small effect in absolute terms: the absolute variation in topic proportion across the covariate domains merely amounts to 4\%, compared to 8\% for topic 3. The time effect is similar to the one for topic 3, particularly the decreasing topical prevalence since September 2019. For the other variables, no clear effect is discernible.
+For the smooth effects of topic 6, we observe its prevalence peaks at September 2019, corresponding to month t=25, decreasing afterwards. The absolute changes in topic proportions over time are rather small (around 3\%). The percentage of immigrants within an electoral district shows a negative relation to topic 6. Furthermore, topic 6 tends to be discussed more frequently in mid-income electoral districts than in high- and low-income districts. Finally, the link to the unemployment rate is somewhat ambiguous, although generally rather positive.
 
-The effect of the political party on the relevance assigned to the topic "social/housing" is very much in line with a priori expectations: the left party and social democrats have the highest topical prevalence, at around 10\%, the nationalist party the lowest one at 5\%. The overall effect of covariate party is thus similar for topics "green/climate" and "social/housing".
+Regarding the relationship between the political party and prevalence of topic "Climate Protection", as to be expected, we find high topical prevalence for the green party. Similar to the smooth effects, total variation in topic proportions across parties amounts to approximately 8\%.
 
-Finally, the graph below shows a summary comparison of topical prevalence across all parties, for topics "right/nationalist", "green/climate", and "social/housing". The results are generally consistent with expectations. The proportions of topics "green/climate" and "social/housing" vary between 4\% and 12\% and between 5\% and 10\%, respectively. For topic 1,  "right/nationalist", note how topical prevalence for the AfD party amounts to more than 40\%, implying that more than 40\% of the total content tweeted by AfD party members is about right-wing/nationalist issues, particulary immigration; for all other parties, topic 1 is rather marginal below 3\%.
+Finally, the graph below shows a summary comparison of topical prevalence across all parties, for topics "Right/Nationalist", "Climate Protection" and "Social/Housing". The results are generally consistent with expectations. The proportions of topics "Climate Protection" and "Social/Housing" vary between 2\% and 9\% and between 2\% and 15\%, respectively. For topic 1, "Right/Nationalist", note how topical prevalence for the AfD party amounts to more than 40\%, implying that more than 40\% of the total content tweeted by AfD party members is about right-wing/nationalist issues, particularly immigration; for all other parties, topic 1 is rather marginal below 3\%.
 
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{../plots/4_4/quasi_t134_cat.pdf}
-  \caption{Topical prevalence by political party for topics 1, 2, and 3.}
+  \includegraphics[scale = 0.5]{../plots/4_4/quasi_t146_cat.pdf}
+  \caption{Topical prevalence by political party for topics 1, 4, and 6.}
   \label{fig:boat1}
 \end{figure}
 
 \subsection{Direct assessment using $\hat{\Gamma}$ and $\hat{\Sigma}$}
 
-The \textit{stm} being an extension to the correlated topic model (\textit{CTM}), it is assumed that the topic proportions follow a logistic normal distribution, such that $\theta_d \sim \text{LogisticNormal}_{K-1}(\Gamma^Tx_d^T, \Sigma)$. Within the CTM, \cite{blei2007correlated} replaced the dirichlet distribution of the LDA by a logistic normal distribution in order to allow for a joint dependence among topic proportions. Therefore, as mentioned above, separately modeling topic proportions is a simplification; in particular credible intervals should be treated with caution.
+The \textit{stm} being an extension to the correlated topic model (\textit{CTM}), it is assumed that the topic proportions follow a logistic normal distribution, such that $\theta_d \sim \text{LogisticNormal}_{K-1}(\Gamma^Tx_d^T, \Sigma)$. Within the CTM, \cite{blei2007correlated} replaced the dirichlet distribution of the LDA with a logistic normal distribution in order to allow for a joint dependence among topic proportions. Therefore, as mentioned above, separately modeling topic proportions is a simplification; in particular credible intervals should be treated with caution.
 
 In order to examine the relation of prevalence covariates and topic proportions considering the joint dependence among the latter, we can directly use the output produced by the \textit{stm}: inference of the \textit{stm} involves finding the MAP estimates $\hat{\Gamma}$ and $\hat{\Sigma}$. Thus, for a given new observation $x_d^*$, we can sample $\theta_d^*$ from $\text{LogisticNormal}_{K-1}(\hat{\Gamma}^T(x_d^*)^T, \hat{\Sigma})$:
 
@@ -136,13 +136,13 @@ Plotting the credible intervals we observe that the spectrum of expected topic p
     \centering
      \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.3\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/direct_t3_without_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/direct_t6_without_credible.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.3\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/direct_t3_with_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/direct_t6_with_credible.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.3\linewidth}
-    \includegraphics[width=\linewidth]{../plots/4_4/direct_t3_cat.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_4/direct_t6_cat.pdf}
   \end{subfigure}
   \caption{Smooth effects without credible intervals, smooth effects with credible intervals and effect of the political party.}
   \label{fig:directassessment}

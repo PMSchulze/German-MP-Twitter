@@ -15,21 +15,21 @@ data <- readRDS("./data/preprocessed_monthly.rds")
 mod_prev <- readRDS("./data/mod_prev_monthly.rds")
 # load topic labels
 topic_labels <- list(
-  Topic1 = "right/nationalist",
-  Topic2 = "miscellaneous_1",
-  Topic3 = "green/climate",
-  Topic4 = "social/housing",
-  Topic5 = "Europe_english",
-  Topic6 = "mobility",
+  Topic1 = "Right/Nationalist",
+  Topic2 = "Miscellaneous 1",
+  Topic3 = "Climate Economics",
+  Topic4 = "Social/Housing",
+  Topic5 = "Digital/Future",
+  Topic6 = "Climate Protection",
   Topic7 = "Europe",
-  Topic8 = "corona",
-  Topic9 = "left/anti-war",
-  Topic10 = "Twitter/politics_1",
-  Topic11 = "Twitter/politics_2",
-  Topic12 = "miscellaneous_2",
-  Topic13 = "Twitter/politics_3",
-  Topic14 = "right-wing extremism",
-  Topic15 = "social/health"
+  Topic8 = "Corona",
+  Topic9 = "Left/Anti-war",
+  Topic10 = "Twitter/Politics 1",
+  Topic11 = "Twitter/Politics 2",
+  Topic12 = "Miscellaneous 2",
+  Topic13 = "Twitter/Politics 3",
+  Topic14 = "Right-wing Extremism",
+  Topic15 = "Society/Solidarity"
 )
 # load list of prevalence covariates
 varlist <- c(
@@ -38,7 +38,7 @@ varlist <- c(
 # load full names of prevalence covariates
 varlist_fullnames <- c(
   "Time", "Party", "Federal State", "Immigrants (%)", "GDP per capita", 
-  "Unemployement Rate (%)", "vote share (%)"
+  "Unemployement Rate (%)", "Vote share (%)"
 )
 
 formula <- 1:15~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
@@ -56,8 +56,8 @@ prep <- stm::estimateEffect(
 )
 plot(prep, "t", method = "continuous", topics = 1,
      main = "Topic 1: Right/Nationalist", printlegend = F, xlab = "t")
-plot(prep, "t", method = "continuous", topics = 3,
-     main = "Topic 3: Green/Climate", printlegend = F, xlab = "t")
+plot(prep, "t", method = "continuous", topics = 6,
+     main = "Topic 6: Climate Protection", printlegend = F, xlab = "t")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------- Plots with stmprevalence: Method of Composition -----------------------
@@ -73,8 +73,8 @@ data$meta$Bundesland <- as.factor(data$meta$Bundesland)
 # all_betas <- sample_coefs(mod_prev, formula, type = "beta",
 #                             data$meta, nsims = 100, seed = 123)
 # # estimate 100 quasibinomial glms and sample from regressions coefficients
-# all_quasibin <- sample_coefs(mod_prev, formula, type = "quasibinomial",
-#                             data$meta, nsims = 100, seed = 123)
+# all_quasibin <- stmprevalence::sample_coefs(mod_prev, formula, type = "quasibinomial",
+#                            data$meta, nsims = 100, seed = 123)
 # # save results
 # saveRDS(all_betas, "./data/all_betas.rds")
 # saveRDS(all_quasibin, "./data/all_quasibin.rds")
@@ -94,11 +94,11 @@ names(preds_beta) <- names(preds_quasibin) <- varlist
 
 # First, we create all plots using the qusibinomial GLM; these plots are shown in main section
 
-## Topic 3: Green/Climate -- Quasibinomial GLM
+## Topic 6: Climate Protection -- Quasibinomial GLM
 ### Continuous Plots
 for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   plot_nam <- paste0("plot_quasibin_", v)
-  assign(plot_nam, ggplot(preds_quasibin[[v]]$Topic3, aes(!!as.symbol(v))) + 
+  assign(plot_nam, ggplot(preds_quasibin[[v]]$Topic6, aes(!!as.symbol(v))) + 
            geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
            xlab(varlist_fullnames[varlist==v]) +
            ylab("Expected Topic Proportion") +
@@ -109,16 +109,16 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
 }
 gridExtra::grid.arrange(
   plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
-  top = grid::textGrob("Topic 3: Green/Climate", gp=grid::gpar(fontsize=16, fontface = "bold"))
+  top = grid::textGrob("Topic 6: Climate Protection", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
-## Topic 3: Green/Climate -- Quasibinomial GLM
+## Topic 6: Climate Protection -- Quasibinomial GLM
 ### Categorial Plots
-(plot_party_3 <- ggplot(preds_quasibin$Partei$Topic3, aes(y=proportion, x = Partei)) +
+(plot_party_3 <- ggplot(preds_quasibin$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
-    ggtitle("Topic 3: Green/Climate") +
+    ggtitle("Topic 6: Climate Protection") +
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
           axis.title.x = element_text(size=16)))
 
@@ -143,7 +143,6 @@ gridExtra::grid.arrange(
 
 ## Topic 4: Social/Housing -- Quasibinomial GLM
 ### Categorial Plots
-### Categorial Plots
 (plot_party_4 <- ggplot(preds_quasibin$Partei$Topic4, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -155,9 +154,9 @@ gridExtra::grid.arrange(
 ## Topics 1,3, and 4 -- Quasibinomial GLM
 ### Categorial Plots
 preds_quasibin$Partei$Topic1$Topic <- "Right/Nationalist"
-preds_quasibin$Partei$Topic3$Topic <- "Green/Climate"
+preds_quasibin$Partei$Topic6$Topic <- "Climate Protection"
 preds_quasibin$Partei$Topic4$Topic <- "Social/Housing"
-party_data <- rbind(preds_quasibin$Partei$Topic1, preds_quasibin$Partei$Topic3, 
+party_data <- rbind(preds_quasibin$Partei$Topic1, preds_quasibin$Partei$Topic6, 
                     preds_quasibin$Partei$Topic4)
 (plot_party <- ggplot(party_data, aes(y=proportion, x = Partei, fill = Topic)) +
     geom_col(position = "dodge") +
@@ -244,23 +243,20 @@ party_data <- rbind(preds_beta$Partei$Topic1, preds_beta$Partei$Topic3, preds_be
 # ------------------- Plots with stmprevalence: Direct assessment ------------------------------
 # ----------------------------------------------------------------------------------------------
 
-formula <- 1:15~Partei + Bundesland  + s(Struktur_4) + 
-  s(Struktur_22) + s(Struktur_42) + s(Struktur_54) + s(t)
-
 # # Sample from LogisticNormal and calculate mean and credible intervals; 
 # # pre-calculated for speed reasons
-# preds_logisticn <- lapply(varlist, function(v) sample_props_logisticn(mod_prev, v, formula, data$meta))
-# names(preds_logisticn) <- varlist
-# saveRDS(preds_logisticn, "./data/all_logisticn.rds")
+preds_logisticn <- lapply(varlist, function(v) sample_props_logisticn(mod_prev, v, formula, data$meta))
+names(preds_logisticn) <- varlist
+saveRDS(preds_logisticn, "./data/all_logisticn.rds")
 
 # load previously calculated samples from LogisticNormal
 preds_logisticn <- readRDS("./data/all_logisticn.rds")
 
-## Topic 3: Green/Climate
+## Topic 6: Climate Protection
 ### Continuous plot without credible intervals
 for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   plot_nam <- paste0("plot_logisticn_", v)
-  assign(plot_nam, ggplot(preds_logisticn[[v]]$Topic3, aes(x = !!as.symbol(v), y = proportion)) +
+  assign(plot_nam, ggplot(preds_logisticn[[v]]$Topic6, aes(x = !!as.symbol(v), y = proportion)) +
            geom_smooth(color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
@@ -270,14 +266,14 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
-                        top = grid::textGrob("Topic 3: Green/Climate", 
+                        top = grid::textGrob("Topic 6: Climate Protection", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
 
-## Topic 3: Green/Climate
+## Topic 6: Climate Protection
 ### Continuous plot with credible intervals
 for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   plot_nam <- paste0("plot_logisticn_", v)
-  plot_smoothed_ci <- ggplot(preds_logisticn[[v]]$Topic3) +
+  plot_smoothed_ci <- ggplot(preds_logisticn[[v]]$Topic6) +
     stat_smooth(color=NA, aes(x = !!as.symbol(v), y = ci_lower), method = "loess", se = FALSE) +
     stat_smooth(color=NA, aes(x = !!as.symbol(v), y = ci_upper), method = "loess", se = FALSE)
   smoothed_ci <- ggplot_build(plot_smoothed_ci)
@@ -287,7 +283,7 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   assign(plot_nam, plot_smoothed_ci + 
            geom_ribbon(data = df_smoothed_ci, aes(x = v, ymin = ci_lower, ymax = ci_upper), 
                        fill = "grey70") +
-           geom_smooth(data = preds_logisticn[[v]]$Topic3, aes(x = !!as.symbol(v), y = proportion),
+           geom_smooth(data = preds_logisticn[[v]]$Topic6, aes(x = !!as.symbol(v), y = proportion),
                        color = "black", method = "loess", se = FALSE, size = 0.8) +
            ylab("Expected Topic Proportion") +
            xlab(varlist_fullnames[varlist==v]) + 
@@ -297,16 +293,16 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
 }
 gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
-                        top = grid::textGrob("Topic 3: Green/Climate", 
+                        top = grid::textGrob("Topic 6: Climate Protection", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
 
-## Topic 3: Green/Climate
+## Topic 6: Climate Protection
 ### Categorial plot with credible intervals
-(plot_logisticn_party_4 <- ggplot(preds_logisticn$Partei$Topic3, aes(y=proportion, x = Partei)) +
+(plot_logisticn_party_6 <- ggplot(preds_logisticn$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
-    ggtitle("Topic 3: Green/Climate")+
+    ggtitle("Topic 6: Climate Protection")+
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
           axis.title.x = element_text(size=16)))
 

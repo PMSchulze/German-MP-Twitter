@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,17 @@
 J~Atchison and Sheng~M Shen.
 \newblock Logistic-normal distributions: Some properties and uses.
 \newblock \emph{Biometrika}, 67\penalty0 (2):\penalty0 261--272, 1980.
+
+\bibitem[Bishop(2006)]{bishop2006pattern}
+Christopher~M Bishop.
+\newblock \emph{Pattern recognition and machine learning}.
+\newblock springer, 2006.
+
+\bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei2003latent}
+David~M Blei, Andrew~Y Ng, and Michael~I Jordan.
+\newblock Latent dirichlet allocation.
+\newblock \emph{Journal of machine Learning research}, 3\penalty0
+  (Jan):\penalty0 993--1022, 2003.
 
 \bibitem[Blei et~al.(2007)Blei, Lafferty, et~al.]{blei2007correlated}
 David~M Blei, John~D Lafferty, et~al.
@@ -47,5 +58,11 @@ Margaret~E. Roberts, Brandon~M. Stewart, and Edoardo~M. Airoldi.
 Martin~A Tanner.
 \newblock \emph{Tools for statistical inference}.
 \newblock Springer, 2012.
+
+\bibitem[Wang and Blei(2013)]{wang2013variational}
+Chong Wang and David~M Blei.
+\newblock Variational inference in nonconjugate models.
+\newblock \emph{Journal of Machine Learning Research}, 14\penalty0
+  (Apr):\penalty0 1005--1031, 2013.
 
 \end{thebibliography}
