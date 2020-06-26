@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 2_theoretical_framework.aux
+The style file: plainnat.bst
+Database file #1: bibliography.bib
+Warning--empty journal in eisenstein2011sparse
+You've used 16 entries,
+            2773 wiz_defined-function locations,
+            699 strings with 7790 characters,
+and the built_in function-call counts, 7968 in all, are:
+= -- 713
+> -- 462
+< -- 10
++ -- 157
+- -- 141
+* -- 655
+:= -- 1214
+add.period$ -- 52
+call.type$ -- 16
+change.case$ -- 90
+chr.to.int$ -- 16
+cite$ -- 33
+duplicate$ -- 367
+empty$ -- 654
+format.name$ -- 163
+if$ -- 1678
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 18
+newline$ -- 89
+num.names$ -- 64
+pop$ -- 190
+preamble$ -- 1
+purify$ -- 76
+quote$ -- 0
+skip$ -- 275
+stack$ -- 0
+substring$ -- 326
+swap$ -- 44
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 166
+warning$ -- 1
+while$ -- 76
+width$ -- 0
+write$ -- 215
+(There was 1 warning)

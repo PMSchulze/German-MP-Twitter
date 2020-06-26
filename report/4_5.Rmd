@@ -203,7 +203,7 @@ topic_number <- 8
 The topical content model allows for vocabulary usage to differ across political parties, given a topic. In the graph below, we visualize this effect for the `r topic_cont_labels[[topic_number]]` topic, contrasting the green party "Bündnis 90/Die Grünen" with the right-wing nationalist party "AfD". The result is very insightful: even for a topic as clear-cut and novel as COVID-19, stark differences in terms of vocabulary usage arise. In particular, the AfD uses language suitable to describe immigration (*migration*, *grenz*) in order to discuss corona, which very much reflects the unimodality of the party's political orientation. The green party, on the other hand, seems to address the topic much more specifically, mentioning key words like *massnahm* or *kind*.
 
 ```{r echo=FALSE}
-plot(mod_cont, type = "perspectives", topics = topic_number, covarlevels = c("Bündnis 90/Die Grünen", "AfD"), text.cex = 0.8, plabels = c("Bündnis 90/Die Grünen", "AfD"))
+plot(mod_cont, type = "perspectives", topics = topic_number, covarlevels = c("Bündnis 90/Die Grünen", "AfD"), text.cex = 0.8, plabels = c("B'90/Die Grünen", "AfD"))
 ```
 
 

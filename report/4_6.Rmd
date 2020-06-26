@@ -140,9 +140,9 @@ formula <- 1:15~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) +
 
 ## 2-Step Approach: CTM
 
-As briefly mentioned in section 2 already, a point of concern when using the STM is the double usage of (prevalence) covariates: they are used in the estimation of the topic itself (and thus, in the estimation of the latent topic proportions) and subsequently they are again used in metadata inference.
+In sections 4.4 and 4.5, we analyzed the relationship between topic proportions and metadata, visualizing the effect of prevalence covariates and deciding against the further inclusion of a topical content variable. As briefly mentioned in section 2 already, a point of concern when using the STM is the double usage of covariates: they are used in the estimation of the topic itself (and thus, in the estimation of the latent topic proportions) and subsequently they are again used in metadata inference. From classical statistical modelling, we are used to interpret such relationships, oftentimes ascribing a causal interpretation to the corresponding coefficients; in our case, this would go along the lines of stating, for instance, that "a higher percentage of immigrants within an electoral district makes politicians prioritize issues other than climate protection", refering to Figure XXX.
 
-[Insert some of the initial part of section 4.7 on train-test-split]
+Topic models, however, present a crucial difference as compared to classical statistical models: the target variable - $\theta$ - is latent and thus itself being estimated. For explorative or descriptive purposes, this does not pose a problem, because there is only a single step: discovering topics in the text documents. Yet whenever in a second step, after estimating the model, we wish to conduct (causal) inference, we face an overfitting problem, since the *same* documents and covariates are used in both steps. In this section, we focus on the double usage of (prevalence) covariates, while section 4.7 deals with double usage of documents, i.e., words.
 
 To avoid overfitting due to double usage of covariates, we fit an STM without including any covariates in the model estimation, thus reducing the model to a simple CTM. In a second, isolated step, we estimate the relationship between topic proportions and covariates. That is, we forgo the potential (small) gains of joint estimation of the STM in favor of a clear-cut two-step procedure which avoids overfitting.
 
@@ -195,14 +195,20 @@ As a first step, we fit the CTM analogously to the original STM (which includes 
 
 [Update the below according to section 4.4 updates in graphs]
 
-In the second step, we consider the relationship between topic proportions and covariates for the CTM and compare the resulting relationships with those of the originally fitted STM (which contains prevalence covariates). For comparability, we use the same methodology as in section 4.4: applying the method of composition with a quasibinomial regression of individual topic proportions on covariates. The only difference is that prevalence covariates were not included in the model used to generate topic proportions. Consequently, sampling all (unnormalized) topic proportions jointly via the logistic normal distribution (as in Figure 4.XXX) is not applicable here, as no $\Gamma$-vector is being estimated at all. In the figure below, we visualize the CTM topic proportion of three topic across parties. Comparing the results to the corresponding ones of the STM (Figure 4.XXX), we see a similar pattern for all but the green party and a general shift in scale across all parties when considering the "XXX" topic. For the "XXX" topic the average proportions by party show a higher degree of resemblance across models. Finally, for the right/national topic, there is a substantial difference between the two models in terms of the topic proportion of the AfD party. We observe the same similarities and differences between the two models if we use beta regression instead of quasibinomial regression within the method of composition, corroborating our results (see appendix).
+In the second step, we consider the relationship between topic proportions and prevalence covariates for the CTM and compare the resulting relationships with those of the originally fitted STM (which contains prevalence covariates). For comparability, we use the same methodology as in section 4.4: applying the method of composition with a quasibinomial regression of individual topic proportions on covariates. The only difference is that prevalence covariates were not included in the model used to generate topic proportions. Consequently, sampling all (unnormalized) topic proportions jointly via the logistic normal distribution (as in Figure 4.XXX) is not applicable here, as no $\Gamma$-vector is being estimated at all.
+
+
+
+
+In the figures below, we visualize the CTM topic proportions of topics 4 and 6 in relation with continuous covariate values and across parties and compare the results to those of the STM (Figure XXX). As for the relationship between continuous covariates and topic proportions, the results for STM and CTM are very similar: for both topic 4 and topic 6, the trends across the respective covariate range are almost identical for the two models, while the scale differs slightly (with scale differences hardly exceeding 2%). Turning to the categorical variables, in particular party, the conclusion is very similar: minor scale differences, very similar patterns. TBD!!! 
+We observe the same similarities and differences between the two models if we use beta regression instead of quasibinomial regression within the method of composition, corroborating our results (see appendix XXX).
 
 [Graph quasi_t134_cont_ctm from ../plots/4_5]
 
 
-For continuous covariates (see appendix), the comparison of STM and CTM yields very similar results to those of the per-party comparison: for the "XXX" topic, the trends are not that similar anymore and the scale differs (as above, with higher overall topic proportions according to the CTM). For the "XXX" topic, on the other hand, the relationship between the covariates and topic proportion does not differ very much, neither in trend nor in scale. 
 
-All in all, the comparison of 
+
+All in all, the relationships between topical prevalence covariables and topic proportions are very similar to the STM when instead using a clean 2-step estimation procedure where no covariate information was used in the model estimation. This indicates that the problem of double usage of covariate information in the STM, potentially leading to overfitting, is not overly severe.
 
 
 
