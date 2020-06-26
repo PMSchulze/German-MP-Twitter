@@ -21,11 +21,12 @@ David~M Blei, Andrew~Y Ng, and Michael~I Jordan.
 \newblock \emph{Journal of machine Learning research}, 3\penalty0
   (Jan):\penalty0 993--1022, 2003.
 
-\bibitem[Blei et~al.(2007)Blei, Lafferty, et~al.]{blei2007correlated}
-David~M Blei, John~D Lafferty, et~al.
-\newblock A correlated topic model of science.
-\newblock \emph{The Annals of Applied Statistics}, 1\penalty0 (1):\penalty0
-  17--35, 2007.
+\bibitem[Egami et~al.(2018)Egami, Fong, Grimmer, Roberts, and
+  Stewart]{egami2018make}
+Naoki Egami, Christian~J Fong, Justin Grimmer, Margaret~E Roberts, and
+  Brandon~M Stewart.
+\newblock How to make causal inferences using texts.
+\newblock \emph{arXiv preprint arXiv:1802.02163}, 2018.
 
 \bibitem[Fahrmeir et~al.(2007)Fahrmeir, Kneib, Lang, and
   Marx]{fahrmeir2007regression}
