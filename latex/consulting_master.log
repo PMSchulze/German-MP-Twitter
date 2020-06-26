@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  25 JUN 2020 12:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  26 JUN 2020 10:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1440,7 +1440,7 @@ File: ../plots/4_4/estEffect_topic1.pdf Graphic file (type pdf)
 
 <use ../plots/4_4/estEffect_topic1.pdf>
 Package pdftex.def Info: ../plots/4_4/estEffect_topic1.pdf used on input line 5
-2.
+1.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
 <../plots/4_4/estEffect_topic6.pdf, id=35, 497.86pt x 382.42876pt>
@@ -1448,7 +1448,7 @@ File: ../plots/4_4/estEffect_topic6.pdf Graphic file (type pdf)
 
 <use ../plots/4_4/estEffect_topic6.pdf>
 Package pdftex.def Info: ../plots/4_4/estEffect_topic6.pdf used on input line 5
-5.
+4.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
  [4 <../plots/4_4/estEffect_topic1.pdf> <../plots/4_4/estEffect_topic6.pdf
 
@@ -1520,7 +1520,7 @@ File: ../plots/4_4/direct_t6_without_credible.pdf Graphic file (type pdf)
 
 <use ../plots/4_4/direct_t6_without_credible.pdf>
 Package pdftex.def Info: ../plots/4_4/direct_t6_without_credible.pdf used on in
-put line 139.
+put line 143.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
 <../plots/4_4/direct_t6_with_credible.pdf, id=154, 497.86pt x 382.42876pt>
@@ -1528,18 +1528,18 @@ File: ../plots/4_4/direct_t6_with_credible.pdf Graphic file (type pdf)
 
 <use ../plots/4_4/direct_t6_with_credible.pdf>
 Package pdftex.def Info: ../plots/4_4/direct_t6_with_credible.pdf used on input
- line 142.
+ line 146.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
 <../plots/4_4/direct_t6_cat.pdf, id=155, 543.02875pt x 331.2375pt>
 File: ../plots/4_4/direct_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/4_4/direct_t6_cat.pdf>
-Package pdftex.def Info: ../plots/4_4/direct_t6_cat.pdf used on input line 145.
+Package pdftex.def Info: ../plots/4_4/direct_t6_cat.pdf used on input line 149.
 
 (pdftex.def)             Requested size: 141.61081pt x 86.37747pt.
-) [8 <../plots/4_4/direct_t6_without_credible.pdf> <../plots/4_4/direct_t6_with
-_credible.pdf
+ [8 <../plots/4_4/direct_t6_without_credible.pdf> <../plots/4_4/direct_t6_with_
+credible.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_4/direct_t6_with_
 credible.pdf): PDF inclusion: multiple pdfs with page group included in a singl
@@ -1548,11 +1548,11 @@ e page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_4/direct_t6_cat.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] (./kapitel/appendix1_variational_inference.tex [9
+>]) [9] (./kapitel/appendix1_variational_inference.tex [10
 
-] [10])
+] [11])
 (./kapitel/appendix.tex
-<../plots/appendix/4_4/beta_t3_cont.pdf, id=208, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/beta_t3_cont.pdf, id=211, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/beta_t3_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t3_cont.pdf>
@@ -1560,7 +1560,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t3_cont.pdf used on input l
 ine 8.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/4_4/beta_t4_cont.pdf, id=209, 497.86pt x 312.16624pt>
+<../plots/appendix/4_4/beta_t4_cont.pdf, id=212, 497.86pt x 312.16624pt>
 File: ../plots/appendix/4_4/beta_t4_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t4_cont.pdf>
@@ -1568,7 +1568,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t4_cont.pdf used on input l
 ine 11.
 (pdftex.def)             Requested size: 188.8096pt x 118.38623pt.
 
-<../plots/appendix/4_4/beta_t3_cat.pdf, id=210, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/beta_t3_cat.pdf, id=213, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/beta_t3_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t3_cat.pdf>
@@ -1576,7 +1576,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t3_cat.pdf used on input li
 ne 20.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/4_4/beta_t4_cat.pdf, id=211, 497.86pt x 312.16624pt>
+<../plots/appendix/4_4/beta_t4_cat.pdf, id=214, 497.86pt x 312.16624pt>
 File: ../plots/appendix/4_4/beta_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t4_cat.pdf>
@@ -1584,7 +1584,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t4_cat.pdf used on input li
 ne 23.
 (pdftex.def)             Requested size: 188.8096pt x 118.38623pt.
 
-<../plots/appendix/4_4/beta_t134_cat.pdf, id=212, 578.16pt x 443.6575pt>
+<../plots/appendix/4_4/beta_t134_cat.pdf, id=215, 578.16pt x 443.6575pt>
 File: ../plots/appendix/4_4/beta_t134_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t134_cat.pdf>
@@ -1596,7 +1596,7 @@ line 32.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../plots/appendix/4_4/direct_t4_without_credible.pdf, id=213, 497.86pt x 382.4
+<../plots/appendix/4_4/direct_t4_without_credible.pdf, id=216, 497.86pt x 382.4
 2876pt>
 File: ../plots/appendix/4_4/direct_t4_without_credible.pdf Graphic file (type p
 df)
@@ -1605,7 +1605,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/direct_t4_without_credible.pdf u
 sed on input line 40.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/4_4/direct_t4_with_credible.pdf, id=214, 497.86pt x 382.4287
+<../plots/appendix/4_4/direct_t4_with_credible.pdf, id=217, 497.86pt x 382.4287
 6pt>
 File: ../plots/appendix/4_4/direct_t4_with_credible.pdf Graphic file (type pdf)
 
@@ -1614,7 +1614,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/direct_t4_with_credible.pdf used
  on input line 43.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/4_4/direct_t4_cat.pdf, id=215, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/direct_t4_cat.pdf, id=218, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/direct_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/direct_t4_cat.pdf>
@@ -1625,7 +1625,7 @@ line 46.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [11 <../plots/appendix/4_4/beta_t3_cont.pdf> <../plots/appendix/4_4/beta_t4_c
+) [12 <../plots/appendix/4_4/beta_t3_cont.pdf> <../plots/appendix/4_4/beta_t4_c
 ont.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/beta_t
@@ -1641,7 +1641,7 @@ age
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/beta_t
 4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single p
 age
->] [12 <../plots/appendix/4_4/beta_t134_cat.pdf> <../plots/appendix/4_4/direct_
+>] [13 <../plots/appendix/4_4/beta_t134_cat.pdf> <../plots/appendix/4_4/direct_
 t4_without_credible.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/direct
@@ -1657,7 +1657,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/direct
 _t4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] (./consulting_master.bbl) [13
+>] (./consulting_master.bbl) [14
 
 ] (./consulting_master.aux
 (./kapitel/4_4_covariate_analysis.aux))
@@ -1668,7 +1668,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  13970 strings out of 492995
  246632 string characters out of 6132704
- 294440 words of memory out of 5000000
+ 294441 words of memory out of 5000000
  17324 multiletter control sequences out of 15000+600000
  29672 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1700,10 +1700,10 @@ ist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf-dis
 t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fo
 nts/type1/public/cm-super/sfti1728.pfb>
-Output written on consulting_master.pdf (14 pages, 825826 bytes).
+Output written on consulting_master.pdf (15 pages, 827738 bytes).
 PDF statistics:
- 415 PDF objects out of 1000 (max. 8388607)
- 280 compressed objects within 3 object streams
+ 418 PDF objects out of 1000 (max. 8388607)
+ 282 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
