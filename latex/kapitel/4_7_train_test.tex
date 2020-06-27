@@ -46,7 +46,7 @@ If we want to estimate the treatment effect, we can estimate the average differe
 \end{align} 
 where $\hat{\theta}_i$ are the MAP estimates for the $i$-th document. \cite{egami2018make} show that, if additional conditions hold, the estimated $\widehat{\text{ATE}}$ on previously unseen test data $\mathcal{D}_{\text{test}}$ is an unbiased estimate of the ATE.
 
-In Figure \ref{fig:causal_inference_ate} we visualize the ATE estimated on training and on test data with different prior specifications (note that this is simply the difference of the means depicted in Figure \ref{fig:causal_inference_props}). The results correspond to our classical idea of overfitting: since the characteristics of each parliamentarian associated with a document have been used to estimate the topic proportions in the first place, when evaluating these topic proportions on the same data, the fit is optimistically biased. 
+In Figure \ref{fig:causal_inference_ate} we visualize the ATE estimated on training and on test data with different prior specifications (note that this is simply the difference of the means depicted in Figure \ref{fig:causal_inference_props}). The results correspond to our classical idea of overfitting: since the characteristics of each parliamentarian associated with a document have been used to estimate the topic proportions in the first place, when evaluating the effects of these characteristics on topic proportions on the same data, the effect is optimistically biased.
 
 \begin{figure}[h!]
   \centering
