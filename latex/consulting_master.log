@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  26 JUN 2020 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  27 JUN 2020 15:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1554,12 +1554,52 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
  (./kapitel/4_7_train_test.tex [10
 
 
-]) [11]
-(./kapitel/appendix1_variational_inference.tex [12
+] [11]
+<../plots/4_7/climate_summit_props.pdf, id=213, 512.91624pt x 359.3425pt>
+File: ../plots/4_7/climate_summit_props.pdf Graphic file (type pdf)
 
-] [13])
+<use ../plots/4_7/climate_summit_props.pdf>
+Package pdftex.def Info: ../plots/4_7/climate_summit_props.pdf used on input li
+ne 34.
+(pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
+
+<../plots/4_7/emancipation_props.pdf, id=214, 512.91624pt x 359.3425pt>
+File: ../plots/4_7/emancipation_props.pdf Graphic file (type pdf)
+
+<use ../plots/4_7/emancipation_props.pdf>
+Package pdftex.def Info: ../plots/4_7/emancipation_props.pdf used on input line
+ 37.
+(pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
+ [12 <../plots/4_7/climate_summit_props.pdf> <../plots/4_7/emancipation_props.p
+df
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_7/emancipation_pr
+ops.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
+e
+>] <../plots/4_7/climate_summit_ate.pdf, id=246, 512.91624pt x 359.3425pt>
+File: ../plots/4_7/climate_summit_ate.pdf Graphic file (type pdf)
+
+<use ../plots/4_7/climate_summit_ate.pdf>
+Package pdftex.def Info: ../plots/4_7/climate_summit_ate.pdf used on input line
+ 55.
+(pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
+
+<../plots/4_7/emancipation_ate.pdf, id=247, 512.91624pt x 359.3425pt>
+File: ../plots/4_7/emancipation_ate.pdf Graphic file (type pdf)
+
+<use ../plots/4_7/emancipation_ate.pdf>
+Package pdftex.def Info: ../plots/4_7/emancipation_ate.pdf used on input line 5
+8.
+(pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
+) [13 <../plots/4_7/climate_summit_ate.pdf> <../plots/4_7/emancipation_ate.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_7/emancipation_at
+e.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] (./kapitel/appendix1_variational_inference.tex [14
+
+] [15])
 (./kapitel/appendix.tex
-<../plots/appendix/4_4/beta_t3_cont.pdf, id=220, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/beta_t3_cont.pdf, id=284, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/beta_t3_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t3_cont.pdf>
@@ -1567,7 +1607,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t3_cont.pdf used on input l
 ine 8.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/4_4/beta_t4_cont.pdf, id=221, 497.86pt x 312.16624pt>
+<../plots/appendix/4_4/beta_t4_cont.pdf, id=285, 497.86pt x 312.16624pt>
 File: ../plots/appendix/4_4/beta_t4_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t4_cont.pdf>
@@ -1575,7 +1615,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t4_cont.pdf used on input l
 ine 11.
 (pdftex.def)             Requested size: 188.8096pt x 118.38623pt.
 
-<../plots/appendix/4_4/beta_t3_cat.pdf, id=222, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/beta_t3_cat.pdf, id=286, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/beta_t3_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t3_cat.pdf>
@@ -1583,7 +1623,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t3_cat.pdf used on input li
 ne 20.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/4_4/beta_t4_cat.pdf, id=223, 497.86pt x 312.16624pt>
+<../plots/appendix/4_4/beta_t4_cat.pdf, id=287, 497.86pt x 312.16624pt>
 File: ../plots/appendix/4_4/beta_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t4_cat.pdf>
@@ -1591,7 +1631,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/beta_t4_cat.pdf used on input li
 ne 23.
 (pdftex.def)             Requested size: 188.8096pt x 118.38623pt.
 
-<../plots/appendix/4_4/beta_t134_cat.pdf, id=224, 578.16pt x 443.6575pt>
+<../plots/appendix/4_4/beta_t134_cat.pdf, id=288, 578.16pt x 443.6575pt>
 File: ../plots/appendix/4_4/beta_t134_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/beta_t134_cat.pdf>
@@ -1603,7 +1643,7 @@ line 32.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../plots/appendix/4_4/direct_t4_without_credible.pdf, id=225, 497.86pt x 382.4
+<../plots/appendix/4_4/direct_t4_without_credible.pdf, id=289, 497.86pt x 382.4
 2876pt>
 File: ../plots/appendix/4_4/direct_t4_without_credible.pdf Graphic file (type p
 df)
@@ -1612,7 +1652,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/direct_t4_without_credible.pdf u
 sed on input line 40.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/4_4/direct_t4_with_credible.pdf, id=226, 497.86pt x 382.4287
+<../plots/appendix/4_4/direct_t4_with_credible.pdf, id=290, 497.86pt x 382.4287
 6pt>
 File: ../plots/appendix/4_4/direct_t4_with_credible.pdf Graphic file (type pdf)
 
@@ -1621,7 +1661,7 @@ Package pdftex.def Info: ../plots/appendix/4_4/direct_t4_with_credible.pdf used
  on input line 43.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/4_4/direct_t4_cat.pdf, id=227, 497.86pt x 382.42876pt>
+<../plots/appendix/4_4/direct_t4_cat.pdf, id=291, 497.86pt x 382.42876pt>
 File: ../plots/appendix/4_4/direct_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/4_4/direct_t4_cat.pdf>
@@ -1632,7 +1672,7 @@ line 46.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [14 <../plots/appendix/4_4/beta_t3_cont.pdf> <../plots/appendix/4_4/beta_t4_c
+) [16 <../plots/appendix/4_4/beta_t3_cont.pdf> <../plots/appendix/4_4/beta_t4_c
 ont.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/beta_t
@@ -1648,7 +1688,7 @@ age
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/beta_t
 4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single p
 age
->] [15 <../plots/appendix/4_4/beta_t134_cat.pdf> <../plots/appendix/4_4/direct_
+>] [17 <../plots/appendix/4_4/beta_t134_cat.pdf> <../plots/appendix/4_4/direct_
 t4_without_credible.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/direct
@@ -1664,7 +1704,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/4_4/direct
 _t4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] (./consulting_master.bbl) [16
+>] (./consulting_master.bbl) [18
 
 ] (./consulting_master.aux
 (./kapitel/4_4_covariate_analysis.aux) (./kapitel/4_7_train_test.aux))
@@ -1673,13 +1713,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13978 strings out of 492995
- 246826 string characters out of 6132704
- 294802 words of memory out of 5000000
- 17325 multiletter control sequences out of 15000+600000
+ 14001 strings out of 492995
+ 247617 string characters out of 6132704
+ 294822 words of memory out of 5000000
+ 17343 multiletter control sequences out of 15000+600000
  29672 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,41p,10410b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,12n,41p,10410b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pf
@@ -1709,10 +1749,10 @@ fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf-dist/fo
 nts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/font
 s/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/
 type1/public/cm-super/sfti1728.pfb>
-Output written on consulting_master.pdf (17 pages, 876774 bytes).
+Output written on consulting_master.pdf (19 pages, 945920 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
- 292 compressed objects within 3 object streams
+ 498 PDF objects out of 1000 (max. 8388607)
+ 335 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

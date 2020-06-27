@@ -10,15 +10,53 @@ On the training set, we estimate components of the stm similarly to the estimati
 
 \subsection{Prediction of Topic Proportions on the Test Set}
 
-Prediction of the topic proportions on the test is not straightforward, since the topic proportions are latent and the stm is not built for the purpose of predicting these latent variables on a set of new, unseen data. The fundamental idea is to estimate the variational posterior of the latent variables, that is, the topic proportions $\theta_d$, where $d \in \mathcal{D}_{\text{test}}$ (note that $z_d$ is integrated out in the stm), conditioned on the model parameters $(\hat{\beta}_{\text{train}}, \hat{\Gamma}_{\text{train}}, \hat{\Sigma}_{\text{train}})$, as well as the words $W_{\text{test}}$ from the test set. This functionality is implemented in the \textit{stm} package through the function \textit{fitNewDocuments}, which per default outputs the MAP estimates of topic proportions $\theta_d$, for all $d \in \mathcal{D}_{\text{test}}$. Note that estimating the variational posterior of the latent variables, conditioned on the parameters and the words, is precisesly what occurs during each E-step of the EM Algorithm. Thus, the implementation of \textit{fitNewDocuments} simply consists of one E-step with inputs $(\hat{\beta}_{\text{train}}, \hat{\Gamma}_{\text{train}}, \hat{\Sigma}_{\text{train}}, W_{\text{test}})$. It is, however, not obvious how to exactly input $\hat{\Gamma}_{\text{train}}$ and  $\hat{\Sigma}_{\text{train}}$ into the E-step. Depending on the characteristics of the specific analysis conducted by the researcher, \cite{egami2018make} propose three different alternatives:
+Prediction of the topic proportions on the test is not straightforward, since the topic proportions are latent and the stm is not built for the purpose of predicting these latent variables on a set of new, unseen data. The fundamental idea is to estimate the variational posterior of the latent variables, that is, the topic proportions $\theta_d$, where $d \in \mathcal{D}_{\text{test}}$ (note that $z_d$ is integrated out in the stm), conditioned on the model parameters $(\hat{\beta}_{\text{train}}, \hat{\Gamma}_{\text{train}}, \hat{\Sigma}_{\text{train}})$ from the training set, as well as the words $W_{\text{test}}$ from the test set. This functionality is implemented in the \textit{stm} package through the function \textit{fitNewDocuments}, which per default outputs the MAP estimates of topic proportions $\theta_d$, for all $d \in \mathcal{D}_{\text{test}}$. Note that estimating the variational posterior of the latent variables, conditioned on the parameters and the words, is precisesly what occurs during each E-step of the EM Algorithm. Thus, the implementation of \textit{fitNewDocuments} simply consists of one E-step with inputs $(\hat{\beta}_{\text{train}}, \hat{\Gamma}_{\text{train}}, \hat{\Sigma}_{\text{train}}, W_{\text{test}})$. It is, however, not obvious how to exactly input $\hat{\Gamma}_{\text{train}}$ and  $\hat{\Sigma}_{\text{train}}$ into the E-step. Depending on the characteristics of the specific analysis conducted by the researcher, \cite{egami2018make} propose three different alternatives:
 \begin{enumerate}
 \item \textbf{Covariate-specific prior}: Before applying the E-step, $\hat{\Gamma}_{\text{train}}$ is used to obtain $\hat{\mu}_d := (\hat{\Gamma}_{\text{train}})^T(x_d)^T$, for each document $d \in \mathcal{D}_{\text{test}}$ in the test set. Each document is then updated performing the E-step with inputs $({\mu}_d, \Sigma) = (\hat{\mu}_d, \hat{\Sigma}_{\text{train}})$ together with the respective document specific words as well as $\hat{\beta}_{\text{train}}$ (for the exact update machanism see pp. 992-993, \cite{roberts2013structural}). The problem with this approach is, however, that for two documents from the test set containaing the exact same words, different topic proportions are predicted if the prevalence covariates differ. However, in such a case we would want the causal effect of the covariates on the topic proportions to be zero.
 \item \textbf{Average prior}: The average prior circumvents the above described problem of the covariate-specific prior by simply using - for each document in the test set - the average $\overline{\mu}_{\text{train}} := \frac{1}{|\mathcal{D}_{\text{train}}|}\sum_{d \in \mathcal{D}_{\text{train}}} (\hat{\Gamma}_{\text{train}})^T(x_d)^T$ of all document-specific means from the training set. The covariance $\hat{\Sigma}_{\text{train}}$ is recalculated based on the new average $\overline{\mu}_{\text{train}}$ according to formula (11) on p.\ 993, \cite{roberts2013structural}. In this scenario, prevalence covariates from the test have no influence at all on the predicted topic proportions. 
 \item \textbf{No prior}: If no prior is used, then for each document $d \in \mathcal{D}_{\text{test}}$ in the test set the E-step is performed using $\mu_d=0$ and replacing $\hat{\Sigma}_{\text{train}}$ with a diagonal covariance matrix with very large diagonals.
 \end{enumerate}
 
-The covariate-specific prior can not be used in our case due to the above described problem, that different topic proportions are predicted for identically worded test set documents, if their prevalence covariates differ. The option "no prior" can be useful if the metadata on the test set is believed to be linked differently to topics than is the case on the training set. In most cases the second option, "average prior", should provide the best trade-off, since in this case metadata from the training set is directly used to predict topic proportions, but the problem of the covariate-specific prior is solved. Note that hence in this case there is no double usage of covariates.
+The covariate-specific prior cannot be used in our case due to the above described problem, that different topic proportions are predicted for identically worded test set documents, if their prevalence covariates differ. The option "no prior" can be useful if the metadata on the test set is believed to be linked differently to topics than is the case on the training set. In most cases the second option, "average prior", should provide the best trade-off, since in this case metadata from the training set is directly used to predict topic proportions, but the problem of the covariate-specific prior is solved. Note that hence in this case there is no double usage of covariates.
 
 \subsection{Results}
 
-We now depict the results obtained conducting a train-test split, where we split the data into two equally sized sets, and choose the option "average prior".
+We now depict the results obtained conducting a train-test split, where we split the data into two equally sized sets, and choose the option "average prior". Note that the test data cannot consist fo words which have not been seen in the training data. Therefore, all previously unseen words are removed from the test data. After removing the words, the test data contains 80.6\% of the original words. 
+
+In contrast to section 4.4., the focus in this section will be on quantifying causal effects between covariates and the amount a topic is discussed, since the train-test framework is most appropriate in order to conduct such analyses. As mentioned, the function \textit{fitNewDocuments} outputs the MAP estimates of the variational posterior of topic proportions for the test set. In Figure \ref{fig:causal_inference_props} we these MAP estimates of topic proportions, together with the topic proportions obtained for the training data.
+
+The UN Climate Action Summit 2019 was held on 23 September 2019. As can be observed, the topic associated with climate issues was discussed to a much larger extent during this time than a year earlier. While the map estimates for the different prior specifications on the test set are rather similar, the estimated effect is much larger training for the training data. If we compare the estimated topic proportions for a topic we labelled as 'Emancipation' for the two opposing parties 'AfD' and 'B{\"u}ndnis 90/Die Gr{\"u}nen', we find similar results: the average difference of estimated topic proportions between both parties is larger for the training data. Also, note that the variation is higher on the training data compared to the test data in both cases.
+
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/4_7/climate_summit_props.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/4_7/emancipation_props.pdf}
+  \end{subfigure}
+  \caption{Maximum-a-posteriori (MAP) estimates of topic proportions on training and test data.Points display the mean, the lines  2.5\% and 97.5\% credible intervals}.
+  \label{fig:causal_inference_props}
+\end{figure}
+
+If we want to estimate the treatment effect, we can estimate the average difference of MAP estimates between both groups. Following \cite{egami2018make} we obtain an estimate of the Average Treatment Effect (ATE) on a data set $\mathcal{D}$ as 
+\begin{align}
+\widehat{\text{ATE}} = \frac{1}{|\mathcal{D}_{\text{treatment}}|}\sum_{i \in \mathcal{D}_{\text{treatment}}} \hat{\theta}_i - \frac{1}{|\mathcal{D}_{\text{control}}|}\sum_{i \in \mathcal{D}_{\text{control}}} \hat{\theta}_i,
+\end{align} 
+where $\hat{\theta}_i$ are the MAP estimates for the $i$-th document. \cite{egami2018make} show that, if additional conditions hold, the estimated $\widehat{\text{ATE}}$ on previously unseen test data $\mathcal{D}_{\text{test}}$ is an unbiased estimate of the ATE.
+
+In Figure \ref{fig:causal_inference_ate} we visualize the ATE estimated on training and on test data with different prior specifications (note that this is simply the difference of the means depicted in Figure \ref{fig:causal_inference_props}). The results correspond to our classical idea of overfitting: since the characteristics of each parliamentarian associated with a document have been used to estimate the topic proportions in the first place, when evaluating these topic proportions on the same data, the fit is optimistically biased. 
+
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering,margin=2cm}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/4_7/climate_summit_ate.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/4_7/emancipation_ate.pdf}
+  \end{subfigure}
+  \caption{Estimated Average Treatment Effects (ATE) using training and test data}
+  \label{fig:causal_inference_ate}
+\end{figure}

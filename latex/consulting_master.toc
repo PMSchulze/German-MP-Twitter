@@ -8,6 +8,6 @@
 \contentsline {subsection}{\numberline {2.1}Model Estimation on the Training Set}{10}
 \contentsline {subsection}{\numberline {2.2}Prediction of Topic Proportions on the Test Set}{10}
 \contentsline {subsection}{\numberline {2.3}Results}{11}
-\contentsline {section}{\numberline {3}Appendix 1}{12}
-\contentsline {section}{\numberline {4}Appendix}{14}
-\contentsline {subsection}{\numberline {4.1}Plots of section 4.4}{14}
+\contentsline {section}{\numberline {3}Appendix 1}{14}
+\contentsline {section}{\numberline {4}Appendix}{16}
+\contentsline {subsection}{\numberline {4.1}Plots of section 4.4}{16}
