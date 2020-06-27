@@ -4,7 +4,7 @@
 \contentsline {subsubsection}{\numberline {1.1.2}Alternative implementation}{4}
 \contentsline {subsubsection}{\numberline {1.1.3}Visualization}{5}
 \contentsline {subsection}{\numberline {1.2}Direct assessment using $\cc@accent {"705E}{\Gamma }$ and $\cc@accent {"705E}{\Sigma }$}{7}
-\contentsline {section}{\numberline {2}Train-test Split}{10}
+\contentsline {section}{\numberline {2}Causal Inference: Train-test Split}{10}
 \contentsline {subsection}{\numberline {2.1}Model Estimation on the Training Set}{10}
 \contentsline {subsection}{\numberline {2.2}Prediction of Topic Proportions on the Test Set}{10}
 \contentsline {subsection}{\numberline {2.3}Results}{11}
