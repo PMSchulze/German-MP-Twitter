@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lucas et~al.(2015)Lucas, Nielsen, Roberts, Stewart, Storer, and
+  Tingley]{lucas2015computer}
+Christopher Lucas, Richard~A Nielsen, Margaret~E Roberts, Brandon~M Stewart,
+  Alex Storer, and Dustin Tingley.
+\newblock Computer-assisted text analysis for comparative politics.
+\newblock \emph{Political Analysis}, 23\penalty0 (2):\penalty0 254--277, 2015.
+
+\end{thebibliography}

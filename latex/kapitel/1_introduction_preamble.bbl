@@ -1,0 +1,68 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Burnap et~al.(2016)Burnap, Gibson, Sloan, Southern, and
+  Williams]{burnap2016140}
+Pete Burnap, Rachel Gibson, Luke Sloan, Rosalynd Southern, and Matthew
+  Williams.
+\newblock 140 characters to victory?: Using twitter to predict the uk 2015
+  general election.
+\newblock \emph{Electoral Studies}, 41:\penalty0 230--233, 2016.
+
+\bibitem[Ceron(2017)]{ceron2017intra}
+Andrea Ceron.
+\newblock Intra-party politics in 140 characters.
+\newblock \emph{Party politics}, 23\penalty0 (1):\penalty0 7--17, 2017.
+
+\bibitem[Daniel et~al.(2019)Daniel, Obholzer, and Hurka]{daniel2019static}
+William~T Daniel, Lukas Obholzer, and Steffen Hurka.
+\newblock Static and dynamic incentives for twitter usage in the european
+  parliament.
+\newblock \emph{Party Politics}, 25\penalty0 (6):\penalty0 771--781, 2019.
+
+\bibitem[Gandomi and Haider(2015)]{gandomi2015beyond}
+Amir Gandomi and Murtaza Haider.
+\newblock Beyond the hype: Big data concepts, methods, and analytics.
+\newblock \emph{International journal of information management}, 35\penalty0
+  (2):\penalty0 137--144, 2015.
+
+\bibitem[Grimmer(2010)]{grimmer2010bayesian}
+Justin Grimmer.
+\newblock A bayesian hierarchical topic model for political texts: Measuring
+  expressed agendas in senate press releases.
+\newblock \emph{Political Analysis}, 18\penalty0 (1):\penalty0 1--35, 2010.
+
+\bibitem[Jungherr(2016)]{jungherr2016twitter}
+Andreas Jungherr.
+\newblock Twitter use in election campaigns: A systematic literature review.
+\newblock \emph{Journal of information technology \& politics}, 13\penalty0
+  (1):\penalty0 72--91, 2016.
+
+\bibitem[Nisar and Yeung(2018)]{nisar2018twitter}
+Tahir~M Nisar and Man Yeung.
+\newblock Twitter as a tool for forecasting stock market movements: A
+  short-window event study.
+\newblock \emph{The journal of finance and data science}, 4\penalty0
+  (2):\penalty0 101--119, 2018.
+
+\bibitem[Quinlan et~al.(2018)Quinlan, Gummer, Ro{\ss}mann, and
+  Wolf]{quinlan2018show}
+Stephen Quinlan, Tobias Gummer, Joss Ro{\ss}mann, and Christof Wolf.
+\newblock ‘show me the money and the party!’--variation in facebook and
+  twitter adoption by politicians.
+\newblock \emph{Information, communication \& society}, 21\penalty0
+  (8):\penalty0 1031--1049, 2018.
+
+\bibitem[Tumasjan et~al.(2010)Tumasjan, Sprenger, Sandner, and
+  Welpe]{tumasjan2010predicting}
+Andranik Tumasjan, Timm~O Sprenger, Philipp~G Sandner, and Isabell~M Welpe.
+\newblock Predicting elections with twitter: What 140 characters reveal about
+  political sentiment.
+\newblock In \emph{Fourth international AAAI conference on weblogs and social
+  media}, 2010.
+
+\end{thebibliography}

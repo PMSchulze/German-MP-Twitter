@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 4_1-3_global_analysis_preamble.aux
+The style file: plainnat.bst
+Database file #1: bibliography.bib
+You've used 6 entries,
+            2773 wiz_defined-function locations,
+            629 strings with 6001 characters,
+and the built_in function-call counts, 3437 in all, are:
+= -- 321
+> -- 169
+< -- 7
++ -- 57
+- -- 51
+* -- 247
+:= -- 479
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 35
+chr.to.int$ -- 6
+cite$ -- 12
+duplicate$ -- 170
+empty$ -- 291
+format.name$ -- 61
+if$ -- 763
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 5
+newline$ -- 38
+num.names$ -- 24
+pop$ -- 84
+preamble$ -- 1
+purify$ -- 29
+quote$ -- 0
+skip$ -- 151
+stack$ -- 0
+substring$ -- 172
+swap$ -- 50
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 66
+warning$ -- 0
+while$ -- 32
+width$ -- 0
+write$ -- 85

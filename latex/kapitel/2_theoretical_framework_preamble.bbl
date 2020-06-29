@@ -1,0 +1,113 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aldous(1985)]{aldous1985exchangeability}
+David~J Aldous.
+\newblock Exchangeability and related topics.
+\newblock In \emph{{\'E}cole d'{\'E}t{\'e} de Probabilit{\'e}s de Saint-Flour
+  XIII—1983}, pages 1--198. Springer, 1985.
+
+\bibitem[Atchison and Shen(1980)]{atchison1980logistic}
+J~Atchison and Sheng~M Shen.
+\newblock Logistic-normal distributions: Some properties and uses.
+\newblock \emph{Biometrika}, 67\penalty0 (2):\penalty0 261--272, 1980.
+
+\bibitem[Bishop(2006)]{bishop2006pattern}
+Christopher~M Bishop.
+\newblock \emph{Pattern recognition and machine learning}.
+\newblock springer, 2006.
+
+\bibitem[Blei et~al.(2003)Blei, Ng, and Jordan]{blei2003latent}
+David~M Blei, Andrew~Y Ng, and Michael~I Jordan.
+\newblock Latent dirichlet allocation.
+\newblock \emph{Journal of machine Learning research}, 3\penalty0
+  (Jan):\penalty0 993--1022, 2003.
+
+\bibitem[Blei et~al.(2007)Blei, Lafferty, et~al.]{blei2007correlated}
+David~M Blei, John~D Lafferty, et~al.
+\newblock A correlated topic model of science.
+\newblock \emph{The Annals of Applied Statistics}, 1\penalty0 (1):\penalty0
+  17--35, 2007.
+
+\bibitem[Deerwester et~al.(1990)Deerwester, Dumais, Furnas, Landauer, and
+  Harshman]{deerwester1990indexing}
+Scott Deerwester, Susan~T Dumais, George~W Furnas, Thomas~K Landauer, and
+  Richard Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock \emph{Journal of the American society for information science},
+  41\penalty0 (6):\penalty0 391--407, 1990.
+
+\bibitem[Egami et~al.(2018)Egami, Fong, Grimmer, Roberts, and
+  Stewart]{egami2018make}
+Naoki Egami, Christian~J Fong, Justin Grimmer, Margaret~E Roberts, and
+  Brandon~M Stewart.
+\newblock How to make causal inferences using texts.
+\newblock \emph{arXiv preprint arXiv:1802.02163}, 2018.
+
+\bibitem[Eisenstein et~al.(2011)Eisenstein, Ahmed, and
+  Xing]{eisenstein2011sparse}
+Jacob Eisenstein, Amr Ahmed, and Eric~P Xing.
+\newblock Sparse additive generative models of text.
+\newblock 2011.
+
+\bibitem[Hofmann(1999)]{hofmann1999probabilistic}
+Thomas Hofmann.
+\newblock Probabilistic latent semantic indexing.
+\newblock In \emph{Proceedings of the 22nd annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  50--57, 1999.
+
+\bibitem[James et~al.(1980)James, Mosimann, et~al.]{james1980new}
+Ian~R James, James~E Mosimann, et~al.
+\newblock A new characterization of the dirichlet distribution through
+  neutrality.
+\newblock \emph{The Annals of Statistics}, 8\penalty0 (1):\penalty0 183--189,
+  1980.
+
+\bibitem[Mimno et~al.(2011)Mimno, Wallach, Talley, Leenders, and
+  McCallum]{mimno2011optimizing}
+David Mimno, Hanna~M Wallach, Edmund Talley, Miriam Leenders, and Andrew
+  McCallum.
+\newblock Optimizing semantic coherence in topic models.
+\newblock In \emph{Proceedings of the conference on empirical methods in
+  natural language processing}, pages 262--272. Association for Computational
+  Linguistics, 2011.
+
+\bibitem[Roberts et~al.(2013)Roberts, Stewart, Tingley, Airoldi,
+  et~al.]{roberts2013structural}
+Margaret~E Roberts, Brandon~M Stewart, Dustin Tingley, Edoardo~M Airoldi,
+  et~al.
+\newblock The structural topic model and applied social science.
+\newblock In \emph{Advances in neural information processing systems workshop
+  on topic models: computation, application, and evaluation}, pages 1--20.
+  Harrahs and Harveys, Lake Tahoe, 2013.
+
+\bibitem[Roberts et~al.(2016)Roberts, Stewart, and Airoldi]{roberts2016model}
+Margaret~E. Roberts, Brandon~M. Stewart, and Edoardo~M. Airoldi.
+\newblock A model of text for experimentation in the social sciences.
+\newblock \emph{Journal of the American Statistical Association}, 111\penalty0
+  (515):\penalty0 988--1003, 2016.
+
+\bibitem[Roberts et~al.(2019)Roberts, Stewart, and Tingley]{stm}
+Margaret~E. Roberts, Brandon~M. Stewart, and Dustin Tingley.
+\newblock {stm}: An {R} package for structural topic models.
+\newblock \emph{Journal of Statistical Software}, 91\penalty0 (2):\penalty0
+  1--40, 2019.
+\newblock \doi{10.18637/jss.v091.i02}.
+
+\bibitem[Salton and McGill(1983)]{salton1983information}
+Gerard Salton and M.~J. McGill.
+\newblock \emph{Introduction to Modern Information Retrieval}.
+\newblock McGraw-Hill, 1983.
+
+\bibitem[Wang and Blei(2013)]{wang2013variational}
+Chong Wang and David~M Blei.
+\newblock Variational inference in nonconjugate models.
+\newblock \emph{Journal of Machine Learning Research}, 14\penalty0
+  (Apr):\penalty0 1005--1031, 2013.
+
+\end{thebibliography}

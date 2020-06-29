@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{enumerate}
+\usepackage{accents}
+%\usepackage{enumitem}
+\usepackage[shortlabels]{enumitem}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{cite}
+\usepackage[round]{natbib}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newtheorem*{theorem}{Theorem} 
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{remark}{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{examples}{Examples}
+\newcommand*{\QEDB}{\hfill\ensuremath{\square}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks
+\geometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2cm,
+  bottom=2cm,
+}
+
+\graphicspath{{C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-Analyse/plots/}}
+
+\begin{document}
+
+\section{Introduction}
+
+The rise in popularity of social media has changed various aspects of private, public, and professional life over the last two decades. From a data-analytical point of view, this has led to an unprecedented increase in the supply of publicly available unstructured (text) data, ready to be analyzed. In fact, unstructured data makes up the lion's share of what is called \textit{big data} (\citealp{gandomi2015beyond}). At the same time, advances in the field of machine learning, particularly in \textit{Natural Language Processing} (NLP), have created numerous new opportunities for the analysis of such large-scale unstructured texts.
+
+A field which has been particularly impacted by the use of social media (and the information extracted from it) is politics. At least since the 2016 Brexit vote and US presidential election, politicians have come to recognize not only that social media presence is ever more important, but also how strong a message their social media behavior can transmit. Among social media networks, Twitter is of particular importance, since it allows for direct communication between politicians and voters - and even more so after the Facebook-Cambridge Analytica data breach in 2018. As a consequence, there has been increasing academic interest in text-based (intra- and inter-)party politics (e.g., \citealp{ceron2017intra, daniel2019static, grimmer2010bayesian, quinlan2018show}). Moreover, unstructured text and the insights generated from it can subsequently be used as input for a broad variety of tasks, ranging from election forecasts (e.g., \citealp{burnap2016140, jungherr2016twitter, tumasjan2010predicting}) to prediction of stock market movements (e.g., \citealp{nisar2018twitter}).
+
+The key challenge in analyzing large amounts of unstructured text is to reduce dimensionality and classify pieces of text: either into previously determined categories (for instance, sentiments), which corresponds to a supervised learning problem; or by trying to discover latent thematic clusters that govern the content of the documents, which is now an instance of unsupervised learning (since the number and labeling of clusters is to be determined). In this paper, we pursue the second strategy, usually referred to as \textit{topic modeling}, and apply it to German politics. In particular, we construct a dataset where the text documents consist of Twitter messages by German Members of Parliament (MPs) and which furthermore contains a plenitude of personal MP-level data as well as socioeconomic data on an electoral-district level. Subsequently, we fit a topic model to the data to discover latent topics and analyze their relationship with document-level metadata. Due to the difficulties regarding causal inference within (latent variable-based) topic models, the analysis presented in this paper is mostly explorative/descriptive with a focus on statistical and methodological soundness instead of specific (politological) hypothesis testing.
+
+\vspace{0.5cm}
+[Short summary of key findings (TBD)]
+\vspace{0.5cm}
+
+The remainder of this paper is organized as follows. Section 2 provides the theoretical foundation of topic modeling, in particular the "component models" of the \textit{Structural Topic Model} which we use for the major part of our analysis, as well as a brief discussion on inference and parameter estimation. Section 3 describes the data collection process, the data itself, and the data preprocessing necessary for topic modeling. Section 4 presents the results, including a discussion of inference strategies and an alternative modeling procedure. Finally, section 5 concludes.
+
+\bibliography{bibliography}
+\bibliographystyle{plainnat}
+
+\end{document}

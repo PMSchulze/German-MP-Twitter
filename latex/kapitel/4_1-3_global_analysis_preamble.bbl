@@ -1,0 +1,47 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bischof and Airoldi(2012)]{bischof2012summarizing}
+Jonathan Bischof and Edoardo~M Airoldi.
+\newblock Summarizing topical content with word frequency and exclusivity.
+\newblock In \emph{Proceedings of the 29th International Conference on Machine
+  Learning (ICML-12)}, pages 201--208, 2012.
+
+\bibitem[Chang and Chang(2010)]{chang2010package}
+Jonathan Chang and Maintainer~Jonathan Chang.
+\newblock Package ‘lda’, 2010.
+
+\bibitem[Mimno et~al.(2011)Mimno, Wallach, Talley, Leenders, and
+  McCallum]{mimno2011optimizing}
+David Mimno, Hanna~M Wallach, Edmund Talley, Miriam Leenders, and Andrew
+  McCallum.
+\newblock Optimizing semantic coherence in topic models.
+\newblock In \emph{Proceedings of the conference on empirical methods in
+  natural language processing}, pages 262--272. Association for Computational
+  Linguistics, 2011.
+
+\bibitem[Roberts et~al.(2019)Roberts, Stewart, and Tingley]{stm}
+Margaret~E. Roberts, Brandon~M. Stewart, and Dustin Tingley.
+\newblock {stm}: An {R} package for structural topic models.
+\newblock \emph{Journal of Statistical Software}, 91\penalty0 (2):\penalty0
+  1--40, 2019.
+\newblock \doi{10.18637/jss.v091.i02}.
+
+\bibitem[Taddy(2012)]{taddy2012estimation}
+Matt Taddy.
+\newblock On estimation and selection for topic models.
+\newblock In \emph{Artificial Intelligence and Statistics}, pages 1184--1193,
+  2012.
+
+\bibitem[Wallach et~al.(2009)Wallach, Murray, Salakhutdinov, and
+  Mimno]{wallach2009evaluation}
+Hanna~M Wallach, Iain Murray, Ruslan Salakhutdinov, and David Mimno.
+\newblock Evaluation methods for topic models.
+\newblock In \emph{Proceedings of the 26th annual international conference on
+  machine learning}, pages 1105--1112, 2009.
+
+\end{thebibliography}

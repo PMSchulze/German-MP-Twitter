@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{enumerate}
+\usepackage{accents}
+%\usepackage{enumitem}
+\usepackage[shortlabels]{enumitem}
+\usepackage{dsfont}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{cite}
+\usepackage[round]{natbib}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newtheorem*{theorem}{Theorem} 
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{remark}{Remark}
+\newtheorem*{example}{Example}
+\newtheorem*{examples}{Examples}
+\newcommand*{\QEDB}{\hfill\ensuremath{\square}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks
+\geometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2cm,
+  bottom=2cm,
+}
+
+\graphicspath{{C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-Analyse/plots/}}
+
+\begin{document}
+
+\section{Conclusion}
+
+We have applied the STM to ...
+
+future research, improvements, limitations:
+- predicting party based on documents (DMR)
+- (natural) experiments: few covariates, binary if possible (treatment effect)
+- complete Gamma distribution available: opens many doors (direct estimation)
+
+\bibliography{bibliography}
+\bibliographystyle{plainnat}
+
+\end{document}

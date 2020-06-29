@@ -1,14 +1,26 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Aldous(1985)]{aldous1985exchangeability}
+David~J Aldous.
+\newblock Exchangeability and related topics.
+\newblock In \emph{{\'E}cole d'{\'E}t{\'e} de Probabilit{\'e}s de Saint-Flour
+  XIII—1983}, pages 1--198. Springer, 1985.
+
 \bibitem[Atchison and Shen(1980)]{atchison1980logistic}
 J~Atchison and Sheng~M Shen.
 \newblock Logistic-normal distributions: Some properties and uses.
 \newblock \emph{Biometrika}, 67\penalty0 (2):\penalty0 261--272, 1980.
+
+\bibitem[Bischof and Airoldi(2012)]{bischof2012summarizing}
+Jonathan Bischof and Edoardo~M Airoldi.
+\newblock Summarizing topical content with word frequency and exclusivity.
+\newblock In \emph{Proceedings of the 29th International Conference on Machine
+  Learning (ICML-12)}, pages 201--208, 2012.
 
 \bibitem[Bishop(2006)]{bishop2006pattern}
 Christopher~M Bishop.
@@ -21,12 +33,55 @@ David~M Blei, Andrew~Y Ng, and Michael~I Jordan.
 \newblock \emph{Journal of machine Learning research}, 3\penalty0
   (Jan):\penalty0 993--1022, 2003.
 
+\bibitem[Blei et~al.(2007)Blei, Lafferty, et~al.]{blei2007correlated}
+David~M Blei, John~D Lafferty, et~al.
+\newblock A correlated topic model of science.
+\newblock \emph{The Annals of Applied Statistics}, 1\penalty0 (1):\penalty0
+  17--35, 2007.
+
+\bibitem[Burnap et~al.(2016)Burnap, Gibson, Sloan, Southern, and
+  Williams]{burnap2016140}
+Pete Burnap, Rachel Gibson, Luke Sloan, Rosalynd Southern, and Matthew
+  Williams.
+\newblock 140 characters to victory?: Using twitter to predict the uk 2015
+  general election.
+\newblock \emph{Electoral Studies}, 41:\penalty0 230--233, 2016.
+
+\bibitem[Ceron(2017)]{ceron2017intra}
+Andrea Ceron.
+\newblock Intra-party politics in 140 characters.
+\newblock \emph{Party politics}, 23\penalty0 (1):\penalty0 7--17, 2017.
+
+\bibitem[Chang and Chang(2010)]{chang2010package}
+Jonathan Chang and Maintainer~Jonathan Chang.
+\newblock Package ‘lda’, 2010.
+
+\bibitem[Daniel et~al.(2019)Daniel, Obholzer, and Hurka]{daniel2019static}
+William~T Daniel, Lukas Obholzer, and Steffen Hurka.
+\newblock Static and dynamic incentives for twitter usage in the european
+  parliament.
+\newblock \emph{Party Politics}, 25\penalty0 (6):\penalty0 771--781, 2019.
+
+\bibitem[Deerwester et~al.(1990)Deerwester, Dumais, Furnas, Landauer, and
+  Harshman]{deerwester1990indexing}
+Scott Deerwester, Susan~T Dumais, George~W Furnas, Thomas~K Landauer, and
+  Richard Harshman.
+\newblock Indexing by latent semantic analysis.
+\newblock \emph{Journal of the American society for information science},
+  41\penalty0 (6):\penalty0 391--407, 1990.
+
 \bibitem[Egami et~al.(2018)Egami, Fong, Grimmer, Roberts, and
   Stewart]{egami2018make}
 Naoki Egami, Christian~J Fong, Justin Grimmer, Margaret~E Roberts, and
   Brandon~M Stewart.
 \newblock How to make causal inferences using texts.
 \newblock \emph{arXiv preprint arXiv:1802.02163}, 2018.
+
+\bibitem[Eisenstein et~al.(2011)Eisenstein, Ahmed, and
+  Xing]{eisenstein2011sparse}
+Jacob Eisenstein, Amr Ahmed, and Eric~P Xing.
+\newblock Sparse additive generative models of text.
+\newblock 2011.
 
 \bibitem[Fahrmeir et~al.(2007)Fahrmeir, Kneib, Lang, and
   Marx]{fahrmeir2007regression}
@@ -39,6 +94,69 @@ Silvia Ferrari and Francisco Cribari-Neto.
 \newblock Beta regression for modelling rates and proportions.
 \newblock \emph{Journal of applied statistics}, 31\penalty0 (7):\penalty0
   799--815, 2004.
+
+\bibitem[Gandomi and Haider(2015)]{gandomi2015beyond}
+Amir Gandomi and Murtaza Haider.
+\newblock Beyond the hype: Big data concepts, methods, and analytics.
+\newblock \emph{International journal of information management}, 35\penalty0
+  (2):\penalty0 137--144, 2015.
+
+\bibitem[Grimmer(2010)]{grimmer2010bayesian}
+Justin Grimmer.
+\newblock A bayesian hierarchical topic model for political texts: Measuring
+  expressed agendas in senate press releases.
+\newblock \emph{Political Analysis}, 18\penalty0 (1):\penalty0 1--35, 2010.
+
+\bibitem[Hofmann(1999)]{hofmann1999probabilistic}
+Thomas Hofmann.
+\newblock Probabilistic latent semantic indexing.
+\newblock In \emph{Proceedings of the 22nd annual international ACM SIGIR
+  conference on Research and development in information retrieval}, pages
+  50--57, 1999.
+
+\bibitem[James et~al.(1980)James, Mosimann, et~al.]{james1980new}
+Ian~R James, James~E Mosimann, et~al.
+\newblock A new characterization of the dirichlet distribution through
+  neutrality.
+\newblock \emph{The Annals of Statistics}, 8\penalty0 (1):\penalty0 183--189,
+  1980.
+
+\bibitem[Jungherr(2016)]{jungherr2016twitter}
+Andreas Jungherr.
+\newblock Twitter use in election campaigns: A systematic literature review.
+\newblock \emph{Journal of information technology \& politics}, 13\penalty0
+  (1):\penalty0 72--91, 2016.
+
+\bibitem[Lucas et~al.(2015)Lucas, Nielsen, Roberts, Stewart, Storer, and
+  Tingley]{lucas2015computer}
+Christopher Lucas, Richard~A Nielsen, Margaret~E Roberts, Brandon~M Stewart,
+  Alex Storer, and Dustin Tingley.
+\newblock Computer-assisted text analysis for comparative politics.
+\newblock \emph{Political Analysis}, 23\penalty0 (2):\penalty0 254--277, 2015.
+
+\bibitem[Mimno et~al.(2011)Mimno, Wallach, Talley, Leenders, and
+  McCallum]{mimno2011optimizing}
+David Mimno, Hanna~M Wallach, Edmund Talley, Miriam Leenders, and Andrew
+  McCallum.
+\newblock Optimizing semantic coherence in topic models.
+\newblock In \emph{Proceedings of the conference on empirical methods in
+  natural language processing}, pages 262--272. Association for Computational
+  Linguistics, 2011.
+
+\bibitem[Nisar and Yeung(2018)]{nisar2018twitter}
+Tahir~M Nisar and Man Yeung.
+\newblock Twitter as a tool for forecasting stock market movements: A
+  short-window event study.
+\newblock \emph{The journal of finance and data science}, 4\penalty0
+  (2):\penalty0 101--119, 2018.
+
+\bibitem[Quinlan et~al.(2018)Quinlan, Gummer, Ro{\ss}mann, and
+  Wolf]{quinlan2018show}
+Stephen Quinlan, Tobias Gummer, Joss Ro{\ss}mann, and Christof Wolf.
+\newblock ‘show me the money and the party!’--variation in facebook and
+  twitter adoption by politicians.
+\newblock \emph{Information, communication \& society}, 21\penalty0
+  (8):\penalty0 1031--1049, 2018.
 
 \bibitem[Roberts et~al.(2013)Roberts, Stewart, Tingley, Airoldi,
   et~al.]{roberts2013structural}
@@ -55,10 +173,43 @@ Margaret~E. Roberts, Brandon~M. Stewart, and Edoardo~M. Airoldi.
 \newblock \emph{Journal of the American Statistical Association}, 111\penalty0
   (515):\penalty0 988--1003, 2016.
 
+\bibitem[Roberts et~al.(2019)Roberts, Stewart, and Tingley]{stm}
+Margaret~E. Roberts, Brandon~M. Stewart, and Dustin Tingley.
+\newblock {stm}: An {R} package for structural topic models.
+\newblock \emph{Journal of Statistical Software}, 91\penalty0 (2):\penalty0
+  1--40, 2019.
+\newblock \doi{10.18637/jss.v091.i02}.
+
+\bibitem[Salton and McGill(1983)]{salton1983information}
+Gerard Salton and M.~J. McGill.
+\newblock \emph{Introduction to Modern Information Retrieval}.
+\newblock McGraw-Hill, 1983.
+
+\bibitem[Taddy(2012)]{taddy2012estimation}
+Matt Taddy.
+\newblock On estimation and selection for topic models.
+\newblock In \emph{Artificial Intelligence and Statistics}, pages 1184--1193,
+  2012.
+
 \bibitem[Tanner(2012)]{tanner2012tools}
 Martin~A Tanner.
 \newblock \emph{Tools for statistical inference}.
 \newblock Springer, 2012.
+
+\bibitem[Tumasjan et~al.(2010)Tumasjan, Sprenger, Sandner, and
+  Welpe]{tumasjan2010predicting}
+Andranik Tumasjan, Timm~O Sprenger, Philipp~G Sandner, and Isabell~M Welpe.
+\newblock Predicting elections with twitter: What 140 characters reveal about
+  political sentiment.
+\newblock In \emph{Fourth international AAAI conference on weblogs and social
+  media}, 2010.
+
+\bibitem[Wallach et~al.(2009)Wallach, Murray, Salakhutdinov, and
+  Mimno]{wallach2009evaluation}
+Hanna~M Wallach, Iain Murray, Ruslan Salakhutdinov, and David Mimno.
+\newblock Evaluation methods for topic models.
+\newblock In \emph{Proceedings of the 26th annual international conference on
+  machine learning}, pages 1105--1112, 2009.
 
 \bibitem[Wang and Blei(2013)]{wang2013variational}
 Chong Wang and David~M Blei.

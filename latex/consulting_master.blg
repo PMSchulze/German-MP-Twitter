@@ -1,48 +1,56 @@
-This is BibTeX, Version 0.99d (TeX Live 2017)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: consulting_master.aux
+A level-1 auxiliary file: ./kapitel/1_introduction.aux
+A level-1 auxiliary file: ./kapitel/2_theoretical_framework.aux
+A level-1 auxiliary file: ./kapitel/3_data.aux
+A level-1 auxiliary file: ./kapitel/4_1-3_global_analysis.aux
 A level-1 auxiliary file: ./kapitel/4_4_covariate_analysis.aux
+A level-1 auxiliary file: ./kapitel/4_5_topical_content.aux
+A level-1 auxiliary file: ./kapitel/4_6_ctm.aux
 A level-1 auxiliary file: ./kapitel/4_7_train_test.aux
 The style file: plainnat.bst
 Database file #1: ./kapitel/bibliography.bib
-You've used 10 entries,
+Warning--empty journal in eisenstein2011sparse
+You've used 33 entries,
             2773 wiz_defined-function locations,
-            659 strings with 6529 characters,
-and the built_in function-call counts, 4662 in all, are:
-= -- 404
-> -- 277
-< -- 6
-+ -- 94
-- -- 84
-* -- 383
-:= -- 727
-add.period$ -- 31
-call.type$ -- 10
-change.case$ -- 54
-chr.to.int$ -- 10
-cite$ -- 20
-duplicate$ -- 212
-empty$ -- 384
-format.name$ -- 100
-if$ -- 965
+            801 strings with 10894 characters,
+and the built_in function-call counts, 16191 in all, are:
+= -- 1453
+> -- 908
+< -- 23
++ -- 309
+- -- 276
+* -- 1307
+:= -- 2438
+add.period$ -- 102
+call.type$ -- 33
+change.case$ -- 184
+chr.to.int$ -- 33
+cite$ -- 67
+duplicate$ -- 752
+empty$ -- 1355
+format.name$ -- 325
+if$ -- 3422
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 13
-newline$ -- 58
-num.names$ -- 40
-pop$ -- 118
+missing$ -- 36
+newline$ -- 173
+num.names$ -- 132
+pop$ -- 390
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 155
 quote$ -- 0
-skip$ -- 157
+skip$ -- 578
 stack$ -- 0
-substring$ -- 176
-swap$ -- 16
-text.length$ -- 1
+substring$ -- 704
+swap$ -- 96
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 95
-warning$ -- 0
-while$ -- 43
+type$ -- 343
+warning$ -- 1
+while$ -- 156
 width$ -- 0
-write$ -- 134
+write$ -- 430
+(There was 1 warning)
