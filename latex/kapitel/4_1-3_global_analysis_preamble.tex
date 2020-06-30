@@ -87,7 +87,7 @@ The graph below shows the four metrics, as introduced above, for values of $K$ b
 
 \subsection{Labeling}
 
-As a first step after fitting the model, we would like to visually inspect the resulting topics, in particular their most representative words. However, representativeness of words for a given topic depends on the weighting metric used. The STM comes with four topic-word metrics - \textit{highest probability}, \textit{FREX}, \textit{Lift}, and \textit{Score} - which are discussed in the following.
+As a first step after fitting the model, we visually inspect the resulting topics, in particular their most representative words. However, representativeness of words for a given topic depends on the weighting metric used. The STM comes with four topic-word metrics - \textit{highest probability}, \textit{FREX}, \textit{Lift}, and \textit{Score} - which are discussed in the following.
 
 Given a topic $k$, \textit{highest probability} simply outputs those words in the topic-specific empirical word vector $\hat{\beta}_{k}$ with the highest corpus frequency, i.e, those with the highest absolute frequency across all documents within topic $k$. Using the same notation as in section 4.1 above, let $\hat{\beta}_{k,v}$ again be the empirical frequency of word $v$ within topic $k$. Then the highest probability word within topic $k$ is simply $\underset{v \in V}{\operatorname{argmax}\hat{\beta}_{k,v}}$. This relatively simple measure only takes into account how often words occur in absolute terms, but not how specific those words are to the given topic. This is why we observe words like \textit{wichtig}, \textit{berlin}, or \textit{frag} within the highest probability words for several topics. And since such words are very common, unspecific words, they are not particularly useful for distinguishing or labeling topics.
 
@@ -109,7 +109,7 @@ Score_{k,v} &= \hat{\beta}_{k,v}(\log\hat{\beta}_{k,v} - 1/K\sum_{j}^{K}\log\hat
 \end{align*}
 Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. This can roughly be interpreted as: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package \textit{lda} (\cite{chang2010package}).
 
-To get a broad overview of which words characterize each one of the topics, the output below shows the five top words according to each of the four topic-word evaluation metrics, for three selected topics (see appendix XXX for top words of all topics).
+To get a broad overview of which words characterize each one of the topics, the output below shows the five top words according to each of the four topic-word evaluation metrics, for four selected topics (see appendix XXX for top words of all topics).
 
 \vspace{0.5cm}
 \noindent
@@ -123,6 +123,11 @@ To get a broad overview of which words characterize each one of the topics, the 
  	 \textbf{FREX:} emissionshandel, soli, marktwirtschaft, feedback, co2steu \\
  	 \textbf{Lift:} aequivalenz, altersvorsorgeprodukt, bildungsqualitaet, co2limit, co2meng \\
  	 \textbf{Score:} emissionshandel, co2limit, basisrent, euet, technologieoff \\
+\textit{Topic 4 Top Words:}\\
+ 	 \textbf{Highest Prob:} sozial, miet, kind, arbeit, brauch \\
+ 	 \textbf{FREX:} mindestlohn, miet, wohnungsbau, mieterinn, loehn \\
+ 	 \textbf{Lift:} auseinanderfaellt, baugipfel, bestandsmiet, billigflieg, binnennachfrag \\
+ 	 \textbf{Score:} miet, mieterinn, mietendeckel, grundsicher, bezahlbar \\
 \textit{Topic 6 Top Words:}\\
  	 \textbf{Highest Prob:} gruen, klimaschutz, brauch, klar, euro \\
  	 \textbf{FREX:} fossil, erneuerbar, kohleausstieg, verkehrsminist, verkehrsw \\
@@ -130,7 +135,7 @@ To get a broad overview of which words characterize each one of the topics, the 
  	 \textbf{Score:} erneuerbar, fossil, zdebel, verkehrsminist, klimaschutz \\
 
 \noindent
-A key task of topic analysis is to actually ascribe a meaning to the topics identified, i.e., to label them. While this is clearly where human judgment should and does come into play, we attempt to conduct the labeling in a more strategic (and thus less subjective) manner, following a 3-step procedure. This procedure is exemplified by topic 1. First, we consider the \textit{words} contained in the topic, for instance by simply inspecting the top words (see output above). For a better visualization, we use a word cloud. As shown below, for a given topic (i.e., conditional upon a specific topic being chosen), it shows highest probability words weighted by their frequency. Judging at first sight, topic 1 appears to be about right-wing nationalist issues, particularly immigration.
+A key task of topic analysis is to explore the latent space of the model; that is, we wish to determine whether the topical clusters identified by the model carry actual meaning and summarize this meaning by a one- or two-word label per cluster.\footnote{For an in-depth discussion of the meaningfulness of the latent space, see \cite{chang2009reading}.} While this is clearly where human judgment should and does come into play, we attempt to conduct the labeling in a more strategic (and thus less subjective) manner, following a three-step procedure. This procedure is exemplified by topic 1. First, we consider the \textit{words} contained in the topic, for instance by simply inspecting the top words (see output above). For a better visualization, we use a word cloud. As shown below, for a given topic (i.e., conditional upon a specific topic being chosen), it shows highest probability words weighted by their frequency. Judging at first sight, topic 1 appears to be about right-wing nationalist issues, particularly immigration.
 
 \begin{figure}[h!]
   \centering
@@ -154,7 +159,7 @@ The second most representative document for topic 1, with an almost identical $\
 \textit{"Mio-Überweisungen u.a. an Kanzleien unter \#BAMF-Außenstellenleiterin, die mit Anwälten bandenmäßig Asylbetrug begangen haben soll. Und die Frau ist noch frei und präsentiert sich als Gutmensch. \#Staatsanwaltschaft muss hier handeln und Haftgründe prüfen."}
 \vspace{0.5cm}
 
-The documents exclusively focus on immigration issues, confirming the first impression gained through top words and word cloud: topic 1 concerns right-wing nationalist issues, in particular immigration. As a third step in our labeling process we finally assign a label to the topic: in this case, "Right/Nationalist". We repeat this 3-step procedure (inspecting top words and word cloud, reading through top documents, assigning a 1- or 2-word label) for all remaining topics, arriving at the following manual labels:
+The documents exclusively focus on immigration issues, confirming the first impression gained through top words and word cloud: topic 1 concerns right-wing nationalist issues, in particular immigration. As a third step in our labeling process we finally assign a label to the topic: in this case, "Right/Nationalist". We repeat this three-step procedure (inspecting top words and word cloud, reading through top documents, assigning a 1- or 2-word label) for all remaining topics, arriving at the following manual labels:
 
 \begin{table}[h!]
 	\centering
