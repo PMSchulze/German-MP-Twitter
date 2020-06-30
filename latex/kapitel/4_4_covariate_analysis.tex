@@ -2,7 +2,7 @@
 
 We now proceed to analyze the relationship between metadata information (i.e., document-level covariates) and topic proportions. We specify topical prevalence as 
 \begin{align}
-\mu_{d,k} = x_d^T \gamma_k= \text{party}_{d,k} + \text{state}_{d,k} + f_k(\text{t}_d) + g_k(\text{struct}_d), \label{prevalence}
+\mu_{d,k} = x_d^T \gamma_k= \gamma_{k,\text{party}} \mathbbm{1}_{\text{party}} (\text{party}_d) + \gamma_{k,\text{state}} \mathbbm{1}_{\text{state}} (\text{state}_d) + f_k(\text{t}_d) + g_k(\text{struct}_d), \label{prevalence}
 \end{align} 
 for all documents $d = 1,\dots,D$, and for all topics $k = 1,\dots,K$, where 
 \begin{align*}
