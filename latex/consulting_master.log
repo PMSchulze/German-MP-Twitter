@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  30 JUN 2020 18:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  30 JUN 2020 18:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1447,15 +1447,11 @@ Package pdftex.def Info: ../plots/2/stm_graphical.png used on input line 137.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9] [10 <../plots/2/stm_graphical.png>]
-Overfull \hbox (1.01865pt too wide) in paragraph at lines 161--161
-[] 
- []
-
-[11] [12]) [13]
+[9] [10 <../plots/2/stm_graphical.png>] [11] [12]) [13]
 \openout2 = `./kapitel/3_data.aux'.
 
- (./kapitel/3_data.tex [14
+ (./kapitel/3_data.tex
+[14
 
 
 ]
@@ -2057,7 +2053,7 @@ cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm
 uper/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-sup
 er/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super
 /sfti1728.pfb>
-Output written on consulting_master.pdf (56 pages, 1921275 bytes).
+Output written on consulting_master.pdf (56 pages, 1921268 bytes).
 PDF statistics:
  906 PDF objects out of 1000 (max. 8388607)
  607 compressed objects within 7 object streams

@@ -154,10 +154,10 @@ Nevertheless, in each case it should be investigated whether the relationship of
 In this subsection, we briefly derive the posterior distribution of the STM (up to proportionality), as stated on p.\ 992 of \cite{roberts2016model}. Recall that only words $w$, prevalence covariates $X$, and the content covariate $Y$ are observable, while all other variables - unnormalized topic proportions $\eta$, topic assignments $z$, topic-word distribution deviations $\kappa$, prevalence coefficients $\Gamma$, and unnormalized topic proportion variance $\Sigma$ - are latent.
 \begin{align*}
 p(\eta, z, \kappa, \Gamma, \Sigma | w, X, Y) & \propto \underbrace{p(w | \eta, z, \kappa, \Gamma, \Sigma, X, Y)}_{=p(w | z, \kappa, Y)} p(\eta, z, \kappa, \Gamma, \Sigma | X, Y) \\
-& \propto p(w | z, \kappa, Y) p(z | \eta) p(\eta | \Gamma, \Sigma, X) \prod p(\kappa) \prod p(\Gamma)p(\Sigma) \\
-& \propto \Big\{ \prod_{d=1}^{D} p(\eta_d | \Gamma, \Sigma, X_d) \Big( \prod_{n=1}^{N} p(w_n | \beta_{d, n}) p(z_{d,n} | \theta_d) \Big) \Big\} \prod p(\kappa) \prod p(\Gamma) p(\Sigma) \\
+& \propto p(w | z, \kappa, Y) p(z | \eta) p(\eta | \Gamma, \Sigma, X) \prod p(\kappa) \prod p(\Gamma)\\
+& \propto \Big\{ \prod_{d=1}^{D} p(\eta_d | \Gamma, \Sigma, X_d) \Big( \prod_{n=1}^{N} p(w_n | \beta_{d, n}) p(z_{d,n} | \theta_d) \Big) \Big\} \prod p(\kappa) \prod p(\Gamma)\\
 & \propto \Big\{ \prod_{d=1}^{D} \text{Normal}(\eta_d | X_d \Gamma, \Sigma) \Big( \prod_{n=1}^{N} \text{Multinomial}(z_{n,d}| \theta_d) \\
-& \ \ \ \ \times \text{Multinomial}(w_n | \beta_{d,n}) \Big) \Big\} \times \prod p(\kappa) \prod p(\Gamma) p(\Sigma),
+& \ \ \ \ \times \text{Multinomial}(w_n | \beta_{d,n}) \Big) \Big\} \times \prod p(\kappa) \prod p(\Gamma),
 \end{align*}
 where $\beta_{d, n} \in \mathbb{R}^V$ is the topic-word distribution for word $n$ in document $d$, which has been assigned to topic $k$ through $z_{d,n}$. The topic-word distribution vectors $\beta_{k,a}$ have entries $\beta_{k,a,v} \propto \exp(m_{v} + \kappa_{k,v}^{(t)} + \kappa_{a,v}^{(c)} + \kappa_{k, a,v}^{(i)})$, $v \in \{1,\dots,V\}$, where $\kappa_{k,v}^{(t)}$, $\kappa_{a,v}^{(c)}$, and $\kappa_{k, a,v}^{(i)}$ are the log-transformed rate deviations of word $v$ for topic $k$, for content variable level $a$, and for the interaction of $k$ and $a$, respectively.
 
