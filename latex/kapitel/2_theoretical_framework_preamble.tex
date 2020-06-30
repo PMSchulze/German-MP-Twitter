@@ -202,7 +202,7 @@ Nevertheless, in each case it should be investigated whether the relationship of
 
 \subsubsection*{Posterior Distribution}
 
-In this subsection, we briefly derive the posterior distribution of the STM (up to proportionality), as stated on p.\ 992 of \cite{roberts2016model}. Recall that only words $w$, prevalence covariates $X$, and the content covariate $Y$ are observable, while all other variables - unnormalized topic proportions $\eta$, topic assignments $z$, topic-word distribution deviations $\kappa$, prevalence coefficients $\Gamma$, and unnormalized topic proportion variance $\Sigma$ - are latent.
+In this subsection, we briefly derive the posterior distribution of the STM (up to proportionality), as stated on p.\ 992 of \cite{roberts2016model}. Recall that only words $w$, prevalence covariates $X$, and the content covariate $Y$ are observable, while unnormalized topic proportions $\eta$ and topic assignments $z$ are latent and topic-word distribution deviations $\kappa$, prevalence coefficients $\Gamma$, and unnormalized topic proportion variance $\Sigma$ - are parameters to be estimated.
 \begin{align*}
 p(\eta, z, \kappa, \Gamma, \Sigma | w, X, Y) & \propto \underbrace{p(w | \eta, z, \kappa, \Gamma, \Sigma, X, Y)}_{=p(w | z, \kappa, Y)} p(\eta, z, \kappa, \Gamma, \Sigma | X, Y) \\
 & \propto p(w | z, \kappa, Y) p(z | \eta) p(\eta | \Gamma, \Sigma, X) \prod p(\kappa) \prod p(\Gamma) \\
