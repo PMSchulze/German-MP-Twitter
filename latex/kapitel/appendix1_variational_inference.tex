@@ -10,28 +10,28 @@ p(\theta,z|x) &= \frac{p(\theta,z,x)}{\int p(\theta,z,x)dzd\theta}
 \end{align*}
 is usually intractable due to the high-dimensional integral, which is why the distribution needs to be approximated.
 
-As stated in section 2.3, in variational inference a simple distribution family $q(\theta,z)$ is posited and subsequently, we determine the member of this family - that is, the variational parameter(s) - that minimizes the KL divergence. Note that, for computational purposes, we compute KL divergence of the true posterior $p$ from the approximating posterior $q$, $KL(q||p)$, whereas intuitively one would seek to minimize $KL(p||q)$.
+As stated in section 2.3, in variational inference a simple distribution family $q(\theta,z)$ is posited and subsequently, we determine the member of this family - that is, the variational parameter(s) - that minimizes the KL divergence. Note that, for computational purposes, we compute KL divergence of the true posterior $p$ from the approximating posterior $q$, $\text{KL}(q||p)$, whereas intuitively one would seek to minimize $\text{KL}(p||q)$.
 
 The most popular variational inference technique is mean-field variational inference (also: mean-field variational Bayes), where we posit full factorizability of $q(\theta,z)$: $q(\theta,z) = q(\theta)q(z)$. That is, $\theta$ and $z$ are assumed to be independent with their own distributions and variational parameters $\phi$ (which we suppress for improved readability). Since $\theta$ and $z$ are actually dependent, this approximate distribution family $q(\theta,z)$ does not contain the true posterior $p(\theta,z|x)$.  
 
 Let us now write out the KL divergence of $p$ from $q$:
 \begin{align*}
-KL(q||p) &= \mathbb{E}_q[\log\frac{q(\theta,z)}{p(\theta,z|x)}] \\
-&= \mathbb{E}_q[\log(q(\theta,z))] - \mathbb{E}_q[\log(p(\theta,z|x))] \\
-&=\mathbb{E}_q[\log(q(\theta,z))] - \mathbb{E}_q[\log(p(\theta,z,x))] + \log(p(x)) 
+\text{KL}(q||p) &= \mathbb{E}_q[\log\frac{q(\theta,z)}{p(\theta,z|x)}] \\
+&= \mathbb{E}_q[\log q(\theta,z)] - \mathbb{E}_q[\log p(\theta,z|x)] \\
+&=\mathbb{E}_q[\log q(\theta,z)] - \mathbb{E}_q[\log p(\theta,z,x)] + \log p(x) 
 \end{align*}
-Since $KL(q||p) \geq 0$ (which can be easily shown using Jensen's inequality), it follows that:
+Since $\text{KL}(q||p) \geq 0$ (which can be easily shown using Jensen's inequality), it follows that:
 \begin{align*}
-\log(p(x)) & \geq \mathbb{E}_q[\log(p(\theta,z,x))] - \mathbb{E}_q[\log(q(\theta,z))].
+\log p(x) & \geq \mathbb{E}_q[\log p(\theta,z,x)] - \mathbb{E}_q[\log q(\theta,z)].
 \end{align*}
 The left-hand side of the above inequality is the marginal log likelihood of observed data $x$ and is also called evidence (of the observed data). Note that the evidence is not computable - otherwise we would not need to resort to variational inference in the first place. The right-hand side thus presents a lower bound on the evidence and we define the \textit{Evidence Lower BOund} (ELBO) as:
 \begin{align*}
-ELBO := \mathbb{E}_q[\log(p(\theta,z,x))] - \mathbb{E}_q[\log(q(\theta,z))],
+ELBO := \mathbb{E}_q[\log p(\theta,z,x)] - \mathbb{E}_q[\log q(\theta,z)],
 \end{align*}
-where the second component of the ELBO, $\mathbb{E}_q[\log(q(\theta,z))$, is the entropy of the approximate distribution $q$. Equivalently, we could say that the evidence constitutes an upper bound for the ELBO. This means that we actively maximize the ELBO (which is therefore also called \textit{variational objective}), which in turn is equivalent to minimizing the KL divergence of the true posterior $p(\theta,z|x)$ from the approximate distribution $q(\theta,z)$. Therefore, the approximation $q(\theta,z)$ - or, more precisely, the variational parameters $\phi$ of $q(\theta)$ and $q(z)$ - that maximizes the ELBO simultaneously minimizes KL divergence (\citealp{blei2003latent, wang2013variational}). \cite{wang2013variational} show that for the chosen factorization of the joint distribution $p(\theta,z,x)$, and using the optimality conditions as derived in \cite{bishop2006pattern}, we obtain the following solutions when setting $\frac{\partial ELBO}{\partial q}\overset{!}{=}0$:
+where the second component of the ELBO, $\mathbb{E}_q[\log q(\theta,z)$, is the entropy of the approximate distribution $q$. Equivalently, we could say that the evidence constitutes an upper bound for the ELBO. This means that we actively maximize the ELBO (which is therefore also called \textit{variational objective}), which in turn is equivalent to minimizing the KL divergence of the true posterior $p(\theta,z|x)$ from the approximate distribution $q(\theta,z)$. Therefore, the approximation $q(\theta,z)$ - or, more precisely, the variational parameters $\phi$ of $q(\theta)$ and $q(z)$ - that maximizes the ELBO simultaneously minimizes KL divergence (\citealp{blei2003latent, wang2013variational}). \cite{wang2013variational} show that for the chosen factorization of the joint distribution $p(\theta,z,x)$, and using the optimality conditions as derived in \cite{bishop2006pattern}, we obtain the following solutions when setting $\frac{\partial ELBO}{\partial q}\overset{!}{=}0$:
 \begin{align*}
-q^{*}(\theta) \propto exp\{\mathbb{E}_{q(z)}[\log(p(z|\theta))p(\theta)]\}, \\
-q^{*}(z) \propto exp\{\mathbb{E}_{q(\theta)}[\log(p(x|z))p(z|\theta)]\}.
+q^{*}(\theta) \propto \exp\{\mathbb{E}_{q(z)}[\log p(z|\theta))p(\theta)]\}, \\
+q^{*}(z) \propto \exp\{\mathbb{E}_{q(\theta)}[\log p(x|z))p(z|\theta)]\}.
 \end{align*}
 The coordinate ascent algorithm iteratively updates one of these two expressions while holding the other one constant, but requires closed-form updates to do so. This requirement is fulfilled as long as all model nodes are conditionally conjugate, i.e., as long as for each node in the model "its conditional distribution given its Markov blanket (i.e., the set of random variables that it is dependent on in the posterior) is in the same family as its conditional distribution given its parents (i.e., its factor in the joint distribution)" (\cite{wang2013variational}, p.\ 1008). The authors consequently define a class of models where some nodes are not conditionally conjugate, the so-called \textit{nonconjugate models}; for this class, using Laplace approximations, the variational family is shown to be $q(\theta,z) = q(\theta|\mu,\Sigma)q(z|\phi)$; that is, $q(\theta)$ is now Gaussian with variational parameters $\mu$ and $\Sigma$.
 
