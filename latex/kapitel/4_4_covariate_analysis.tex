@@ -1,4 +1,4 @@
-\section{Covariate-level Topic Analysis}
+\subsection{Covariate-level Topic Analysis}
 
 We now proceed to analyze the relationship between metadata information (i.e., document-level covariates) and topic proportions. We specify topical prevalence as 
 \begin{align}
@@ -20,7 +20,7 @@ Alternatively, the estimated topic proportions can be used as the dependent vari
 
 In the following, we will first introduce the method of composition. We will discuss its implementation in the \textit{stm} package and provide alternative regression approaches based on the method of composition. Subsequently, we will evaluate the relationship between prevalence covariates and topic proportions by directly assessing the estimates $\hat{\Gamma}$ and $\hat{\Sigma}$, as outlined above, and compare the results of both approaches.
 
-\subsection{Method of Composition}
+\subsubsection{Method of Composition}
 
 Let $\theta_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. As stated, we want to perform a regression of these topic proportions $\theta_{(k)}$ on a subset $\tilde{X} \in \mathbb{R}^{D \times \tilde{P}}$ of prevalence covariates $X$. The true topic proportions are unknown, but the stm produces an estimate of the approximate posterior of $\theta_{(k)}$. A na{\"\i}ve approach would be to regress the estimated mode of the approximate posterior distribution on $\tilde{X}$. However, this approach neglects much of the information contained in the distribution. 
 
@@ -38,11 +38,11 @@ It then holds that $\xi_1^*, \dots, \xi_m^*$ is an i.i.d.\ sample from the margi
 \begin{align*}
 q(\xi | X, W) := \int_{\theta_{(k)}} q(\xi| \tilde{X}, \theta_{(k)}) q(\theta_{(k)} | X, W) \text{d} \theta_{(k)} = \int_{\theta_{(k)}} q(\xi, \theta_{(k)} | X, W) \text{d} \theta_{(k)}, 
 \end{align*}
-where $q(\xi, \theta_{(k)} | X, W) := q(\xi| \tilde{X}, \theta_{(k)}) q(\theta_{(k)} | X, W)$. Thus, by integrating over $\theta_{(k)}$, this approach allows incorporating information contained in the posterior distribution of $\theta_{(k)}$ when determining $\xi$.
+where $q(\xi, \theta_{(k)} | X, W) := q(\xi| \tilde{X}, \theta_{(k)}) q(\theta_{(k)} | X, W)$. Thus, by integrating over $\theta_{(k)}$, this approach allows incorporating information contained in the posterior distribution of $\theta_{(k)}$ when determining $\xi$.\\
+\\
+\textbf{Implementation in the \textit{stm} package} \vspace{10px}
 
-\subsubsection{Implementation in the \textit{stm} package}
-
-The R package \textit{stm} implements a simple OLS regression through its \textit{estimateEffect} function. However, this approach ignores that the sampled topic proportions are restricted to $(0,1)$. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$. Moreover, credible intervals are non-informative, due to violated model assumptions. 
+\noindent The R package \textit{stm} implements a simple OLS regression through its \textit{estimateEffect} function. However, this approach ignores that the sampled topic proportions are restricted to $(0,1)$. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$. Moreover, credible intervals are non-informative, due to violated model assumptions. 
 
 \begin{figure}[h!]
   \centering
@@ -57,19 +57,19 @@ The R package \textit{stm} implements a simple OLS regression through its \texti
   \label{fig:coffee}
 \end{figure}
 
-\subsubsection{Alternative implementation}
+\noindent \textbf{Alternative implementation} \vspace{10px}
 
-We can attempt to improve the approach employed within the \textit{stm} package by replacing the OLS regression with a regression model that assumes a dependent variable in the interval $(0,1)$. However, note that since topic proportions are modeled separately, regardless of the specific model implied, distributional assumptions about $\theta_{(k)}$ will be violated. This is due to the fact that the the distribution of a subvector - and thus particularly of a single component - of $\theta_d$ is not of a simple form, when $\theta_d$ follows a logistic normal distribution, see e.g.\ \cite{atchison1980logistic}.
+\noindent We can attempt to improve the approach employed within the \textit{stm} package by replacing the OLS regression with a regression model that assumes a dependent variable in the interval $(0,1)$. However, note that since topic proportions are modeled separately, regardless of the specific model implied, distributional assumptions about $\theta_{(k)}$ will be violated. This is due to the fact that the the distribution of a subvector - and thus particularly of a single component - of $\theta_d$ is not of a simple form, when $\theta_d$ follows a logistic normal distribution, see e.g.\ \cite{atchison1980logistic}.
 
 As shown by \cite{atchison1980logistic}, a distribution that can be used to approximate a logistic normal distribution is the Dirichlet distribution. However, note that the Dirichlet distribution assumes less interdependence among components than implied by the logistic normal distribution. In case of the Dirichlet distribution the univariate marginal distributions are beta. One possibility is thus to perform a separate beta regression for each topic proportion on $\tilde{X}$. 
 
 As an alternative approximation we can employ a quasibinomial generalized linear model (GLM). Topic proportions can be rescaled and discretized and topics comprehended as classes, such that each rescaled topic proportion can be interpreted as the "number of successes" for the respective class. To match the underlying logistic normal distribution more closely, the quasi-likelihood furthermore allows for a flexible variance specification.
 
-Note that $q(\xi| \theta_{(k)}, \tilde{X})$ is asymptotically normal for both the beta regression, see \cite{ferrari2004beta}, p.\ 17, and the quasibinomial GLM, see e.g.\ \cite{fahrmeir2007regression}, p. 285. Furthermore, in both cases we use a logit-link.
+Note that $q(\xi| \theta_{(k)}, \tilde{X})$ is asymptotically normal for both the beta regression, see \cite{ferrari2004beta}, p.\ 17, and the quasibinomial GLM, see e.g.\ \cite{fahrmeir2007regression}, p. 285. Furthermore, in both cases we use a logit-link. \\
+\\
+\noindent \textbf{Visualization} \vspace{10px}
 
-\subsubsection{Visualization}
-
-We now apply the method of composition, based on either a beta regression or a quasibinomial GLM, in order to visualize covariate effects. Here we only visualize the results obtained by the quasibinomial GLM; the results of the beta regression, which show similar trends, are found in the appendix. Setting the number of simulations to 100, we sample $\xi^*_1, \dots, \xi^*_{100}$ from the  marginal posterior distribution $q(\xi | X, W)$. As mentioned, when visualizing the impact of a particular covariate, all other covariates are held at their median (or majority vote, if categorial), in line with the methodology employed in the \textit{stm} package.
+\noindent We now apply the method of composition, based on either a beta regression or a quasibinomial GLM, in order to visualize covariate effects. Here we only visualize the results obtained by the quasibinomial GLM; the results of the beta regression, which show similar trends, are found in the appendix. Setting the number of simulations to 100, we sample $\xi^*_1, \dots, \xi^*_{100}$ from the  marginal posterior distribution $q(\xi | X, W)$. As mentioned, when visualizing the impact of a particular covariate, all other covariates are held at their median (or majority vote, if categorial), in line with the methodology employed in the \textit{stm} package.
 Let $\tilde{X}^*$ denote the subset of $X$ where, apart from the variable of interest, each selected column consists of the median of the respective column of $X$. In order to plot the predicted effects, we then input $\tilde{X^*}\xi^*$ into the sigmoid function, which is the response function corresponding to a regression with logit-link, and calculate the predicted proportions. 
 
 We exemplarily illustrate the relationship between covariates and topic proportions for topic 4 ("Social/Housing") and topic 6 ("Climate Protection"). The linear predictor of our regressions takes the same form as in  \eqref{prevalence}, i.e., we do not use a subset $\tilde{X}$, but the full set of prevalence covariates $X$, in order to estimate the effects, although we do not display each covariate included. For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the mean, and the shaded area represents 95\% credible intervals.
@@ -118,7 +118,7 @@ Finally, the graph below shows a summary comparison of topical prevalence across
   \label{fig:boat1}
 \end{figure}
 
-\subsection{Direct assessment using $\hat{\Gamma}$ and $\hat{\Sigma}$}
+\subsubsection{Direct assessment using $\hat{\Gamma}$ and $\hat{\Sigma}$}
 
 The \textit{stm} being an extension to the correlated topic model (\textit{CTM}), it is assumed that the topic proportions follow a logistic normal distribution, such that $\theta_d \sim \text{LogisticNormal}_{K-1}(\Gamma^Tx_d^T, \Sigma)$. Within the CTM, the Dirichlet distribution of the LDA has been replaced with a logistic normal distribution, in order to allow for a joint dependence among topics. Therefore, as mentioned above, separately modeling topic proportions is a simplification; in particular credible intervals should be treated with caution.
 
