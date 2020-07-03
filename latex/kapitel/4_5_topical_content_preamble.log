@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  2 JUL 2020 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  2 JUL 2020 12:29
 entering extended mode
-**./4_1-3_global_analysis_preamble.tex
-(4_1-3_global_analysis_preamble.tex
+**./4_5_topical_content_preamble.tex
+(4_5_topical_content_preamble.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-04-06>
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
@@ -461,26 +461,26 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip62
-) (4_1-3_global_analysis_preamble.aux)
-\openout1 = `4_1-3_global_analysis_preamble.aux'.
+)
+No file 4_5_topical_content_preamble.aux.
+\openout1 = `4_5_topical_content_preamble.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -542,7 +542,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box53
-Package hyperref Info: Link coloring OFF on input line 52.
+Package hyperref Info: Link coloring OFF on input line 51.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -558,198 +558,97 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 52.
-LaTeX Info: Redefining \pageref on input line 52.
-LaTeX Info: Redefining \nameref on input line 52.
- (4_1-3_global_analysis_preamble.out)
-(4_1-3_global_analysis_preamble.out)
+LaTeX Info: Redefining \ref on input line 51.
+LaTeX Info: Redefining \pageref on input line 51.
+LaTeX Info: Redefining \nameref on input line 51.
 \@outlinefile=\write3
-\openout3 = `4_1-3_global_analysis_preamble.out'.
+\openout3 = `4_5_topical_content_preamble.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
 
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 58.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `fig:t8_vocab_parties' on page 1 undefined on input li
+ne 90.
+
+[1
 
 {C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (1.64722pt too wide) in paragraph at lines 71--73
-\T1/cmr/m/n/12 Combining a word's fre-quency and ex-clu-siv-ity fi-nally yields
- its Frequency-Exclusivity (\T1/cmr/m/it/12 FREX\T1/cmr/m/n/12 )
- []
-
-[2]
 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_1/searchK.pdf, id=68, 578.16pt x 443.6575pt>
+Analyse/plots/4_5/t8_vocab_parties.pdf, id=22, 578.16pt x 443.6575pt>
 File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_1/searchK.pdf Graphic file (type pdf)
+g-MP-Analyse/plots/4_5/t8_vocab_parties.pdf Graphic file (type pdf)
 <use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_1/searchK.pdf>
+-MP-Analyse/plots/4_5/t8_vocab_parties.pdf>
 Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_1/searchK.pdf  used on input line 83.
+Consulting/Bundestag-MP-Analyse/plots/4_5/t8_vocab_parties.pdf  used on input l
+ine 95.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [3 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_1/searchK.pdf>]
-Overfull \hbox (18.37822pt too wide) detected at line 97
-[]
- []
+ [2 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
+-MP-Analyse/plots/4_5/t8_vocab_parties.pdf>]
+No file 4_5_topical_content_preamble.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 106.
+[3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 106.
+ (4_5_topical_content_preamble.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 106.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 106.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--136
+Package rerunfilecheck Warning: File `4_5_topical_content_preamble.out' has cha
+nged.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
- []
+Package rerunfilecheck Info: Checksums for `4_5_topical_content_preamble.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  82D0EC48241B282B59E64D1E8133BF05;106.
 
-[4]
-
-Package natbib Warning: Citation `chang2009reading' on page 5 undefined on inpu
-t line 138.
-
-<C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_2/t1_wordcloud.pdf, id=104, 578.16pt x 443.6575pt>
-File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_2/t1_wordcloud.pdf Graphic file (type pdf)
-<use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_2/t1_wordcloud.pdf>
-Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_2/t1_wordcloud.pdf  used on input line 
-143.
-(pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (1.25314pt too wide) in paragraph at lines 151--154
-\T1/cmr/m/it/12 "Ehem. Ver-fas-sungsrichter bestätigt AfD-Forderung: Zurück-wei
-sung il-le-galer Mi-granten drin-
- []
-
-[5]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-
-MP-Analyse/plots/4_2/t1_wordcloud.pdf>]
-<C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_3/global_thetas.pdf, id=124, 578.16pt x 443.6575pt>
-File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_3/global_thetas.pdf Graphic file (type pdf)
-<use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_3/global_thetas.pdf>
-Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_3/global_thetas.pdf  used on input line
- 196.
-(pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-<C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_3/vocabulary_comparison.pdf, id=125, 578.16pt x 443.6575pt>
-File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
-<use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_3/vocabulary_comparison.pdf>
-Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_3/vocabulary_comparison.pdf  used on in
-put line 206.
-(pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-
-MP-Analyse/plots/4_3/global_thetas.pdf>]
-<C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_3/topic_correlations.pdf, id=149, 675.52374pt x 372.39125pt>
-File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_3/topic_correlations.pdf Graphic file (type pdf)
-<use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_3/topic_correlations.pdf>
-Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_3/topic_correlations.pdf  used on input
- line 217.
-(pdftex.def)             Requested size: 188.8096pt x 104.08131pt.
-<C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/4_3/topic_correlations_map.pdf, id=150, 497.86pt x 382.42876pt>
-File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
-g-MP-Analyse/plots/4_3/topic_correlations_map.pdf Graphic file (type pdf)
-<use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
--MP-Analyse/plots/4_3/topic_correlations_map.pdf>
-Package pdftex.def Info: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches 
-Consulting/Bundestag-MP-Analyse/plots/4_3/topic_correlations_map.pdf  used on i
-nput line 220.
-(pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(4_1-3_global_analysis_preamble.bbl [8 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020
-/Statistisches Consulting/Bundestag-MP-Analyse/plots/4_3/vocabulary_comparison.
-pdf>])
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
-[9 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-
-MP-Analyse/plots/4_3/topic_correlations.pdf> <C:/Users/Simon/OneDrive/Uni/LMU/S
-S 2020/Statistisches Consulting/Bundestag-MP-Analyse/plots/4_3/topic_correlatio
-ns_map.pdf
-
-pdfTeX warning: pdflatex (file C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statisti
-sches Consulting/Bundestag-MP-Analyse/plots/4_3/topic_correlations_map.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
->]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
- (4_1-3_global_analysis_preamble.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
-Package rerunfilecheck Info: File `4_1-3_global_analysis_preamble.out' has not 
-changed.
-(rerunfilecheck)             Checksum: 0EFC8072E86EB1D0D04C773E896EC598;263.
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 106.
  ) 
 Here is how much of TeX's memory you used:
- 10905 strings out of 480930
- 173818 string characters out of 2899761
- 450609 words of memory out of 3000000
- 26520 multiletter control sequences out of 15000+200000
- 553360 words of font info for 80 fonts, out of 3000000 for 9000
+ 10774 strings out of 480930
+ 168838 string characters out of 2899761
+ 450741 words of memory out of 3000000
+ 26441 multiletter control sequences out of 15000+200000
+ 545833 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,12n,47p,1443b,448s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,7n,47p,1288b,373s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecbx1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+ecrm1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Simon\AppData\Lo
-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Simon\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Us
-ers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.
-pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecbx1728.pk><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Simon/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Simon/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/U
-sers/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Simon/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Simon/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/
-Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b>
-Output written on 4_1-3_global_analysis_preamble.pdf (9 pages, 395281 bytes).
+/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts
+/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX
+\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Lo
+cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk><C:/Users/Simon/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/
+Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Simon/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Simon/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Simo
+n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.
+pfb>
+Output written on 4_5_topical_content_preamble.pdf (3 pages, 133274 bytes).
 PDF statistics:
- 556 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 220 PDF objects out of 1000 (max. 8388607)
+ 8 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

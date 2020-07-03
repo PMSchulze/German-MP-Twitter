@@ -54,7 +54,7 @@ Finally, the \textit{Score} metric for word $v$ and topic $k$ is formally define
 \begin{align*}
 Score_{k,v} &= \hat{\beta}_{k,v}(\log\hat{\beta}_{k,v} - 1/K\sum_{j}^{K}\log\hat{\beta}_{j,v}).
 \end{align*}
-Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. This can roughly be interpreted as: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package \textit{lda} (\cite{chang2010package}).
+Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. This can roughly be interpreted as: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package \textit{lda} (\citealp{chang2010package}).
 
 To get a broad overview of which words characterize each one of the topics, the output below shows the five top words according to each of the four topic-word evaluation metrics, for four selected topics (see appendix XXX for top words of all topics).
 

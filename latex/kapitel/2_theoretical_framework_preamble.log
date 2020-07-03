@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  30 JUN 2020 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  1 JUL 2020 17:33
 entering extended mode
 **./2_theoretical_framework_preamble.tex
 (2_theoretical_framework_preamble.tex
@@ -413,7 +413,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 [3] [4] [5]
 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-
-Analyse/plots/2/stm_graphical.png, id=45, 822.07124pt x 325.215pt>
+Analyse/plots/2/stm_graphical.png, id=47, 822.07124pt x 325.215pt>
 File: C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundesta
 g-MP-Analyse/plots/2/stm_graphical.png Graphic file (type png)
 <use C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag
@@ -423,8 +423,12 @@ Consulting/Bundestag-MP-Analyse/plots/2/stm_graphical.png  used on input line 1
 88.
 (pdftex.def)             Requested size: 411.0346pt x 162.6071pt.
  [6] [7 <C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bunde
-stag-MP-Analyse/plots/2/stm_graphical.png>] [8] [9]
-(2_theoretical_framework_preamble.bbl [10]) [11]
+stag-MP-Analyse/plots/2/stm_graphical.png>]
+Overfull \hbox (8.6132pt too wide) detected at line 212
+[]
+ []
+
+[8] [9] (2_theoretical_framework_preamble.bbl [10]) [11]
 (2_theoretical_framework_preamble.aux) ) 
 Here is how much of TeX's memory you used:
  7011 strings out of 480930
@@ -458,20 +462,23 @@ ers/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
 6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmmi7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmmi8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Simon/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Simon/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Simo
-n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:
-/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mr8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Simon/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2_theoretical_framework_preamble.pdf (11 pages, 378592 bytes)
+/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Simon/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
+sers/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+12.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Simon/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Simon/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Simo
+n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C
+:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb>
+Output written on 2_theoretical_framework_preamble.pdf (11 pages, 397843 bytes)
 .
 PDF statistics:
- 434 PDF objects out of 1000 (max. 8388607)
+ 442 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
