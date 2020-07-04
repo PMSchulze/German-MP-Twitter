@@ -34,7 +34,7 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # file <- "prep_test"
 # file <- "prep_cdu"
 # file <- "prep_cdu_train"
-file <- "prep_cdu_test"
+# file <- "prep_cdu_test"
 
 # file <- "prep_monthly"
 # file <- "prep_monthly_train"
@@ -50,7 +50,9 @@ data <- readRDS(filepath)
 # ------------------ Preprocessing data with the quanteda package ------------------------------
 # ----------------------------------------------------------------------------------------------
 
-# build corpus, which by default organizes documents into types, tokens and sentences
+# build corpus, which by default organizes documents into types, tokens, and sentences
+# for non-monthly datasets: docid = MP name
+# for monthly datasets: docid = username_year_month; then create date variable
 if (grepl("monthly", file)) {
   data$docid <- paste0(data$Twitter_Username, "_", data$Jahr, "_", data$Monat)
   data$Datum <- with(data, sprintf("%d-%02d", Jahr, Monat))
@@ -62,7 +64,7 @@ if (grepl("monthly", file)) {
   corp_topic <- quanteda::corpus(x = data, text_field = "Tweets_Dokument")
 }
 
-# convert some special german characters and remove # infront of hashtags
+# transcribe German umlauts and ligature and remove hypens
 corp_text_cleaned <- stringi::stri_replace_all_fixed(
   texts(corp_topic), 
   c("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß","-"), 
@@ -71,8 +73,8 @@ corp_text_cleaned <- stringi::stri_replace_all_fixed(
 )
 texts(corp_topic) <- corp_text_cleaned
 
-# build document-feature matrix, where a feature corresponds to a word in our case
-# stopwords, numbers and punctuation are removed and word stemming is performed
+# build document-feature matrix, where in our case a feature corresponds to a word
+# stopwords, numbers, and punctuation are removed and word stemming is performed
 # each word is indexed and frequency per document assigned
 
 # start with defining stopwords
@@ -120,11 +122,11 @@ dfmatrix_cleaned <- dfmatrix %>%
   quanteda::dfm_remove(pattern = "^(polit|bundesregier|bundestag|deutsch|land|jaehrig|http)", # specific words
                        valuetype = "regex")
 
-# perform word stemming and remove all words that appear rarely as well as words with <4 characters
+# perform word stemming and remove infrequent words
 dfmatrix_cleaned <- dfmatrix_cleaned %>% 
-  quanteda::dfm_wordstem(language = "german") %>% 
-  quanteda::dfm_remove(min_nchar = 4) %>%
-  quanteda::dfm_trim(min_termfreq = 5, min_docfreq = 3)
+  quanteda::dfm_wordstem(language = "german") %>% # word stemming
+  quanteda::dfm_remove(min_nchar = 4) %>% # removing words with <4 characters
+  quanteda::dfm_trim(min_termfreq = 5, min_docfreq = 3) # removing words occuring in <3 documents or <5 times overall
 
 # check most frequent words again
 quanteda::topfeatures(dfmatrix_cleaned, 20)

@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,14 @@ Pete Burnap, Rachel Gibson, Luke Sloan, Rosalynd Southern, and Matthew
 Andrea Ceron.
 \newblock Intra-party politics in 140 characters.
 \newblock \emph{Party politics}, 23\penalty0 (1):\penalty0 7--17, 2017.
+
+\bibitem[Chang et~al.(2009)Chang, Gerrish, Wang, Boyd-Graber, and
+  Blei]{chang2009reading}
+Jonathan Chang, Sean Gerrish, Chong Wang, Jordan~L Boyd-Graber, and David~M
+  Blei.
+\newblock Reading tea leaves: How humans interpret topic models.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  288--296, 2009.
 
 \bibitem[Daniel et~al.(2019)Daniel, Obholzer, and Hurka]{daniel2019static}
 William~T Daniel, Lukas Obholzer, and Steffen Hurka.

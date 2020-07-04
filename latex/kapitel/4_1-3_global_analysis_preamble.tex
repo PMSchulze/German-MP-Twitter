@@ -1,4 +1,3 @@
-
 \documentclass[12pt]{article}
 %\usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
@@ -51,7 +50,7 @@
 
 \begin{document}
 
-\section{Results}
+\section{Model Selection and Global Characteristics}
 
 \subsection{Hyperparameter Search and Model Fitting}
 
@@ -109,32 +108,42 @@ Score_{k,v} &= \hat{\beta}_{k,v}(\log\hat{\beta}_{k,v} - 1/K\sum_{j}^{K}\log\hat
 \end{align*}
 Thus, Score weights word $v$'s frequency within topic $k$, $\beta_{k,v}$, by the difference between $v$'s log frequency within topic $k$ and the average of $v$'s log frequencies across all $K$ topics. This can roughly be interpreted as: $\beta_{k,v}$ is weighted by the proportion of $v$'s log frequency within topic $k$ to $v$'s average logarithmic frequency across all topics. For further information on the Score metric, see the R package \textit{lda} (\citealp{chang2010package}).
 
-To get a broad overview of which words characterize each one of the topics, the output below shows the five top words according to each of the four topic-word evaluation metrics, for four selected topics (see appendix XXX for top words of all topics).
+To get a broad overview of which words characterize each one of the topics, the table below shows the five top words according to each of the four topic-word evaluation metrics, for four selected topics (see appendix XXX for top words of all topics).
 
-\vspace{0.5cm}
-\noindent
+\begin{table}[h!]
+\centering
+\captionsetup{justification=centering,margin=2cm}
+\begin{tabular}{|l|}
+\hline
 \textit{Topic 1 Top Words:}\\
  	 \textbf{Highest Prob:} buerg, link, merkel, frau, sich \\
  	 \textbf{FREX:} altpartei, islam, linksextremist, asylbewerb, linksextrem \\
  	 \textbf{Lift:} eitan, 22jaehrig, abdelsamad, abgehalftert, afdforder \\
  	 \textbf{Score:} altpartei, linksextremist, frauenkongress, islamist, boehring \\
+\hline
 \textit{Topic 3 Top Words:}\\
  	 \textbf{Highest Prob:} brauch, wichtig, leid, dank, klar \\
  	 \textbf{FREX:} emissionshandel, soli, marktwirtschaft, feedback, co2steu \\
  	 \textbf{Lift:} aequivalenz, altersvorsorgeprodukt, bildungsqualitaet, co2limit, co2meng \\
  	 \textbf{Score:} emissionshandel, co2limit, basisrent, euet, technologieoff \\
+\hline
 \textit{Topic 4 Top Words:}\\
  	 \textbf{Highest Prob:} sozial, miet, kind, arbeit, brauch \\
  	 \textbf{FREX:} mindestlohn, miet, wohnungsbau, mieterinn, loehn \\
  	 \textbf{Lift:} auseinanderfaellt, baugipfel, bestandsmiet, billigflieg, binnennachfrag \\
  	 \textbf{Score:} miet, mieterinn, mietendeckel, grundsicher, bezahlbar \\
+\hline
 \textit{Topic 6 Top Words:}\\
  	 \textbf{Highest Prob:} gruen, klimaschutz, brauch, klar, euro \\
  	 \textbf{FREX:} fossil, erneuerbar, kohleausstieg, verkehrsminist, verkehrsw \\
  	 \textbf{Lift:} abgasbetrug, abgebaggert, abschalteinricht, abschaltet, ammoniak \\ 
  	 \textbf{Score:} erneuerbar, fossil, zdebel, verkehrsminist, klimaschutz \\
+\hline
+\end{tabular}
+\caption{List of top words for topics 1, 3, 4, and 6.}
+\label{tab:top_words_1346}
+\end{table}
 
-\noindent
 A key task of topic analysis is to explore the latent space of the model; that is, we wish to determine whether the topical clusters identified by the model carry actual meaning and summarize this meaning by a one- or two-word label per cluster.\footnote{For an in-depth discussion of the meaningfulness of the latent space, see \cite{chang2009reading}.} While this is clearly where human judgment should and does come into play, we attempt to conduct the labeling in a more strategic (and thus less subjective) manner, following a three-step procedure. This procedure is exemplified by topic 1. First, we consider the \textit{words} contained in the topic, for instance by simply inspecting the top words (see output above). For a better visualization, we use a word cloud. As shown below, for a given topic (i.e., conditional upon a specific topic being chosen), it shows highest probability words weighted by their frequency. Judging at first sight, topic 1 appears to be about right-wing nationalist issues, particularly immigration.
 
 \begin{figure}[h!]
@@ -183,7 +192,7 @@ The documents exclusively focus on immigration issues, confirming the first impr
 	Topic15 & Society/Solidarity   \\ \hline
 	\end{tabular}
 	\caption{List of topic labels.}
-	\label{Tab:labels}
+	\label{tab:labels}
 \end{table}
 
 \subsection{Global-level Topic Analysis}

@@ -31,7 +31,7 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_df <- read_delim('./data/tweepy_df.csv', delim = ',')
+tweepy_df <- read_delim('./data/tweepy_df.csv', delim = ',') # available as pickle on network drive "consulting_thurner" due to size (5GB)
 # inspect parsing problems
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
@@ -51,7 +51,7 @@ topic <- tweepy_df %>%
 # plot histogram of tweets per year
 hist(topic %>% mutate(Jahr = lubridate::year(Datum)) %>% pull(Jahr))
 
-# drop all tweets prior to September 24, 2017 (date of the most recent Bundestagswahl)
+# drop all tweets prior to September 24, 2017 (date of federal elections)
 topic <- topic %>% 
   filter(Datum >= '2017-09-24')
 
@@ -124,18 +124,15 @@ topic_user_monthly <-  topic %>%
 # ---------------------- Load abg_df and se_df and merge with topic_user -----------------------
 # ----------------------------------------------------------------------------------------------
 
-# load data
+# load personal data (MP-level)
 abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
+# load socioeconomic and election data (electoral-district level)
 se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
 
 # merge data
-alldata <- topic %>% 
-  inner_join(abg_df) %>% 
-  inner_join(se_df, by = "Wahlkreis_Nr")
-
 alldata_user <- topic_user %>% 
   inner_join(abg_df) %>% 
   inner_join(se_df, by = "Wahlkreis_Nr")
@@ -166,22 +163,18 @@ drop_vars <- c(
   "CDU/CSU"
 )
 
-alldata <- alldata %>% 
-  select(-drop_vars)
 alldata_user <- alldata_user %>% 
   select(-drop_vars)
 alldata_user_monthly <- alldata_user_monthly %>% 
   select(-drop_vars)
 
-# drop rows where Partei==fraktionslos (only one row deleted)
-alldata <- alldata %>% 
-  filter(Partei != "fraktionslos")
+# drop independent MPs (rows where Partei==fraktionslos, here only one MP)
 alldata_user <- alldata_user %>% 
   filter(Partei != "fraktionslos")
 alldata_user_monthly <- alldata_user_monthly %>% 
   filter(Partei != "fraktionslos")
 
-# create variable "Wahlergebnis": voting share of party from a parlamentarian in his/her district
+# create variable "Wahlergebnis": 2017 federal election voting share of MP's respective party in his/her district
 alldata_user$Wahlergebnis <- purrr::map2_dbl(
   1:nrow(alldata_user), paste(alldata_user$Partei, "Anteil"), 
   function(i,j) alldata_user[[i,j]]
@@ -201,7 +194,7 @@ colnames(alldata_user_monthly) <- colnames_user_monthly[["newnames"]]
 write.csv(colnames_user, file = "./data/topic_colnames.csv")
 write.csv(colnames_user_monthly, file = "./data/topic_monthly_colnames.csv")
 
-# extract party specific dataset
+# extract party-specific dataset
 alldata_cdu_user <- alldata_user %>% 
   filter(Partei == "CDU/CSU")
 alldata_cdu_user_monthly <- alldata_user_monthly %>% 
@@ -213,8 +206,7 @@ saveRDS(alldata_cdu_user, "./data/prep_cdu.rds")
 saveRDS(alldata_user_monthly, "./data/prep_monthly.rds")
 saveRDS(alldata_cdu_user_monthly, "./data/prep_cdu_monthly.rds")
 
-
-# reload and split
+# reload and split into train and test set (50-50 split)
 set.seed(123)
 alldata_cdu_user <- readRDS("./data/prep_cdu.rds")
 p <- 0.5
