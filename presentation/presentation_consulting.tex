@@ -14,6 +14,7 @@
 \usepackage{commath}
 \usepackage{physics}
 \usepackage{enumerate}
+\usepackage{hyperref}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
@@ -97,9 +98,9 @@
 \frametitle{Main Contributions}
 \begin{itemize}
 \item Construction of data set containing more than 500k Tweets and more than 90 variables using web scraping and twitter scraping
-\item Topic modeling of German MP Tweets
+\item Topic modeling of Twitter messages by German Members of Parliament (MPs)
 \item Extension of analytical tools available for examination of topic-metadata relationships 
-\item Discussion of causal Inference framework within a topic modeling context
+\item Discussion of causal inference framework within a topic modeling context
 \end{itemize}
 \end{frame}
 
@@ -114,10 +115,10 @@
 \begin{frame}
 \frametitle{Data}
 \begin{itemize}
-\item MP-level data scraped from \textit{www.bundestag.de/abgeordnete} using BeautifulSoup and Selenium Web Driver
-\item Electoral-district-level social-economic data extracted from \textit{www.bundeswahlleiter.de}
-\item German federal election 2017 results retrieved from \textit{www.bundeswahlleiter.de}
-\item Maximum number of 3200 Tweets per MP downloaded using Tweepy API 
+\item MP-level data scraped from \url{www.bundestag.de/abgeordnete} using \textit{BeautifulSoup} and \textit{Selenium Web Driver}
+\item Electoral-district-level social-economic data extracted from \url{www.bundeswahlleiter.de}
+\item German federal election 2017 results retrieved from \url{www.bundeswahlleiter.de}
+\item Maximum available number of 3200 Tweets per MP downloaded using the \textit{Tweepy API}
 \end{itemize}
 \end{frame}
 
@@ -127,7 +128,7 @@
 \item Hyperparameter search yields 15 distinct topics
 \item Topic labeling conducted manually (human judgment)
 \item Descriptive discussion of relationship between metadata and topics
-\item Causal Inference: estimation of cause-effect relationships between document-sepcific features (e.g.\ political party) and topics
+\item Causal inference: estimation of cause-effect relationships between document-sepcific features (e.g.\ political party) and topics
 \end{itemize}
 \end{frame}
 
