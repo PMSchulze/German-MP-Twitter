@@ -1,0 +1,138 @@
+% !TeX TS-program = pdflatexmk
+
+\documentclass[xcolor=dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usetheme{AnnArbor}
+\usepackage{dsfont}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{commath}
+\usepackage{physics}
+\usepackage{enumerate}
+
+%\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@article{blei2003latent,
+  title={Latent dirichlet allocation},
+  author={Blei, David M and Ng, Andrew Y and Jordan, Michael I},
+  journal={Journal of machine Learning research},
+  volume={3},
+  number={Jan},
+  pages={993--1022},
+  year={2003}
+}
+@article{roberts2016model,
+  title={A model of text for experimentation in the social sciences},
+  author={Margaret E. Roberts and Brandon M. Stewart and Edoardo M. Airoldi},
+  journal={Journal of the American Statistical Association},
+  volume={111},
+  number={515},
+  pages={988--1003},
+  year={2016},
+  publisher={Taylor \& Francis}
+}
+\end{filecontents}
+\usepackage[style=authoryear]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+\addbibresource{\jobname.bib}
+
+\newcommand{\customcite}[1]{\citeauthor{#1} (\citeyear{#1})}
+
+\newtheorem{satz}{Satz}
+
+\setbeamertemplate{footline}[page number]
+
+\usecolortheme{seagull}
+\setbeamercolor{frametitle}{fg=blue,bg=White}
+
+%\DeclareMathOperator*{\argmax}{arg\, max}
+%\DeclareMathOperator*{\argmin}{arg\, min}
+%\setbeamertemplate{section in toc}[sections numbered]
+%\setbeamertemplate{subsection in toc}[subsections numbered]
+%\AtBeginSection[]
+%{
+%\begin{frame}
+%\frametitle{Überblick}
+%\tableofcontents[currentsection]
+%\end{frame}
+%}
+%
+%\AtBeginSubsection[
+% {\frame<beamer>{\frametitle{Überblick}   
+%  \tableofcontents[currentsection,currentsubsection]}}%
+%]%
+%{
+ % \frame<beamer>{ 
+ %   \frametitle{Überblick}   
+   % \tableofcontents[currentsection,currentsubsection]}
+%}
+
+\title{Twitter in the Parliament - A Text-based Analysis of German Political Entities}
+%\author{Patrick Schulze}
+\date{7. Juli 2020}
+\author[author1]{Patrick Schulze, Simon Wiegrebe\\[10mm]{\small Supervisors:\\ Prof. Dr. Christian Heumann, Prof. Dr. Paul W. Thurner}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Überblick}
+%\tableofcontents[]
+%\end{frame}
+
+\section{}
+\begin{frame}
+\frametitle{Main Contributions}
+\begin{itemize}
+\item Construction of data set containing more than 500k Tweets and more than 90 variables using web scraping and twitter scraping
+\item Topic modeling of German MP Tweets
+\item Extension of analytical tools available for examination of topic-metadata relationships 
+\item Discussion of causal Inference framework within a topic modeling context
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Topic Modeling}
+\begin{itemize}
+\item \textit{Latent Dirichlet Allocation} (LDA) by \textcite{blei2003latent} as first probabilistic topic model
+\item Based on LDA and other topic models: \textit{Structural Topic Model} (STM), by \textcite{roberts2016model}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data}
+\begin{itemize}
+\item MP-level data scraped from \textit{www.bundestag.de/abgeordnete} using BeautifulSoup and Selenium Web Driver
+\item Electoral-district-level social-economic data extracted from \textit{www.bundeswahlleiter.de}
+\item German federal election 2017 results retrieved from \textit{www.bundeswahlleiter.de}
+\item Maximum number of 3200 Tweets per MP downloaded using Tweepy API 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{itemize}
+\item Hyperparameter search yields 15 distinct topics
+\item Topic labeling conducted manually (human judgment)
+\item Descriptive discussion of relationship between metadata and topics
+\item Causal Inference: estimation of cause-effect relationships between document-sepcific features (e.g.\ political party) and topics
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bibliography}
+\printbibliography
+\end{frame}
+\end{document}

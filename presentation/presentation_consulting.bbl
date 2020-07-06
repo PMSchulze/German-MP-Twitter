@@ -1,0 +1,98 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nyt/global/}
+    \entry{blei2003latent}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=0acd0349006f4ee348ffe16e1fe1fe21}{%
+           family={Blei},
+           familyi={B\bibinitperiod},
+           given={David\bibnamedelima M},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=799b172b8d02b7acdf21d0cc48934fca}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Andrew\bibnamedelima Y},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{uniquename=0,hash=996ffb9cb286a8b4b0fc16793c54cc31}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={Michael\bibnamedelima I},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{0687e065d9fc55314f8de9d299fb55eb}
+      \strng{fullhash}{0687e065d9fc55314f8de9d299fb55eb}
+      \strng{authornamehash}{0687e065d9fc55314f8de9d299fb55eb}
+      \strng{authorfullhash}{0687e065d9fc55314f8de9d299fb55eb}
+      \field{sortinit}{B}
+      \field{sortinithash}{5f6fa000f686ee5b41be67ba6ff7962d}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of machine Learning research}
+      \field{number}{Jan}
+      \field{title}{Latent dirichlet allocation}
+      \field{volume}{3}
+      \field{year}{2003}
+      \field{pages}{993\bibrangedash 1022}
+      \range{pages}{30}
+    \endentry
+    \entry{roberts2016model}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=b343d62ffd0b37ed2fb0a93ec2006251}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Margaret\bibnamedelima E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{uniquename=0,hash=e78e606c2fa81b1917fd46933f49b33e}{%
+           family={Stewart},
+           familyi={S\bibinitperiod},
+           given={Brandon\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=753c42f9b69830f9410ef84fd6e88ab1}{%
+           family={Airoldi},
+           familyi={A\bibinitperiod},
+           given={Edoardo\bibnamedelima M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{c50fc8ebb3112441e25e93a2f5fc1e97}
+      \strng{fullhash}{c50fc8ebb3112441e25e93a2f5fc1e97}
+      \strng{authornamehash}{c50fc8ebb3112441e25e93a2f5fc1e97}
+      \strng{authorfullhash}{c50fc8ebb3112441e25e93a2f5fc1e97}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{515}
+      \field{title}{A model of text for experimentation in the social sciences}
+      \field{volume}{111}
+      \field{year}{2016}
+      \field{pages}{988\bibrangedash 1003}
+      \range{pages}{16}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
