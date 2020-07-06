@@ -52,7 +52,7 @@
 
 \section{Overfitting and Causal Inference - Alternative Modeling Strategies}
 
-\subsection{2-step Approach: CTM}
+\subsection{Two-step Approach: CTM}
 
 In sections 4.4 and 4.5, we analyzed the relationship between topic proportions and metadata, visualizing the effect of prevalence covariates and deciding against the further inclusion of a topical content variable. As briefly mentioned in section 2 already, a point of concern when using the STM is the double usage of covariates: they are used in the estimation of the topics themselves (and thus, in the estimation of the latent topic proportions) and subsequently they are again used to estimate their relationship with topic proportions. From classical statistical modeling, we are used to interpret such relationships, oftentimes ascribing a causal interpretation to the corresponding coefficients; in our case, this would go along the lines of stating, for instance, that "a higher percentage of immigrants within an electoral district makes politicians prioritize issues other than climate protection", referring to Figure XXX in section 4.4.1. Topic models, however, present a crucial difference as compared to classical statistical models: the target variable - $\theta$ - is latent and thus itself being estimated. For explorative or descriptive purposes, this does not pose a problem because there is only a single step: discovering topics in the text documents. Yet whenever in a second step, after estimating the model, we wish to conduct (causal) inference, we face an overfitting problem, since the \textit{same} documents and covariates are used in both steps. In this section, we focus on the double usage of (prevalence) covariates, while section 4.7 deals with double usage of documents in general.
 

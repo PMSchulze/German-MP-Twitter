@@ -1,55 +1,3 @@
-\documentclass[12pt]{article}
-%\usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{geometry}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage[onehalfspacing]{setspace}
-\usepackage{amsmath,amsfonts,amssymb,amsthm}
-\usepackage{bm}
-\usepackage{commath}
-\usepackage{enumerate}
-\usepackage{accents}
-%\usepackage{enumitem}
-\usepackage[shortlabels]{enumitem}
-\usepackage{dsfont}
-\usepackage{mathtools}
-\usepackage{physics}
-\usepackage{cite}
-\usepackage[round]{natbib}
-\usepackage{caption}
-\captionsetup[figure]{font=small}
-\usepackage{float}
-\usepackage{hyperref}
-
-\newtheorem*{theorem}{Theorem} 
-\newtheorem*{lemma}{Lemma}
-\newtheorem*{definition}{Definition}
-\newtheorem*{corollary}{Corollary}
-\newtheorem*{remark}{Remark}
-\newtheorem*{example}{Example}
-\newtheorem*{examples}{Examples}
-\newcommand*{\QEDB}{\hfill\ensuremath{\square}}
-
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-
-\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
-\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
-
-\interfootnotelinepenalty=10000
-\allowdisplaybreaks
-\geometry{
-  left=2.5cm,
-  right=2.5cm,
-  top=2cm,
-  bottom=2cm,
-}
-
-\graphicspath{{C:/Users/Simon/OneDrive/Uni/LMU/SS 2020/Statistisches Consulting/Bundestag-MP-Analyse/plots/}}
-
-\begin{document}
-
 \section{Model Selection and Global Characteristics}
 
 \subsection{Hyperparameter Search and Model Fitting}
@@ -79,7 +27,7 @@ The graph below shows the four metrics, as introduced above, for values of $K$ b
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{4_1/searchK.pdf}
+  \includegraphics[scale = 0.5]{../plots/4_1/searchK.pdf}
   \caption{Model evaluation metrics for hyperparameter K (number of topics).}
   \label{fig:searchK}
 \end{figure}
@@ -149,7 +97,7 @@ A key task of topic analysis is to explore the latent space of the model; that i
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{4_2/t1_wordcloud.pdf}
+  \includegraphics[scale = 0.5]{../plots/4_2/t1_wordcloud.pdf}
   \caption{Word cloud for topic 1.}
   \label{fig:t1_wordcloud}
 \end{figure}
@@ -168,7 +116,7 @@ The second most representative document for topic 1, with an almost identical $\
 \textit{"Mio-Überweisungen u.a. an Kanzleien unter \#BAMF-Außenstellenleiterin, die mit Anwälten bandenmäßig Asylbetrug begangen haben soll. Und die Frau ist noch frei und präsentiert sich als Gutmensch. \#Staatsanwaltschaft muss hier handeln und Haftgründe prüfen."}
 \vspace{0.5cm}
 
-The documents exclusively focus on immigration issues, confirming the first impression gained through top words and word cloud: topic 1 concerns right-wing nationalist issues, in particular immigration. As a third step in our labeling process we finally assign a label to the topic: in this case, "Right/Nationalist". We repeat this three-step procedure (inspecting top words and word cloud, reading through top documents, assigning a 1- or 2-word label) for all remaining topics, arriving at the following manual labels:
+The documents exclusively focus on immigration issues, confirming the first impression gained through top words and word cloud: topic 1 concerns right-wing nationalist issues, in particular immigration. As a third step in our labeling process we finally assign a label to the topic: in this case, "Right/Nationalist". We repeat this three-step procedure (inspecting top words and word cloud, reading through top documents, assigning a one- or two-word label) for all remaining topics, arriving at the following manual labels:
 
 \begin{table}[h!]
 	\centering
@@ -202,7 +150,7 @@ Next, we identify two ways to calculate global topic proportions $\bar{\theta}_k
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{4_3/global_thetas.pdf}
+  \includegraphics[scale = 0.5]{../plots/4_3/global_thetas.pdf}
   \caption{Weighted and unweighted global topic proportions.}
   \label{fig:global_thetas}
 \end{figure}
@@ -212,7 +160,7 @@ While labeling tells us which words best represent each topic - and thus, what e
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{4_3/vocabulary_comparison.pdf}
+  \includegraphics[scale = 0.5]{../plots/4_3/vocabulary_comparison.pdf}
   \caption{Comparison of vocabulary usage for two topics.}
   \label{fig:vocabulary_comparison}
 \end{figure}
@@ -223,16 +171,11 @@ More generally, we can evaluate the connectedness between different topics by me
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{4_3/topic_correlations.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_3/topic_correlations.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{4_3/topic_correlations_map.pdf}
+    \includegraphics[width=\linewidth]{../plots/4_3/topic_correlations_map.pdf}
   \end{subfigure}
-  \caption{Global topic correlations as matrix (left) and graph (left).}
+  \caption{Global topic correlations as matrix (left) and graph (right).}
   \label{fig:topic_correlations}
 \end{figure}
-
-\bibliography{bibliography}
-\bibliographystyle{plainnat}
-
-\end{document}

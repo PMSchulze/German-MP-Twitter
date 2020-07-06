@@ -1,26 +1,25 @@
-\contentsline {section}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {2}Theoretical Framework}{4}
-\contentsline {subsection}{\numberline {2.1}Topic Modeling - Overview}{4}
-\contentsline {subsection}{\numberline {2.2}The Structural Topic Model}{8}
-\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{12}
-\contentsline {section}{\numberline {3}Data}{14}
-\contentsline {subsection}{\numberline {3.1}Data Collection}{14}
-\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{16}
-\contentsline {section}{\numberline {4}Results}{18}
-\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{18}
-\contentsline {subsection}{\numberline {4.2}Labeling}{20}
-\contentsline {subsection}{\numberline {4.3}Global-level Topic Analysis}{23}
-\contentsline {section}{\numberline {5}Metadata Analysis - Topical Prevalence and Content}{27}
-\contentsline {subsection}{\numberline {5.1}Covariate-level Topic Analysis}{27}
-\contentsline {subsubsection}{\numberline {5.1.1}Method of Composition}{28}
-\contentsline {subsubsection}{\numberline {5.1.2}Direct assessment using $\cc@accent {"705E}{\Gamma }$ and $\cc@accent {"705E}{\Sigma }$}{32}
-\contentsline {subsection}{\numberline {5.2}Topical Content}{35}
-\contentsline {subsection}{\numberline {5.3}Two-step Approach: CTM}{38}
-\contentsline {subsection}{\numberline {5.4}Causal Inference: Train-test Split}{42}
-\contentsline {subsubsection}{\numberline {5.4.1}Model Estimation on the Training Set}{42}
-\contentsline {subsubsection}{\numberline {5.4.2}Prediction of Topic Proportions on the Test Set}{42}
-\contentsline {subsubsection}{\numberline {5.4.3}Results}{43}
-\contentsline {section}{\numberline {6}Conclusion}{46}
-\contentsline {section}{\numberline {7}Appendix}{48}
-\contentsline {section}{\numberline {8}Appendix 2}{50}
-\contentsline {section}{\numberline {9}Appendix 2}{52}
+\contentsline {section}{\numberline {1}Introduction}{2}%
+\contentsline {section}{\numberline {2}Theoretical Framework}{3}%
+\contentsline {subsection}{\numberline {2.1}Topic Modeling - Overview}{3}%
+\contentsline {subsection}{\numberline {2.2}The Structural Topic Model}{8}%
+\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{11}%
+\contentsline {section}{\numberline {3}Data}{13}%
+\contentsline {subsection}{\numberline {3.1}Data Collection}{13}%
+\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{15}%
+\contentsline {section}{\numberline {4}Model Selection and Global Characteristics}{16}%
+\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{16}%
+\contentsline {subsection}{\numberline {4.2}Labeling}{18}%
+\contentsline {subsection}{\numberline {4.3}Global-level Topic Analysis}{22}%
+\contentsline {section}{\numberline {5}Metadata Analysis - Topical Prevalence and Content}{24}%
+\contentsline {subsection}{\numberline {5.1}Covariate-level Topic Analysis}{24}%
+\contentsline {subsubsection}{\numberline {5.1.1}Method of Composition}{26}%
+\contentsline {subsubsection}{\numberline {5.1.2}Direct assessment using $\cc@accent {"705E}{\Gamma }$ and $\cc@accent {"705E}{\Sigma }$}{30}%
+\contentsline {subsection}{\numberline {5.2}Topical Content}{32}%
+\contentsline {section}{\numberline {6}Overfitting and Causal Inference - Alternative Modeling Strategies}{34}%
+\contentsline {subsection}{\numberline {6.1}Two-step Approach: CTM}{34}%
+\contentsline {subsection}{\numberline {6.2}Causal Inference: Train-test Split}{37}%
+\contentsline {subsubsection}{\numberline {6.2.1}Model Estimation on the Training Set}{38}%
+\contentsline {subsubsection}{\numberline {6.2.2}Prediction of Topic Proportions on the Test Set}{38}%
+\contentsline {subsubsection}{\numberline {6.2.3}Results}{39}%
+\contentsline {section}{\numberline {7}Conclusion}{41}%
+\contentsline {section}{\numberline {8}Appendix}{43}%
