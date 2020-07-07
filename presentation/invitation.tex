@@ -1,0 +1,87 @@
+\documentclass[12pt,reqno]{article}
+\usepackage[noxcolor]{beamerarticle}  
+\usepackage{diagbox}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[final]{pdfpages}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{blindtext}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[round,comma]{natbib}
+\usepackage{mathtools}
+\usepackage{marvosym}
+\usepackage{float}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm]{geometry}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule,
+\usepackage{amsmath,amssymb}
+
+\definecolor{titel}{RGB}{11,106,51}
+\definecolor{autoren}{RGB}{128,128,128}
+\definecolor{unten}{RGB}{215,216,209}
+
+\usetheme{lmu}
+\usepackage[ngerman]{babel}
+\newcommand\pro{\item[$+$]}
+\newcommand\con{\item[$-$]}
+
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace{-1cm}
+\begin{large}
+LUDWIG-MAXIMILIANS-UNIVERSITÄT MÜNCHEN \\
+\end{large}
+\vspace{0.2cm}
+INSTITUT FÜR STATISTIK
+\vspace{-0.7cm}
+\end{center}
+\begin{center}
+\includegraphics[width = 0.3 \textwidth]{Sigillum.pdf}
+\end{center}
+\vspace{-1cm}
+\rule{\textwidth}{1.5pt}
+\begin{center}
+\textit{Statistical Consulting Project in Collaboration with the LMU Institute of Political Science} \\
+\begin{Large}
+\textbf{Twitter in the Parliament: A Text-Based Analysis of German Political Entities} \\ 
+\end{Large}
+\end{center}
+\rule{\textwidth}{1.5pt}
+
+\noindent
+The rise in popularity of social media throughout the last two decades has contributed decisively to the era of big data. In fact, the majority of what is called big data is made up of large-scale unstructured data, oftentimes text. Advancements in the area of Natural Language Processing (NLP) have provided new ways to analyze such data to researchers and practitioners alike, for instance in the field of topic modeling. Topic modeling is an instance of unsupervised learning which seeks to identify latent thematic clusters within large-scale unstructured texts.
+
+We construct a dataset containing tweets from German Members of the Bundestag during the 19th election period (up until April 2020), as well as a variety of personal, socioeconomic, and election data and apply the Structural Topic Model (STM) to it. This model allows for the incorporation of document-level metadata. Accordingly, we discuss the technical and practical aspects of estimating relationships between latent topic proportions and observable covariates. Finally, we address the issue of how to make causal inference within a topic modeling context. \\
+
+\vspace{-0.2cm}
+\noindent
+\rule{\textwidth}{1.5pt}
+\begin{table}[htb!]
+\setlength{\tabcolsep}{1mm}
+\begin{center}
+\begin{tabular}{l l}
+\textbf{Date and Time} & Thursday, July 16, 2020, 11:00 AM  \\
+\textbf{Location} & \href{https://lmu-munich.zoom.us/j/91347787905?pwd=TDRUVzlwcmVrdG5RVVJ3YnBja2hvUT09}{Zoom}\footnote{\url{https://lmu-munich.zoom.us/j/91347787905?pwd=TDRUVzlwcmVrdG5RVVJ3YnBja2hvUT09}} (Meeting ID: 913 4778 7905, Password: 569844) \\
+\textbf{Project Partner} & Prof. Paul W. Thurner, LMU Institute of Political Science \\
+\textbf{Project Supervisors} & Prof. Christian Heumann, Matthias Aßenmacher \\
+
+\textbf{Speakers} & Patrick Schulze, Simon Wiegrebe
+ 
+ 
+\end{tabular}
+\end{center}
+\vspace{-0.2cm}
+\rule{\textwidth}{1.5pt}
+\footnotesize 1 https://lmu-munich.zoom.us/j/91347787905?pwd=TDRUVzlwcmVrdG5RVVJ3YnBja2hvUT09
+\end{table}
+
+\end{titlepage}
+\end{document}
