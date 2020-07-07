@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  6 JUL 2020 20:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  7 JUL 2020 14:08
 entering extended mode
 **./consulting_master.tex
 (consulting_master.tex
@@ -353,18 +353,6 @@ LaTeX Warning: Label `fig:coffee' multiply defined.
 
 LaTeX Warning: Label `fig:coffee' multiply defined.
 
-
-LaTeX Warning: Label `fig:coffee' multiply defined.
-
-
-LaTeX Warning: Label `fig:coffee' multiply defined.
-
-
-LaTeX Warning: Label `fig:boat1' multiply defined.
-
-
-LaTeX Warning: Label `fig:coffee' multiply defined.
-
 )
 \openout1 = `consulting_master.aux'.
 
@@ -475,14 +463,14 @@ Overfull \hbox (7.6027pt too wide) in paragraph at lines 83--85
 <../plots/2/stm_graphical.png, id=67, 822.07124pt x 325.215pt>
 File: ../plots/2/stm_graphical.png Graphic file (type png)
 <use ../plots/2/stm_graphical.png>
-Package pdftex.def Info: ../plots/2/stm_graphical.png  used on input line 137.
+Package pdftex.def Info: ../plots/2/stm_graphical.png  used on input line 138.
 (pdftex.def)             Requested size: 411.0346pt x 162.6071pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9] [10 <../plots/2/stm_graphical.png>]
-Overfull \hbox (8.6132pt too wide) detected at line 161
+Overfull \hbox (8.6132pt too wide) detected at line 162
 []
  []
 
@@ -498,6 +486,18 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [14] [15 <../plots/3/monthly_tweets.pdf>]) (kapitel/4_global_analysis.tex
 [16]
+Runaway argument?
+{Data Preprocessing). 
+! Paragraph ended before \ref was complete.
+<to be read again> 
+                   \par 
+l.16 
+     
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+
 Overfull \hbox (1.64722pt too wide) in paragraph at lines 20--22
 \T1/cmr/m/n/12 Combining a word's fre-quency and ex-clu-siv-ity fi-nally yields
  its Frequency-Exclusivity (\T1/cmr/m/it/12 FREX\T1/cmr/m/n/12 )
@@ -568,7 +568,7 @@ Package pdftex.def Info: ../plots/4_3/topic_correlations_map.pdf  used on input
 pdfTeX warning: pdflatex (file ../plots/4_3/topic_correlations_map.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >] [25]
-Underfull \hbox (badness 10000) in paragraph at lines 41--45
+Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
 
@@ -577,16 +577,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--45
 File: ../plots/5_1/estEffect_topic1.pdf Graphic file (type pdf)
 <use ../plots/5_1/estEffect_topic1.pdf>
 Package pdftex.def Info: ../plots/5_1/estEffect_topic1.pdf  used on input line 
-52.
+55.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 <../plots/5_1/estEffect_topic6.pdf, id=216, 497.86pt x 382.42876pt>
 File: ../plots/5_1/estEffect_topic6.pdf Graphic file (type pdf)
 <use ../plots/5_1/estEffect_topic6.pdf>
 Package pdftex.def Info: ../plots/5_1/estEffect_topic6.pdf  used on input line 
-55.
+58.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--72
+Underfull \hbox (badness 10000) in paragraph at lines 72--75
 
  []
 
@@ -598,24 +598,25 @@ n: multiple pdfs with page group included in a single page
 <../plots/5_1/quasi_t4_cont.pdf, id=248, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cont.pdf Graphic file (type pdf)
 <use ../plots/5_1/quasi_t4_cont.pdf>
-Package pdftex.def Info: ../plots/5_1/quasi_t4_cont.pdf  used on input line 82.
+Package pdftex.def Info: ../plots/5_1/quasi_t4_cont.pdf  used on input line 85.
 
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 <../plots/5_1/quasi_t6_cont.pdf, id=249, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cont.pdf Graphic file (type pdf)
 <use ../plots/5_1/quasi_t6_cont.pdf>
-Package pdftex.def Info: ../plots/5_1/quasi_t6_cont.pdf  used on input line 85.
+Package pdftex.def Info: ../plots/5_1/quasi_t6_cont.pdf  used on input line 88.
 
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 <../plots/5_1/quasi_t4_cat.pdf, id=250, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cat.pdf Graphic file (type pdf)
 <use ../plots/5_1/quasi_t4_cat.pdf>
-Package pdftex.def Info: ../plots/5_1/quasi_t4_cat.pdf  used on input line 95.
+Package pdftex.def Info: ../plots/5_1/quasi_t4_cat.pdf  used on input line 98.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 <../plots/5_1/quasi_t6_cat.pdf, id=251, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cat.pdf Graphic file (type pdf)
 <use ../plots/5_1/quasi_t6_cat.pdf>
-Package pdftex.def Info: ../plots/5_1/quasi_t6_cat.pdf  used on input line 98.
+Package pdftex.def Info: ../plots/5_1/quasi_t6_cat.pdf  used on input line 101.
+
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
 
@@ -633,11 +634,11 @@ ultiple pdfs with page group included in a single page
 <../plots/5_1/quasi_t146_cat.pdf, id=312, 578.16pt x 443.6575pt>
 File: ../plots/5_1/quasi_t146_cat.pdf Graphic file (type pdf)
 <use ../plots/5_1/quasi_t146_cat.pdf>
-Package pdftex.def Info: ../plots/5_1/quasi_t146_cat.pdf  used on input line 11
-7.
+Package pdftex.def Info: ../plots/5_1/quasi_t146_cat.pdf  used on input line 12
+0.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
 
-Overfull \hbox (0.55699pt too wide) in paragraph at lines 124--125
+Overfull \hbox (0.55699pt too wide) in paragraph at lines 128--129
 \T1/cmr/m/n/12 pro-por-tions fol-low a lo-gis-tic nor-mal dis-tri-bu-tion, such
  that $\OML/cmm/m/it/12 [] \OMS/cmsy/m/n/12  [][]\OT1/cmr/m/n/12 ( []\OML/cmm
 /m/it/12 x[]; \OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 .
@@ -648,18 +649,18 @@ Overfull \hbox (0.55699pt too wide) in paragraph at lines 124--125
 File: ../plots/5_1/direct_t6_without_credible.pdf Graphic file (type pdf)
 <use ../plots/5_1/direct_t6_without_credible.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_without_credible.pdf  used on i
-nput line 144.
+nput line 148.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 <../plots/5_1/direct_t6_with_credible.pdf, id=332, 497.86pt x 382.42876pt>
 File: ../plots/5_1/direct_t6_with_credible.pdf Graphic file (type pdf)
 <use ../plots/5_1/direct_t6_with_credible.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_with_credible.pdf  used on inpu
-t line 147.
+t line 151.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 <../plots/5_1/direct_t6_cat.pdf, id=333, 543.02875pt x 331.2375pt>
 File: ../plots/5_1/direct_t6_cat.pdf Graphic file (type pdf)
 <use ../plots/5_1/direct_t6_cat.pdf>
-Package pdftex.def Info: ../plots/5_1/direct_t6_cat.pdf  used on input line 150
+Package pdftex.def Info: ../plots/5_1/direct_t6_cat.pdf  used on input line 154
 .
 (pdftex.def)             Requested size: 141.61081pt x 86.37747pt.
  [31 <../plots/5_1/direct_t6_without_credible.pdf> <../plots/5_1/direct_t6_with
@@ -676,7 +677,7 @@ multiple pdfs with page group included in a single page
 File: ../plots/5_2/t8_vocab_parties.pdf Graphic file (type pdf)
 <use ../plots/5_2/t8_vocab_parties.pdf>
 Package pdftex.def Info: ../plots/5_2/t8_vocab_parties.pdf  used on input line 
-41.
+42.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
 
 
@@ -687,34 +688,50 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../plots/6_1/quasi_t4_cont_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t4_cont_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t4_cont_ctm.pdf  used on input line
- 16.
+ 18.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 <../plots/6_1/quasi_t6_cont_ctm.pdf, id=400, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cont_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t6_cont_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t6_cont_ctm.pdf  used on input line
- 19.
+ 21.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 <../plots/6_1/quasi_t4_cat_ctm.pdf, id=401, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t4_cat_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t4_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t4_cat_ctm.pdf  used on input line 
-30.
+32.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 <../plots/6_1/quasi_t6_cat_ctm.pdf, id=402, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cat_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t6_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t6_cat_ctm.pdf  used on input line 
-33.
+35.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
+
+
+LaTeX Warning: Reference `beta_t46_cont_ctm' on page 36 undefined on input line
+ 42.
+
+
+LaTeX Warning: Reference `beta_t46_cat_ctm' on page 36 undefined on input line 
+42.
+
+
+LaTeX Warning: Reference `beta_t146_cat_ctm' on page 36 undefined on input line
+ 42.
+
 <../plots/6_1/quasi_t146_cat_ctm.pdf, id=403, 578.16pt x 443.6575pt>
 File: ../plots/6_1/quasi_t146_cat_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t146_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t146_cat_ctm.pdf  used on input lin
-e 45.
+e 47.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
 
-[36 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../plots/6_1/quasi_t6_cont_ctm.pdf
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) (kapitel/6_2_train_test.tex [36 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../plot
+s/6_1/quasi_t6_cont_ctm.pdf
 
 pdfTeX warning: pdflatex (file ../plots/6_1/quasi_t6_cont_ctm.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
@@ -726,31 +743,30 @@ n: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ../plots/6_1/quasi_t6_cat_ctm.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
->]) (kapitel/6_2_train_test.tex [37 <../plots/6_1/quasi_t146_cat_ctm.pdf>]
-[38] [39]
+>] [37 <../plots/6_1/quasi_t146_cat_ctm.pdf>] [38] [39]
 <../plots/6_2/climate_summit_props.pdf, id=485, 578.16pt x 433.62pt>
 File: ../plots/6_2/climate_summit_props.pdf Graphic file (type pdf)
 <use ../plots/6_2/climate_summit_props.pdf>
 Package pdftex.def Info: ../plots/6_2/climate_summit_props.pdf  used on input l
-ine 33.
+ine 37.
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 <../plots/6_2/emancipation_props.pdf, id=486, 578.16pt x 433.62pt>
 File: ../plots/6_2/emancipation_props.pdf Graphic file (type pdf)
 <use ../plots/6_2/emancipation_props.pdf>
 Package pdftex.def Info: ../plots/6_2/emancipation_props.pdf  used on input lin
-e 36.
+e 40.
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 <../plots/6_2/climate_summit_ate.pdf, id=487, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/climate_summit_ate.pdf Graphic file (type pdf)
 <use ../plots/6_2/climate_summit_ate.pdf>
 Package pdftex.def Info: ../plots/6_2/climate_summit_ate.pdf  used on input lin
-e 54.
+e 58.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
 <../plots/6_2/emancipation_ate.pdf, id=488, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/emancipation_ate.pdf Graphic file (type pdf)
 <use ../plots/6_2/emancipation_ate.pdf>
 Package pdftex.def Info: ../plots/6_2/emancipation_ate.pdf  used on input line 
-57.
+61.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
 
 
@@ -915,72 +931,83 @@ inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ../plots/appendix/6_1/beta_t146_cat_ctm.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
->] (consulting_master.bbl [50
+>] (consulting_master.bbl
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+7.
+
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmtt.fd"
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+[50
 
 ] [51]) [52] (consulting_master.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7566 strings out of 480930
- 123947 string characters out of 2899761
- 374459 words of memory out of 3000000
- 23215 multiletter control sequences out of 15000+200000
- 560803 words of font info for 91 fonts, out of 3000000 for 9000
+ 7619 strings out of 480930
+ 125417 string characters out of 2899761
+ 374859 words of memory out of 3000000
+ 23264 multiletter control sequences out of 15000+200000
+ 561116 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,15n,49p,2242b,453s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,15n,49p,2232b,453s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ecrm0600.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
-ec/dpi600\ecti1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecbi1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Simon\AppData\Lo
-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Simon\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Us
-ers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.
+ectt1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecrm0600.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts
+/pk/ljfour/jknappen/ec/dpi600\ecbi1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX
+\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Simon\AppData\Lo
+cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Simon\
+AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Us
+ers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.
 pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecti1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfou
-r/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\font
-s/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Simon\AppData\Local\MiKTe
-X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\Simon\AppData\L
-ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Simon
-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\U
-sers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095
+\tcrm1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
+/ec/dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfou
+r/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\font
+s/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTe
+X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Simon\AppData\L
+ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\Simon
+\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\U
+sers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095
 .pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecti1728.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
-n/ec/dpi600\ecbx2488.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfo
-ur/jknappen/ec/dpi600\eccc1728.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fon
-ts/pk/ljfour/jknappen/ec/dpi600\eccc2074.pk><C:/Users/Simon/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Simon/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/
-Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.p
-fb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cmextra/cmex8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Simon/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Simon/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users
-/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.p
-fb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Simon/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Simon/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users
-/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pf
-b><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/Simon/AppData/Local/Programs/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Simon/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Simon/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
->
-Output written on consulting_master.pdf (53 pages, 1894857 bytes).
+0\ecbx1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
+n/ec/dpi600\ecti1728.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfo
+ur/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fon
+ts/pk/ljfour/jknappen/ec/dpi600\eccc1728.pk> <C:\Users\Simon\AppData\Local\MiKT
+eX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2074.pk><C:/Users/Simon/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Si
+mon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb>
+<C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmex10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cmextra/cmex8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Simon/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Simon/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/S
+imon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmmi8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Users/Simon/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Simon/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/
+Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb
+><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/Simon/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Simon/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Use
+rs/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on consulting_master.pdf (53 pages, 1903866 bytes).
 PDF statistics:
- 1499 PDF objects out of 1728 (max. 8388607)
+ 1527 PDF objects out of 1728 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
