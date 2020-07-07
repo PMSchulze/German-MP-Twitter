@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  7 JUL 2020 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  7 JUL 2020 14:43
 entering extended mode
 **./consulting_master.tex
 (consulting_master.tex
@@ -486,18 +486,6 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [14] [15 <../plots/3/monthly_tweets.pdf>]) (kapitel/4_global_analysis.tex
 [16]
-Runaway argument?
-{Data Preprocessing). 
-! Paragraph ended before \ref was complete.
-<to be read again> 
-                   \par 
-l.16 
-     
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-
 Overfull \hbox (1.64722pt too wide) in paragraph at lines 20--22
 \T1/cmr/m/n/12 Combining a word's fre-quency and ex-clu-siv-ity fi-nally yields
  its Frequency-Exclusivity (\T1/cmr/m/it/12 FREX\T1/cmr/m/n/12 )
@@ -708,25 +696,13 @@ File: ../plots/6_1/quasi_t6_cat_ctm.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../plots/6_1/quasi_t6_cat_ctm.pdf  used on input line 
 35.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
-
-
-LaTeX Warning: Reference `beta_t46_cont_ctm' on page 36 undefined on input line
- 42.
-
-
-LaTeX Warning: Reference `beta_t46_cat_ctm' on page 36 undefined on input line 
-42.
-
-
-LaTeX Warning: Reference `beta_t146_cat_ctm' on page 36 undefined on input line
- 42.
-
 <../plots/6_1/quasi_t146_cat_ctm.pdf, id=403, 578.16pt x 443.6575pt>
 File: ../plots/6_1/quasi_t146_cat_ctm.pdf Graphic file (type pdf)
 <use ../plots/6_1/quasi_t146_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t146_cat_ctm.pdf  used on input lin
 e 47.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -942,17 +918,14 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 ] [51]) [52] (consulting_master.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7619 strings out of 480930
- 125417 string characters out of 2899761
+ 7616 strings out of 480930
+ 125361 string characters out of 2899761
  374859 words of memory out of 3000000
- 23264 multiletter control sequences out of 15000+200000
+ 23261 multiletter control sequences out of 15000+200000
  561116 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,15n,49p,2232b,453s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1005,9 +978,9 @@ rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Simon/App
 Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Use
 rs/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/
 msbm10.pfb>
-Output written on consulting_master.pdf (53 pages, 1903866 bytes).
+Output written on consulting_master.pdf (53 pages, 1903452 bytes).
 PDF statistics:
- 1527 PDF objects out of 1728 (max. 8388607)
+ 1526 PDF objects out of 1728 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
