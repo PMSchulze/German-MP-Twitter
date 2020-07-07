@@ -63,12 +63,6 @@ plot(prep, "t", method = "continuous", topics = 6,
 # ---------------------- Plots with stmprevalence: Method of Composition -----------------------
 # ----------------------------------------------------------------------------------------------
 
-# factorize categorical variables, set CDU/CSU as reference category for variable "Partei"
-data$meta$Partei <- data$meta$Partei %>%
-  as.factor() %>%
-  relevel(ref = 3)
-data$meta$Bundesland <- as.factor(data$meta$Bundesland)
-
 # # estimate 100 beta regressions and sample from regressions coefficients
 # all_betas <- sample_coefs(mod_prev, formula, type = "beta",
 #                             data$meta, nsims = 100, seed = 123)
@@ -107,8 +101,15 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_quasibin_Date <- plot_quasibin_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
+  plot_quasibin_Date, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 6: Climate Protection", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
@@ -135,8 +136,15 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
            axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_quasibin_Date <- plot_quasibin_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, 
+  plot_quasibin_Date, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, 
   ncol=2, 
   top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
@@ -183,6 +191,13 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_beta_Date <- plot_beta_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
   plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 3: Green/Climate", gp=grid::gpar(fontsize=16, fontface = "bold"))
@@ -211,6 +226,13 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_beta_Date <- plot_beta_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
   plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
@@ -264,7 +286,14 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
-gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_logisticn_Date <- plot_logisticn_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
+gridExtra::grid.arrange(plot_logisticn_Date, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
                         top = grid::textGrob("Topic 6: Climate Protection", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
@@ -291,7 +320,14 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
-gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_logisticn_Date <- plot_logisticn_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
+gridExtra::grid.arrange(plot_logisticn_Date, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
                         top = grid::textGrob("Topic 6: Climate Protection", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
@@ -321,7 +357,14 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
-gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_logisticn_Date <- plot_logisticn_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
+gridExtra::grid.arrange(plot_logisticn_Date, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
                         top = grid::textGrob("Topic 4: Social/Housing", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
@@ -348,7 +391,14 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
-gridExtra::grid.arrange(plot_logisticn_t, plot_logisticn_Struktur_4, 
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_logisticn_Date <- plot_logisticn_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
+gridExtra::grid.arrange(plot_logisticn_Date, plot_logisticn_Struktur_4, 
                         plot_logisticn_Struktur_22, plot_logisticn_Struktur_42, ncol=2, 
                         top = grid::textGrob("Topic 4: Social/Housing", 
                                              gp=grid::gpar(fontsize=16, fontface = "bold")))
