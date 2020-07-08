@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  8 JUL 2020 19:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  8 JUL 2020 22:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1295,14 +1295,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count161
 \LT@p@ftn=\toks31
 )
-(./consulting_master.aux
-
-LaTeX Warning: Label `fig:coffee' multiply defined.
-
-
-LaTeX Warning: Label `fig:coffee' multiply defined.
-
-)
+(./consulting_master.aux)
 \openout1 = `consulting_master.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -1422,88 +1415,433 @@ Package caption Info: End \AtBeginDocument code.
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./consulting_master.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 3.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 3.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+(./consulting_master.toc)
 \tf@toc=\write3
 \openout3 = `consulting_master.toc'.
 
- [1]
-(./kapitel/1_introduction.tex [2]) (./kapitel/2_theoretical_framework.tex
-[3] [4] [5] [6]
+ [1] (./kapitel/1_introduction.tex
+
+Package natbib Warning: Citation `gandomi2015beyond' on page 2 undefined on inp
+ut line 4.
+
+
+Package natbib Warning: Citation `ceron2017intra' on page 2 undefined on input 
+line 6.
+
+
+Package natbib Warning: Citation `daniel2019static' on page 2 undefined on inpu
+t line 6.
+
+
+Package natbib Warning: Citation `grimmer2010bayesian' on page 2 undefined on i
+nput line 6.
+
+
+Package natbib Warning: Citation `quinlan2018show' on page 2 undefined on input
+ line 6.
+
+
+Package natbib Warning: Citation `burnap2016140' on page 2 undefined on input l
+ine 6.
+
+
+Package natbib Warning: Citation `jungherr2016twitter' on page 2 undefined on i
+nput line 6.
+
+
+Package natbib Warning: Citation `tumasjan2010predicting' on page 2 undefined o
+n input line 6.
+
+
+Package natbib Warning: Citation `nisar2018twitter' on page 2 undefined on inpu
+t line 6.
+
+[2]
+
+Package natbib Warning: Citation `chang2009reading' on page 3 undefined on inpu
+t line 14.
+
+
+LaTeX Warning: Reference `Theoretical Framework' on page 3 undefined on input l
+ine 16.
+
+
+LaTeX Warning: Reference `Data' on page 3 undefined on input line 16.
+
+
+LaTeX Warning: Reference `Model Selection and Global Characteristics' on page 3
+ undefined on input line 16.
+
+
+LaTeX Warning: Reference `Metadata Analysis - Topical Prevalence and Content' o
+n page 3 undefined on input line 16.
+
+
+LaTeX Warning: Reference `Overfitting and Causal Inference - Alternative Modeli
+ng Strategies' on page 3 undefined on input line 16.
+
+
+LaTeX Warning: Reference `Conclusion' on page 3 undefined on input line 16.
+
+) (./kapitel/2_theoretical_framework.tex
+
+Package natbib Warning: Citation `salton1983information' on page 3 undefined on
+ input line 7.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+Package natbib Warning: Citation `deerwester1990indexing' on page 3 undefined o
+n input line 7.
+
+
+Package natbib Warning: Citation `blei2003latent' on page 3 undefined on input 
+line 7.
+
+
+Package natbib Warning: Citation `hofmann1999probabilistic' on page 3 undefined
+ on input line 7.
+
+[3]
+
+Package natbib Warning: Citation `blei2003latent' on page 4 undefined on input 
+line 9.
+
+
+LaTeX Warning: Reference `Hyperparameter Search and Model Fitting' on page 4 un
+defined on input line 19.
+
+
+LaTeX Warning: Reference `The Structural Topic Model' on page 4 undefined on in
+put line 21.
+
+[4]
+
+Package natbib Warning: Citation `aldous1985exchangeability' on page 5 undefine
+d on input line 27.
+
+
+LaTeX Warning: Reference `Inference and Parameter Estimation' on page 5 undefin
+ed on input line 48.
+
+[5]
+
+Package natbib Warning: Citation `james1980new' on page 6 undefined on input li
+ne 53.
+
+
+Package natbib Warning: Citation `blei2007correlated' on page 6 undefined on in
+put line 53.
+
+
+Package natbib Warning: Citation `blei2007correlated' on page 6 undefined on in
+put line 62.
+
+
+Package natbib Warning: Citation `atchison1980logistic' on page 6 undefined on 
+input line 62.
+
+[6]
+
+LaTeX Warning: Reference `Inference and Parameter Estimation' on page 7 undefin
+ed on input line 84.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 7 undefined on i
+nput line 84.
+
+
 Overfull \hbox (7.6027pt too wide) in paragraph at lines 83--85
 \T1/cmr/m/n/12 The first two steps con-sti-tute the sam-pling from a lo-gis-tic
  nor-mal dis-tri-bu-tion: a $\OML/cmm/m/it/12 K$\T1/cmr/m/n/12 -dimensional
  []
 
-[7] [8] [9] <../plots/2/stm_graphical.png, id=71, 822.07124pt x 325.215pt>
+
+Package natbib Warning: Citation `mimno2011optimizing' on page 7 undefined on i
+nput line 86.
+
+
+Package natbib Warning: Citation `eisenstein2011sparse' on page 7 undefined on 
+input line 88.
+
+
+Package natbib Warning: Citation `roberts2013structural' on page 7 undefined on
+ input line 90.
+
+
+LaTeX Warning: Reference `The Structural Topic Model' on page 7 undefined on in
+put line 90.
+
+[7]
+
+Package natbib Warning: Citation `stm' on page 8 undefined on input line 105.
+
+
+Package natbib Warning: Citation `stm' on page 8 undefined on input line 105.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 8 undefined on inpu
+t line 105.
+
+[8]
+
+Package natbib Warning: Citation `roberts2016model' on page 9 undefined on inpu
+t line 110.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 9 undefined on inpu
+t line 132.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 9 undefined on inpu
+t line 132.
+
+<../plots/2/stm_graphical.png, id=68, 822.07124pt x 325.215pt>
 File: ../plots/2/stm_graphical.png Graphic file (type png)
 
 <use ../plots/2/stm_graphical.png>
 Package pdftex.def Info: ../plots/2/stm_graphical.png used on input line 138.
 (pdftex.def)             Requested size: 411.0346pt x 162.6071pt.
- [10 <../plots/2/stm_graphical.png>]
+
+
+Package natbib Warning: Citation `roberts2016model' on page 9 undefined on inpu
+t line 139.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 9 undefined on inpu
+t line 139.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package natbib Warning: Citation `blei2003latent' on page 9 undefined on input 
+line 145.
+
+[9]
+
+LaTeX Warning: Reference `Metadata Analysis - Topical Prevalence and Content' o
+n page 10 undefined on input line 147.
+
+
+Package natbib Warning: Citation `egami2018make' on page 10 undefined on input 
+line 149.
+
+
+LaTeX Warning: Reference `Overfitting and Causal Inference - Alternative Modeli
+ng Strategies' on page 10 undefined on input line 149.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 10 undefined on inp
+ut line 149.
+
+[10 <../plots/2/stm_graphical.png>]
+
+Package natbib Warning: Citation `egami2018make' on page 11 undefined on input 
+line 151.
+
+
+LaTeX Warning: Reference `Causal Inference: Train-test Split' on page 11 undefi
+ned on input line 151.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 11 undefined on inp
+ut line 155.
+
+
 Overfull \hbox (8.6132pt too wide) in paragraph at lines 162--162
 [] 
  []
 
-[11] [12]) (./kapitel/3_data.tex [13] [14]
-<../plots/3/monthly_tweets.pdf, id=90, 578.16pt x 443.6575pt>
+[11]
+
+Package natbib Warning: Citation `wang2013variational' on page 12 undefined on 
+input line 170.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 12 undefined on 
+input line 178.
+
+
+Package natbib Warning: Citation `bishop2006pattern' on page 12 undefined on in
+put line 178.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 12 undefined on 
+input line 178.
+
+[12]
+
+Package natbib Warning: Citation `roberts2016model' on page 13 undefined on inp
+ut line 180.
+
+) (./kapitel/3_data.tex
+
+Package natbib Warning: Citation `richardson2007beautiful' on page 13 undefined
+ on input line 9.
+
+
+Package natbib Warning: Citation `van1995python' on page 13 undefined on input 
+line 9.
+
+[13] <../plots/3/monthly_tweets.pdf, id=87, 578.16pt x 443.6575pt>
 File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
 
 <use ../plots/3/monthly_tweets.pdf>
 Package pdftex.def Info: ../plots/3/monthly_tweets.pdf used on input line 20.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [15 <../plots/3/monthly_tweets.pdf>])
-(./kapitel/4_global_analysis.tex [16] [17]
+ [14]
+
+LaTeX Warning: Reference `Labeling' on page 15 undefined on input line 25.
+
+
+Package natbib Warning: Citation `quanteda' on page 15 undefined on input line 
+30.
+
+
+Package natbib Warning: Citation `R' on page 15 undefined on input line 30.
+
+
+LaTeX Warning: Reference `Hyperparameter Search and Model Fitting' on page 15 u
+ndefined on input line 30.
+
+[15 <../plots/3/monthly_tweets.pdf>]
+
+Package natbib Warning: Citation `lucas2015computer' on page 16 undefined on in
+put line 32.
+
+) (./kapitel/4_global_analysis.tex
+
+Package natbib Warning: Citation `stm' on page 16 undefined on input line 7.
+
+[16]
+
+Package natbib Warning: Citation `wallach2009evaluation' on page 17 undefined o
+n input line 9.
+
+
+Package natbib Warning: Citation `mimno2011optimizing' on page 17 undefined on 
+input line 11.
+
+
+Package natbib Warning: Citation `stm' on page 17 undefined on input line 15.
+
+
+Package natbib Warning: Citation `mimno2011optimizing' on page 17 undefined on 
+input line 15.
+
+
+LaTeX Warning: Reference `Data Preprocessing' on page 17 undefined on input lin
+e 15.
+
+
+LaTeX Warning: Reference `Labeling' on page 17 undefined on input line 21.
+
+
+Package natbib Warning: Citation `bischof2012summarizing' on page 17 undefined 
+on input line 21.
+
+
 Overfull \hbox (1.64722pt too wide) in paragraph at lines 20--22
 \T1/cmr/m/n/12 Combining a word's fre-quency and ex-clu-siv-ity fi-nally yields
  its Frequency-Exclusivity (\T1/cmr/m/it/12 FREX\T1/cmr/m/n/12 )
  []
 
-[18] <../plots/4_1/searchK.pdf, id=118, 578.16pt x 443.6575pt>
+[17]
+
+Package natbib Warning: Citation `taddy2012estimation' on page 18 undefined on 
+input line 23.
+
+
+LaTeX Warning: Reference `Metadata Analysis - Topical Prevalence and Content' o
+n page 18 undefined on input line 25.
+
+
+LaTeX Warning: Reference `Overfitting and Causal Inference - Alternative Modeli
+ng Strategies' on page 18 undefined on input line 25.
+
+
+LaTeX Warning: Reference `Topical Content' on page 18 undefined on input line 2
+7.
+
+
+LaTeX Warning: Reference `Two-step Approach: CTM' on page 18 undefined on input
+ line 27.
+
+
+LaTeX Warning: Reference `The Structural Topic Model' on page 18 undefined on i
+nput line 27.
+
+<../plots/4_1/searchK.pdf, id=114, 578.16pt x 443.6575pt>
 File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
 
 <use ../plots/4_1/searchK.pdf>
 Package pdftex.def Info: ../plots/4_1/searchK.pdf used on input line 32.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [19 <../plots/4_1/searchK.pdf>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[18]
+
+LaTeX Warning: Reference `Hyperparameter Search and Model Fitting' on page 19 u
+ndefined on input line 42.
+
+
 Overfull \hbox (18.37822pt too wide) in paragraph at lines 47--47
 [] 
  []
 
-[20] <../plots/4_2/t1_wordcloud.pdf, id=139, 578.16pt x 443.6575pt>
+
+LaTeX Warning: Reference `Hyperparameter Search and Model Fitting' on page 19 u
+ndefined on input line 48.
+
+
+Package natbib Warning: Citation `stm' on page 19 undefined on input line 48.
+
+
+Package natbib Warning: Citation `bischof2012summarizing' on page 19 undefined 
+on input line 48.
+
+[19 <../plots/4_1/searchK.pdf>]
+
+Package natbib Warning: Citation `taddy2012estimation' on page 20 undefined on 
+input line 54.
+
+
+Package natbib Warning: Citation `chang2010package' on page 20 undefined on inp
+ut line 60.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package natbib Warning: Citation `chang2009reading' on page 20 undefined on inp
+ut line 98.
+
+<../plots/4_2/t1_wordcloud.pdf, id=136, 578.16pt x 443.6575pt>
 File: ../plots/4_2/t1_wordcloud.pdf Graphic file (type pdf)
 
 <use ../plots/4_2/t1_wordcloud.pdf>
 Package pdftex.def Info: ../plots/4_2/t1_wordcloud.pdf used on input line 103.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[21]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[22 <../plots/4_2/t1_wordcloud.pdf>]
-<../plots/4_3/global_thetas.pdf, id=154, 578.16pt x 443.6575pt>
+ [20] [21 <../plots/4_2/t1_wordcloud.pdf>]
+[22] <../plots/4_3/global_thetas.pdf, id=154, 578.16pt x 443.6575pt>
 File: ../plots/4_3/global_thetas.pdf Graphic file (type pdf)
 
 <use ../plots/4_3/global_thetas.pdf>
 Package pdftex.def Info: ../plots/4_3/global_thetas.pdf used on input line 157.
 
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [23 <../plots/4_3/global_thetas.pdf>]
-<../plots/4_3/vocabulary_comparison.pdf, id=172, 578.16pt x 443.6575pt>
+
+<../plots/4_3/vocabulary_comparison.pdf, id=155, 578.16pt x 443.6575pt>
 File: ../plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
 
 <use ../plots/4_3/vocabulary_comparison.pdf>
@@ -1511,6 +1849,18 @@ Package pdftex.def Info: ../plots/4_3/vocabulary_comparison.pdf used on input l
 ine 167.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `fig:topic_correlations' on page 23 undefined on input
+ line 172.
+
+
+LaTeX Warning: Reference `fig:topic_correlations' on page 23 undefined on input
+ line 172.
+
+[23 <../plots/4_3/global_thetas.pdf>]
 <../plots/4_3/topic_correlations.pdf, id=173, 675.52374pt x 372.39125pt>
 File: ../plots/4_3/topic_correlations.pdf Graphic file (type pdf)
 
@@ -1526,23 +1876,47 @@ File: ../plots/4_3/topic_correlations_map.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../plots/4_3/topic_correlations_map.pdf used on input 
 line 181.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
+)
+(./kapitel/5_1_covariate_analysis.tex [24 <../plots/4_3/vocabulary_comparison.p
+df> <../plots/4_3/topic_correlations.pdf
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) (./kapitel/5_1_covariate_analysis.tex [24 <../plots/4_3/vocabulary_comparison
-.pdf>] [25 <../plots/4_3/topic_correlations.pdf> <../plots/4_3/topic_correlatio
-ns_map.pdf
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/topic_correlati
+ons.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
+e
+> <../plots/4_3/topic_correlations_map.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/topic_correlati
 ons_map.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] [26]
+>]
+
+Package natbib Warning: Citation `roberts2013structural' on page 25 undefined o
+n input line 17.
+
+
+LaTeX Warning: Reference `Two-step Approach: CTM' on page 25 undefined on input
+ line 19.
+
+
+Package natbib Warning: Citation `tanner2012tools' on page 25 undefined on inpu
+t line 23.
+
+[25]
+
+Package natbib Warning: Citation `roberts2016model' on page 26 undefined on inp
+ut line 34.
+
+[26]
 Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
 
-<../plots/5_1/estEffect_topic1.pdf, id=217, 497.86pt x 382.42876pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+
+ []
+
+<../plots/5_1/estEffect_topic1.pdf, id=216, 497.86pt x 382.42876pt>
 File: ../plots/5_1/estEffect_topic1.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/estEffect_topic1.pdf>
@@ -1550,7 +1924,7 @@ Package pdftex.def Info: ../plots/5_1/estEffect_topic1.pdf used on input line 5
 5.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/5_1/estEffect_topic6.pdf, id=218, 497.86pt x 382.42876pt>
+<../plots/5_1/estEffect_topic6.pdf, id=217, 497.86pt x 382.42876pt>
 File: ../plots/5_1/estEffect_topic6.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/estEffect_topic6.pdf>
@@ -1559,45 +1933,73 @@ Package pdftex.def Info: ../plots/5_1/estEffect_topic6.pdf used on input line 5
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Package natbib Warning: Citation `atchison1980logistic' on page 27 undefined on
+ input line 66.
 
-[27]
+
+Package natbib Warning: Citation `atchison1980logistic' on page 27 undefined on
+ input line 68.
+
+
+LaTeX Warning: Reference `Theoretical Framework' on page 27 undefined on input 
+line 68.
+
+[27 <../plots/5_1/estEffect_topic1.pdf> <../plots/5_1/estEffect_topic6.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/estEffect_topic
+6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+
+Package natbib Warning: Citation `ferrari2004beta' on page 28 undefined on inpu
+t line 72.
+
+
+Package natbib Warning: Citation `fahrmeir2007regression' on page 28 undefined 
+on input line 72.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 72--75
 
  []
 
-[28 <../plots/5_1/estEffect_topic1.pdf> <../plots/5_1/estEffect_topic6.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/estEffect_topic
-6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] <../plots/5_1/quasi_t4_cont.pdf, id=254, 497.86pt x 382.42876pt>
+LaTeX Warning: Reference `prevalence' on page 28 undefined on input line 79.
+
+<../plots/5_1/quasi_t4_cont.pdf, id=250, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cont.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/quasi_t4_cont.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t4_cont.pdf used on input line 85.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
-<../plots/5_1/quasi_t6_cont.pdf, id=255, 497.86pt x 382.42876pt>
+<../plots/5_1/quasi_t6_cont.pdf, id=251, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cont.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/quasi_t6_cont.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t6_cont.pdf used on input line 88.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
-<../plots/5_1/quasi_t4_cat.pdf, id=256, 497.86pt x 382.42876pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../plots/5_1/quasi_t4_cat.pdf, id=252, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/quasi_t4_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t4_cat.pdf used on input line 98.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
-<../plots/5_1/quasi_t6_cat.pdf, id=257, 497.86pt x 382.42876pt>
+<../plots/5_1/quasi_t6_cat.pdf, id=253, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/quasi_t6_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t6_cat.pdf used on input line 101.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
- [29 <../plots/5_1/quasi_t4_cont.pdf> <../plots/5_1/quasi_t6_cont.pdf
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[28] [29 <../plots/5_1/quasi_t4_cont.pdf> <../plots/5_1/quasi_t6_cont.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cont.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
@@ -1609,7 +2011,7 @@ f): PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cat.pd
 f): PDF inclusion: multiple pdfs with page group included in a single page
->] <../plots/5_1/quasi_t146_cat.pdf, id=314, 578.16pt x 443.6575pt>
+>] <../plots/5_1/quasi_t146_cat.pdf, id=313, 578.16pt x 443.6575pt>
 File: ../plots/5_1/quasi_t146_cat.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/quasi_t146_cat.pdf>
@@ -1617,18 +2019,14 @@ Package pdftex.def Info: ../plots/5_1/quasi_t146_cat.pdf used on input line 120
 .
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 Overfull \hbox (0.55699pt too wide) in paragraph at lines 128--129
 \T1/cmr/m/n/12 pro-por-tions fol-low a lo-gis-tic nor-mal dis-tri-bu-tion, such
  that $\OML/cmm/m/it/12 ^^R[] \OMS/cmsy/m/n/12 ^^X [][]\OT1/cmr/m/n/12 (^^@[]\O
 ML/cmm/m/it/12 x[]; \OT1/cmr/m/n/12 ^^F)$\T1/cmr/m/n/12 .
  []
 
-[30]
-<../plots/5_1/direct_t6_without_credible.pdf, id=319, 497.86pt x 382.42876pt>
+[30 <../plots/5_1/quasi_t146_cat.pdf>]
+<../plots/5_1/direct_t6_without_credible.pdf, id=332, 497.86pt x 382.42876pt>
 File: ../plots/5_1/direct_t6_without_credible.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/direct_t6_without_credible.pdf>
@@ -1636,7 +2034,7 @@ Package pdftex.def Info: ../plots/5_1/direct_t6_without_credible.pdf used on in
 put line 148.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/5_1/direct_t6_with_credible.pdf, id=320, 497.86pt x 382.42876pt>
+<../plots/5_1/direct_t6_with_credible.pdf, id=333, 497.86pt x 382.42876pt>
 File: ../plots/5_1/direct_t6_with_credible.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/direct_t6_with_credible.pdf>
@@ -1644,20 +2042,15 @@ Package pdftex.def Info: ../plots/5_1/direct_t6_with_credible.pdf used on input
  line 151.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/5_1/direct_t6_cat.pdf, id=321, 543.02875pt x 331.2375pt>
+<../plots/5_1/direct_t6_cat.pdf, id=334, 543.02875pt x 331.2375pt>
 File: ../plots/5_1/direct_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/direct_t6_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_cat.pdf used on input line 154.
 
 (pdftex.def)             Requested size: 141.61081pt x 86.37747pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[31 <../plots/5_1/quasi_t146_cat.pdf>]) (./kapitel/5_2_topical_content.tex
-[32 <../plots/5_1/direct_t6_without_credible.pdf> <../plots/5_1/direct_t6_with_
-credible.pdf
+ [31 <../plots/5_1/direct_t6_without_credible.pdf> <../plots/5_1/direct_t6_with
+_credible.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_with_
 credible.pdf): PDF inclusion: multiple pdfs with page group included in a singl
@@ -1666,15 +2059,82 @@ e page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_cat.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] [33] <../plots/5_2/t8_vocab_parties.pdf, id=387, 578.16pt x 443.6575pt>
+>]
+
+LaTeX Warning: Reference `fig:directassessment' on page 32 undefined on input l
+ine 162.
+
+) (./kapitel/5_2_topical_content.tex [32]
+
+LaTeX Warning: Reference `fig:t8_vocab_parties' on page 33 undefined on input l
+ine 37.
+
+
+LaTeX Warning: Reference `fig:quasi_t146_cat' on page 33 undefined on input lin
+e 37.
+
+
+LaTeX Warning: Reference `Method of Composition' on page 33 undefined on input 
+line 37.
+
+<../plots/5_2/t8_vocab_parties.pdf, id=383, 578.16pt x 443.6575pt>
 File: ../plots/5_2/t8_vocab_parties.pdf Graphic file (type pdf)
 
 <use ../plots/5_2/t8_vocab_parties.pdf>
 Package pdftex.def Info: ../plots/5_2/t8_vocab_parties.pdf used on input line 4
 2.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-) (./kapitel/6_1_ctm.tex [34 <../plots/5_2/t8_vocab_parties.pdf>] [35]
-<../plots/6_1/quasi_t4_cont_ctm.pdf, id=402, 497.86pt x 382.42876pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[33]) (./kapitel/6_1_ctm.tex
+
+LaTeX Warning: Reference `Metadata Analysis - Topical Prevalence and Content' o
+n page 34 undefined on input line 7.
+
+
+LaTeX Warning: Reference `Theoretical Framework' on page 34 undefined on input 
+line 7.
+
+
+LaTeX Warning: Reference `fig:quasi_t46_cont' on page 34 undefined on input lin
+e 7.
+
+
+LaTeX Warning: Reference `Method of Composition' on page 34 undefined on input 
+line 7.
+
+
+LaTeX Warning: Reference `Causal Inference: Train-test Split' on page 34 undefi
+ned on input line 7.
+
+[34 <../plots/5_2/t8_vocab_parties.pdf>]
+
+Package natbib Warning: Citation `roberts2016model' on page 35 undefined on inp
+ut line 9.
+
+
+LaTeX Warning: Reference `Covariate-level Topic Analysis' on page 35 undefined 
+on input line 9.
+
+
+LaTeX Warning: Reference `Covariate-level Topic Analysis' on page 35 undefined 
+on input line 12.
+
+
+LaTeX Warning: Reference `Direct assessment' on page 35 undefined on input line
+ 12.
+
+
+LaTeX Warning: Reference `fig:quasi_t46_cont_ctm' on page 35 undefined on input
+ line 12.
+
+
+LaTeX Warning: Reference `fig:quasi_t46_cat_ctm' on page 35 undefined on input 
+line 12.
+
+[35] <../plots/6_1/quasi_t4_cont_ctm.pdf, id=401, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t4_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t4_cont_ctm.pdf>
@@ -1682,7 +2142,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t4_cont_ctm.pdf used on input line
 18.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t6_cont_ctm.pdf, id=403, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t6_cont_ctm.pdf, id=402, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t6_cont_ctm.pdf>
@@ -1690,7 +2150,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t6_cont_ctm.pdf used on input line
 21.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t4_cat_ctm.pdf, id=404, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t4_cat_ctm.pdf, id=403, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t4_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t4_cat_ctm.pdf>
@@ -1698,7 +2158,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t4_cat_ctm.pdf used on input line 3
 2.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t6_cat_ctm.pdf, id=405, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t6_cat_ctm.pdf, id=404, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t6_cat_ctm.pdf>
@@ -1709,19 +2169,48 @@ Package pdftex.def Info: ../plots/6_1/quasi_t6_cat_ctm.pdf used on input line 3
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[36 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../plots/6_1/quasi_t6_cont_ctm.pdf
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t6_cont_c
-tm.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+LaTeX Warning: Reference `fig:beta_t46_cont_ctm' on page 36 undefined on input 
+line 42.
 
->] <../plots/6_1/quasi_t146_cat_ctm.pdf, id=437, 578.16pt x 443.6575pt>
+
+LaTeX Warning: Reference `fig:beta_t46_cat_ctm' on page 36 undefined on input l
+ine 42.
+
+
+LaTeX Warning: Reference `fig:beta_t146_cat_ctm' on page 36 undefined on input 
+line 42.
+
+<../plots/6_1/quasi_t146_cat_ctm.pdf, id=405, 578.16pt x 443.6575pt>
 File: ../plots/6_1/quasi_t146_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t146_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t146_cat_ctm.pdf used on input line
  47.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-) (./kapitel/6_2_train_test.tex
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `Causal Inference: Train-test Split' on page 36 undefi
+ned on input line 52.
+
+) (./kapitel/6_2_train_test.tex [36 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../pl
+ots/6_1/quasi_t6_cont_ctm.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t6_cont_c
+tm.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+>]
+
+LaTeX Warning: Reference `Covariate-level Topic Analysis' on page 37 undefined 
+on input line 4.
+
+
+Package natbib Warning: Citation `egami2018make' on page 37 undefined on input 
+line 4.
+
 [37 <../plots/6_1/quasi_t4_cat_ctm.pdf> <../plots/6_1/quasi_t6_cat_ctm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t6_cat_ct
@@ -1731,8 +2220,37 @@ m.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t146_cat_
 ctm.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
 e
->] [38] [39]
-<../plots/6_2/climate_summit_props.pdf, id=488, 578.16pt x 433.62pt>
+>]
+
+Package natbib Warning: Citation `egami2018make' on page 38 undefined on input 
+line 6.
+
+
+Package natbib Warning: Citation `egami2018make' on page 38 undefined on input 
+line 6.
+
+
+Package natbib Warning: Citation `egami2018make' on page 38 undefined on input 
+line 16.
+
+
+Package natbib Warning: Citation `roberts2013structural' on page 38 undefined o
+n input line 18.
+
+[38]
+
+Package natbib Warning: Citation `roberts2013structural' on page 39 undefined o
+n input line 19.
+
+
+LaTeX Warning: Reference `Covariate-level Topic Analysis' on page 39 undefined 
+on input line 29.
+
+
+LaTeX Warning: Reference `fig:causal_inference_props' on page 39 undefined on i
+nput line 29.
+
+[39] <../plots/6_2/climate_summit_props.pdf, id=487, 578.16pt x 433.62pt>
 File: ../plots/6_2/climate_summit_props.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/climate_summit_props.pdf>
@@ -1740,7 +2258,7 @@ Package pdftex.def Info: ../plots/6_2/climate_summit_props.pdf used on input li
 ne 37.
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 
-<../plots/6_2/emancipation_props.pdf, id=489, 578.16pt x 433.62pt>
+<../plots/6_2/emancipation_props.pdf, id=488, 578.16pt x 433.62pt>
 File: ../plots/6_2/emancipation_props.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/emancipation_props.pdf>
@@ -1749,9 +2267,28 @@ Package pdftex.def Info: ../plots/6_2/emancipation_props.pdf used on input line
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Package natbib Warning: Citation `egami2018make' on page 40 undefined on input 
+line 46.
 
-[40] <../plots/6_2/climate_summit_ate.pdf, id=493, 512.91624pt x 359.3425pt>
+
+Package natbib Warning: Citation `egami2018make' on page 40 undefined on input 
+line 50.
+
+
+LaTeX Warning: Reference `fig:causal_inference_ate' on page 40 undefined on inp
+ut line 52.
+
+
+LaTeX Warning: Reference `fig:causal_inference_props' on page 40 undefined on i
+nput line 52.
+
+[40 <../plots/6_2/climate_summit_props.pdf> <../plots/6_2/emancipation_props.pd
+f
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/emancipation_pr
+ops.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
+e
+>] <../plots/6_2/climate_summit_ate.pdf, id=520, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/climate_summit_ate.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/climate_summit_ate.pdf>
@@ -1759,34 +2296,96 @@ Package pdftex.def Info: ../plots/6_2/climate_summit_ate.pdf used on input line
  58.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
 
-<../plots/6_2/emancipation_ate.pdf, id=494, 512.91624pt x 359.3425pt>
+<../plots/6_2/emancipation_ate.pdf, id=521, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/emancipation_ate.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/emancipation_ate.pdf>
 Package pdftex.def Info: ../plots/6_2/emancipation_ate.pdf used on input line 6
 1.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
-) (./kapitel/7_conclusion.tex [41 <../plots/6_2/climate_summit_props.pdf> <../p
-lots/6_2/emancipation_props.pdf
+) (./kapitel/7_conclusion.tex
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/emancipation_pr
-ops.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
-e
-> <../plots/6_2/climate_summit_ate.pdf
+Package natbib Warning: Citation `egami2018make' on page 41 undefined on input 
+line 6.
 
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/climate_summit_
-ate.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
-e
-> <../plots/6_2/emancipation_ate.pdf
+[41 <../plots/6_2/climate_summit_ate.pdf> <../plots/6_2/emancipation_ate.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/emancipation_at
 e.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [42]) [43] (./kapitel/appendix.tex [44] [45]
+>]
+
+Package natbib Warning: Citation `roberts2016model' on page 42 undefined on inp
+ut line 8.
+
+
+LaTeX Warning: Reference `Direct assessment' on page 42 undefined on input line
+ 10.
+
+
+LaTeX Warning: Reference `Causal Inference: Train-test Split' on page 42 undefi
+ned on input line 12.
+
+) [42] (./kapitel/appendix.tex
+
+Package natbib Warning: Citation `wang2013variational' on page 43 undefined on 
+input line 5.
+
+[43]
+
+Package natbib Warning: Citation `blei2003latent' on page 44 undefined on input
+ line 33.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 44 undefined on 
+input line 33.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 44 undefined on 
+input line 33.
+
+
+Package natbib Warning: Citation `bishop2006pattern' on page 44 undefined on in
+put line 33.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 44 undefined on 
+input line 38.
+
+
+Package natbib Warning: Citation `roberts2016model' on page 44 undefined on inp
+ut line 40.
+
+
+Package natbib Warning: Citation `roberts2013structural' on page 44 undefined o
+n input line 40.
+
+
+Package natbib Warning: Citation `wang2013variational' on page 44 undefined on 
+input line 40.
+
+[44]
+
+Package natbib Warning: Citation `roberts2013structural' on page 45 undefined o
+n input line 42.
+
+
+Package natbib Warning: Citation `roberts2013structural' on page 45 undefined o
+n input line 42.
+
+
+Package natbib Warning: Citation `blei2003latent' on page 45 undefined on input
+ line 42.
+
+
 Underfull \vbox (badness 10000) detected at line 76
  []
 
-[46] [47]
-<../plots/appendix/5_1/beta_t4_cont.pdf, id=571, 497.86pt x 382.42876pt>
+[45]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4 on input line 145.
+
+[46] <../plots/appendix/5_1/beta_t4_cont.pdf, id=568, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t4_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t4_cont.pdf>
@@ -1794,7 +2393,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t4_cont.pdf used on input l
 ine 153.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/5_1/beta_t6_cont.pdf, id=572, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/beta_t6_cont.pdf, id=569, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t6_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t6_cont.pdf>
@@ -1802,7 +2401,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t6_cont.pdf used on input l
 ine 156.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/5_1/beta_t4_cat.pdf, id=573, 443.6575pt x 283.0575pt>
+<../plots/appendix/5_1/beta_t4_cat.pdf, id=570, 443.6575pt x 283.0575pt>
 File: ../plots/appendix/5_1/beta_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t4_cat.pdf>
@@ -1810,7 +2409,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t4_cat.pdf used on input li
 ne 165.
 (pdftex.def)             Requested size: 188.8096pt x 120.4598pt.
 
-<../plots/appendix/5_1/beta_t6_cat.pdf, id=574, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/beta_t6_cat.pdf, id=571, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t6_cat.pdf>
@@ -1821,7 +2420,7 @@ ne 168.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/5_1/beta_t146_cat.pdf, id=575, 588.1975pt x 433.62pt>
+<../plots/appendix/5_1/beta_t146_cat.pdf, id=572, 588.1975pt x 433.62pt>
 File: ../plots/appendix/5_1/beta_t146_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t146_cat.pdf>
@@ -1833,7 +2432,7 @@ line 177.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../plots/appendix/5_1/direct_t4_without_credible.pdf, id=576, 497.86pt x 382.4
+<../plots/appendix/5_1/direct_t4_without_credible.pdf, id=573, 497.86pt x 382.4
 2876pt>
 File: ../plots/appendix/5_1/direct_t4_without_credible.pdf Graphic file (type p
 df)
@@ -1842,7 +2441,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/direct_t4_without_credible.pdf u
 sed on input line 185.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/5_1/direct_t4_with_credible.pdf, id=577, 497.86pt x 382.4287
+<../plots/appendix/5_1/direct_t4_with_credible.pdf, id=574, 497.86pt x 382.4287
 6pt>
 File: ../plots/appendix/5_1/direct_t4_with_credible.pdf Graphic file (type pdf)
 
@@ -1851,7 +2450,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/direct_t4_with_credible.pdf used
  on input line 188.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/5_1/direct_t4_cat.pdf, id=578, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/direct_t4_cat.pdf, id=575, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/direct_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/direct_t4_cat.pdf>
@@ -1862,7 +2461,7 @@ line 191.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t4_cont_ctm.pdf, id=579, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t4_cont_ctm.pdf, id=576, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t4_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t4_cont_ctm.pdf>
@@ -1870,7 +2469,7 @@ Package pdftex.def Info: ../plots/appendix/6_1/beta_t4_cont_ctm.pdf used on inp
 ut line 203.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/6_1/beta_t6_cont_ctm.pdf, id=580, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t6_cont_ctm.pdf, id=577, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t6_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t6_cont_ctm.pdf>
@@ -1881,7 +2480,7 @@ ut line 206.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t4_cat_ctm.pdf, id=581, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t4_cat_ctm.pdf, id=578, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t4_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t4_cat_ctm.pdf>
@@ -1889,7 +2488,7 @@ Package pdftex.def Info: ../plots/appendix/6_1/beta_t4_cat_ctm.pdf used on inpu
 t line 215.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/6_1/beta_t6_cat_ctm.pdf, id=582, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t6_cat_ctm.pdf, id=579, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t6_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t6_cat_ctm.pdf>
@@ -1900,7 +2499,7 @@ t line 218.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t146_cat_ctm.pdf, id=583, 588.1975pt x 433.62pt>
+<../plots/appendix/6_1/beta_t146_cat_ctm.pdf, id=580, 588.1975pt x 433.62pt>
 File: ../plots/appendix/6_1/beta_t146_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t146_cat_ctm.pdf>
@@ -1911,13 +2510,13 @@ put line 227.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [48 <../plots/appendix/5_1/beta_t4_cont.pdf> <../plots/appendix/5_1/beta_t6_c
+) [47 <../plots/appendix/5_1/beta_t4_cont.pdf> <../plots/appendix/5_1/beta_t6_c
 ont.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/beta_t
 6_cont.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
->] [49 <../plots/appendix/5_1/beta_t4_cat.pdf> <../plots/appendix/5_1/beta_t6_c
+>] [48 <../plots/appendix/5_1/beta_t4_cat.pdf> <../plots/appendix/5_1/beta_t6_c
 at.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/beta_t
@@ -1943,7 +2542,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/direct
 _t4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] [50 <../plots/appendix/6_1/beta_t4_cont_ctm.pdf> <../plots/appendix/6_1/beta
+>] [49 <../plots/appendix/6_1/beta_t4_cont_ctm.pdf> <../plots/appendix/6_1/beta
 _t6_cont_ctm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/6_1/beta_t
@@ -1969,22 +2568,36 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 27.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [51
+) [50
 
-] [52])
-[53] (./consulting_master.aux)
+] [51])
 
-LaTeX Warning: There were multiply-defined labels.
+Package natbib Warning: There were undefined citations.
+
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
+[52] (./consulting_master.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  14389 strings out of 492995
  256562 string characters out of 6132704
- 303808 words of memory out of 5000000
+ 301287 words of memory out of 5000000
  17675 multiletter control sequences out of 15000+600000
  32857 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,46p,10410b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,46p,10410b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
@@ -2028,10 +2641,10 @@ cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm
 -super/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-s
 uper/sfti1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-sup
 er/sftt1200.pfb>
-Output written on consulting_master.pdf (54 pages, 2061998 bytes).
+Output written on consulting_master.pdf (53 pages, 2059810 bytes).
 PDF statistics:
- 911 PDF objects out of 1000 (max. 8388607)
- 611 compressed objects within 7 object streams
+ 908 PDF objects out of 1000 (max. 8388607)
+ 609 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

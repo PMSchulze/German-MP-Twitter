@@ -46,7 +46,7 @@ where $q(\xi, \theta_{(k)} | X, W) := q(\xi| \tilde{X}, \theta_{(k)}) q(\theta_{
 \\
 \textbf{Implementation in the \textit{stm} package} \vspace{10px}
 
-\noindent The R package \textit{stm} implements a simple OLS regression through its \textit{estimateEffect} function. However, this approach ignores that the sampled topic proportions are restricted to $(0,1)$ by construction. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$. Moreover, credible intervals are non-informative, due to violated model assumptions. 
+\noindent The R package \textit{stm} implements a simple OLS regression through its \textit{estimateEffect} function. However, this approach ignores that the sampled topic proportions are restricted to $(0,1)$ by construction. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$. Moreover, credible intervals are non-informative, due to violated model assumptions. \\
 
 \begin{figure}[h!]
   \centering
