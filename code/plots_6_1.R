@@ -50,11 +50,6 @@ formula <- 1:15~Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) +
 # ---------------------- Plots with stmprevalence: Method of Composition -----------------------
 # ----------------------------------------------------------------------------------------------
 
-# factorize categorical variables
-data$meta$Partei <- data$meta$Partei %>%
-  as.factor()
-data$meta$Bundesland <- as.factor(data$meta$Bundesland)
-
 # # estimate 100 beta regressions and sample from regressions coefficients
 # all_betas_ctm <- sample_coefs(mod_ctm, formula = formula, type = "beta",
 #                             data$meta, nsims = 100, seed = 123)
@@ -93,13 +88,20 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_quasibin_Date <- plot_quasibin_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
+  plot_quasibin_Date, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 6: Climate Protection", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
 ## Topic 6: Climate Protection -- Quasibinomial GLM
-### Categorial Plots
+### Categorical Plots
 (plot_party_6 <- ggplot(preds_quasibin$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -121,15 +123,21 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_quasibin_Date <- plot_quasibin_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_quasibin_t, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, 
+  plot_quasibin_Date, plot_quasibin_Struktur_4, plot_quasibin_Struktur_22, plot_quasibin_Struktur_42, 
   ncol=2, 
   top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
 ## Topic 4: Social/Housing -- Quasibinomial GLM
-### Categorial Plots
-### Categorial Plots
+### Categorical Plots
 (plot_party_4 <- ggplot(preds_quasibin$Partei$Topic4, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -139,7 +147,7 @@ gridExtra::grid.arrange(
           axis.title.x = element_text(size=16)))
 
 ## Topics 1,6, and 4 -- Quasibinomial GLM
-### Categorial Plots
+### Categorical Plots
 preds_quasibin$Partei$Topic1$Topic <- "Right/Nationalist"
 preds_quasibin$Partei$Topic6$Topic <- "Climate Protection"
 preds_quasibin$Partei$Topic4$Topic <- "Social/Housing"
@@ -170,13 +178,20 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_beta_Date <- plot_beta_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
+  plot_beta_Date, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 6: Climate Protection", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
 ## Topic 6: Climate Protection -- Beta regression
-### Categorial Plots
+### Categorical Plots
 (plot_party_6 <- ggplot(preds_beta$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -198,8 +213,15 @@ for(v in setdiff(varlist, c("Partei", "Bundesland"))){
            theme(axis.text=element_text(size=12), 
                  axis.title.x = element_text(size=16)))
 }
+### Change axis labeling for time effects
+ticks_date <- data.frame(breaks = c(1,13,25), labels = 0)
+for (i in ticks_date$breaks) ticks_date[ticks_date["breaks"]==i, "labels"] <- 
+  (data$meta$Datum[which(data$meta$t == i)] %>% unique)
+plot_beta_Date <- plot_beta_t + 
+  scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
+### Combine all plots
 gridExtra::grid.arrange(
-  plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
+  plot_beta_Date, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
