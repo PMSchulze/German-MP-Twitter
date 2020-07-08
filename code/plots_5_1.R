@@ -9,6 +9,7 @@ library(tidyverse)
 
 # set working directory
 setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
 # load data
 data <- readRDS("./data/preprocessed_monthly.rds")
 # load fitted topic model
@@ -115,7 +116,7 @@ gridExtra::grid.arrange(
 
 ## Topic 6: Climate Protection -- Quasibinomial GLM
 ### Categorial Plots
-(plot_party_3 <- ggplot(preds_quasibin$Partei$Topic6, aes(y=proportion, x = Partei)) +
+(plot_party_6 <- ggplot(preds_quasibin$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
@@ -150,7 +151,7 @@ gridExtra::grid.arrange(
 )
 
 ## Topic 4: Social/Housing -- Quasibinomial GLM
-### Categorial Plots
+### Categorical Plots
 (plot_party_4 <- ggplot(preds_quasibin$Partei$Topic4, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -159,7 +160,7 @@ gridExtra::grid.arrange(
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
           axis.title.x = element_text(size=16)))
 
-## Topics 1,3, and 4 -- Quasibinomial GLM
+## Topics 1,6, and 4 -- Quasibinomial GLM
 ### Categorial Plots
 preds_quasibin$Partei$Topic1$Topic <- "Right/Nationalist"
 preds_quasibin$Partei$Topic6$Topic <- "Climate Protection"
@@ -178,11 +179,11 @@ party_data <- rbind(preds_quasibin$Partei$Topic1, preds_quasibin$Partei$Topic6,
 
 # Then, we create all plots using the beta regression; these plots are shown in appendix
 
-## Topic 3: Green/Climate -- Beta regression
+## Topic 6: Climate Protection -- Beta regression
 ### Continuous Plots
 for(v in setdiff(varlist, c("Partei", "Bundesland"))){
   plot_nam <- paste0("plot_beta_", v)
-  assign(plot_nam, ggplot(preds_beta[[v]]$Topic3, aes(!!as.symbol(v))) + 
+  assign(plot_nam, ggplot(preds_beta[[v]]$Topic6, aes(!!as.symbol(v))) + 
            geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), fill = "grey70") +
            xlab(varlist_fullnames[varlist==v]) +
            ylab("Expected Topic Proportion") +
@@ -199,17 +200,17 @@ plot_beta_Date <- plot_beta_t +
   scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
 ### Combine all plots
 gridExtra::grid.arrange(
-  plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
-  top = grid::textGrob("Topic 3: Green/Climate", gp=grid::gpar(fontsize=16, fontface = "bold"))
+  plot_beta_Date, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
+  top = grid::textGrob("Topic 6: Climate Protection", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
-## Topic 3: Green/Climate -- Beta regression
-### Categorial Plots
-(plot_party_3 <- ggplot(preds_beta$Partei$Topic3, aes(y=proportion, x = Partei)) +
+## Topic 6: Climate Protection -- Beta regression
+### Categorical Plots
+(plot_party_6 <- ggplot(preds_beta$Partei$Topic6, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
     ylab("Expected Topic Proportion") +
-    ggtitle("Topic 3: Green/Climate") +
+    ggtitle("Topic 6: Climate Protection") +
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
           axis.title.x = element_text(size=16)))
 
@@ -234,7 +235,7 @@ plot_beta_Date <- plot_beta_t +
   scale_x_continuous(name = "Date", breaks = ticks_date$breaks, labels = ticks_date$labels)
 ### Combine all plots
 gridExtra::grid.arrange(
-  plot_beta_t, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
+  plot_beta_Date, plot_beta_Struktur_4, plot_beta_Struktur_22, plot_beta_Struktur_42, ncol=2, 
   top = grid::textGrob("Topic 4: Social/Housing", gp=grid::gpar(fontsize=16, fontface = "bold"))
 )
 
@@ -247,12 +248,12 @@ gridExtra::grid.arrange(
     theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
           axis.title.x = element_text(size=16)))
 
-## Topics 1,3, and 4 -- Beta regression
-### Categorial Plots
+## Topics 1,6, and 4 -- Beta regression
+### Categorical Plots
 preds_beta$Partei$Topic1$Topic <- "Right/Nationalist"
-preds_beta$Partei$Topic3$Topic <- "Green/Climate"
+preds_beta$Partei$Topic6$Topic <- "Climate Protection"
 preds_beta$Partei$Topic4$Topic <- "Social/Housing"
-party_data <- rbind(preds_beta$Partei$Topic1, preds_beta$Partei$Topic3, preds_beta$Partei$Topic4)
+party_data <- rbind(preds_beta$Partei$Topic1, preds_beta$Partei$Topic6, preds_beta$Partei$Topic4)
 (plot_party <- ggplot(party_data, aes(y=proportion, x = Partei, fill = Topic)) +
     geom_col(position = "dodge") +
     scale_fill_manual(values=c("#53A567FF", "#56A8CBFF", "#DA291CFF")) +
