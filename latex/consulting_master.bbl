@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -208,6 +208,11 @@ Margaret~E. Roberts, Brandon~M. Stewart, and Dustin Tingley.
 \newblock \emph{Journal of Statistical Software}, 91\penalty0 (2):\penalty0
   1--40, 2019.
 \newblock \doi{10.18637/jss.v091.i02}.
+
+\bibitem[Roesslein(2020)]{roesslein2020tweepy}
+Joshua Roesslein.
+\newblock Tweepy: Twitter for python!
+\newblock \emph{URL: https://github.com/tweepy/tweepy}, 2020.
 
 \bibitem[Salton and McGill(1983)]{salton1983information}
 Gerard Salton and M.~J. McGill.

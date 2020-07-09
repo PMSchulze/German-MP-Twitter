@@ -4,45 +4,45 @@ The top-level auxiliary file: consulting_master.aux
 The style file: plainnat.bst
 Database file #1: ./kapitel/bibliography.bib
 Warning--empty journal in eisenstein2011sparse
-You've used 38 entries,
+You've used 39 entries,
             2773 wiz_defined-function locations,
-            822 strings with 11488 characters,
-and the built_in function-call counts, 18549 in all, are:
-= -- 1657
-> -- 1063
-< -- 27
-+ -- 362
-- -- 324
-* -- 1492
-:= -- 2809
-add.period$ -- 120
-call.type$ -- 38
-change.case$ -- 213
-chr.to.int$ -- 38
-cite$ -- 77
-duplicate$ -- 862
-empty$ -- 1533
-format.name$ -- 380
-if$ -- 3914
+            826 strings with 11588 characters,
+and the built_in function-call counts, 18847 in all, are:
+= -- 1683
+> -- 1073
+< -- 28
++ -- 366
+- -- 327
+* -- 1507
+:= -- 2858
+add.period$ -- 123
+call.type$ -- 39
+change.case$ -- 217
+chr.to.int$ -- 39
+cite$ -- 79
+duplicate$ -- 881
+empty$ -- 1563
+format.name$ -- 384
+if$ -- 3976
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 41
-newline$ -- 201
-num.names$ -- 152
-pop$ -- 453
+missing$ -- 42
+newline$ -- 206
+num.names$ -- 156
+pop$ -- 462
 preamble$ -- 1
-purify$ -- 181
+purify$ -- 184
 quote$ -- 0
-skip$ -- 666
+skip$ -- 679
 stack$ -- 0
-substring$ -- 755
-swap$ -- 112
+substring$ -- 757
+swap$ -- 113
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 393
+type$ -- 404
 warning$ -- 1
-while$ -- 175
+while$ -- 178
 width$ -- 0
-write$ -- 499
+write$ -- 511
 (There was 1 warning)
