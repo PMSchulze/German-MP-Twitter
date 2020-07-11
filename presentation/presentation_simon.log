@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  11 JUL 2020 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  11 JUL 2020 20:02
 entering extended mode
 **./presentation_simon.tex
 (presentation_simon.tex
@@ -756,14 +756,6 @@ themedefault.sty"
 )
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerouter
 themedefault.sty")))
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.sty"
-Package: inputenc 2018/08/11 v1.3c Input encoding file
-\inpenc@prehook=\toks44
-\inpenc@posthook=\toks45
-) ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
-"
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamertheme
 AnnArbor.sty"
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerinner
@@ -1070,33 +1062,33 @@ File: biblatex.cfg
 themeseagull.sty")
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 82.
+(hyperref)                removing `\\' on input line 146.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 82.
+(hyperref)                removing `\\' on input line 146.
 
 \@quotelevel=\count442
 \@quotereset=\count443
 (presentation_simon.aux)
 \openout1 = `presentation_simon.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1106,14 +1098,14 @@ LaTeX Font Info:    ... okay on input line 84.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.88002pt, 342.43532pt, 10.88002pt)
+* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=342.43532pt
+* \textwidth=342.2953pt
 * \textheight=244.6939pt
-* \oddsidemargin=-61.38997pt
-* \evensidemargin=-61.38997pt
+* \oddsidemargin=-61.31996pt
+* \evensidemargin=-61.31996pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -1141,12 +1133,12 @@ df.mkii"
 \scratchbox=\box74
 \nofMPsegments=\count445
 \nofMParguments=\count446
-\everyMPshowfont=\toks46
+\everyMPshowfont=\toks44
 \MPscratchCnt=\count447
 \MPscratchDim=\dimen285
 \MPnumerator=\count448
 \makeMPintoPDFobject=\count449
-\everyMPtoPDFconversion=\toks47
+\everyMPtoPDFconversion=\toks45
 )
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
 pdf-base.sty"
@@ -1155,7 +1147,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 ) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box75
-Package hyperref Info: Link coloring OFF on input line 84.
+Package hyperref Info: Link coloring OFF on input line 148.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -1171,70 +1163,65 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count450
 )
-LaTeX Info: Redefining \ref on input line 84.
-LaTeX Info: Redefining \pageref on input line 84.
-LaTeX Info: Redefining \nameref on input line 84.
+LaTeX Info: Redefining \ref on input line 148.
+LaTeX Info: Redefining \pageref on input line 148.
+LaTeX Info: Redefining \nameref on input line 148.
  (presentation_simon.out) (presentation_simon.out)
 \@outlinefile=\write6
 \openout6 = `presentation_simon.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 84.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 148.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 84.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 148.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 84.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 84.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 148.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 84.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 84.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 84.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 148.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 84.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 84.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 84.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 148.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 84.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 84.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 84.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 148.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 84.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 84.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 148.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 84.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 148.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 84.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 84.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 84.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 84.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 84.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 148.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 84.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 84.
-LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `normal' on input line 84
-.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 148.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 148.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 84
-.
-LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `bold' on input line 84.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 1
+48.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 84
-.
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 1
+48.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 84.
+ut line 148.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/translator\transla
 tor-basic-dictionary-English.dict"
@@ -1278,28 +1265,31 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'presentation_simon.bbl' not found.
 
 No file presentation_simon.bbl.
-Package biblatex Info: Reference section=0 on input line 84.
-Package biblatex Info: Reference segment=0 on input line 84.
+Package biblatex Info: Reference section=0 on input line 148.
+Package biblatex Info: Reference segment=0 on input line 148.
 (presentation_simon.nav) [1
 
-{C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
+{C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 
-] [3
+LaTeX Warning: Citation 'roberts2016model' on page 2 undefined on input line 16
+9.
+
+[2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 132
+LaTeX Font Info:    Trying to load font information for U+msa on input line 182
 .
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 132
+LaTeX Font Info:    Trying to load font information for U+msb on input line 182
 .
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 132.
+ut line 182.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/sansmathaccent\ot1
 mathkerncmss.fd"
@@ -1308,84 +1298,126 @@ thkerncmss.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/m/n' instead on input line 132.
+(Font)              using `OT1/cmss/m/n' instead on input line 182.
 
+[3
 
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 132.
+]
+
+LaTeX Warning: Citation 'aldous1985exchangeability' on page 4 undefined on inpu
+t line 192.
 
 [4
 
 ]
 
-LaTeX Warning: Citation 'blei2003latent' on page 5 undefined on input line 157.
+LaTeX Warning: Citation 'blei2003latent' on page 5 undefined on input line 215.
 
 
 
-LaTeX Warning: Citation 'roberts2016model' on page 5 undefined on input line 15
-7.
+LaTeX Warning: Citation 'blei2003latent' on page 5 undefined on input line 215.
 
-<../plots/presentation/lda_graphical.pdf, id=65, 595.22375pt x 312.16624pt>
+
+<../plots/presentation/lda_graphical.pdf, id=74, 595.22375pt x 312.16624pt>
 File: ../plots/presentation/lda_graphical.pdf Graphic file (type pdf)
 <use ../plots/presentation/lda_graphical.pdf>
 Package pdftex.def Info: ../plots/presentation/lda_graphical.pdf  used on input
- line 157.
+ line 215.
 (pdftex.def)             Requested size: 178.5685pt x 93.65059pt.
 [5
 
  <../plots/presentation/lda_graphical.pdf>]
-<../plots/presentation/lda_topic_assignment.jpeg, id=88, 803.0pt x 436.63126pt>
+
+LaTeX Warning: Citation 'blei2012probabilistic' on page 6 undefined on input li
+ne 229.
+
+<../plots/presentation/lda_topic_assignment.jpeg, id=95, 803.0pt x 436.63126pt>
 
 File: ../plots/presentation/lda_topic_assignment.jpeg Graphic file (type jpg)
 <use ../plots/presentation/lda_topic_assignment.jpeg>
 Package pdftex.def Info: ../plots/presentation/lda_topic_assignment.jpeg  used 
-on input line 174.
+on input line 229.
 (pdftex.def)             Requested size: 321.1943pt x 174.6494pt.
 
-Overfull \hbox (0.65904pt too wide) in paragraph at lines 174--174
+Overfull \hbox (0.79906pt too wide) in paragraph at lines 229--229
  [] 
  []
 
 [6
 
  <../plots/presentation/lda_topic_assignment.jpeg>]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-90.
 
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1cmtt.fd"
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-<../plots/presentation/amthor.png, id=96, 460.119pt x 346.29375pt>
+LaTeX Warning: Citation 'van1995python' on page 7 undefined on input line 244.
+
+
+LaTeX Warning: Citation 'richardson2007beautiful' on page 7 undefined on input 
+line 244.
+
+<../plots/presentation/amthor.png, id=103, 460.119pt x 346.29375pt>
 File: ../plots/presentation/amthor.png Graphic file (type png)
 <use ../plots/presentation/amthor.png>
-Package pdftex.def Info: ../plots/presentation/amthor.png  used on input line 1
-90.
+Package pdftex.def Info: ../plots/presentation/amthor.png  used on input line 2
+44.
 (pdftex.def)             Requested size: 193.24866pt x 145.44237pt.
+
+Overfull \vbox (7.77179pt too high) detected at line 244
+ []
 
 [7
 
  <../plots/presentation/amthor.png>]
-<../plots/3/monthly_tweets.pdf, id=108, 578.16pt x 443.6575pt>
+
+LaTeX Warning: Citation 'roesslein2020tweepy' on page 8 undefined on input line
+ 258.
+
+<../plots/3/monthly_tweets.pdf, id=115, 578.16pt x 443.6575pt>
 File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
 <use ../plots/3/monthly_tweets.pdf>
-Package pdftex.def Info: ../plots/3/monthly_tweets.pdf  used on input line 206.
+Package pdftex.def Info: ../plots/3/monthly_tweets.pdf  used on input line 258.
 
 (pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
 
-Overfull \vbox (0.9719pt too high) detected at line 206
+Overfull \vbox (0.68602pt too high) detected at line 258
  []
 
 [8
 
- <../plots/3/monthly_tweets.pdf>] [9
+ <../plots/3/monthly_tweets.pdf>]
 
-] [10
+LaTeX Warning: Citation 'R' on page 9 undefined on input line 270.
+
+
+LaTeX Warning: Citation 'quanteda' on page 9 undefined on input line 270.
+
+
+LaTeX Warning: Citation 'lucas2015computer' on page 9 undefined on input line 2
+70.
+
+[9
+
+]
+<../plots/4_1/searchK.pdf, id=142, 578.16pt x 443.6575pt>
+File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
+<use ../plots/4_1/searchK.pdf>
+Package pdftex.def Info: ../plots/4_1/searchK.pdf  used on input line 284.
+(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
+ [10
+
+ <../plots/4_1/searchK.pdf>] [11
+
+] [12
+
+] [13
+
+] [14
+
+] [15
 
 ]
 
-LaTeX Warning: Empty bibliography on input line 233.
+LaTeX Warning: Empty bibliography on input line 366.
 
-[11
+[16
 
 ]
 \tf@nav=\write7
@@ -1397,13 +1429,13 @@ LaTeX Warning: Empty bibliography on input line 233.
 \tf@snm=\write9
 \openout9 = `presentation_simon.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 234.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 234.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 367.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 367.
  (presentation_simon.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 234.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 234.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 367.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 367.
 Package rerunfilecheck Info: File `presentation_simon.out' has not changed.
-(rerunfilecheck)             Checksum: 98061B023607ED5D57C7F5FCC997994D;35.
+(rerunfilecheck)             Checksum: F10778D71A33F0BAECF80A54D9062E52;235.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1421,49 +1453,41 @@ Package logreq Info: Writing requests to 'presentation_simon.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27268 strings out of 480930
- 531998 string characters out of 2899761
- 1158925 words of memory out of 3000000
- 42540 multiletter control sequences out of 15000+200000
- 566581 words of font info for 107 fonts, out of 3000000 for 9000
+ 27066 strings out of 480930
+ 529783 string characters out of 2899761
+ 1157630 words of memory out of 3000000
+ 42340 multiletter control sequences out of 15000+200000
+ 558403 words of font info for 99 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,15n,67p,814b,823s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
-ectt1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
-ec/dpi450\ecso0800.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecso0900.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi600\ecsx1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX
-\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsi0900.pk> <C:\Users\Simon\AppData\Lo
-cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0800.pk> <C:\Users\Simon\
-AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi657\ecso1000.pk> <C:\Us
-ers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss0900.
-pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecsi1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecss0600.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfou
-r/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\font
-s/pk/ljfour/jknappen/ec/dpi600\ecss1095.pk> <C:\Users\Simon\AppData\Local\MiKTe
-X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk><C:/Users/Simon/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Sim
-on/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+ 58i,15n,67p,787b,823s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi450\
+ecso0800.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecso0900.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
+/jknappen/ec/dpi657\ecso1000.pk><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Simon/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Simon/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users
+/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.p
+fb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cmextra/cmmib6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb><C:/Users/Simon/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/Sim
+on/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb>
 <C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmmi6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmi8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Simon/AppData/Local/Programs/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb><C:/Users/Simon/AppData
-/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb><C:/U
-sers/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-s10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmss8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmss9.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/Simon/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/Simon/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi9.pfb><C:/Use
-rs/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy9.pfb>
-Output written on presentation_simon.pdf (11 pages, 532267 bytes).
+m/cmss8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmss9.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/Simon/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Users/Simon/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Users/Sim
+on/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi9.pfb>
+<C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy9.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on presentation_simon.pdf (16 pages, 547133 bytes).
 PDF statistics:
- 499 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 95 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
+ 124 words of extra memory for PDF output out of 10000 (max. 10000000)
 

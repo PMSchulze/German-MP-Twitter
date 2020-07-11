@@ -2183,8 +2183,17 @@
     <bcf:datasource type="file" datatype="bibtex">presentation_simon.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">blei2003latent</bcf:citekey>
-    <bcf:citekey order="2">roberts2016model</bcf:citekey>
+    <bcf:citekey order="1">roberts2016model</bcf:citekey>
+    <bcf:citekey order="2">aldous1985exchangeability</bcf:citekey>
+    <bcf:citekey order="3">blei2003latent</bcf:citekey>
+    <bcf:citekey order="4">blei2003latent</bcf:citekey>
+    <bcf:citekey order="5">blei2012probabilistic</bcf:citekey>
+    <bcf:citekey order="6">van1995python</bcf:citekey>
+    <bcf:citekey order="7">richardson2007beautiful</bcf:citekey>
+    <bcf:citekey order="8">roesslein2020tweepy</bcf:citekey>
+    <bcf:citekey order="9">R</bcf:citekey>
+    <bcf:citekey order="10">quanteda</bcf:citekey>
+    <bcf:citekey order="11">lucas2015computer</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

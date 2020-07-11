@@ -1,6 +1,4 @@
 \documentclass[xcolor=dvipsnames]{beamer}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 
 \usetheme{AnnArbor}
 \usepackage{dsfont}
@@ -13,6 +11,7 @@
 \usepackage{physics}
 \usepackage{enumerate}
 \usepackage{hyperref}
+\usepackage{graphics}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
@@ -21,6 +20,35 @@
 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
+@incollection{aldous1985exchangeability,
+  title={Exchangeability and related topics},
+  author={Aldous, David J},
+  booktitle={{\'E}cole d'{\'E}t{\'e} de Probabilit{\'e}s de Saint-Flour XIII—1983},
+  pages={1--198},
+  year={1985},
+  publisher={Springer}
+}
+@Article{quanteda,
+  title = {quanteda: An R package for the quantitative analysis of textual data},
+  journal = {Journal of Open Source Software},
+  author = {Kenneth Benoit and Kohei Watanabe and Haiyan Wang and Paul Nulty and Adam Obeng and Stefan Müller and Akitaka Matsuo},
+  doi = {10.21105/joss.00774},
+  url = {https://quanteda.io},
+  volume = {3},
+  number = {30},
+  pages = {774},
+  year = {2018},
+}
+@article{blei2012probabilistic,
+  title={Probabilistic topic models},
+  author={Blei, David M},
+  journal={Communications of the ACM},
+  volume={55},
+  number={4},
+  pages={77--84},
+  year={2012},
+  publisher={ACM New York, NY, USA}
+}
 @article{blei2003latent,
   title={Latent dirichlet allocation},
   author={Blei, David M and Ng, Andrew Y and Jordan, Michael I},
@@ -29,6 +57,30 @@
   number={Jan},
   pages={993--1022},
   year={2003}
+}
+@article{lucas2015computer,
+  title={Computer-assisted text analysis for comparative politics},
+  author={Lucas, Christopher and Nielsen, Richard A and Roberts, Margaret E and Stewart, Brandon M and Storer, Alex and Tingley, Dustin},
+  journal={Political Analysis},
+  volume={23},
+  number={2},
+  pages={254--277},
+  year={2015},
+  publisher={Cambridge University Press}
+}
+@Manual{R,
+  title        = {R: A Language and Environment for Statistical Computing},
+  author       = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address      = {Vienna, Austria},
+  year         = 2020,
+  url          = {https://www.R-project.org}
+}
+@article{richardson2007beautiful,
+  title={Beautiful soup documentation},
+  author={Richardson, Leonard},
+  journal={April},
+  year={2007}
 }
 @article{roberts2016model,
   title={A model of text for experimentation in the social sciences},
@@ -39,6 +91,18 @@
   pages={988--1003},
   year={2016},
   publisher={Taylor \& Francis}
+}
+@article{roesslein2020tweepy,
+  title={Tweepy: Twitter for Python!},
+  author={Roesslein, Joshua},
+  journal={URL: https://github.com/tweepy/tweepy},
+  year={2020}
+}
+@book{van1995python,
+  title={Python reference manual},
+  author={Van Rossum, Guido and Drake Jr, Fred L},
+  year={1995},
+  publisher={Centrum voor Wiskunde en Informatica Amsterdam}
 }
 \end{filecontents}
 \usepackage[style=authoryear]{biblatex}
@@ -92,51 +156,47 @@
 %\tableofcontents[]
 %\end{frame}
 
-\section{}
-\begin{frame}
-\frametitle{Outline}
-\begin{itemize}
-\item Introduction
-\item Topic Modeling: Motivation and Theory
-\item Data: Collection and Preprocessing
-\item Model Selection and Global Characteristics
-\item Metadata Analysis
-\item Causal Inference
-\item Discussion
-\end{itemize}
-\end{frame}
-
+\section{Introduction}
 \begin{frame}
 \frametitle{Introduction}
 \begin{itemize}
-\item Rise in popularity of social media is producing huge amounts of data, especially text.
-\item \textit{Politics} is a field of particular interest in the context of social media and big data (Brexit, 2016 presidential election in the US, Facebook data scandal).
-\item Simultaneously, advances in \textit{Natural Language Processing} (NLP) are providing tools of analysis for such data.
-\item One instance of such analysis is the discovery and exploration of latent thematic clusters within text - \textit{topic analysis}.
-\item In this project, we apply the \textit{Structural Topic Model} (STM) to a self-created dataset containing Twitter posts by members of the German Bundestag (and a variety of metadata) 
+\item Huge amounts of data, especially text, produced by social media
+\item Field of particular interest in the context of social media and big data: \textit{Politics} (e.g., Brexit, 2016 presidential election in the US, Facebook data scandal).
+\item Tools of analysis for such data simultaneously provided by advances in \textit{Natural Language Processing} (NLP)
+\item \textit{topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text
+\item In this project: application of the \textit{Structural Topic Model} (STM) \cite{roberts2016model} to a self-created dataset containing Twitter posts by members of the German Bundestag (and a variety of metadata) 
+\end{itemize}
+\end{frame}
+
+\section{Topic Modeling: Motivation and Theory}
+\begin{frame}
+\frametitle{Topic Modeling: Motivation and Theory}
+\framesubtitle{Notation and Terminology (I)}
+\begin{itemize}
+\item \textit{Words} $w$: instances of a vocabulary of $V$ unique \textit{terms}.
+\item \textit{Documents} $d \in \{1,\dots,D\}$: sequences of words of length $N_{d}$; $w_{d,n}$ denoting $n$-th word of document $d$
+\item \textit{Corpus}: collection (or set) of $D$ documents
+\item \textit{Topics} $k \in \{1,\dots,K\}$: latent thematic clusters within a text corpus; (implicit) representation of a corpus
+\item \textit{Topic-word distributions} $\boldsymbol{\beta}$: probability distributions over words; $\boldsymbol{\beta}_k$ denoting the word distribution corresponding to the $k$-th topic
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{Notation and Terminology}
+\framesubtitle{Notation and Terminology (II)}
 \begin{itemize}
-\item A \textit{word} is an instance of a vocabulary of $V$ unique \textit{terms}.
-\item A \textit{document} $d \in \{1,\dots,D\}$ is a sequence of words of length $N_{d}$. The $n$-th word of document $d$ is denoted by $w_{d,n}$.
-\item A \textit{corpus} is a collection (or set) of $D$ documents. Therefore, $d \in \{1,\dots,D\}$ means that our corpus contains $D$ documents.
-\item A \textit{topic} $k \in \{1,\dots,K\}$ is a latent thematic cluster within a text corpus. That is, we imply a corpus can be represented by $K$ topics.
-\item A \textit{topic-word distribution} $\boldsymbol{\beta}$ is a probability distribution over words. We denote the word distribution corresponding to the $k$-th topic by $\boldsymbol{\beta}_k$.
-\item A \textit{topic assignment} $\boldsymbol{z}_{d,n}$ assign $w_{d,n}$ to a specific topic $k \in \{1,\dots,K\}$. We represent the word distribution for $w_{d,n}$ as $\boldsymbol{\beta}_{d,n}$.
-\item \textit{Topic proportions} $\boldsymbol{\theta}_d$ are the proportions of the document $d$'s terms assigned to each of the topics. $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$.
+\item \textit{Topic assignments} $\boldsymbol{z}_{d,n}$: assignment of $w_{d,n}$ to a specific topic $k \in \{1,\dots,K\}$; $\boldsymbol{\beta}_{d,n}$ representing the (assigned) word distribution for $w_{d,n}$
+\item \textit{Topic proportions} $\boldsymbol{\theta}_d$: proportions of document $d$'s terms assigned to each of the topics; $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$
+\item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \cite{aldous1985exchangeability}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{\textit{Latent Dirichlet Allocation} (LDA)}
+\framesubtitle{\textit{Latent Dirichlet Allocation} (LDA) (I)}
 \begin{itemize}
-\item LDA by \textcite{blei2003latent} is the first probabilistic topic model.
-\item Its generative process for each document $d \in \{1,\dots,D\}$ is:
+\item First topic model with entirely probabilistic generating process: LDA \cite{blei2003latent}
+\item Generative process for each document $d \in \{1,\dots,D\}$:
 \item[] 
 	\begin{enumerate}[{1)}]
 	\item Draw topic proportions $\boldsymbol{\theta}_d \sim \text{Dir}_K(\boldsymbol{\alpha})$.
@@ -146,62 +206,54 @@
 		\item Draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
-\item Graphical model representation (\textcite{roberts2016model}, p.\ 990): 
+\item Graphical model representation of LDA: \cite{blei2003latent} 
 	\begin{figure}[h!]
   	\centering
-  	%\captionsetup{justification=centering,margin=2cm}
   	\hspace*{-1cm}\includegraphics[scale = 0.3]{../plots/presentation/lda_graphical.pdf}
-  	%\caption{Graphical model representation of the STM (from \textcite{roberts2016model}, p.\ 990).}
 	\end{figure}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{\textit{Latent Dirichlet Allocation} (LDA)}
+\framesubtitle{\textit{Latent Dirichlet Allocation} (LDA) (II)}
 \begin{itemize}
 \vspace{-0.5cm}
-\item The topic assignment of a document's words can be illustrated as follows:
+\item Illustration of topic assignment for the words of a document: \cite{blei2012probabilistic}
 	\vspace{-0.5cm}
 	\begin{figure}[h!]
   	\centering
-  	%\captionsetup{justification=centering,margin=2cm}
   	\includegraphics[scale = 0.4]{../plots/presentation/lda_topic_assignment.jpeg}
-  	%\caption{Graphical model representation of the STM (from \textcite{roberts2016model}, p.\ 990).}
 	\end{figure}
-
 \end{itemize}
 \end{frame}
 
+\section{Data}
 \begin{frame}
 \frametitle{Data}
-\framesubtitle{Data Collection}
+\framesubtitle{Data Collection (I)}
 \begin{itemize}
-\item MP-level data was scraped from \url{www.bundestag.de/abgeordnete} using Python's \textit{BeautifulSoup} and a \textit{selenium web driver}
+\item MP-level data: from \url{www.bundestag.de/abgeordnete} using Python's \textit{BeautifulSoup} and a \textit{selenium web driver} \cite{van1995python} \cite{richardson2007beautiful}
 \item[] 
 	\begin{figure}[h!]
   	\centering
-  	%\captionsetup{justification=centering,margin=2cm}
   	\includegraphics[scale = 0.42]{../plots/presentation/amthor.png}
-  	%\caption{Graphical model representation of the STM (from \textcite{roberts2016model}, p.\ 990).}
 	\end{figure}
-\item Socioeconomic data and 2017 German federal election results were extracted from \url{www.bundeswahlleiter.de}.
+\item Socioeconomic data and 2017 German federal election results: from \url{www.bundeswahlleiter.de}.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Data}
-\framesubtitle{Data Collection}
+\framesubtitle{Data Collection (II)}
 \begin{itemize}
-\item Tweets (and further Twitter features) were downloaded via the official Twitter API using Python's \textit{tweepy} library.
+\item Tweets (and further Twitter features): via the official Twitter API using Python's \textit{tweepy} library\cite{roesslein2020tweepy}
 \item Monthly tweets (after dropping MPs without electoral district) for our period of analysis, September 24, 2017 through April 24, 2020:
 	\begin{figure}[h!]
   	\centering
-  	%\captionsetup{justification=centering,margin=2cm}
   	\includegraphics[scale = 0.30]{../plots/3/monthly_tweets.pdf}
-  	%\caption{Graphical model representation of the STM (from \textcite{roberts2016model}, p.\ 990).}
 	\end{figure}
-\item Henceforth, we grouped each MP's tweets on a monthly basis.
+\item In the following: grouping each MP's tweets on a monthly basis
 \end{itemize}
 \end{frame}
 
@@ -209,20 +261,103 @@
 \frametitle{Data}
 \framesubtitle{Data Preprocessing}
 \begin{itemize}
-\item For preprocessing, we used the \textit{quanteda} package in R.
-\item We immediately transcribed German umlauts (\"a, \"o, \"u) and ligature (\ss) and removed hyphens due to the presence of compound words in the German language (e.g., \textit{Corona-Krise} vs \textit{Coronakrise}).
-\item Next, we transformed the text data into a document-feature matrix (DFM), converted all characters to lowercase, and removed stopwords, units, interjections, etc.
-\item Finally, we performed word stemming, which cuts off word endings to remove discrepancies arising purely from declensions or conjugations
-(e.g., \textit{politisch} $\rightarrow$ \textit{polit}).
+\item Preprocessing: in R \cite{R}, using the \textit{quanteda} package \cite{quanteda}
+\item Transcription of German umlauts (\"a/\"A, \"o/\"O, \"u/\"U) and ligature (\ss)
+\item Removal of hyphens: relevant for compound words (e.g., \textit{Corona-Krise} vs \textit{Coronakrise})
+\item Transformation of text data into document-feature matrix (DFM); conversion to lowercase; removal of stopword, units (\textit{kg}, \textit{uhr}), interjections (\textit{aaahhh}, \textit{ufff}), etc.
+\item Word stemming, i.e., cutting off word endings (e.g., \textit{politisch} $\rightarrow$ \textit{polit}) \cite{lucas2015computer}
+\end{itemize}
+\end{frame}
+
+\section{Model Selection and Global Characteristics}
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Model Selection}
+\begin{itemize}
+\item Model evaluation metrics for hyperparameter $K$ (number of topics):
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.30]{../plots/4_1/searchK.pdf}
+	\end{figure}
+\item Best trade-off: $K=15$
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Model Selection and Global Characteristics}
-\framesubtitle{Model Selection}
+\framesubtitle{Labeling (I)}
 \begin{itemize}
+\item First step: inspection of top words
+\begin{table}[h!]
+\centering
+\resizebox{8cm}{!}{%
+\begin{tabular}{|l|}
+\hline
+\textit{Topic 1 Top Words:}\\
+ 	 \textbf{Highest Prob:} buerg, link, merkel, frau, sich \\
+ 	 \textbf{FREX:} altpartei, islam, linksextremist, asylbewerb, linksextrem \\
+ 	 \textbf{Lift:} eitan, 22jaehrig, abdelsamad, abgehalftert, afdforder \\
+ 	 \textbf{Score:} altpartei, linksextremist, frauenkongress, islamist, boehring \\
+\hline
+\textit{Topic 3 Top Words:}\\
+ 	 \textbf{Highest Prob:} brauch, wichtig, leid, dank, klar \\
+ 	 \textbf{FREX:} emissionshandel, soli, marktwirtschaft, feedback, co2steu \\
+ 	 \textbf{Lift:} aequivalenz, altersvorsorgeprodukt, bildungsqualitaet, co2limit, co2meng \\
+ 	 \textbf{Score:} emissionshandel, co2limit, basisrent, euet, technologieoff \\
+\hline
+\textit{Topic 4 Top Words:}\\
+ 	 \textbf{Highest Prob:} sozial, miet, kind, arbeit, brauch \\
+ 	 \textbf{FREX:} mindestlohn, miet, wohnungsbau, mieterinn, loehn \\
+ 	 \textbf{Lift:} auseinanderfaellt, baugipfel, bestandsmiet, billigflieg, binnennachfrag \\
+ 	 \textbf{Score:} miet, mieterinn, mietendeckel, grundsicher, bezahlbar \\
+\hline
+\textit{Topic 6 Top Words:}\\
+ 	 \textbf{Highest Prob:} gruen, klimaschutz, brauch, klar, euro \\
+ 	 \textbf{FREX:} fossil, erneuerbar, kohleausstieg, verkehrsminist, verkehrsw \\
+ 	 \textbf{Lift:} abgasbetrug, abgebaggert, abschalteinricht, abschaltet, ammoniak \\ 
+ 	 \textbf{Score:} erneuerbar, fossil, zdebel, verkehrsminist, klimaschutz \\
+\hline
+\end{tabular}%
+}
+\end{table}
 \item XXX
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Labeling (II)}
+\begin{itemize}
+\item word cloud
+\item Twitter excerpt!!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Labeling (III)}
+\begin{itemize}
+\item Final labels
 \item XXX
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Global Topic Proportions}
+\begin{itemize}
+\item graph: weighted and unweighted props
+\item XXX
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Global Topic Correlations}
+\begin{itemize}
+\item topic 3 and 6 overlap
+\item topic correlation graph
+\end{itemize}
 \end{frame}
 
 \begin{frame}
