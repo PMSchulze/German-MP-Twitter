@@ -44,10 +44,10 @@
   <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>presentation_consulting.bcf</file>
+      <file>presentation_simon.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>presentation_consulting.bbl</file>
+      <file>presentation_simon.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -64,22 +64,22 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>presentation_consulting</infile>
+      <infile>presentation_simon</infile>
     </cmdline>
     <input>
-      <file>presentation_consulting.bcf</file>
+      <file>presentation_simon.bcf</file>
     </input>
     <output>
-      <file>presentation_consulting.bbl</file>
+      <file>presentation_simon.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>presentation_consulting.bbl</file>
+      <file>presentation_simon.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>presentation_consulting.bcf</file>
+      <file>presentation_simon.bcf</file>
     </requires>
     <requires type="editable">
-      <file>presentation_consulting.bib</file>
+      <file>presentation_simon.bib</file>
     </requires>
   </external>
 </requests>
