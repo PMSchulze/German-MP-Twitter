@@ -164,7 +164,7 @@
 \item Huge amounts of data, especially text, produced by social media
 \item Field of particular interest in the context of social media and big data: \textit{Politics} (e.g., Brexit, 2016 presidential election in the US, Facebook data scandal).
 \item Tools of analysis for such data simultaneously provided by advances in \textit{Natural Language Processing} (NLP)
-\item \textit{topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text
+\item \textit{Topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text
 \item In this project: application of the \textit{Structural Topic Model} (STM) \cite{roberts2016model} to a self-created dataset containing Twitter posts by members of the German Bundestag (and a variety of metadata) 
 \end{itemize}
 \end{frame}
@@ -187,7 +187,7 @@
 \framesubtitle{Notation and Terminology (II)}
 \begin{itemize}
 \item \textit{Topic assignments} $\boldsymbol{z}_{d,n}$: assignment of $w_{d,n}$ to a specific topic $k \in \{1,\dots,K\}$; $\boldsymbol{\beta}_{d,n}$ representing the (assigned) word distribution for $w_{d,n}$
-\item \textit{Topic proportions} $\boldsymbol{\theta}_d$: proportions of document $d$'s terms assigned to each of the topics; $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$
+\item \textit{Topic proportions} $\boldsymbol{\theta}_d$: proportions of document $d$'s words assigned to each of the topics; $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$
 \item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \cite{aldous1985exchangeability}.
 \end{itemize}
 \end{frame}
