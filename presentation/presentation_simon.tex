@@ -12,6 +12,7 @@
 \usepackage{enumerate}
 \usepackage{hyperref}
 \usepackage{graphics}
+\usepackage{subcaption}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
@@ -239,6 +240,7 @@
   	\centering
   	\includegraphics[scale = 0.42]{../plots/presentation/amthor.png}
 	\end{figure}
+\item Twitter profiles: from official party homepages
 \item Socioeconomic data and 2017 German federal election results: from \url{www.bundeswahlleiter.de}.
 \end{itemize}
 \end{frame}
@@ -287,7 +289,8 @@
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Labeling (I)}
 \begin{itemize}
-\item First step: inspection of top words
+\item Three-step procedure for labeling
+\item First step: top words for different weighting methodologies
 \begin{table}[h!]
 \centering
 \resizebox{8cm}{!}{%
@@ -320,7 +323,6 @@
 \end{tabular}%
 }
 \end{table}
-\item XXX
 \end{itemize}
 \end{frame}
 
@@ -328,8 +330,12 @@
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Labeling (II)}
 \begin{itemize}
-\item word cloud
-\item Twitter excerpt!!
+\item Word cloud of \textbf{Highest Prob} top words (for topic 1):
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.40]{../plots/4_2/t1_wordcloud.pdf}
+	\end{figure}
+\item Word size corresponding to word frequency in topic 1
 \end{itemize}
 \end{frame}
 
@@ -337,8 +343,42 @@
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Labeling (III)}
 \begin{itemize}
-\item Final labels
-\item XXX
+\item Second step: look at documents (i.e., original tweets) with highest proportion of topic 1
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.40]{../plots/presentation/martin_hess_topic1.png}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Selection and Global Characteristics}
+\framesubtitle{Labeling (IV)}
+\begin{itemize}
+\item Third step: assigning labels
+\begin{table}[h!]
+	\centering
+	\resizebox{5cm}{!}{%
+	\begin{tabular}{|l|l|}
+	\hline
+	Topic 1  & Right/Nationalist    \\ \hline
+	Topic 2  & Miscellaneous 1      \\ \hline
+	Topic 3  & Climate Economics    \\ \hline
+	Topic 4  & Social/Housing       \\ \hline
+	Topic 5  & Digital/Future       \\ \hline
+	Topic 6  & Climate Protection   \\ \hline
+	Topic 7  & Europe               \\ \hline
+	Topic 8  & Corona               \\ \hline
+	Topic 9  & Left/Anti-war        \\ \hline
+	Topic 10 & Twitter/Politics 1   \\ \hline
+	Topic 11 & Twitter/Politics 2   \\ \hline
+	Topic 12 & Miscellaneous 2      \\ \hline
+	Topic 13 & Twitter/Politics 3   \\ \hline
+	Topic 14 & Right-wing Extremism \\ \hline
+	Topic 15 & Society/Solidarity   \\ \hline
+	\end{tabular}
+	}
+\end{table}
 \end{itemize}
 \end{frame}
 
@@ -346,8 +386,11 @@
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Global Topic Proportions}
 \begin{itemize}
-\item graph: weighted and unweighted props
-\item XXX
+\item Illustration of \textbf{global} topic proportions:
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.40]{../plots/4_3/global_thetas.pdf}
+	\end{figure}
 \end{itemize}
 \end{frame}
 
@@ -355,8 +398,18 @@
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Global Topic Correlations}
 \begin{itemize}
-\item topic 3 and 6 overlap
-\item topic correlation graph
+\item Vocabulary overlap (left) and topic correlations (right):
+\begin{figure}[h!]
+  \resizebox{14cm}{!}{%	
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \hspace*{-0.7cm}\includegraphics[width=\linewidth]{../plots/4_3/vocabulary_comparison.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \hspace*{-1.1cm}\includegraphics[width=\linewidth]{../plots/4_3/topic_correlations_map.pdf}
+  \end{subfigure}
+  }
+\end{figure}		
 \end{itemize}
 \end{frame}
 

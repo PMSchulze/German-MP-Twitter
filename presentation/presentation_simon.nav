@@ -86,8 +86,12 @@
 \headcommand {\slideentry {4}{0}{7}{16/16}{}{0}}
 \defcounter {refsection}{0}\relax 
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\beamer@partpages {1}{16}}
-\headcommand {\beamer@subsectionpages {10}{16}}
-\headcommand {\beamer@sectionpages {10}{16}}
-\headcommand {\beamer@documentpages {16}}
-\headcommand {\gdef \inserttotalframenumber {16}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\slideentry {4}{0}{8}{17/17}{}{0}}
+\defcounter {refsection}{0}\relax 
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@partpages {1}{17}}
+\headcommand {\beamer@subsectionpages {10}{17}}
+\headcommand {\beamer@sectionpages {10}{17}}
+\headcommand {\beamer@documentpages {17}}
+\headcommand {\gdef \inserttotalframenumber {17}}

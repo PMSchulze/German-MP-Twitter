@@ -12,7 +12,7 @@ In their \textit{Latent Dirichlet Allocation} (LDA) model, \cite{blei2003latent}
 \vspace{-0.25cm}
 \item[•] A \textit{word} $w$ is the smallest unit of discrete text data. Words are instances of a vocabulary of $V$ unique \textit{terms} and can thus be indexed by $v \in \{1,\dots,V\}$. Mathematically, the $v$-th term in the vocabulary can be represented as a vector of length $V$, whose $v$-th component equals one, with all other components equalling zero. We will sometimes refer to the $v$-th term of the vocabulary simply as $v$. Words, along with document-level metadata, represent the actually observable data.
 \vspace{-0.25cm}
-\item[•] A \textit{document} $d \in \{1,\dots,D\}$ is a sequence of words of length $N_{d}$. For a given document $d$, we denote its words by $(w_{d,1},\dots,w_{d,N_{d}})$. Consequently, the $n$-th word of document $d$ is denoted by $w_{d,n}$.
+\item[•] A \textit{document} $d \in \{1,\dots,D\}$ is a sequence of words of length $N_{d}$. For a given document $d$, we denote its words by $\boldsymbol{w}_d:=(w_{d,1},\dots,w_{d,N_{d}})$. Consequently, the $n$-th word of document $d$ is denoted by $w_{d,n}$.
 \vspace{-0.25cm}
 \item[•] A \textit{corpus} is a collection (or set) of $D$ documents. Therefore, $d \in \{1,\dots,D\}$ means that our corpus contains $D$ documents.
 \vspace{-0.25cm}
