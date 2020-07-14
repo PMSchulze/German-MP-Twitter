@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  13 JUL 2020 08:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  14 JUL 2020 10:33
 entering extended mode
 **./presentation_simon.tex
 (presentation_simon.tex
@@ -756,14 +756,6 @@ themedefault.sty"
 )
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerouter
 themedefault.sty")))
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamertheme
-AnnArbor.sty"
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerinner
-themerounded.sty")
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerouter
-themeinfolines.sty")
-("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamercolor
-themewolverine.sty"))
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/doublestroke\dsfon
 t.sty"
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
@@ -819,12 +811,27 @@ Package: xparse 2020-03-06 L3 Experimental document command parser
 \l__xparse_m_args_int=\count315
 \l__xparse_v_nesting_int=\count316
 ))
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip63
+\bibsep=\skip64
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count317
+)
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption
 .sty"
 Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
-\c@subfigure=\count317
-\c@subtable=\count318
+\c@subfigure=\count318
+\c@subtable=\count319
 )
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamertheme
+AnnArbor.sty"
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerinner
+themerounded.sty")
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamerouter
+themeinfolines.sty")
+("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamercolor
+themewolverine.sty"))
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/filecontents\filec
 ontents.sty"
 Package: filecontents 2019/09/20 v1.5 Create an external file from within a LaT
@@ -847,65 +854,89 @@ Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/logreq\logreq.sty"
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count319
+\lrq@indent=\count320
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/logreq\logreq.def"
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 ))
-\c@tabx@nest=\count320
-\c@listtotal=\count321
-\c@listcount=\count322
-\c@liststart=\count323
-\c@liststop=\count324
-\c@citecount=\count325
-\c@citetotal=\count326
-\c@multicitecount=\count327
-\c@multicitetotal=\count328
-\c@instcount=\count329
-\c@maxnames=\count330
-\c@minnames=\count331
-\c@maxitems=\count332
-\c@minitems=\count333
-\c@citecounter=\count334
-\c@maxcitecounter=\count335
-\c@savedcitecounter=\count336
-\c@uniquelist=\count337
-\c@uniquename=\count338
-\c@refsection=\count339
-\c@refsegment=\count340
-\c@maxextratitle=\count341
-\c@maxextratitleyear=\count342
-\c@maxextraname=\count343
-\c@maxextradate=\count344
-\c@maxextraalpha=\count345
-\c@abbrvpenalty=\count346
-\c@highnamepenalty=\count347
-\c@lownamepenalty=\count348
-\c@maxparens=\count349
-\c@parenlevel=\count350
-\blx@tempcnta=\count351
-\blx@tempcntb=\count352
-\blx@tempcntc=\count353
-\blx@maxsection=\count354
-\blx@maxsegment@0=\count355
-\blx@notetype=\count356
-\blx@parenlevel@text=\count357
-\blx@parenlevel@foot=\count358
-\blx@sectionciteorder@0=\count359
-\blx@entrysetcounter=\count360
-\labelnumberwidth=\skip63
-\labelalphawidth=\skip64
-\biblabelsep=\skip65
-\bibitemsep=\skip66
-\bibnamesep=\skip67
-\bibinitsep=\skip68
-\bibparsep=\skip69
-\bibhang=\skip70
+
+! Package biblatex Error: Incompatible package 'natbib'.
+
+See the biblatex package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \blx@packageincompatibility
+                                 
+The 'natbib' package and biblatex are incompatible.
+
+\c@tabx@nest=\count321
+\c@listtotal=\count322
+\c@listcount=\count323
+\c@liststart=\count324
+\c@liststop=\count325
+\c@citecount=\count326
+\c@citetotal=\count327
+\c@multicitecount=\count328
+\c@multicitetotal=\count329
+\c@instcount=\count330
+\c@maxnames=\count331
+\c@minnames=\count332
+\c@maxitems=\count333
+\c@minitems=\count334
+\c@citecounter=\count335
+\c@maxcitecounter=\count336
+\c@savedcitecounter=\count337
+\c@uniquelist=\count338
+\c@uniquename=\count339
+\c@refsection=\count340
+\c@refsegment=\count341
+\c@maxextratitle=\count342
+\c@maxextratitleyear=\count343
+\c@maxextraname=\count344
+\c@maxextradate=\count345
+\c@maxextraalpha=\count346
+\c@abbrvpenalty=\count347
+\c@highnamepenalty=\count348
+\c@lownamepenalty=\count349
+\c@maxparens=\count350
+\c@parenlevel=\count351
+\blx@tempcnta=\count352
+\blx@tempcntb=\count353
+\blx@tempcntc=\count354
+\blx@maxsection=\count355
+\blx@maxsegment@0=\count356
+\blx@notetype=\count357
+\blx@parenlevel@text=\count358
+\blx@parenlevel@foot=\count359
+\blx@sectionciteorder@0=\count360
+\blx@entrysetcounter=\count361
+\labelnumberwidth=\skip65
+\labelalphawidth=\skip66
+\biblabelsep=\skip67
+\bibitemsep=\skip68
+\bibnamesep=\skip69
+\bibinitsep=\skip70
+\bibparsep=\skip71
+
+! LaTeX Error: Command \bibhang already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.738 \newlength{\bibhang}
+                          
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 \blx@bcfin=\read3
 \blx@bcfout=\write5
 \blx@langwohyphens=\language78
-\c@mincomprange=\count361
-\c@maxcomprange=\count362
-\c@mincompwidth=\count363
+\c@mincomprange=\count362
+\c@maxcomprange=\count363
+\c@mincompwidth=\count364
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -917,88 +948,103 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'authoryear.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count364
-\c@savedafterword=\count365
-\c@annotator=\count366
-\c@savedannotator=\count367
-\c@author=\count368
-\c@savedauthor=\count369
-\c@bookauthor=\count370
-\c@savedbookauthor=\count371
-\c@commentator=\count372
-\c@savedcommentator=\count373
-\c@editor=\count374
-\c@savededitor=\count375
-\c@editora=\count376
-\c@savededitora=\count377
-\c@editorb=\count378
-\c@savededitorb=\count379
-\c@editorc=\count380
-\c@savededitorc=\count381
-\c@foreword=\count382
-\c@savedforeword=\count383
-\c@holder=\count384
-\c@savedholder=\count385
-\c@introduction=\count386
-\c@savedintroduction=\count387
-\c@namea=\count388
-\c@savednamea=\count389
-\c@nameb=\count390
-\c@savednameb=\count391
-\c@namec=\count392
-\c@savednamec=\count393
-\c@translator=\count394
-\c@savedtranslator=\count395
-\c@shortauthor=\count396
-\c@savedshortauthor=\count397
-\c@shorteditor=\count398
-\c@savedshorteditor=\count399
-\c@labelname=\count400
-\c@savedlabelname=\count401
-\c@institution=\count402
-\c@savedinstitution=\count403
-\c@lista=\count404
-\c@savedlista=\count405
-\c@listb=\count406
-\c@savedlistb=\count407
-\c@listc=\count408
-\c@savedlistc=\count409
-\c@listd=\count410
-\c@savedlistd=\count411
-\c@liste=\count412
-\c@savedliste=\count413
-\c@listf=\count414
-\c@savedlistf=\count415
-\c@location=\count416
-\c@savedlocation=\count417
-\c@organization=\count418
-\c@savedorganization=\count419
-\c@origlocation=\count420
-\c@savedoriglocation=\count421
-\c@origpublisher=\count422
-\c@savedorigpublisher=\count423
-\c@publisher=\count424
-\c@savedpublisher=\count425
-\c@language=\count426
-\c@savedlanguage=\count427
-\c@origlanguage=\count428
-\c@savedoriglanguage=\count429
-\c@pageref=\count430
-\c@savedpageref=\count431
-\shorthandwidth=\skip71
-\shortjournalwidth=\skip72
-\shortserieswidth=\skip73
-\shorttitlewidth=\skip74
-\shortauthorwidth=\skip75
-\shorteditorwidth=\skip76
-\locallabelnumberwidth=\skip77
-\locallabelalphawidth=\skip78
-\localshorthandwidth=\skip79
-\localshortjournalwidth=\skip80
-\localshortserieswidth=\skip81
-\localshorttitlewidth=\skip82
-\localshortauthorwidth=\skip83
-\localshorteditorwidth=\skip84
+\c@afterword=\count365
+\c@savedafterword=\count366
+\c@annotator=\count367
+\c@savedannotator=\count368
+\c@author=\count369
+\c@savedauthor=\count370
+\c@bookauthor=\count371
+\c@savedbookauthor=\count372
+\c@commentator=\count373
+\c@savedcommentator=\count374
+\c@editor=\count375
+\c@savededitor=\count376
+\c@editora=\count377
+\c@savededitora=\count378
+\c@editorb=\count379
+\c@savededitorb=\count380
+\c@editorc=\count381
+\c@savededitorc=\count382
+\c@foreword=\count383
+\c@savedforeword=\count384
+\c@holder=\count385
+\c@savedholder=\count386
+\c@introduction=\count387
+\c@savedintroduction=\count388
+\c@namea=\count389
+\c@savednamea=\count390
+\c@nameb=\count391
+\c@savednameb=\count392
+\c@namec=\count393
+\c@savednamec=\count394
+\c@translator=\count395
+\c@savedtranslator=\count396
+\c@shortauthor=\count397
+\c@savedshortauthor=\count398
+\c@shorteditor=\count399
+\c@savedshorteditor=\count400
+\c@labelname=\count401
+\c@savedlabelname=\count402
+\c@institution=\count403
+\c@savedinstitution=\count404
+\c@lista=\count405
+\c@savedlista=\count406
+\c@listb=\count407
+\c@savedlistb=\count408
+\c@listc=\count409
+\c@savedlistc=\count410
+\c@listd=\count411
+\c@savedlistd=\count412
+\c@liste=\count413
+\c@savedliste=\count414
+\c@listf=\count415
+\c@savedlistf=\count416
+\c@location=\count417
+\c@savedlocation=\count418
+\c@organization=\count419
+\c@savedorganization=\count420
+\c@origlocation=\count421
+\c@savedoriglocation=\count422
+\c@origpublisher=\count423
+\c@savedorigpublisher=\count424
+\c@publisher=\count425
+\c@savedpublisher=\count426
+\c@language=\count427
+\c@savedlanguage=\count428
+\c@origlanguage=\count429
+\c@savedoriglanguage=\count430
+\c@pageref=\count431
+\c@savedpageref=\count432
+\shorthandwidth=\skip72
+\shortjournalwidth=\skip73
+\shortserieswidth=\skip74
+\shorttitlewidth=\skip75
+\shortauthorwidth=\skip76
+\shorteditorwidth=\skip77
+\locallabelnumberwidth=\skip78
+\locallabelalphawidth=\skip79
+\localshorthandwidth=\skip80
+\localshortjournalwidth=\skip81
+\localshortserieswidth=\skip82
+\localshorttitlewidth=\skip83
+\localshortauthorwidth=\skip84
+\localshorteditorwidth=\skip85
+
+
+! LaTeX Error: Command \citename already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11812 ...*{\citename}{\blx@citexpunct{citename}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -1012,19 +1058,54 @@ Package biblatex Info: ... file 'biblatex.def' found.
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex\biblatex.
 def"
 File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
-\c@textcitecount=\count432
-\c@textcitetotal=\count433
-\c@textcitemaxnames=\count434
-\c@biburlbigbreakpenalty=\count435
-\c@biburlbreakpenalty=\count436
-\c@biburlnumpenalty=\count437
-\c@biburlucpenalty=\count438
-\c@biburllcpenalty=\count439
+\c@textcitecount=\count433
+\c@textcitetotal=\count434
+\c@textcitemaxnames=\count435
+\c@biburlbigbreakpenalty=\count436
+\c@biburlbreakpenalty=\count437
+\c@biburlnumpenalty=\count438
+\c@biburlucpenalty=\count439
+\c@biburllcpenalty=\count440
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count440
+
+
+! LaTeX Error: Command \bibfont already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.320 ...ommand*{\bibfont}{\normalfont\normalsize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+\c@smartand=\count441
+
+Package biblatex Warning: Redefining '\citeauthor'.
+
+
+Package biblatex Warning: Redefining '\citeyear'.
+
+
+! LaTeX Error: Command \Citeauthor already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2251 ...e\citeauthor*}{\bibsentence\citeauthor}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 )
 Package biblatex Info: Trying to load bibliography style 'authoryear'...
 Package biblatex Info: ... file 'authoryear.bbx' found.
@@ -1038,8 +1119,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/biblatex/bbx\stand
 ard.bbx"
 File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count441
-\c@bbx:relatedtotal=\count442
+\c@bbx:relatedcount=\count442
+\c@bbx:relatedtotal=\count443
 ))
 Package biblatex Info: Trying to load citation style 'authoryear'...
 Package biblatex Info: ... file 'authoryear.cbx' found.
@@ -1062,39 +1143,39 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 cfg"
 File: biblatex.cfg 
 ))
-\c@satz=\count443
+\c@satz=\count444
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/beamer\beamercolor
 themeseagull.sty")
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 147.
+(hyperref)                removing `\\' on input line 159.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 147.
+(hyperref)                removing `\\' on input line 159.
 
-\@quotelevel=\count444
-\@quotereset=\count445
+\@quotelevel=\count445
+\@quotereset=\count446
 (presentation_simon.aux)
 \openout1 = `presentation_simon.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1134,16 +1215,16 @@ LaTeX Font Info:    ... okay on input line 149.
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count446
+\scratchcounter=\count447
 \scratchdimen=\dimen284
 \scratchbox=\box74
-\nofMPsegments=\count447
-\nofMParguments=\count448
+\nofMPsegments=\count448
+\nofMParguments=\count449
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count449
+\MPscratchCnt=\count450
 \MPscratchDim=\dimen285
-\MPnumerator=\count450
-\makeMPintoPDFobject=\count451
+\MPnumerator=\count451
+\makeMPintoPDFobject=\count452
 \everyMPtoPDFconversion=\toks45
 )
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
@@ -1153,7 +1234,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 ) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box75
-Package hyperref Info: Link coloring OFF on input line 149.
+Package hyperref Info: Link coloring OFF on input line 161.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -1167,67 +1248,67 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ettitlestring.sty"
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count452
+\c@section@level=\count453
 )
-LaTeX Info: Redefining \ref on input line 149.
-LaTeX Info: Redefining \pageref on input line 149.
-LaTeX Info: Redefining \nameref on input line 149.
+LaTeX Info: Redefining \ref on input line 161.
+LaTeX Info: Redefining \pageref on input line 161.
+LaTeX Info: Redefining \nameref on input line 161.
  (presentation_simon.out) (presentation_simon.out)
 \@outlinefile=\write6
 \openout6 = `presentation_simon.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 149.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 161.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 149.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 161.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 149.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 149.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 149.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 149.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 161.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 149.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 149.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 149.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 161.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 149.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 149.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 149.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 161.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 149.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 149.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 161.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 149.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 161.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 149.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 149.
+(Font)                  OT1/cmss/b/n --> OT1/cmr/b/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 149.
+(Font)                  OT1/cmss/b/n --> OT1/cmss/b/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 149.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/b/n on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 149.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 161.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 149.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 149.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 161.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 161.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
 (Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 1
-49.
+61.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 1
-49.
+61.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 149.
+ut line 161.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/translator\transla
 tor-basic-dictionary-English.dict"
@@ -1271,31 +1352,46 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'presentation_simon.bbl' not found.
 
 No file presentation_simon.bbl.
-Package biblatex Info: Reference section=0 on input line 149.
-Package biblatex Info: Reference segment=0 on input line 149.
+Package biblatex Info: Reference section=0 on input line 161.
+Package biblatex Info: Reference segment=0 on input line 161.
 (presentation_simon.nav) [1
 
-{C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation 'roberts2016model' on page 2 undefined on input line 17
-0.
-
-[2
+{C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 183
+
+LaTeX Warning: Citation 'roberts2016model' on page 3 undefined on input line 19
+5.
+
+[3
+
+]
+
+LaTeX Warning: Citation 'blei2012presentation' on page 4 undefined on input lin
+e 209.
+
+<../plots/presentation/motivation.png, id=61, 522.753pt x 414.348pt>
+File: ../plots/presentation/motivation.png Graphic file (type png)
+<use ../plots/presentation/motivation.png>
+Package pdftex.def Info: ../plots/presentation/motivation.png  used on input li
+ne 209.
+(pdftex.def)             Requested size: 156.8271pt x 124.30536pt.
+[4
+
+ <../plots/presentation/motivation.png>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 221
 .
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 183
+LaTeX Font Info:    Trying to load font information for U+msb on input line 221
 .
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 183.
+ut line 221.
 
 ("C:\Users\Simon\AppData\Local\Programs\MiKTeX 2.9\tex/latex/sansmathaccent\ot1
 mathkerncmss.fd"
@@ -1304,170 +1400,173 @@ thkerncmss.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/m/n' instead on input line 183.
+(Font)              using `OT1/cmss/m/n' instead on input line 221.
 
-[3
-
-]
-
-LaTeX Warning: Citation 'aldous1985exchangeability' on page 4 undefined on inpu
-t line 193.
-
-[4
-
-]
-
-LaTeX Warning: Citation 'blei2003latent' on page 5 undefined on input line 216.
-
-
-
-LaTeX Warning: Citation 'blei2003latent' on page 5 undefined on input line 216.
-
-
-<../plots/presentation/lda_graphical.pdf, id=74, 595.22375pt x 312.16624pt>
-File: ../plots/presentation/lda_graphical.pdf Graphic file (type pdf)
-<use ../plots/presentation/lda_graphical.pdf>
-Package pdftex.def Info: ../plots/presentation/lda_graphical.pdf  used on input
- line 216.
-(pdftex.def)             Requested size: 178.5685pt x 93.65059pt.
 [5
 
- <../plots/presentation/lda_graphical.pdf>]
+]
 
-LaTeX Warning: Citation 'blei2012probabilistic' on page 6 undefined on input li
-ne 230.
-
-<../plots/presentation/lda_topic_assignment.jpeg, id=95, 803.0pt x 436.63126pt>
-
-File: ../plots/presentation/lda_topic_assignment.jpeg Graphic file (type jpg)
-<use ../plots/presentation/lda_topic_assignment.jpeg>
-Package pdftex.def Info: ../plots/presentation/lda_topic_assignment.jpeg  used 
-on input line 230.
-(pdftex.def)             Requested size: 321.1943pt x 174.6494pt.
-
-Overfull \hbox (0.79906pt too wide) in paragraph at lines 230--230
- [] 
- []
+LaTeX Warning: Citation 'aldous1985exchangeability' on page 6 undefined on inpu
+t line 231.
 
 [6
 
- <../plots/presentation/lda_topic_assignment.jpeg>]
+]
 
-LaTeX Warning: Citation 'van1995python' on page 7 undefined on input line 245.
+LaTeX Warning: Citation 'blei2003latent' on page 7 undefined on input line 254.
 
 
-LaTeX Warning: Citation 'richardson2007beautiful' on page 7 undefined on input 
-line 245.
 
-<../plots/presentation/amthor.png, id=103, 460.119pt x 346.29375pt>
-File: ../plots/presentation/amthor.png Graphic file (type png)
-<use ../plots/presentation/amthor.png>
-Package pdftex.def Info: ../plots/presentation/amthor.png  used on input line 2
-45.
-(pdftex.def)             Requested size: 193.24866pt x 145.44237pt.
+LaTeX Warning: Citation 'blei2003latent' on page 7 undefined on input line 254.
 
-Overfull \vbox (7.77179pt too high) detected at line 245
- []
 
+<../plots/presentation/lda_graphical.pdf, id=91, 595.22375pt x 312.16624pt>
+File: ../plots/presentation/lda_graphical.pdf Graphic file (type pdf)
+<use ../plots/presentation/lda_graphical.pdf>
+Package pdftex.def Info: ../plots/presentation/lda_graphical.pdf  used on input
+ line 254.
+(pdftex.def)             Requested size: 178.5685pt x 93.65059pt.
 [7
 
- <../plots/presentation/amthor.png>]
+ <../plots/presentation/lda_graphical.pdf>]
 
-LaTeX Warning: Citation 'roesslein2020tweepy' on page 8 undefined on input line
- 259.
+LaTeX Warning: Citation 'blei2012probabilistic' on page 8 undefined on input li
+ne 268.
 
-<../plots/3/monthly_tweets.pdf, id=115, 578.16pt x 443.6575pt>
-File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
-<use ../plots/3/monthly_tweets.pdf>
-Package pdftex.def Info: ../plots/3/monthly_tweets.pdf  used on input line 259.
+<../plots/presentation/lda_topic_assignment.jpeg, id=113, 803.0pt x 436.63126pt
+>
+File: ../plots/presentation/lda_topic_assignment.jpeg Graphic file (type jpg)
+<use ../plots/presentation/lda_topic_assignment.jpeg>
+Package pdftex.def Info: ../plots/presentation/lda_topic_assignment.jpeg  used 
+on input line 268.
+(pdftex.def)             Requested size: 321.1943pt x 174.6494pt.
 
-(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
-
-Overfull \vbox (0.68602pt too high) detected at line 259
+Overfull \hbox (0.79906pt too wide) in paragraph at lines 268--268
+ [] 
  []
 
 [8
 
+ <../plots/presentation/lda_topic_assignment.jpeg>] [9
+
+]
+
+LaTeX Warning: Citation 'van1995python' on page 10 undefined on input line 296.
+
+
+
+LaTeX Warning: Citation 'richardson2007beautiful' on page 10 undefined on input
+ line 296.
+
+<../plots/presentation/amthor.png, id=127, 612.48825pt x 431.81325pt>
+File: ../plots/presentation/amthor.png Graphic file (type png)
+<use ../plots/presentation/amthor.png>
+Package pdftex.def Info: ../plots/presentation/amthor.png  used on input line 2
+96.
+(pdftex.def)             Requested size: 183.7479pt x 129.54497pt.
+
+Overfull \vbox (5.4744pt too high) detected at line 296
+ []
+
+[10
+
+ <../plots/presentation/amthor.png>]
+
+LaTeX Warning: Citation 'roesslein2020tweepy' on page 11 undefined on input lin
+e 310.
+
+<../plots/3/monthly_tweets.pdf, id=137, 578.16pt x 443.6575pt>
+File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
+<use ../plots/3/monthly_tweets.pdf>
+Package pdftex.def Info: ../plots/3/monthly_tweets.pdf  used on input line 310.
+
+(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
+
+Overfull \vbox (0.68602pt too high) detected at line 310
+ []
+
+[11
+
  <../plots/3/monthly_tweets.pdf>]
 
-LaTeX Warning: Citation 'R' on page 9 undefined on input line 271.
+LaTeX Warning: Citation 'R' on page 12 undefined on input line 322.
 
 
-LaTeX Warning: Citation 'quanteda' on page 9 undefined on input line 271.
+LaTeX Warning: Citation 'quanteda' on page 12 undefined on input line 322.
 
 
-LaTeX Warning: Citation 'lucas2015computer' on page 9 undefined on input line 2
-71.
-
-[9
-
-]
-<../plots/4_1/searchK.pdf, id=142, 578.16pt x 443.6575pt>
-File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
-<use ../plots/4_1/searchK.pdf>
-Package pdftex.def Info: ../plots/4_1/searchK.pdf  used on input line 285.
-(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
- [10
-
- <../plots/4_1/searchK.pdf>] [11
-
-]
-<../plots/4_2/t1_wordcloud.pdf, id=169, 578.16pt x 443.6575pt>
-File: ../plots/4_2/t1_wordcloud.pdf Graphic file (type pdf)
-<use ../plots/4_2/t1_wordcloud.pdf>
-Package pdftex.def Info: ../plots/4_2/t1_wordcloud.pdf  used on input line 339.
-
-(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
-
-Overfull \vbox (4.8559pt too high) detected at line 339
- []
+LaTeX Warning: Citation 'lucas2015computer' on page 12 undefined on input line 
+322.
 
 [12
 
+]
+<../plots/4_1/searchK.pdf, id=164, 578.16pt x 443.6575pt>
+File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
+<use ../plots/4_1/searchK.pdf>
+Package pdftex.def Info: ../plots/4_1/searchK.pdf  used on input line 336.
+(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
+ [13
+
+ <../plots/4_1/searchK.pdf>] [14
+
+]
+<../plots/4_2/t1_wordcloud.pdf, id=192, 578.16pt x 443.6575pt>
+File: ../plots/4_2/t1_wordcloud.pdf Graphic file (type pdf)
+<use ../plots/4_2/t1_wordcloud.pdf>
+Package pdftex.def Info: ../plots/4_2/t1_wordcloud.pdf  used on input line 390.
+
+(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
+
+Overfull \vbox (4.8559pt too high) detected at line 390
+ []
+
+[15
+
  <../plots/4_2/t1_wordcloud.pdf>]
-<../plots/presentation/martin_hess_topic1.png, id=184, 399.29175pt x 454.69875p
+<../plots/presentation/martin_hess_topic1.png, id=207, 399.29175pt x 454.69875p
 t>
 File: ../plots/presentation/martin_hess_topic1.png Graphic file (type png)
 <use ../plots/presentation/martin_hess_topic1.png>
 Package pdftex.def Info: ../plots/presentation/martin_hess_topic1.png  used on 
-input line 351.
+input line 402.
 (pdftex.def)             Requested size: 159.71387pt x 181.87627pt.
 
-Overfull \vbox (6.03484pt too high) detected at line 351
- []
-
-[13
-
- <../plots/presentation/martin_hess_topic1.png>] [14
-
-]
-<../plots/4_3/global_thetas.pdf, id=199, 578.16pt x 443.6575pt>
-File: ../plots/4_3/global_thetas.pdf Graphic file (type pdf)
-<use ../plots/4_3/global_thetas.pdf>
-Package pdftex.def Info: ../plots/4_3/global_thetas.pdf  used on input line 394
-.
-(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
- [15
-
- <../plots/4_3/global_thetas.pdf>]
-<../plots/4_3/vocabulary_comparison.pdf, id=220, 578.16pt x 443.6575pt>
-File: ../plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
-<use ../plots/4_3/vocabulary_comparison.pdf>
-Package pdftex.def Info: ../plots/4_3/vocabulary_comparison.pdf  used on input 
-line 413.
-(pdftex.def)             Requested size: 128.15614pt x 98.33606pt.
-<../plots/4_3/topic_correlations_map.pdf, id=221, 497.86pt x 382.42876pt>
-File: ../plots/4_3/topic_correlations_map.pdf Graphic file (type pdf)
-<use ../plots/4_3/topic_correlations_map.pdf>
-Package pdftex.def Info: ../plots/4_3/topic_correlations_map.pdf  used on input
- line 413.
-(pdftex.def)             Requested size: 128.15614pt x 98.44295pt.
-
-Overfull \hbox (77.96756pt too wide) in paragraph at lines 413--413
- [] 
+Overfull \vbox (6.03484pt too high) detected at line 402
  []
 
 [16
+
+ <../plots/presentation/martin_hess_topic1.png>] [17
+
+]
+<../plots/4_3/global_thetas.pdf, id=221, 578.16pt x 443.6575pt>
+File: ../plots/4_3/global_thetas.pdf Graphic file (type pdf)
+<use ../plots/4_3/global_thetas.pdf>
+Package pdftex.def Info: ../plots/4_3/global_thetas.pdf  used on input line 445
+.
+(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
+ [18
+
+ <../plots/4_3/global_thetas.pdf>]
+<../plots/4_3/vocabulary_comparison.pdf, id=242, 578.16pt x 443.6575pt>
+File: ../plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
+<use ../plots/4_3/vocabulary_comparison.pdf>
+Package pdftex.def Info: ../plots/4_3/vocabulary_comparison.pdf  used on input 
+line 464.
+(pdftex.def)             Requested size: 128.15614pt x 98.33606pt.
+<../plots/4_3/topic_correlations_map.pdf, id=243, 497.86pt x 382.42876pt>
+File: ../plots/4_3/topic_correlations_map.pdf Graphic file (type pdf)
+<use ../plots/4_3/topic_correlations_map.pdf>
+Package pdftex.def Info: ../plots/4_3/topic_correlations_map.pdf  used on input
+ line 464.
+(pdftex.def)             Requested size: 128.15614pt x 98.44295pt.
+
+Overfull \hbox (77.96756pt too wide) in paragraph at lines 464--464
+ [] 
+ []
+
+[19
 
  <../plots/4_3/vocabulary_comparison.pdf> <../plots/4_3/topic_correlations_map.
 pdf
@@ -1476,9 +1575,9 @@ pdfTeX warning: pdflatex (file ../plots/4_3/topic_correlations_map.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
 
-LaTeX Warning: Empty bibliography on input line 418.
+LaTeX Warning: Empty bibliography on input line 469.
 
-[17
+[20
 
 ]
 \tf@nav=\write7
@@ -1490,11 +1589,11 @@ LaTeX Warning: Empty bibliography on input line 418.
 \tf@snm=\write9
 \openout9 = `presentation_simon.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 419.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 419.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 470.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 470.
  (presentation_simon.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 419.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 419.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 470.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 470.
 Package rerunfilecheck Info: File `presentation_simon.out' has not changed.
 (rerunfilecheck)             Checksum: F10778D71A33F0BAECF80A54D9062E52;235.
 
@@ -1514,13 +1613,13 @@ Package logreq Info: Writing requests to 'presentation_simon.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27167 strings out of 480930
- 532156 string characters out of 2899761
- 1157690 words of memory out of 3000000
- 42430 multiletter control sequences out of 15000+200000
- 558403 words of font info for 99 fonts, out of 3000000 for 9000
+ 27507 strings out of 480930
+ 536591 string characters out of 2899761
+ 1164454 words of memory out of 3000000
+ 42759 multiletter control sequences out of 15000+200000
+ 558759 words of font info for 100 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,15n,67p,787b,823s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 58i,15n,67p,787b,822s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi450\
 ecso0800.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecso0900.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
@@ -1546,9 +1645,9 @@ on/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi9.pfb>
 m/cmsy10.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmsy9.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on presentation_simon.pdf (17 pages, 1017436 bytes).
+Output written on presentation_simon.pdf (20 pages, 1422423 bytes).
 PDF statistics:
- 332 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 356 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 160 words of extra memory for PDF output out of 10000 (max. 10000000)
 

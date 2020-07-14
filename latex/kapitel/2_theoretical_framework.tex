@@ -20,7 +20,7 @@ In their \textit{Latent Dirichlet Allocation} (LDA) model, \cite{blei2003latent}
 \vspace{-0.25cm}
 \item[•] A \textit{topic-word distribution} $\boldsymbol{\beta}$ is a probability distribution over words, i.e., over the vocabulary. For a model containing $K$ topics (and no topical content variable, see section \ref{The Structural Topic Model} below), topic-word distributions do not vary across documents and uniquely characterize a topic: we denote the word distribution corresponding to the $k$-th topic by $\boldsymbol{\beta}_k$ and the matrix whose $k$-th column is topic $\boldsymbol{\beta}_k$ by $\boldsymbol{B}:=\boldsymbol{\beta}_{1:K}=[\boldsymbol{\beta}_1|\dots|\boldsymbol{\beta}_K]$. Each vector $\boldsymbol{\beta}_k$ thus has length $V$, while $B$ is a $V \times K$-matrix. Therefore, $k$ refers to the latent thematic cluster with topic index $k$ in general, and $\boldsymbol{\beta}_k$ refers to the underlying word distribution in particular.
 \vspace{-0.25cm}
-\item[•] A \textit{topic assignment} $\boldsymbol{z}_{d,n}$ is the assignment of the $n$-th word of document $d$ to a specific topic $k \in \{1,\dots,K\}$ (i.e., to the corresponding word distribution $\boldsymbol{\beta}_k$). Therefore, $\boldsymbol{z}_{d,n}$ is simply a vector of length $K$ whose $k$-th entry equals one and all other entries equal zero. This allows us to represent the word distribution corresponding to the $n$-th word in document $d$ as $\boldsymbol{\beta}_{d,n}:=B\boldsymbol{z}_{d,n}$ (again, for a model without topical content variable).
+\item[•] A \textit{topic assignment} $\boldsymbol{z}_{d,n}$ is the assignment of the $n$-th word of document $d$ to a specific topic $k \in \{1,\dots,K\}$ (i.e., to the corresponding word distribution $\boldsymbol{\beta}_k$). Therefore, $\boldsymbol{z}_{d,n}$ is simply a vector of length $K$ whose $k$-th entry equals one and all other entries equal zero. This allows us to represent the word distribution corresponding to the $n$-th word in document $d$ as $\boldsymbol{\beta}_{d,n}:=\boldsymbol{B}\boldsymbol{z}_{d,n}$ (again, for a model without topical content variable). Stated differently, this means that topic assignment $\boldsymbol{z}_{d,n}$ simply picks the $k$-th column of matrix $\boldsymbol{B}$ - that is, $\boldsymbol{\beta}_k$ - and assigns word $w_{d,n}$ to it. 
 \vspace{-0.25cm}
 \item[•] For a given document $d$, the corresponding \textit{topic proportions}, denoted by $\boldsymbol{\theta}_d$, are the proportions of the document's words assigned to each of the topics $k \in \{1,\dots,K\}$. Topic proportions vary across documents. Since for each document $d$ the proportions of all $K$ topics must add up to one ($\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$), topic proportions represent probabilities.
 \vspace{-0.25cm}
@@ -28,18 +28,15 @@ In their \textit{Latent Dirichlet Allocation} (LDA) model, \cite{blei2003latent}
 
 \end{itemize}
 
+\noindent
 As mentioned above, LDA is the first generative probabilistic model of an entire text corpus. (Recall that pLSI is only probabilisitic for a fixed document.) 
 Now, the generative process underlying LDA can be described as a two-step procedure, where for each document $d \in \{1,\dots,D\}$:
 
 \begin{enumerate}[{1)}]
-\vspace{-0.25cm}
 \item Draw topic proportions $\boldsymbol{\theta}_d \sim \text{Dir}_K(\boldsymbol{\alpha})$.
-\vspace{-0.25cm}
 \item For each word $n \in \{1,\dots,N_d\}$:
-	\begin{enumerate}[{a)}]
-	\vspace{-0.25cm}    
-    \item Draw a topic assignment $\boldsymbol{z_{d,n}} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
-	\vspace{-0.25cm}    
+	\begin{enumerate}[{a)}]  
+    \item Draw a topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
     \item Draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
@@ -66,16 +63,11 @@ Due to its simplicity and the resulting restrictions, the LDA has been used used
 For each document $d \in \{1,\dots,D\}$:
 
 \begin{enumerate}[{1)}]
-\vspace{-0.25cm}
 \item Draw unnormalized topic proportions $\boldsymbol{\eta}_d \sim \mathcal{N}_{K-1}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, with $\eta_{d,K} := 0$ for model identifiability.
-\vspace{-0.25cm}
 \item Normalize $\boldsymbol{\eta}_d$ by mapping it to the simplex: $\theta_{d,k} = \frac{exp(\eta_{d,k})}{\sum_{j=1}^{K}exp(\eta_{d,j})}$, for all $k \in \{1,\dots,K\}$.
-\vspace{-0.25cm}
 \item For each word $n \in \{1,\dots,N_d\}$:
-	\begin{enumerate}[{a)}]
-	\vspace{-0.25cm}    
-    \item Draw a topic assignment $\boldsymbol{z_{d,n}} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
-	\vspace{-0.25cm}    
+	\begin{enumerate}[{a)}]   
+    \item Draw a topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.    
     \item Draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
@@ -102,7 +94,7 @@ The STM addresses the three main shortcomings of the LDA, as discussed in the pr
 \vspace{-0.25cm}
 \item The STM allows for the incorporation and use of document-level metadata when determining topic proportions. Similar to the DMR, topic proportions $(\boldsymbol{\theta}_1,\dots,\boldsymbol{\theta}_D)^T$ are assumed to depend on $P$ document-level \textit{topical prevalence variables} (such as the author's name, her political party or her popularity on Twitter), yet now with each $\boldsymbol{\theta}_d$ following a multivariate logistic normal distribution. The distribution now has median vector\footnote{There is no analytical closed form for the mean in the logistic normal distribution.} $\boldsymbol{\Gamma}^T\boldsymbol{x_d}^T$; $\boldsymbol{X}=[\boldsymbol{x_1}|\dots|\boldsymbol{x_D}]^T \in \mathbb{R}^{D \times P}$ is a matrix containing $D$ document-level prevalence covariate vectors $\boldsymbol{x}_d$, each one containing $P$ document-level covariate values; $\boldsymbol{\Gamma} = [\boldsymbol{\gamma}_1|\dots|\boldsymbol{\gamma}_K]$ is a matrix with each of its $K$ columns $\boldsymbol{\gamma}_k$ being a $P$-dimensional vector of topic proportion coefficients for the respective topic $k$. Furthermore, $\boldsymbol{\Sigma}$ is a matrix of parameters determining the covariance structure of the distribution (for details see further below). This way, the model accounts for the fact that document-level covariates might influence how much (that is, which percentage of the total number of words) the corresponding documents attribute to the different topics.
 \vspace{-0.25cm}
-\item Within the STM, document-level covariate information can also be used to fine-tune the topic-word distributions $\boldsymbol{\beta}_k$, the methodology being similar to the one in the SAGE model. In particular, the STM allows for specifying a single categorical document-level \textit{topical content variable} $\boldsymbol{Y}\in \mathbb{R}^D$ with $A$ levels, i.e., $Y_d \in \{1,\dots,A\}$, for all $d \in \{1,\dots,D\}$ (\citealp{stm}).\footnote{In theory, multiple topical content variables could be included, yet the R package \textbf{stm} (\citealp{stm}) only allows for specifying a single content variable due to computational complexity. Furthermore, $Y_d$ is dummy encoded in the model implementation, making $Y_d$ a vector of length $A$ and $\boldsymbol{Y}$ a matrix of dimension $D \times A$. However, for notational convenience we simply refer to $Y_d$ as a scalar and to $\boldsymbol{Y}$ as a $D$-dimensional vector here.} Consequently, each topic $k \in \{1,\dots,K\}$ is now associated with a total of $A$ topic-word distributions $\boldsymbol{\beta}_{k,a}, a \in \{1,\dots,A\}$ instead of a single one, $\boldsymbol{\beta}_k$. For a given document $d$, this means the $K$ topic-word distributions are now additionally determined by the level $a$ assumed by $Y_d$ and are identical across all documents with $Y_d = a$, given a topic $k \in \{1,\dots,K\}$ (\citealp{roberts2016model}). This way, for a given document $d$, document-level metadata can not only impact the weighting of topics $\boldsymbol{\theta}_d$, but also the weighting over words for each topic. Note that for a given topic $k$, the word distributions $\boldsymbol{\beta}_{k,a}$ do not vary substantially across different values of $a$; that is, the content variable $\boldsymbol{Y}$ is really an $A$-level refinement of $\boldsymbol{\beta}_k$ and does \textit{not} affect the number of topics $K$.
+\item Within the STM, document-level covariate information can also be used to fine-tune the topic-word distributions $\boldsymbol{\beta}_k$, the methodology being similar to the one in the SAGE model. In particular, the STM allows for specifying a single categorical document-level \textit{topical content variable} $\boldsymbol{Y}\in \mathbb{R}^D$ with $A$ levels, i.e., $Y_d \in \{1,\dots,A\}$, for all $d \in \{1,\dots,D\}$ (\citealp{stm}).\footnote{In theory, multiple topical content variables could be included, yet the R package \textbf{stm} (\citealp{stm}) only allows for specifying a single content variable due to computational complexity. Furthermore, $Y_d$ is dummy encoded in the model implementation, making $Y_d$ a vector of length $A$ and $\boldsymbol{Y}$ a matrix of dimension $D \times A$. However, for notational convenience we simply refer to $Y_d$ as a scalar and to $\boldsymbol{Y}$ as a $D$-dimensional vector here.} Consequently, each topic $k \in \{1,\dots,K\}$ is now associated with a total of $A$ topic-word distributions $\boldsymbol{\beta}_k^{a}, a \in \{1,\dots,A\}$ instead of a single one, $\boldsymbol{\beta}_k$. For a given document $d$, this means the $K$ topic-word distributions are now additionally determined by the level $a$ assumed by $Y_d$ and are identical across all documents with $Y_d = a$, given a topic $k \in \{1,\dots,K\}$ (\citealp{roberts2016model}). This way, for a given document $d$, document-level metadata can not only impact the weighting of topics $\boldsymbol{\theta}_d$, but also the weighting over words for each topic. Note that for a given topic $k$, the word distributions $\boldsymbol{\beta}_k^{a}$ do not vary substantially across different values of $a$; that is, the content variable $\boldsymbol{Y}$ is really an $A$-level refinement of $\boldsymbol{\beta}_k$ and does \textit{not} affect the number of topics $K$.
 
 \end{enumerate}
 
@@ -114,22 +106,17 @@ The generative process of the STM can be stated as follows (\citealp{roberts2016
 For each document $d \in \{1,\dots,D\}$:
 
 \begin{enumerate}[{1)}]
-\vspace{-0.25cm}
 \item Draw unnormalized topic proportions $\boldsymbol{\eta}_d \sim \mathcal{N}_{K-1}(\boldsymbol{\Gamma}^T\boldsymbol{x_d}^T, \boldsymbol{\Sigma})$, with $\eta_{d,K}$ set to zero for model identifiability.
-\vspace{-0.25cm}
 \item Normalize $\boldsymbol{\eta}_d$ by mapping it to the simplex: $\theta_{d,k} = \frac{exp(\eta_{d,k})}{\sum_{j=1}^{K}exp(\eta_{d,j})}$, for all $k \in \{1,\dots,K\}$.
-\vspace{-0.25cm}
 \item For each word $n \in \{1,\dots,N_d\}$:
-	\begin{enumerate}[{a)}]
-	\vspace{-0.25cm}    
-    \item Draw a topic assignment $\boldsymbol{z_{d,n}} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
-	\vspace{-0.25cm}    
-    \item If no topical content variable has been specified, simply draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$. Otherwise, first determine the document-specific word distributions $B_a := [\boldsymbol{\beta}_{1,a}|\dots|\boldsymbol{\beta}_{K,a}]$ based on the level $a$ taken on by $Y_d$, for all topics $k \in \{1,\dots,K\}$; next, analogously define $\boldsymbol{\beta}_{d,n}:=B_a\boldsymbol{z_{d,n}}$; finally, draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
+	\begin{enumerate}[{a)}]  
+    \item Draw a topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.   
+    \item If no topical content variable has been specified, simply draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$. Otherwise, first determine the document-specific word distributions $\boldsymbol{B}_a := [\boldsymbol{\beta}_1^{a}|\dots|\boldsymbol{\beta}_K^{a}]$ based on the level $a$ taken on by $Y_d$, for all topics $k \in \{1,\dots,K\}$; next, analogously define $\boldsymbol{\beta}_{d,n}:=\boldsymbol{B}_a\boldsymbol{z}_{d,n}$; finally, draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
 
 \noindent
-This means that unnormalized topic proportions are sampled from a normal distribution with mean $\boldsymbol{\Gamma} = [\boldsymbol{\gamma}_1|\dots|\boldsymbol{\gamma}_K]$ and covariance $\boldsymbol{\Sigma}$. The coefficients contained in the matrix $\boldsymbol{\Gamma}$, which correspond to the prevalence covariates $\boldsymbol{X}$, are obtained through a Bayesian linear regression with prior distributions $\boldsymbol{\gamma}_k \sim \mathcal{N}_p(0, \sigma_k^2\boldsymbol{I}_p)$ (see \citealp{roberts2016model} for further details). However, we actually specify an L1 penalty instead of this prior to ensure model convergence. The softmax function is then applied to unnormalized topic proportions $\boldsymbol{\eta}_d$, yielding normalized topic proportions $\boldsymbol{\theta}_d$, which in turn are used as weights for the subsequent topic assignment $\boldsymbol{z_{d,n}}$. Finally, each word is sampled from the corresponding multinomial word probability distribution (over the vocabulary of length $V$), which depends on topic assignment $\boldsymbol{z_{d,n}}$ and, for models containing a topical content variable, on its level $a$. In line with SAGE methodology, the topic-word distributions are modelled as deviations in log-frequency from a baseline vocabulary. (See \citealp{roberts2016model}, p.\ 991 for more details.) As in the CTM, $K$ (and $\sigma_k^2$ if no L1 penalty is specified) is a hyperparameter to be chosen by the user. The graphical model representation in Figure 1 below visualizes the generative process described.
+This means that unnormalized topic proportions are sampled from a normal distribution with mean $\boldsymbol{\Gamma} = [\boldsymbol{\gamma}_1|\dots|\boldsymbol{\gamma}_K]$ and covariance $\boldsymbol{\Sigma}$. The coefficients contained in the matrix $\boldsymbol{\Gamma}$, which correspond to the prevalence covariates $\boldsymbol{X}$, are obtained through a Bayesian linear regression with prior distributions $\boldsymbol{\gamma}_k \sim \mathcal{N}_p(0, \sigma_k^2\boldsymbol{I}_p)$ (see \citealp{roberts2016model} for further details). However, we actually specify an L1 penalty instead of this prior to ensure model convergence. The softmax function is then applied to unnormalized topic proportions $\boldsymbol{\eta}_d$, yielding normalized topic proportions $\boldsymbol{\theta}_d$, which in turn are used as weights for the subsequent topic assignment $\boldsymbol{z}_{d,n}$. Finally, each word is sampled from the corresponding multinomial word probability distribution (over the vocabulary of length $V$), which depends on topic assignment $\boldsymbol{z}_{d,n}$ and, for models containing a topical content variable, on its level $a$. In line with SAGE methodology, the topic-word distributions are modelled as deviations in log-frequency from a baseline vocabulary. (See \citealp{roberts2016model}, p.\ 991 for more details.) As in the CTM, $K$ (and $\sigma_k^2$ if no L1 penalty is specified) is a hyperparameter to be chosen by the user. The graphical model representation in Figure 1 below visualizes the generative process described.
 
 
 \begin{figure}[h!]
@@ -156,11 +143,11 @@ Before addressing inference and parameter estimation within the STM in section \
 \begin{align*}
 p(\boldsymbol{\eta}, \boldsymbol{z}, \boldsymbol{\kappa}, \boldsymbol{\Gamma}, \boldsymbol{\Sigma} | \boldsymbol{W}, \boldsymbol{X}, \boldsymbol{Y}) & \propto \underbrace{p(\boldsymbol{W} | \boldsymbol{\eta}, \boldsymbol{z}, \boldsymbol{\kappa}, \boldsymbol{\Gamma}, \boldsymbol{\Sigma}, \boldsymbol{X}, \boldsymbol{Y})}_{=p(\boldsymbol{W} | \boldsymbol{z}, \boldsymbol{\kappa}, \boldsymbol{Y})} p(\boldsymbol{\eta}, \boldsymbol{z}, \boldsymbol{\kappa}, \boldsymbol{\Gamma}, \boldsymbol{\Sigma} | \boldsymbol{X}, \boldsymbol{Y}) \\
 & \propto p(\boldsymbol{W} | \boldsymbol{z}, \boldsymbol{\kappa}, \boldsymbol{Y}) p(\boldsymbol{z} | \boldsymbol{\eta}) p(\boldsymbol{\eta} | \boldsymbol{\Gamma}, \boldsymbol{\Sigma}, \boldsymbol{X}) \prod p(\boldsymbol{\kappa}) \prod p(\boldsymbol{\Gamma}) \\
-& \propto \Big\{ \prod_{d=1}^{D} p(\boldsymbol{\eta}_d | \boldsymbol{\Gamma}, \boldsymbol{\Sigma}, \boldsymbol{x}_d) \Big( \prod_{n=1}^{N} p(w_{d,n} | \boldsymbol{\beta}_{d, n}) p(\boldsymbol{z_{d,n}} | \boldsymbol{\theta}_d) \Big) \Big\} \prod p(\boldsymbol{\kappa}) \prod p(\boldsymbol{\Gamma}) \\
+& \propto \Big\{ \prod_{d=1}^{D} p(\boldsymbol{\eta}_d | \boldsymbol{\Gamma}, \boldsymbol{\Sigma}, \boldsymbol{x}_d) \Big( \prod_{n=1}^{N} p(w_{d,n} | \boldsymbol{\beta}_{d, n}) p(\boldsymbol{z}_{d,n} | \boldsymbol{\theta}_d) \Big) \Big\} \prod p(\boldsymbol{\kappa}) \prod p(\boldsymbol{\Gamma}) \\
 & \propto \Big\{ \prod_{d=1}^{D} \text{Normal}(\boldsymbol{\eta}_d | \boldsymbol{\Gamma}^T\boldsymbol{x}_d^T, \boldsymbol{\Sigma}) \Big( \prod_{n=1}^{N} \text{Multinomial}(\boldsymbol{z}_{n,d}| \boldsymbol{\theta}_d) \\
 & \ \ \ \ \times \text{Multinomial}(w_{d,n} | \boldsymbol{\beta}_{d,n}) \Big) \Big\} \times \prod p(\boldsymbol{\kappa}) \prod p(\boldsymbol{\Gamma}),
 \end{align*}
-where $\boldsymbol{\beta}_{d, n} \in \mathbb{R}^V$ is the topic-word distribution for word $n$ in document $d$ which has been assigned to topic $k$ through $\boldsymbol{z_{d,n}}$. The topic-word distribution vectors $\boldsymbol{\beta}_{k,a}$ have entries $\beta_{k,a,v} \propto \exp(m_{v} + \kappa_{k,v}^{(t)} + \kappa_{a,v}^{(c)} + \kappa_{k, a,v}^{(i)})$, $v \in \{1,\dots,V\}$, where $\kappa_{k,v}^{(t)}$, $\kappa_{a,v}^{(c)}$, and $\kappa_{k, a,v}^{(i)}$ are the log-transformed rate deviations of word $v$ for topic $k$, for content variable level $a$, and for the interaction of $k$ and $a$, respectively.
+where $\boldsymbol{\beta}_{d, n} \in \mathbb{R}^V$ is the topic-word distribution for word $n$ in document $d$ which has been assigned to topic $k$ through $\boldsymbol{z}_{d,n}$. The topic-word distribution vectors $\boldsymbol{\beta}_{k,a}$ have entries $\beta_{k,a,v} \propto \exp(m_{v} + \kappa_{k,v}^{(t)} + \kappa_{a,v}^{(c)} + \kappa_{k, a,v}^{(i)})$, $v \in \{1,\dots,V\}$, where $\kappa_{k,v}^{(t)}$, $\kappa_{a,v}^{(c)}$, and $\kappa_{k, a,v}^{(i)}$ are the log-transformed rate deviations of word $v$ for topic $k$, for content variable level $a$, and for the interaction of $k$ and $a$, respectively.
 
 \subsection{Inference and Parameter Estimation}
 \label{Inference and Parameter Estimation}
@@ -177,4 +164,4 @@ whose second component, $\mathbb{E}_q[\log q(\theta,z)]$, is the entropy of the 
 
 The optimality conditions resulting from maximizing \textit{ELBO} lead to the \textit{coordinate ascent algorithm} for variational inference (\citealp{wang2013variational}), which converges towards a local optimum (\citealp{bishop2006pattern}). However, this algorithm only works for \textit{conditionally conjugate} models, such as the LDA: all nodes in this model - in particular, the Dirichlet distribution for drawing topic proportions, the multinomial distribution for assigning topics, and the multinomial for eventually picking words - are conditionally conjugate. The STM, however, as well as the CTM before it, are non-conjugate models due to the logistic normal distribution used to sample topic proportions, which is why algorithm updates are not feasible and the algorithm is not (directly) applicable. As a remedy, \cite{wang2013variational} developed Laplace variational inference, which uses Laplace approximations within coordinate ascent algorithm updates and this way enables the application of the coordinate ascent algorithm for the broader class of nonconjugate models, in particular for CTM and STM.
 
-As stated above, the STM uses an Expectation-Maximization (EM) algorithm for empirical parameter estimation. In the E-step, the variational posterior distributions for topic proportions and assignment, $q(\boldsymbol{\theta}_d)$ and $q(\boldsymbol{z_{d,n}})$, respectively, are updated using Laplace variational inference and coordinate ascent. In the M-step, the model parameters - specifically topical prevalence and content coefficients - are updated by maximizing \textit{ELBO} with respect to them (\citealp{roberts2016model}).
+As stated above, the STM uses an Expectation-Maximization (EM) algorithm for empirical parameter estimation. In the E-step, the variational posterior distributions for topic proportions and assignment, $q(\boldsymbol{\theta}_d)$ and $q(\boldsymbol{z}_{d,n})$, respectively, are updated using Laplace variational inference and coordinate ascent. In the M-step, the model parameters - specifically topical prevalence and content coefficients - are updated by maximizing \textit{ELBO} with respect to them (\citealp{roberts2016model}).

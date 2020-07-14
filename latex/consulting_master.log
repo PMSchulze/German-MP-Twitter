@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  13 JUL 2020 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  13 JUL 2020 17:52
 entering extended mode
 **./consulting_master.tex
 (consulting_master.tex
@@ -454,7 +454,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1] (kapitel/1_introduction.tex [2]) (kapitel/2_theoretical_framework.tex
 [3] [4] [5] [6]
-Overfull \hbox (7.6027pt too wide) in paragraph at lines 83--85
+Overfull \hbox (7.6027pt too wide) in paragraph at lines 75--77
 \T1/cmr/m/n/12 The first two steps con-sti-tute the sam-pling from a lo-gis-tic
  nor-mal dis-tri-bu-tion: a $\OML/cmm/m/it/12 K$\T1/cmr/m/n/12 -dimensional
  []
@@ -463,25 +463,21 @@ Overfull \hbox (7.6027pt too wide) in paragraph at lines 83--85
 <../plots/2/stm_graphical.png, id=71, 822.07124pt x 325.215pt>
 File: ../plots/2/stm_graphical.png Graphic file (type png)
 <use ../plots/2/stm_graphical.png>
-Package pdftex.def Info: ../plots/2/stm_graphical.png  used on input line 138.
+Package pdftex.def Info: ../plots/2/stm_graphical.png  used on input line 125.
 (pdftex.def)             Requested size: 411.0346pt x 162.6071pt.
  [10 <../plots/2/stm_graphical.png>]
-Overfull \hbox (9.87714pt too wide) detected at line 162
+Overfull \hbox (7.7665pt too wide) detected at line 149
 []
  []
 
-[11]) (kapitel/3_data.tex [12] [13]
-<../plots/3/monthly_tweets.pdf, id=87, 578.16pt x 443.6575pt>
+[11] [12]) (kapitel/3_data.tex [13] [14]
+<../plots/3/monthly_tweets.pdf, id=90, 578.16pt x 443.6575pt>
 File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
 <use ../plots/3/monthly_tweets.pdf>
 Package pdftex.def Info: ../plots/3/monthly_tweets.pdf  used on input line 20.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[14] [15 <../plots/3/monthly_tweets.pdf>]) (kapitel/4_global_analysis.tex
-[16] [17]
+ [15 <../plots/3/monthly_tweets.pdf>])
+(kapitel/4_global_analysis.tex [16] [17]
 Overfull \hbox (1.64722pt too wide) in paragraph at lines 20--22
 \T1/cmr/m/n/12 Combining a word's fre-quency and ex-clu-siv-ity fi-nally yields
  its Frequency-Exclusivity (\T1/cmr/m/it/12 FREX\T1/cmr/m/n/12 )
@@ -493,12 +489,11 @@ File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
 <use ../plots/4_1/searchK.pdf>
 Package pdftex.def Info: ../plots/4_1/searchK.pdf  used on input line 32.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
+ [19 <../plots/4_1/searchK.pdf>]
 Overfull \hbox (18.37822pt too wide) detected at line 47
 []
  []
 
-[19 <../plots/4_1/searchK.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -530,17 +525,13 @@ File: ../plots/4_3/global_thetas.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../plots/4_3/global_thetas.pdf  used on input line 157
 .
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-<../plots/4_3/vocabulary_comparison.pdf, id=155, 578.16pt x 443.6575pt>
+ [23 <../plots/4_3/global_thetas.pdf>]
+<../plots/4_3/vocabulary_comparison.pdf, id=172, 578.16pt x 443.6575pt>
 File: ../plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
 <use ../plots/4_3/vocabulary_comparison.pdf>
 Package pdftex.def Info: ../plots/4_3/vocabulary_comparison.pdf  used on input 
 line 167.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[23 <../plots/4_3/global_thetas.pdf>]
 <../plots/4_3/topic_correlations.pdf, id=173, 675.52374pt x 372.39125pt>
 File: ../plots/4_3/topic_correlations.pdf Graphic file (type pdf)
 <use ../plots/4_3/topic_correlations.pdf>
@@ -948,7 +939,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  7633 strings out of 480930
  125683 string characters out of 2899761
- 375901 words of memory out of 3000000
+ 374901 words of memory out of 3000000
  23276 multiletter control sequences out of 15000+200000
  565127 words of font info for 103 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1005,7 +996,7 @@ cmsy6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX
  2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on consulting_master.pdf (55 pages, 2014165 bytes).
+Output written on consulting_master.pdf (55 pages, 2013711 bytes).
 PDF statistics:
  1568 PDF objects out of 1728 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

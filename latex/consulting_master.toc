@@ -2,12 +2,12 @@
 \contentsline {section}{\numberline {2}Theoretical Framework}{4}%
 \contentsline {subsection}{\numberline {2.1}Topic Modeling - Overview}{4}%
 \contentsline {subsection}{\numberline {2.2}The Structural Topic Model}{8}%
-\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{11}%
+\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{12}%
 \contentsline {section}{\numberline {3}Data}{13}%
 \contentsline {subsection}{\numberline {3.1}Data Collection}{13}%
-\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{15}%
-\contentsline {section}{\numberline {4}Model Selection and Global Characteristics}{16}%
-\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{16}%
+\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{16}%
+\contentsline {section}{\numberline {4}Model Selection and Global Characteristics}{17}%
+\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{17}%
 \contentsline {subsection}{\numberline {4.2}Labeling}{19}%
 \contentsline {subsection}{\numberline {4.3}Global-level Topic Analysis}{22}%
 \contentsline {section}{\numberline {5}Metadata Analysis - Topical Prevalence and Content}{25}%

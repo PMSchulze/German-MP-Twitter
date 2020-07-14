@@ -2,8 +2,8 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{3}{0}{2}
+\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{4}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{Data}{7}{0}{3}
+\beamer@sectionintoc {3}{Data}{10}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{10}{0}{4}
+\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{13}{0}{4}

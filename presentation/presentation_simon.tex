@@ -1,6 +1,5 @@
 \documentclass[xcolor=dvipsnames]{beamer}
 
-\usetheme{AnnArbor}
 \usepackage{dsfont}
 \usepackage{amsmath}
 \usepackage{caption}
@@ -10,11 +9,17 @@
 \usepackage{commath}
 \usepackage{physics}
 \usepackage{enumerate}
-\usepackage{hyperref}
 \usepackage{graphics}
+\usepackage{hyperref}
+\usepackage[round,comma]{natbib}
 \usepackage{subcaption}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
+
+%\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class
+\setcitestyle{authoryear,open={[},close={]}}
+
+\usetheme{AnnArbor}
 
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \beamertemplatenavigationsymbolsempty
@@ -49,6 +54,13 @@
   pages={77--84},
   year={2012},
   publisher={ACM New York, NY, USA}
+}
+@online{blei2012presentation,
+  title={Probabilistic topic models},
+  author={Blei, David M},
+  url={http://www.cs.columbia.edu/~blei/talks/Blei_ICML_2012.pdf},
+  date={2012-06-26},
+  urldate={2020-07-14}
 }
 @article{blei2003latent,
   title={Latent dirichlet allocation},
@@ -164,12 +176,38 @@
 \item Huge amounts of data, especially text, produced by social media
 \item Field of particular interest in the context of social media and big data: \textit{Politics} (e.g., Brexit, 2016 presidential election in the US, Facebook data scandal).
 \item Tools of analysis for such data simultaneously provided by advances in \textit{Natural Language Processing} (NLP)
-\item \textit{Topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text
-\item In this project: application of the \textit{Structural Topic Model} (STM) \cite{roberts2016model} to a self-created dataset containing Twitter posts by members of the German Bundestag (and a variety of metadata) 
+\item \textit{Topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+\item In this project: application of the  \cite{roberts2016model} to a self-created dataset 
+\item Key contributions of this project:
+	\begin{itemize}
+	\item Construction of dataset containing Twitter posts by members of the German Bundestag and a variety of metadata
+	\item Application of the \textit{Structural Topic Model} (STM) to German MPs' Twitter communication
+	\item Development of new tools for estimation of relationship between topic proportions and metadata
+	\item Development and application of STM-specific train-test split to enable causal inference
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \section{Topic Modeling: Motivation and Theory}
+\begin{frame}
+\frametitle{Topic Modeling: Motivation and Theory}
+\framesubtitle{Motivation}
+\begin{itemize}
+\item Motivating example: excerpt from a scientific article \cite{blei2012presentation}
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.30]{../plots/presentation/motivation.png}
+	\end{figure}
+\item Question at hand: how to assign colored words to topics?
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{Notation and Terminology (I)}
@@ -229,6 +267,18 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Topic Modeling: Motivation and Theory}
+\framesubtitle{\textit{Inference and Parameter Estimation}}
+\begin{itemize}
+\vspace{-0.5cm}
+\item (Hierarchical) Bayesian model $\rightarrow$ exact inference impossible due to marginal distributions in the denominator of posterior distribution $p$
+\item Variational inference: positing a simple distribution family $q$
+\item Mean-field variational inference: positing full factorizability of approximating posterior $q$
+\item Then: minimizing Kullback-Leibler divergence between $q$ and $p$
+\end{itemize}
+\end{frame}
+
 \section{Data}
 \begin{frame}
 \frametitle{Data}
@@ -238,7 +288,7 @@
 \item[] 
 	\begin{figure}[h!]
   	\centering
-  	\includegraphics[scale = 0.42]{../plots/presentation/amthor.png}
+  	\includegraphics[scale = 0.30]{../plots/presentation/amthor.png}
 	\end{figure}
 \item Twitter profiles: from official party homepages
 \item Socioeconomic data and 2017 German federal election results: from \url{www.bundeswahlleiter.de}.
@@ -264,7 +314,7 @@
 \framesubtitle{Data Preprocessing}
 \begin{itemize}
 \item Preprocessing: in R \cite{R}, using the \textit{quanteda} package \cite{quanteda}
-\item Transcription of German umlauts (\"a/\"A, \"o/\"O, \"u/\"U) and ligature (\ss)
+\item Transcription of German umlauts (e.g. \"a $\rightarrow$ a) and ligature (\ss $\rightarrow$ ss)
 \item Removal of hyphens: relevant for compound words (e.g., \textit{Corona-Krise} vs \textit{Coronakrise})
 \item Transformation of text data into document-feature matrix (DFM); conversion to lowercase; removal of stopword, units (\textit{kg}, \textit{uhr}), interjections (\textit{aaahhh}, \textit{ufff}), etc.
 \item Word stemming, i.e., cutting off word endings (e.g., \textit{politisch} $\rightarrow$ \textit{polit}) \cite{lucas2015computer}
