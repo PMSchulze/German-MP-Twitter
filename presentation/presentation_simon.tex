@@ -1,5 +1,6 @@
 \documentclass[xcolor=dvipsnames]{beamer}
 
+\usetheme{AnnArbor}
 \usepackage{dsfont}
 \usepackage{amsmath}
 \usepackage{caption}
@@ -9,20 +10,19 @@
 \usepackage{commath}
 \usepackage{physics}
 \usepackage{enumerate}
-\usepackage{graphics}
 \usepackage{hyperref}
-\usepackage[round,comma]{natbib}
+\usepackage{graphics}
+\usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{lmodern}
+%\usepackage[T1]{fontenc}
+
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
-%\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class
-\setcitestyle{authoryear,open={[},close={]}}
-
-\usetheme{AnnArbor}
-
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \beamertemplatenavigationsymbolsempty
+\bibliographystyle{IEEEtran}
 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
@@ -155,8 +155,11 @@
 
 \title{Twitter in the Parliament - A Text-based Analysis of German Political Entities}
 %\author{Patrick Schulze}
-\date{7. Juli 2020}
-\author[author1]{Patrick Schulze, Simon Wiegrebe\\[10mm]{\small Supervisors:\\ Prof. Dr. Christian Heumann, Prof. Dr. Paul W. Thurner}}
+\date{July 16, 2020}
+\author[author1]{Patrick Schulze, Simon Wiegrebe\\[10mm]{\small
+Project partners: \textit{Prof. Dr. Paul W. Thurner, Sandra Wankmüller} (Geschwister Scholl Institute of Political Science, LMU) \\[2mm]
+Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
+}}
 
 \begin{document}
 
@@ -174,7 +177,10 @@
 \frametitle{Introduction}
 \begin{itemize}
 \item Huge amounts of data, especially text, produced by social media
-\item Field of particular interest in the context of social media and big data: \textit{Politics} (e.g., Brexit, 2016 presidential election in the US, Facebook data scandal).
+\item Field of particular interest in the context of social media and big data: \textit{Politics}
+	\begin{itemize}
+	\item e.g., Brexit, 2016 presidential election in the US, Facebook data scandal
+	\end{itemize}		
 \item Tools of analysis for such data simultaneously provided by advances in \textit{Natural Language Processing} (NLP)
 \item \textit{Topic analysis}: analytical tool for discovery and exploration of latent thematic clusters within text 
 \end{itemize}
@@ -183,11 +189,10 @@
 \begin{frame}
 \frametitle{Introduction}
 \begin{itemize}
-\item In this project: application of the  \cite{roberts2016model} to a self-created dataset 
 \item Key contributions of this project:
 	\begin{itemize}
 	\item Construction of dataset containing Twitter posts by members of the German Bundestag and a variety of metadata
-	\item Application of the \textit{Structural Topic Model} (STM) to German MPs' Twitter communication
+	\item Application of the \textit{Structural Topic Model} (STM), introduced by \cite{roberts2016model}, to German MPs' Twitter communication
 	\item Development of new tools for estimation of relationship between topic proportions and metadata
 	\item Development and application of STM-specific train-test split to enable causal inference
 	\end{itemize}
@@ -212,7 +217,7 @@
 \frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{Notation and Terminology (I)}
 \begin{itemize}
-\item \textit{Words} $w$: instances of a vocabulary of $V$ unique \textit{terms}.
+\item \textit{Words} $w$: instances of a vocabulary of $V$ unique \textit{terms}
 \item \textit{Documents} $d \in \{1,\dots,D\}$: sequences of words of length $N_{d}$; $w_{d,n}$ denoting $n$-th word of document $d$
 \item \textit{Corpus}: collection (or set) of $D$ documents
 \item \textit{Topics} $k \in \{1,\dots,K\}$: latent thematic clusters within a text corpus; (implicit) representation of a corpus
@@ -226,7 +231,7 @@
 \begin{itemize}
 \item \textit{Topic assignments} $\boldsymbol{z}_{d,n}$: assignment of $w_{d,n}$ to a specific topic $k \in \{1,\dots,K\}$; $\boldsymbol{\beta}_{d,n}$ representing the (assigned) word distribution for $w_{d,n}$
 \item \textit{Topic proportions} $\boldsymbol{\theta}_d$: proportions of document $d$'s words assigned to each of the topics; $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$
-\item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \cite{aldous1985exchangeability}.
+\item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \cite{aldous1985exchangeability}
 \end{itemize}
 \end{frame}
 
@@ -241,7 +246,7 @@
 	\item Draw topic proportions $\boldsymbol{\theta}_d \sim \text{Dir}_K(\boldsymbol{\alpha})$.
 	\item For each word $n \in \{1,\dots,N_d\}$:
 		\begin{enumerate}[{a)}]
-		\item Draw a topic assignment $\boldsymbol{z_{d,n}} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
+		\item Draw a topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
 		\item Draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
@@ -269,13 +274,54 @@
 
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
+\framesubtitle{\textit{Structural Topic Model} (STM)}
+\begin{itemize}
+\item Topic model that incorporates document-level metadata: 
+\begin{itemize}
+\item \textit{Topical prevalence} covariates $\boldsymbol{X}=[\boldsymbol{x_1}|\dots|\boldsymbol{x_D}]^T \in \mathbb{R}^{D \times P}$
+\item Categorical \textit{topical content} variable $\boldsymbol{Y}\in \mathbb{R}^D$ with $A$ levels, i.e., $Y_d \in \{1,\dots,A\}$, for all $d \in \{1,\dots,D\}$
+\end{itemize}
+\item Generative process for each document $d \in \{1,\dots,D\}$:
+\item[] 
+\begin{enumerate}[{1)}]
+\item Draw $\boldsymbol{\eta}_d \sim \mathcal{N}_{K-1}(\boldsymbol{\Gamma}^T\boldsymbol{x_d}^T, \boldsymbol{\Sigma})$, with $\eta_{d,K}=0$ for model identifiability.
+\item Normalize $\boldsymbol{\eta}_d$, for all $k \in \{1,\dots,K\}: \theta_{d,k} = \frac{exp(\eta_{d,k})}{\sum_{j=1}^{K}exp(\eta_{d,j})}$.
+\item For each word $n \in \{1,\dots,N_d\}$:
+	\begin{enumerate}[{a)}]
+    \item Draw topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
+    \item If no topical content variable specified: $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$. 
+    \item[] Otherwise, determine document-specific word distributions $\boldsymbol{B_a} := [\boldsymbol{\beta}^a_1|\dots|\boldsymbol{\beta}^a_K]$ based on $Y_d=a$, for all topics $k \in \{1,\dots,K\}$; select $\boldsymbol{\beta}_{d,n}:=\boldsymbol{B_a}\boldsymbol{z}_{d,n}$; and draw word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
+	\end{enumerate}
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Topic Modeling: Motivation and Theory}
+\framesubtitle{Graphical Model of the STM}
+\begin{itemize}
+\item Visualization of the generative process again through graphical model \cite{roberts2016model}:
+\begin{figure}[h!]
+\centering
+\hspace*{-1cm}\includegraphics[scale = 0.4]{../plots/presentation/stm_graphical.png}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{\textit{Inference and Parameter Estimation}}
 \begin{itemize}
 \vspace{-0.5cm}
-\item (Hierarchical) Bayesian model $\rightarrow$ exact inference impossible due to marginal distributions in the denominator of posterior distribution $p$
-\item Variational inference: positing a simple distribution family $q$
-\item Mean-field variational inference: positing full factorizability of approximating posterior $q$
+\item (Hierarchical) Bayesian model $\Rightarrow$ exact inference impossible due to marginal distributions in the denominator of posterior distribution $p$
+\item Variational inference: positing a simple distribution family $q$ for latent variables $\boldsymbol{\theta}_d$ and $\boldsymbol{z}_d$
+\item Mean-field variational inference: positing full factorizability of approximating posterior $q$, i.e., $q(\boldsymbol{\theta}_d, \boldsymbol{z}_{d,n})=q(\boldsymbol{\theta}_d)*q(\boldsymbol{z}_{d,n})$
 \item Then: minimizing Kullback-Leibler divergence between $q$ and $p$
+\item STM uses a mean-field variational EM algorithm:
+\begin{itemize}
+\item E-step: update posterior distributions of latent variables $\boldsymbol{\theta}_d$ and $\boldsymbol{z}_{d,n}$
+\item M-step: update model parameters $\boldsymbol{\Gamma}$, $\boldsymbol{\Sigma}$, and - if present - topical content parameters
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -316,7 +362,7 @@
 \item Preprocessing: in R \cite{R}, using the \textit{quanteda} package \cite{quanteda}
 \item Transcription of German umlauts (e.g. \"a $\rightarrow$ a) and ligature (\ss $\rightarrow$ ss)
 \item Removal of hyphens: relevant for compound words (e.g., \textit{Corona-Krise} vs \textit{Coronakrise})
-\item Transformation of text data into document-feature matrix (DFM); conversion to lowercase; removal of stopword, units (\textit{kg}, \textit{uhr}), interjections (\textit{aaahhh}, \textit{ufff}), etc.
+\item Transformation of text data into document-feature matrix (DFM); conversion to lowercase; removal of stopwords, units (\textit{kg}, \textit{uhr}), interjections (\textit{aaahhh}, \textit{ufff}), etc.
 \item Word stemming, i.e., cutting off word endings (e.g., \textit{politisch} $\rightarrow$ \textit{polit}) \cite{lucas2015computer}
 \end{itemize}
 \end{frame}
@@ -331,7 +377,7 @@
   	\centering
   	\includegraphics[scale = 0.30]{../plots/4_1/searchK.pdf}
 	\end{figure}
-\item Best trade-off: $K=15$
+\item "Best" trade-off: $K=15$
 \end{itemize}
 \end{frame}
 
@@ -460,6 +506,253 @@
   \end{subfigure}
   }
 \end{figure}		
+\end{itemize}
+\end{frame}
+
+\section{Covariate-level Topic Analysis}
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Overview}
+\begin{itemize}
+\item Exploration of estimated topical structure with respect to different dimensions, e.g.\ membership in political party, time, $\dots$
+\item Specifically: examining relationship between document-level prevalence covariates $\boldsymbol{x}_d$ and topic proportions $\boldsymbol{\theta}_d$
+\item Natural idea: regress topic proportions on prevalence covariates
+\begin{itemize}
+\item In standard regression analysis, dependent variable as realization of random variable
+\item In STM, however: posterior of topic proportions $\boldsymbol{\theta}_d$ accessible
+\item Loss of information if "na{\"i}vely" using mean/mode of this posterior as dependent variable of regression
+\item Solution: performing sampling technique known as "method of composition" in social sciences
+\end{itemize}
+\item Alternatively: direct assessment of logistic normal distribution with estimated topical prevalence parameters $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Usage within R Package \textit{stm}}
+\begin{itemize}
+\item Notation:
+\begin{itemize}
+\item $\boldsymbol{\theta}_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$: proportion of $k$-th topic for all $D$ documents
+\item $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$: approximate variational posterior of $\boldsymbol{\theta}_{(k)}$
+\item $q(\hat{\boldsymbol{\xi}} | \boldsymbol{X}, \boldsymbol{\theta}_{(k)})$: (normal) distribution of estimated regression coefficients $\hat{\boldsymbol{\xi}}$ from OLS regression $\boldsymbol{\theta}_{(k)} = \boldsymbol{X}\boldsymbol{\xi} + \boldsymbol{\epsilon}$, where $\boldsymbol{\epsilon} \sim \mathcal{N}(0,\sigma^2\boldsymbol{I})$
+\end{itemize}
+\item Method of composition:
+\begin{enumerate}[{1)}]
+\item Draw $\boldsymbol{\theta}_{(k)}^* \sim q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$.
+\item Draw $\hat{\boldsymbol{\xi}}^* \sim q(\hat{\boldsymbol{\xi}} | \boldsymbol{X}, \boldsymbol{\theta}_{(k)}^*)$.
+\end{enumerate}
+\item Then: $\hat{\boldsymbol{\xi}}_1^*, \dots, \hat{\boldsymbol{\xi}}_m^*$ is an i.i.d.\ sample from the marginal posterior of regression coefficients
+\begin{align*}
+q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}_{(k)}} q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{\theta}_{(k)}) q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W}) \text{d} \boldsymbol{\theta}_{(k)} 
+\end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Problem: OLS regression not suitable for (sampled) proportions, which are restricted to interval (0,1)
+\item[$\Rightarrow$] Estimated relationship between proportions and prevalence covariates potentially producing negative estimated proportions
+\end{itemize}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Usage within R Package \textit{stm}}
+  \begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering,margin=2cm}
+  \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic1.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic6.pdf}
+  \end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Extension of existing approach}
+\begin{itemize}
+\item Instead of OLS regression, we can use a beta regression or a quasibinomial GLM (both with logit-link) to adequately model proportions
+\item In this case, regression coefficients are \textit{asymptotically} normally distributed
+\end{itemize}
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering,margin=2cm}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/quasi_t6_cont.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/quasi_t6_cat.pdf}
+  \end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Problem: Univariate Modeling of Proportions}
+\begin{itemize}
+\item Recall, by assumption: $\boldsymbol{\theta}_d \sim \text{LogisticNormal}(\boldsymbol{\Gamma}^T\boldsymbol{x}_d^T, \boldsymbol{\Sigma})$
+\item Logistic normal distribution assuming high dependence among individual components
+\item However, \textit{univariate} $k$-th topic proportion used as dependent variable in regression within method of composition
+\item Problem with this approach: dependence among components neglected $\Rightarrow$ uncertainty estimates particularly unrealistic
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Multivariate Modeling via Logistic Normal Distribution (I)}
+\begin{itemize}
+\item Inference within STM involves finding estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$
+\item Idea: plugging estimates into logistic normal distribution $\Rightarrow$ for a given covariate value $\boldsymbol{x}^*_d$, "predicting" topic proportion as
+$\boldsymbol{\theta}^*_d \sim \text{LogisticNormal}(\hat{\boldsymbol{\Gamma}}^T(\boldsymbol{x}_d^*)^T, \hat{\boldsymbol{\Sigma}})$
+\item Ideally: applying fully Bayesian approach and sampling from (variational) posterior of $\boldsymbol{\Gamma}$ (and updating $\boldsymbol{\Sigma}$, obtained via MLE) $\Rightarrow$ "Predictive Posterior" of topic proportions
+\item However, output obtained from R package \textit{stm} not allow for simple implementation of such a procedure (i.e., sampling from variational posterior of $\boldsymbol{\Gamma}$ and updating $\boldsymbol{\Sigma}$)
+	\begin{itemize}
+	\item Yet, possible in theory!
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Multivariate Modeling via Logistic Normal Distribution (II)}
+\begin{itemize}
+\item Still, our results suggest a high discrepancy between:
+\begin{itemize}
+\item Distribution of topic proportions assumed in generative process of STM
+\item Impression we gain of this distribution via separate modeling of topics.
+\end{itemize}
+\item Fully Bayesian approach: most likely yielding even higher uncertainty
+\end{itemize}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Multivariate Modeling via Logistic Normal Distribution}
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/direct_t6_without_credible.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/direct_t6_with_credible.pdf}
+  \end{subfigure}
+\end{figure}
+\end{frame}
+
+\section{Causal Inference}
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Correlation vs. Causality}
+\begin{itemize}
+\item In previous section: assessment of relationship between metadata and topic proportions
+\item Framework to be used to \textit{explore} topics with respect to different dimensions
+\item In particular, \textit{causal} interpretation of results generally not justified ("correlation vs. causality")
+\item When making causal inference, need to consider that topic proportions are \textit{latent} variables 
+\item Possible solution: conducting a train-test split
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Identification Problem and Overfitting}
+\begin{itemize}
+\item Setup: two groups (treatment and control), individuals otherwise similar
+\item Objective: quantifying treatment effect, in our case effect of treatment on prevalence of specific topic.
+\item Necessary assumption: response of an individual depending only on their treatment
+\item \textit{Identification problem}: estimating topic model to discover latent topic proportions can introduce additional dependency among individuals $\Rightarrow$ response of each individual \textit{not} only determined by treatment of that individual!
+\item \textit{Overfitting}: fitted topic model might mistake noise for patterns in some way $\Rightarrow$ response again not solely determined by treatment of an individual, but additionally by specific characteristics of other individuals
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Train-test split}
+\begin{itemize}
+\item Idea: splitting data $\mathcal{D}$ into training set $\mathcal{D}_{\text{train}}$ and test set $\mathcal{D}_{\text{test}}$
+\item Training set $\mathcal{D}_{\text{train}}$ used to determine a model that infers latent topic proportions from a given text 
+\item Test set $\mathcal{D}_{\text{test}}$ used to assess relation between \textit{predicted} test set topic proportions and test set prevalence covariates
+\item Identification problem solved: model used for prediction determined by training set observations $\Rightarrow$ treatment of test set observations not dependent on other individuals' treatment from test set. 
+\item Overfitting also solved: noise from training set very unlikely to be replicated on test set
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Implementation within the STM}
+\begin{itemize}
+\item Inputting documents, i.e., words and metadata from the training set $\mathcal{D}_{\text{train}}$, to obtain estimates $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ using the STM
+\item Then, estimating (variational) posterior of test set topic proportions, conditional on the model parameters $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ from training set $\mathcal{D}_{\text{train}}$ as well as words $\boldsymbol{W}_{\text{test}}$ from test set $\mathcal{D}_{\text{test}}$
+\item Estimation of (variational) posterior conditional on data and training set parameters via E-step of (variational) EM algorithm
+\item Benefit of using the STM: covariate information from training set directly used to predict topic proportions on test set
+\item Important: Covariate information from test set must not be used!
+	\begin{itemize}
+	\item Otherwise: predicting different topic proportions for two documents from test set with exact same words if prevalence covariates differ
+	\item However, causal effect should be zero in such a case!
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Results (I)}
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/climate_summit_props.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/emancipation_props.pdf}
+  \end{subfigure}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Results (II)}
+\begin{itemize}
+\item UN Climate Action Summit 2019 held on September 23, 2019
+\item As observed, topic associated with climate issues much more prevalent during that time than the year before
+\item MAP estimates for different prior specifications on test set rather similar, yet estimated effect for training data much larger
+\item Similar results for effect of political party on topic labeled as 'Emancipation': average difference of estimated topic proportions between both parties larger for the training data
+\item Additionally: credible intervals on the training data different from those on the test data in both cases
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Results (III)}
+\begin{itemize}
+\item Estimation of treatment effect: determining the average difference of predicted topic proportions between both groups
+\begin{figure}[h!]
+  \centering
+  \captionsetup{justification=centering,margin=2cm}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/climate_summit_ate.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{../plots/presentation/emancipation_ate.pdf}
+  \end{subfigure}
+\end{figure}
+\item Treatment effect larger if "na{\"i}vely" estimated solely on training data in both cases!
+\end{itemize}
+\end{frame}
+
+\section{Discussion}
+\begin{frame}
+\frametitle{Discussion}
+\begin{itemize}
+\item Use of dataset and results for future (politological) analyses
+\item Topic-metadata relationship: 
+	\begin{itemize}
+	\item Room for methodological improvement
+	\item Applicability in predictive tasks	
+	\end{itemize}
+\item Train-test split and causal inference:
+	\begin{itemize}
+	\item Alternative model designs
+	\item Natural experiments	
+	\end{itemize}
 \end{itemize}
 \end{frame}
 

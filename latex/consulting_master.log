@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  13 JUL 2020 17:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.5.16)  14 JUL 2020 18:57
 entering extended mode
 **./consulting_master.tex
 (consulting_master.tex
@@ -356,20 +356,20 @@ LaTeX Warning: Label `fig:coffee' multiply defined.
 )
 \openout1 = `consulting_master.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -957,14 +957,14 @@ pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
 \ecrm0800.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
 /ec/dpi600\tcrm1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfou
 r/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\font
-s/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Simon\AppData\Local\MiKTe
-X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\L
-ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Simon
-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\U
-sers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440
+s/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTe
+X\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Simon\AppData\L
+ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\Simon
+\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\U
+sers\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095
 .pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecrm1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
-n/ec/dpi600\ecbx1095.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfo
+0\ecti1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappe
+n/ec/dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts/pk/ljfo
 ur/jknappen/ec/dpi600\ecti1728.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fon
 ts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Simon\AppData\Local\MiKT
 eX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1728.pk> <C:\Users\Simon\AppData\
@@ -996,9 +996,9 @@ cmsy6.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Simon/AppData/Local/Programs/MiKTeX
  2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on consulting_master.pdf (55 pages, 2013711 bytes).
+Output written on consulting_master.pdf (55 pages, 2017921 bytes).
 PDF statistics:
- 1568 PDF objects out of 1728 (max. 8388607)
+ 1579 PDF objects out of 1728 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

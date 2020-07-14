@@ -23,6 +23,7 @@
 %\usepackage{hyperref}
 \usepackage{bbm}
 \usepackage{longtable}
+%\usepackage[affil-it]{authblk}
 
 \newtheorem*{theorem}{Theorem} 
 \newtheorem*{lemma}{Lemma}
@@ -53,25 +54,31 @@
 \begin{titlepage}
 	\centering
 	{\scshape\LARGE Ludwig-Maximilians-Universit\"at M\"unchen \par}
-	\vspace{1cm}
-	{\scshape\Large Statistical Consulting Project \par}
-	\vspace{1.5cm}
+	{\scshape\Large Department of Statistics \par}
+	\vspace{0.5cm}
+	{\scshape\Large Statistical Consulting Project (MSc Statistics) \par}
+	\vspace{1.0cm}
 	{\huge\bfseries Twitter in the Parliament - A Text-based Analysis of German Political Entities  \par}
-	\vspace{2cm}
+	\vspace{1.0cm}
 	{\Large\itshape Patrick Schulze, Simon Wiegrebe \par}
-	\vspace{2cm}	
+	%\author[1]{Patrick Schulze}%
+  		%\thanks{E-mail: \texttt{Pa.Schulze@campus.lmu.de}}}
+	%\affil[1]{Department, College}
+	\vspace{1.0cm}
+	\begin{itemize}
+	\item[] Project partners: \textit{Prof. Dr. Paul W. Thurner, Sandra Wankmüller \\
+	(Geschwister Scholl Institute of Political Science, LMU)}
+	\item[] Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
+	\end{itemize}
+	\vspace{1.0cm}
 	\abstract{
 \noindent
 The analysis of large-scale unstructured data is gaining importance at both a professional and academic level, certainly helped by the omnipresence of social media and novel statistical analysis tools. For instance, topic models seek to discover latent thematic clusters within text data. Social scientists increasingly move beyond a merely explorative use of such topic models, focusing on relationship estimation and causal inference. Oftentimes, however, the statistical subtleties resulting from the latency of topics are not well understood or insufficiently addressed. We construct a dataset containing German parliamentarians’ Twitter posts as well as a variety of document metadata and explore it by means of the Structural Topic Model (STM). Subsequently, we address the relationship between topic proportions and metadata, providing enhanced analytical tools with improved statistical properties and applying a train-test split to facilitate causal inference.
 	}
 	\vfill
 	\begin{center}
-	supervised by\par
-	Prof. Dr. Christian Heumann and Prof. Dr. Paul W. Thurner
-
 	\vfill
-
-	{\large \today\par}
+	{\large Munich, \today\par}
 	\end{center}
 \end{titlepage}
 
