@@ -13,7 +13,6 @@
 \usepackage{hyperref}
 \usepackage{graphics}
 \usepackage{graphicx}
-\usepackage[round]{natbib}
 \usepackage{subcaption}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
@@ -75,51 +74,6 @@
 %\tableofcontents[]
 %\end{frame}
 
-\section{Topic Modeling: Motivation and Theory}
-\begin{frame}
-\frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{Motivation}
-\begin{itemize}
-\item bla
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{\textit{Structural Topic Model} (STM)}
-\begin{itemize}
-\item Topic model that incorporates document-level metadata: 
-\begin{itemize}
-\item \textit{Topical prevalence} covariates $\boldsymbol{X}=[\boldsymbol{x_1}|\dots|\boldsymbol{x_D}]^T \in \mathbb{R}^{D \times P}$
-\item Categorical \textit{topical content} variable $\boldsymbol{Y}\in \mathbb{R}^D$ with $A$ levels, i.e., $Y_d \in \{1,\dots,A\}$, for all $d \in \{1,\dots,D\}$
-\end{itemize}
-\item Generative process for each document $d \in \{1,\dots,D\}$:
-\item[] 
-\begin{enumerate}[{1)}]
-\item Draw $\boldsymbol{\eta}_d \sim \mathcal{N}_{K-1}(\boldsymbol{\Gamma}^T\boldsymbol{x_d}^T, \boldsymbol{\Sigma})$, with $\eta_{d,K}=0$ for model identifiability.
-\item Normalize $\boldsymbol{\eta}_d$, for all $k \in \{1,\dots,K\}: \theta_{d,k} = \frac{exp(\eta_{d,k})}{\sum_{j=1}^{K}exp(\eta_{d,j})}$.
-\item For each word $n \in \{1,\dots,N_d\}$:
-	\begin{enumerate}[{a)}]
-    \item Draw topic assignment $\boldsymbol{z}_{d,n} \sim \text{Multinomial}_K(\boldsymbol{\theta}_d)$.
-    \item If no topical content variable specified: $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$. 
-    \item Otherwise, determine document-specific word distributions $\boldsymbol{B_a} := [\boldsymbol{\beta}^a_1|\dots|\boldsymbol{\beta}^a_K]$ based on $Y_d=a$, for all topics $k \in \{1,\dots,K\}$; select $\boldsymbol{\beta}_{d,n}:=\boldsymbol{B_a}\boldsymbol{z}_d,n}$; and draw word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
-	\end{enumerate}
-\end{enumerate}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{Graphical Model of the STM}
-\begin{itemize}
-\item Again, we can visualize the generative process using the representation as a graphical model:
-\begin{figure}[h!]
-\centering
-\hspace*{-1cm}\includegraphics[scale = 0.3]{../../plots/presentation/stm_graphical.png}
-\end{figure}
-\end{itemize}
-\end{frame}
-
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Overview}
@@ -135,6 +89,33 @@
 \end{itemize}
 \item Alternatively: direct assessment of logistic normal distribution with estimated topical prevalence parameters $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Usage within R Package \textit{stm}}
+\begin{itemize}
+\item Let $\boldsymbol{\theta}_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$ denote proportion of $k$-th topic for all $D$ documents
+\item Method of Composition (repeat $m$ times):
+\begin{enumerate}
+\item Sample $\boldsymbol{\theta}^*_{(k)}$ from (variational) posterior of $\boldsymbol{\theta}_{(k)}$ estimated by STM
+\item Run regression model with response $\boldsymbol{\theta}^*_{(k)}$ and covariates $\boldsymbol{X}$ to obtain estimates of regression coefficients $\hat{\boldsymbol{\xi}}^*$ and covariance of $\hat{\boldsymbol{\xi}}^*$, $\hat{\boldsymbol{V}}^*_{\xi}$.
+\item Sample $\tilde{\boldsymbol{\xi}}^*$ from $F(\hat{\boldsymbol{\xi}}^*, \hat{\boldsymbol{V}}^*_{\xi})$, where $F$ is asymptotic distribution of $\hat{\boldsymbol{\xi}}^*$.
+\end{enumerate}
+\item Idea: samples $\tilde{\boldsymbol{\xi}}^*$ take into account uncertainty in $\boldsymbol{\theta}_{(k)}$
+\item Visualization of topic-metadata relationship: For observation $\boldsymbol{x}_{\text{pred}}$, plot $\boldsymbol{x}_{\text{pred}}$ vs. predicted response with $\boldsymbol{x}_{\text{pred}}^T \tilde{\boldsymbol{\xi}}^*$ as linear predictor
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Usage within R Package \textit{stm}}
+\begin{enumerate}
+\item In STM, regression model in step 2 is OLS; however OLS not appropriate to model proportions
+\item Mixing of Bayesian and frequentist approach questionable! From Bayesian perspective $\tilde{\boldsymbol{\xi}}^*$ can only be considered sample from posterior of $\boldsymbol{\xi}$ in certain bayesian regression models with questionable (uniform) prior assumptions.
+\item Using $\boldsymbol{x}_{\text{pred}}^T \tilde{\boldsymbol{\xi}}^*$  as linear predictor does \textit{not} yield sample of posterior predictive distribution
+\item Separate modeling of topic proportions neglects dependence among variables
+\end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -159,13 +140,6 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
 \end{itemize}
 \end{frame}
 
-\begin{enumerate}
-\item Sample $\boldsymbol{\theta}^*_{(k)}$ from variational posterior of $\boldsymbol{\theta}_{(k)}$, $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$.
-\item Run regression model with response $\boldsymbol{\theta}^*_{(k)}$ and covariates $\boldsymbol{X}$ to obtain estimates of regression coefficients $\hat{\boldsymbol{\xi}}^*$ and covariance of $\hat{\boldsymbol{\xi}}^*$, $\hat{\boldsymbol{V}}^*_{\xi}$.
-\item Sample $\tilde{\boldsymbol{\xi}}^*$ from $F(\hat{\boldsymbol{\xi}}^*, \hat{\boldsymbol{V}}^*_{\xi})$, where $F$ is asymptotic distribution of $\hat{\boldsymbol{\xi}}^*$.
-\end{enumerate}
-\end{frame}
-
 \begin{frame}
 \begin{itemize}
 \item Problem: OLS regression not suitable for (sampled) proportions, which are restricted to interval (0,1)
@@ -182,6 +156,8 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../../plots/presentation/estEffect_topic6.pdf}
   \end{subfigure}
+  \caption{Emprical mean and 95\% credible intervals for topics 1 and 6 over time, estimated using \textit{estimateEffect} from the \textit{stm} package.}
+  \label{fig:estEffect_topic16}
 \end{figure}
 \end{frame}
 
@@ -201,6 +177,8 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../../plots/presentation/quasi_t6_cat.pdf}
   \end{subfigure}
+  \caption{Empirical mean and 95\% credible intervals, obtained using a quasibinomial GLM.}
+  \label{fig:quasi_t46_cont}
 \end{figure}
 \end{frame}
 
@@ -247,101 +225,9 @@ $\boldsymbol{\theta}^*_d \sim \text{LogisticNormal}(\hat{\boldsymbol{\Gamma}}^T(
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../../plots/presentation/direct_t6_with_credible.pdf}
   \end{subfigure}
+  \caption{Smooth effects without credible intervals (left) and smooth effects with credible intervals (right)}
+  \label{fig:directassessment}
 \end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Correlation vs. Causality}
-\begin{itemize}
-\item In previous section: assessment of relationship between metadata and topic proportions
-\item As stated, framework should be used to \textit{explore} topics with respect to different dimensions
-\item In particular, \textit{causal} interpretation of results is generally not justified ("correlation vs. causality")
-\item When making causal inference, we have to consider that topic proportions are \textit{latent} variables 
-\item Possible solution: conduct a train-test split
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Identification Problem and Overfitting}
-\begin{itemize}
-\item Assume there are two groups, a treatment group and a control group
-\item Aside from treatment, individuals from both groups are similar
-\item Objective: quantify treatment effect, in our case effect of treatment on prevalence of specific topic.
-\item Necessary assumption: response of an individual depends only on treatment of this individual
-\item \textit{Identification problem}: estimating topic model to discover latent topic proportions can introduce additional dependency among individuals $\Rightarrow$ response of each individual is \textit{not} only determined by treatment of that individual!
-\item \textit{Overfitting}: fitted topic model might mistake noise for patterns in some way $\Rightarrow$ response again not solely determined by treatment of an individual, but additionally by specific characteristics of other individuals.
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Train-test split}
-\begin{itemize}
-\item Idea: split data $\mathcal{D}$ into training set $\mathcal{D}_{\text{train}}$ and test set $\mathcal{D}_{\text{test}}$. 
-\item Training set $\mathcal{D}_{\text{train}}$ used to determine a model that infers latent topic proportions from a given text 
-\item Test set $\mathcal{D}_{\text{test}}$ used in order to assess relation between \textit{predicted} test set topic proportions and test set prevalence covariates.
-\item Solves identification problem: model used for prediction is determined by training set observations $\Rightarrow$ treatment of test set observations not dependent on other individuals' treatment from test set. 
-\item Overfitting also solved: noise from training set is very unlikely to be replicated on test set
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Implementation within the STM}
-\begin{itemize}
-\item Input documents, i.e., words and metadata from the training set $\mathcal{D}_{\text{train}}$, and obtain estimates $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ using the STM
-\item Then, estimate (variational) posterior of test set topic proportions, conditional on the model parameters $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ from training set $\mathcal{D}_{\text{train}}$ as well as words $\boldsymbol{W}_{\text{test}}$ from test set $\mathcal{D}_{\text{test}}$
-\item Estimation of (variational) posterior conditional on data and training set parameters occurs via E-step of (variational) EM algorithm
-\item Benefit of using the STM: covariate information from training set directly used to predict topic proportions on test set
-\item Important: Covariate information from test set must not be used! Otherwise, for two documents from test set with exact same words, different topic proportions are predicted if prevalence covariates differ. However, in such a case causal effect should to be zero.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Results}
-\begin{figure}[h!]
-  \centering
-  \captionsetup{justification=centering}
-  \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/climate_summit_props.pdf}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.49\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/emancipation_props.pdf}
-  \end{subfigure}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Results}
-\begin{itemize}
-\item UN Climate Action Summit 2019 was held on September 23, 2019
-\item As observed, topic associated with climate issues was discussed to much larger extent during that time than the year before
-\item While MAP estimates for different prior specifications on test set are rather similar, estimated effect for training data is much larger
-\item For effect of political party on topic labelled as 'Emancipation', we find similar results: average difference of estimated topic proportions between both parties is larger for the training data
-\item Further, note that credible intervals on the training data differ compared to credible intervals on the test data in both cases.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
-\item To estimate the treatment effect, we determine the average difference of predicted topic proportions between both groups:
-\begin{figure}[h!]
-  \centering
-  \captionsetup{justification=centering,margin=2cm}
-  \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/climate_summit_ate.pdf}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/emancipation_ate.pdf}
-  \end{subfigure}
-\end{figure}
-\item In both cases treatment effect is larger if "na{\"i}vely" estimated solely on training data!
-\end{itemize}
 \end{frame}
 
 \begin{frame}

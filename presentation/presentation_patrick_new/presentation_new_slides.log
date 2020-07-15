@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  15 JUL 2020 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  15 JUL 2020 17:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**presentation_patrick.tex
-(./presentation_patrick.tex
+**presentation_new_slides.tex
+(./presentation_new_slides.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/beamer.cls
@@ -1699,9 +1699,9 @@ Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
 eX document
 )
 
-LaTeX Warning: Overwriting file `./presentation_patrick.bib'.
+LaTeX Warning: Overwriting file `./presentation_new_slides.bib'.
 
-\openout15 = `presentation_patrick.bib'.
+\openout15 = `presentation_new_slides.bib'.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/biblatex.sty
@@ -1927,8 +1927,8 @@ Package biblatex Warning: Patching footnotes failed.
 
 \@quotelevel=\count384
 \@quotereset=\count385
-No file presentation_patrick.aux.
-\openout1 = `presentation_patrick.aux'.
+(./presentation_new_slides.aux)
+\openout1 = `presentation_new_slides.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
@@ -1944,6 +1944,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -2023,8 +2024,10 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 66.
 LaTeX Info: Redefining \pageref on input line 66.
 LaTeX Info: Redefining \nameref on input line 66.
+
+(./presentation_new_slides.out) (./presentation_new_slides.out)
 \@outlinefile=\write7
-\openout7 = `presentation_patrick.out'.
+\openout7 = `presentation_new_slides.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 66.
@@ -2110,15 +2113,15 @@ Package biblatex Info: No input encoding detected.
 (biblatex)             Assuming 'ascii'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'ascii'.
-\openout6 = `presentation_patrick.bcf'.
+\openout6 = `presentation_new_slides.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'presentation_patrick.bbl' not found.
+Package biblatex Info: ... file 'presentation_new_slides.bbl' not found.
 
-No file presentation_patrick.bbl.
+No file presentation_new_slides.bbl.
 Package biblatex Info: Reference section=0 on input line 66.
 Package biblatex Info: Reference segment=0 on input line 66.
-No file presentation_patrick.nav.
+(./presentation_new_slides.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 (Font)              size <5> substituted on input line 70.
@@ -2126,61 +2129,51 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2
+LaTeX Font Info:    Try loading font information for U+msa on input line 92.
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 108.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 108.
+LaTeX Font Info:    Try loading font information for U+msb on input line 92.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 108.
+line 92.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [3
+) [2
+
+] [3
+
+] [4
+
+] [5
 
 ]
-<../../plots/presentation/stm_graphical.png, id=68, 822.07124pt x 325.215pt>
-File: ../../plots/presentation/stm_graphical.png Graphic file (type png)
-
-<use ../../plots/presentation/stm_graphical.png>
-Package pdftex.def Info: ../../plots/presentation/stm_graphical.png used on inp
-ut line 121.
-(pdftex.def)             Requested size: 246.62328pt x 97.56525pt.
- [4
-
- <../../plots/presentation/stm_graphical.png>] [5
-
-] [6
-
-]
-<../../plots/presentation/estEffect_topic1.pdf, id=92, 497.86pt x 382.42876pt>
+<../../plots/presentation/estEffect_topic1.pdf, id=68, 497.86pt x 382.42876pt>
 File: ../../plots/presentation/estEffect_topic1.pdf Graphic file (type pdf)
 
 <use ../../plots/presentation/estEffect_topic1.pdf>
 Package pdftex.def Info: ../../plots/presentation/estEffect_topic1.pdf used on 
-input line 181.
+input line 161.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-<../../plots/presentation/estEffect_topic6.pdf, id=93, 497.86pt x 382.42876pt>
+<../../plots/presentation/estEffect_topic6.pdf, id=69, 497.86pt x 382.42876pt>
 File: ../../plots/presentation/estEffect_topic6.pdf Graphic file (type pdf)
 
 <use ../../plots/presentation/estEffect_topic6.pdf>
 Package pdftex.def Info: ../../plots/presentation/estEffect_topic6.pdf used on 
-input line 181.
+input line 161.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-Overfull \vbox (22.02972pt too high) detected at line 181
+Overfull \vbox (22.02972pt too high) detected at line 161
  []
 
-[7
+[6
 
  <../../plots/presentation/estEffect_topic1.pdf> <../../plots/presentation/estE
 ffect_topic6.pdf
@@ -2189,26 +2182,26 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../../plots/presentation/est
 Effect_topic6.pdf): PDF inclusion: multiple pdfs with page group included in a 
 single page
 >]
-<../../plots/presentation/quasi_t6_cont.pdf, id=129, 497.86pt x 382.42876pt>
+<../../plots/presentation/quasi_t6_cont.pdf, id=103, 497.86pt x 382.42876pt>
 File: ../../plots/presentation/quasi_t6_cont.pdf Graphic file (type pdf)
 
 <use ../../plots/presentation/quasi_t6_cont.pdf>
 Package pdftex.def Info: ../../plots/presentation/quasi_t6_cont.pdf used on inp
-ut line 202.
+ut line 182.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-<../../plots/presentation/quasi_t6_cat.pdf, id=130, 497.86pt x 382.42876pt>
+<../../plots/presentation/quasi_t6_cat.pdf, id=104, 497.86pt x 382.42876pt>
 File: ../../plots/presentation/quasi_t6_cat.pdf Graphic file (type pdf)
 
 <use ../../plots/presentation/quasi_t6_cat.pdf>
 Package pdftex.def Info: ../../plots/presentation/quasi_t6_cat.pdf used on inpu
-t line 202.
+t line 182.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-Overfull \vbox (21.50056pt too high) detected at line 202
+Overfull \vbox (21.50056pt too high) detected at line 182
  []
 
-[8
+[7
 
  <../../plots/presentation/quasi_t6_cont.pdf> <../../plots/presentation/quasi_t
 6_cat.pdf
@@ -2216,33 +2209,33 @@ Overfull \vbox (21.50056pt too high) detected at line 202
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../../plots/presentation/qua
 si_t6_cat.pdf): PDF inclusion: multiple pdfs with page group included in a sing
 le page
->] [9
+>] [8
 
-] [10
+] [9
 
 ]
-<../../plots/presentation/direct_t6_without_credible.pdf, id=177, 497.86pt x 38
+<../../plots/presentation/direct_t6_without_credible.pdf, id=149, 497.86pt x 38
 2.42876pt>
 File: ../../plots/presentation/direct_t6_without_credible.pdf Graphic file (typ
 e pdf)
  <use ../../plots/presentation/direct_t6_without_credible.pdf>
 Package pdftex.def Info: ../../plots/presentation/direct_t6_without_credible.pd
-f used on input line 250.
+f used on input line 230.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-<../../plots/presentation/direct_t6_with_credible.pdf, id=178, 497.86pt x 382.4
+<../../plots/presentation/direct_t6_with_credible.pdf, id=150, 497.86pt x 382.4
 2876pt>
 File: ../../plots/presentation/direct_t6_with_credible.pdf Graphic file (type p
 df)
  <use ../../plots/presentation/direct_t6_with_credible.pdf>
 Package pdftex.def Info: ../../plots/presentation/direct_t6_with_credible.pdf u
-sed on input line 250.
+sed on input line 230.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
-Overfull \vbox (18.82971pt too high) detected at line 250
+Overfull \vbox (18.82971pt too high) detected at line 230
  []
 
-[11
+[10
 
  <../../plots/presentation/direct_t6_without_credible.pdf> <../../plots/present
 ation/direct_t6_with_credible.pdf
@@ -2250,154 +2243,70 @@ ation/direct_t6_with_credible.pdf
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../../plots/presentation/dir
 ect_t6_with_credible.pdf): PDF inclusion: multiple pdfs with page group include
 d in a single page
->] [12
-
-] [13
-
-] [14
-
-] [15
-
-]
-<../../plots/presentation/climate_summit_props.pdf, id=239, 578.16pt x 433.62pt
->
-File: ../../plots/presentation/climate_summit_props.pdf Graphic file (type pdf)
-
- <use ../../plots/presentation/climate_summit_props.pdf>
-Package pdftex.def Info: ../../plots/presentation/climate_summit_props.pdf used
- on input line 317.
-(pdftex.def)             Requested size: 167.72658pt x 125.7929pt.
-
-<../../plots/presentation/emancipation_props.pdf, id=240, 578.16pt x 433.62pt>
-File: ../../plots/presentation/emancipation_props.pdf Graphic file (type pdf)
-
-<use ../../plots/presentation/emancipation_props.pdf>
-Package pdftex.def Info: ../../plots/presentation/emancipation_props.pdf used o
-n input line 317.
-(pdftex.def)             Requested size: 167.72658pt x 125.7929pt.
- [16
-
- <../../plots/presentation/climate_summit_props.pdf> <../../plots/presentation/
-emancipation_props.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../../plots/presentation/ema
-ncipation_props.pdf): PDF inclusion: multiple pdfs with page group included in 
-a single page
->] [17
-
-]
-<../../plots/presentation/climate_summit_ate.pdf, id=281, 512.91624pt x 359.342
-5pt>
-File: ../../plots/presentation/climate_summit_ate.pdf Graphic file (type pdf)
- <use ../../plots/presentation/climate_summit_ate.pdf>
-Package pdftex.def Info: ../../plots/presentation/climate_summit_ate.pdf used o
-n input line 348.
-(pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
-
-<../../plots/presentation/emancipation_ate.pdf, id=282, 512.91624pt x 359.3425p
-t>
-File: ../../plots/presentation/emancipation_ate.pdf Graphic file (type pdf)
- <use ../../plots/presentation/emancipation_ate.pdf>
-Package pdftex.def Info: ../../plots/presentation/emancipation_ate.pdf used on 
-input line 348.
-(pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
- [18
-
- <../../plots/presentation/climate_summit_ate.pdf> <../../plots/presentation/em
-ancipation_ate.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../../plots/presentation/ema
-ncipation_ate.pdf): PDF inclusion: multiple pdfs with page group included in a 
-single page
 >]
 
-LaTeX Warning: Empty bibliography on input line 353.
+LaTeX Warning: Empty bibliography on input line 235.
 
-[19
+[11
 
 ]
 \tf@nav=\write8
-\openout8 = `presentation_patrick.nav'.
+\openout8 = `presentation_new_slides.nav'.
 
 \tf@toc=\write9
-\openout9 = `presentation_patrick.toc'.
+\openout9 = `presentation_new_slides.toc'.
 
 \tf@snm=\write10
-\openout10 = `presentation_patrick.snm'.
+\openout10 = `presentation_new_slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 354.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 354.
- (./presentation_patrick.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 354.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 354.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
+ (./presentation_new_slides.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
+Package rerunfilecheck Info: File `presentation_new_slides.out' has not changed
+.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
-
-Package rerunfilecheck Warning: File `presentation_patrick.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `presentation_patrick.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3F2BB6AEEBAAFE848B8599FC987F95F9;72.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                presentation_patrick
-(biblatex)                and rerun LaTeX afterwards.
-
-Package logreq Info: Writing requests to 'presentation_patrick.run.xml'.
-\openout1 = `presentation_patrick.run.xml'.
+Package logreq Info: Writing requests to 'presentation_new_slides.run.xml'.
+\openout1 = `presentation_new_slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32230 strings out of 492995
- 620819 string characters out of 6132704
- 1030063 words of memory out of 5000000
- 35210 multiletter control sequences out of 15000+600000
- 32412 words of font info for 94 fonts, out of 8000000 for 9000
+ 32186 strings out of 492995
+ 619193 string characters out of 6132704
+ 1030650 words of memory out of 5000000
+ 35193 multiletter control sequences out of 15000+600000
+ 26648 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,17n,58p,10418b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,17n,55p,10421b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pf
-b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9
-.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.
-pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.p
-fb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfso0800.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfso0900.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on presentation_patrick.pdf (19 pages, 540868 bytes).
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/loc
+al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
+Output written on presentation_new_slides.pdf (11 pages, 323977 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
- 45 named destinations out of 1000 (max. 500000)
- 128 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 182 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 103 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -68,15 +68,14 @@ est_betaregs <- function(stmobj, formula, metadata, nsims = 100, seed = 123) {
         formula = as.formula(f[k]), 
         link = "logit", link.phi = "log",
         data = cbind(x, metadata), 
-        algorithm = "optimizing"
+        algorithm = "optimizing", seed = seed
       )})
   }
   return(setNames(res, topic_nam))
 }
 # MAP estimates of 100 bayesian beta regressions
-mod_betaregs<-est_betaregs(mod_prev, formula, metadata, nsims = 3)
+mod_betaregs<-est_betaregs(mod_prev, formula, metadata, nsims = 25)
 # ----------------------------------------------------------------------------------------------
-
 
 topic_preds <- list()
 est_var <- "t"
@@ -92,7 +91,7 @@ for(est_var in varlist){
   names(xmat) <- c(names(dat_new),est_var)
   levels(xmat$Partei) <- levels(metadata$Partei)
   levels(xmat$Bundesland) <- levels(metadata$Bundesland)
-  # ----------------------------------------------------------------------------------------------
+  # --------------------------------------------------------------------------------------------
   nm <- c(est_var, "proportion", "ci_lower", "ci_upper")
   
   preds_topic1 <- do.call(rbind, 
@@ -121,3 +120,5 @@ for(est_var in varlist){
 }
 
 str(topic_preds)
+
+saveRDS(topic_preds, "./data/topic_preds.rds")
