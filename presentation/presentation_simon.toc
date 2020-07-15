@@ -1,15 +1,15 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{4}{0}{2}
+\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{6}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{Data}{12}{0}{3}
+\beamer@sectionintoc {3}{Data}{15}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{15}{0}{4}
+\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{19}{0}{4}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {5}{Covariate-level Topic Analysis}{22}{0}{5}
+\beamer@sectionintoc {5}{Covariate-level Topic Analysis}{27}{0}{5}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {6}{Causal Inference}{29}{0}{6}
+\beamer@sectionintoc {6}{Causal Inference}{35}{0}{6}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {7}{Discussion}{36}{0}{7}
+\beamer@sectionintoc {7}{Discussion}{44}{0}{7}

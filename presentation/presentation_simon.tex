@@ -17,12 +17,22 @@
 \usepackage{lmodern}
 %\usepackage[T1]{fontenc}
 
+\newcommand{\customcite}[1]{\citeauthor{#1} (\citeyear{#1})}
+\newtheorem{satz}{Satz}
+
+\usecolortheme{seagull}
+\setbeamertemplate{footline}[page number]
+\setbeamercolor{frametitle}{fg=blue,bg=White}
 
 %\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \beamertemplatenavigationsymbolsempty
 \bibliographystyle{IEEEtran}
+
+\usepackage[style=authoryear]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+\addbibresource{\jobname.bib}
 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
@@ -118,18 +128,9 @@
   publisher={Centrum voor Wiskunde en Informatica Amsterdam}
 }
 \end{filecontents}
-\usepackage[style=authoryear]{biblatex}
-\renewcommand*{\nameyeardelim}{\addcomma\addspace}
-\addbibresource{\jobname.bib}
 
-\newcommand{\customcite}[1]{\citeauthor{#1} (\citeyear{#1})}
 
-\newtheorem{satz}{Satz}
 
-\setbeamertemplate{footline}[page number]
-
-\usecolortheme{seagull}
-\setbeamercolor{frametitle}{fg=blue,bg=White}
 
 %\DeclareMathOperator*{\argmax}{arg\, max}
 %\DeclareMathOperator*{\argmin}{arg\, min}
@@ -153,13 +154,27 @@
    % \tableofcontents[currentsection,currentsubsection]}
 %}
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 \title{Twitter in the Parliament - A Text-based Analysis of German Political Entities}
-%\author{Patrick Schulze}
 \date{July 16, 2020}
-\author[author1]{Patrick Schulze, Simon Wiegrebe\\[10mm]{\small
+\author[author1]{Patrick Schulze, Simon Wiegrebe\\[5mm]{\tiny
 Project partners: \textit{Prof. Dr. Paul W. Thurner, Sandra Wankmüller} (Geschwister Scholl Institute of Political Science, LMU) \\[2mm]
 Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 }}
+\vspace*{-0.7cm}
+\titlegraphic{
+\includegraphics[width=2cm]{../presentation/Sigillum.pdf}
+}
 
 \begin{document}
 
@@ -167,10 +182,10 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \titlepage
 \end{frame}
 
-%\begin{frame}
-%\frametitle{Überblick}
-%\tableofcontents[]
-%\end{frame}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[]
+\end{frame}
 
 \section{Introduction}
 \begin{frame}
@@ -314,12 +329,12 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \begin{itemize}
 \vspace{-0.5cm}
 \item (Hierarchical) Bayesian model $\Rightarrow$ exact inference impossible due to marginal distributions in the denominator of posterior distribution $p$
-\item Variational inference: positing a simple distribution family $q$ for latent variables $\boldsymbol{\theta}_d$ and $\boldsymbol{z}_d$
-\item Mean-field variational inference: positing full factorizability of approximating posterior $q$, i.e., $q(\boldsymbol{\theta}_d, \boldsymbol{z}_{d,n})=q(\boldsymbol{\theta}_d)*q(\boldsymbol{z}_{d,n})$
+\item Variational inference: positing a simple distribution family $q$ for latent variables $\boldsymbol{\theta}$ and $\boldsymbol{z}$
+\item Mean-field variational inference: positing full factorizability of approximating posterior $q$, i.e., $q(\boldsymbol{\theta}, \boldsymbol{z})=q(\boldsymbol{\theta})q(\boldsymbol{z})$
 \item Then: minimizing Kullback-Leibler divergence between $q$ and $p$
 \item STM uses a mean-field variational EM algorithm:
 \begin{itemize}
-\item E-step: update posterior distributions of latent variables $\boldsymbol{\theta}_d$ and $\boldsymbol{z}_{d,n}$
+\item E-step: update posterior distributions of latent variables $\boldsymbol{\theta}$ and $\boldsymbol{z}$
 \item M-step: update model parameters $\boldsymbol{\Gamma}$, $\boldsymbol{\Sigma}$, and - if present - topical content parameters
 \end{itemize}
 \end{itemize}
@@ -337,7 +352,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
   	\includegraphics[scale = 0.30]{../plots/presentation/amthor.png}
 	\end{figure}
 \item Twitter profiles: from official party homepages
-\item Socioeconomic data and 2017 German federal election results: from \url{www.bundeswahlleiter.de}.
+\item Socioeconomic data and 2017 German federal election results: from \url{www.bundeswahlleiter.de}
 \end{itemize}
 \end{frame}
 
@@ -439,7 +454,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Model Selection and Global Characteristics}
 \framesubtitle{Labeling (III)}
 \begin{itemize}
-\item Second step: look at documents (i.e., original tweets) with highest proportion of topic 1
+\item Second step: looking at documents (i.e., original tweets) with highest proportion of topic 1
 	\begin{figure}[h!]
   	\centering
   	\includegraphics[scale = 0.40]{../plots/presentation/martin_hess_topic1.png}
@@ -518,7 +533,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \item Specifically: examining relationship between document-level prevalence covariates $\boldsymbol{x}_d$ and topic proportions $\boldsymbol{\theta}_d$
 \item Natural idea: regress topic proportions on prevalence covariates
 \begin{itemize}
-\item In standard regression analysis, dependent variable as realization of random variable
+\item In standard regression analysis: dependent variable as realization of random variable
 \item In STM, however: posterior of topic proportions $\boldsymbol{\theta}_d$ accessible
 \item Loss of information if "na{\"i}vely" using mean/mode of this posterior as dependent variable of regression
 \item Solution: performing sampling technique known as "method of composition" in social sciences
@@ -559,10 +574,10 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
   \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \begin{subfigure}[b]{0.5\linewidth}
+  \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic1.pdf}
   \end{subfigure}
-  \begin{subfigure}[b]{0.5\linewidth}
+  \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic6.pdf}
   \end{subfigure}
 \end{figure}
@@ -572,8 +587,8 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Method of Composition: Extension of existing approach}
 \begin{itemize}
-\item Instead of OLS regression, we can use a beta regression or a quasibinomial GLM (both with logit-link) to adequately model proportions
-\item In this case, regression coefficients are \textit{asymptotically} normally distributed
+\item Instead of OLS regression: beta regression or quasibinomial GLM (both with logit-link) to adequately model proportions
+\item Regression coefficients \textit{asymptotically} normally distributed in this case
 \end{itemize}
 \begin{figure}[h!]
   \centering
@@ -602,7 +617,7 @@ q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) = \int_{\boldsymbol{\theta}
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Multivariate Modeling via Logistic Normal Distribution (I)}
 \begin{itemize}
-\item Inference within STM involves finding estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$
+\item Finding estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$ as part of inference within STM
 \item Idea: plugging estimates into logistic normal distribution $\Rightarrow$ for a given covariate value $\boldsymbol{x}^*_d$, "predicting" topic proportion as
 $\boldsymbol{\theta}^*_d \sim \text{LogisticNormal}(\hat{\boldsymbol{\Gamma}}^T(\boldsymbol{x}_d^*)^T, \hat{\boldsymbol{\Sigma}})$
 \item Ideally: applying fully Bayesian approach and sampling from (variational) posterior of $\boldsymbol{\Gamma}$ (and updating $\boldsymbol{\Sigma}$, obtained via MLE) $\Rightarrow$ "Predictive Posterior" of topic proportions
@@ -641,7 +656,16 @@ $\boldsymbol{\theta}^*_d \sim \text{LogisticNormal}(\hat{\boldsymbol{\Gamma}}^T(
 \section{Causal Inference}
 \begin{frame}
 \frametitle{Causal Inference}
-\framesubtitle{Correlation vs. Causality}
+\framesubtitle{Correlation vs. Causality (I)}
+	\begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale = 0.60]{../plots/presentation/correlation_causality.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal Inference}
+\framesubtitle{Correlation vs. Causality (II)}
 \begin{itemize}
 \item In previous section: assessment of relationship between metadata and topic proportions
 \item Framework to be used to \textit{explore} topics with respect to different dimensions
