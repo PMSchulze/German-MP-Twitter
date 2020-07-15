@@ -1,0 +1,17 @@
+\section{Method of Composition - New}
+
+\begin{enumerate}
+\item Sample $\boldsymbol{\theta}^*_{(k)}$ from variational posterior of $\boldsymbol{\theta}_{(k)}$, $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$.
+\item Run regression model with response $\boldsymbol{\theta}^*_{(k)}$ and covariates $\boldsymbol{X}$ to obtain estimates of regression coefficients $\hat{\boldsymbol{\xi}}^*$ and covariance of $\hat{\boldsymbol{\xi}}^*$, $\hat{\boldsymbol{V}}^*_{\xi}$.
+\item Sample $\tilde{\boldsymbol{\xi}}^*$ from $F(\hat{\boldsymbol{\xi}}^*, \hat{\boldsymbol{V}}^*_{\xi})$, where $F$ is asymptotic distribution of $\hat{\boldsymbol{\xi}}^*$.
+\end{enumerate}
+
+According to \cite{treier2008democracy} and the authors of the STM, $\tilde{\boldsymbol{\xi}}^*$ can be considered a sample from the posterior of $\boldsymbol{\xi}$, taking into account the uncertainty in $\boldsymbol{\theta}_{(k)}$. Given a new set of covariates values $X^*$, the function \textit{estimateEffect} (together with its \textit{plot} method) of the R package \textit{stm} predicts proportions for these covariate values using $\boldsymbol{X}^*\tilde{\boldsymbol{\xi}}^*$ as linear predictor. This approach is used to visualize relationships between covariates and proportions together with the uncertainty contained within. Specifically, $\boldsymbol{X}^*$ is a matrix, where each column apart from the respective variable of interest, corresponds to the median of the respective column of $\boldsymbol{X}$.
+
+Problems
+\begin{enumerate}
+\item In STM, regression model employed in step 2 is OLS; however OLS is not appropriate to model proportions.
+\item $\tilde{\boldsymbol{\xi}}^*$ can only be considered a sample from the posterior of $\boldsymbol{\xi}$ in certain bayesian regression models with questionable (uniform) prior assumptions.
+\item Using $\boldsymbol{X}^*\tilde{\boldsymbol{\xi}}^*$ as linear predictor does \textit{not} yield a sample of the posterior predictive distribution; thus uncertainty estimate is not realistic
+\item Separate modeling of topic proportions neglects dependence among variables.
+\end{enumerate}

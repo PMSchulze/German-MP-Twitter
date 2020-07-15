@@ -66,35 +66,58 @@ est_betaregs <- function(stmobj, formula, metadata, nsims = 100, seed = 123) {
     res[[k]] <- lapply(theta_sim, function(x) {
       rstanarm::stan_betareg(
         formula = as.formula(f[k]), 
-        data = cbind(x, metadata), 
         link = "logit", link.phi = "log",
-        algorithm = "optimizing", seed = seed
+        data = cbind(x, metadata), 
+        algorithm = "optimizing"
       )})
   }
   return(setNames(res, topic_nam))
 }
 # MAP estimates of 100 bayesian beta regressions
-mod_betaregs<-est_betaregs(mod_prev, formula, metadata, nsims = 15)
+mod_betaregs<-est_betaregs(mod_prev, formula, metadata, nsims = 3)
 # ----------------------------------------------------------------------------------------------
 
+
+topic_preds <- list()
 est_var <- "t"
-if(is.numeric(metadata[,est_var])) {
-  range_est_var <- seq(min(metadata[,est_var]), max(metadata[,est_var]), length.out = 500)
-} else {
-  range_est_var <- unique(metadata[,est_var])
+for(est_var in varlist){
+  if(is.numeric(metadata[,est_var])) {
+    range_est_var <- seq(min(metadata[,est_var]), max(metadata[,est_var]), length.out = 500)
+  } else {
+    range_est_var <- unique(metadata[,est_var])
+  }
+  dat_new <- lapply(metadata[, -which(names(metadata) == est_var)], 
+                    function(x) if(is.numeric(x)) median(x) else majority(x))
+  xmat <- data.frame(dat_new, range_est_var)
+  names(xmat) <- c(names(dat_new),est_var)
+  levels(xmat$Partei) <- levels(metadata$Partei)
+  levels(xmat$Bundesland) <- levels(metadata$Bundesland)
+  # ----------------------------------------------------------------------------------------------
+  nm <- c(est_var, "proportion", "ci_lower", "ci_upper")
+  
+  preds_topic1 <- do.call(rbind, 
+                          lapply(mod_betaregs$Topic1, function(x) posterior_predict(x, xmat, draws = 1000)))
+  topic1_mean <- colMeans(preds_topic1)
+  topic1_lower <- apply(preds_topic1, 2, quantile, 0.025)
+  topic1_upper <- apply(preds_topic1, 2, quantile, 0.975)
+  topic1_res <- setNames(data.frame(range_est_var, topic1_mean, topic1_lower, topic1_upper), nm)
+  
+  preds_topic4 <- do.call(rbind, 
+                          lapply(mod_betaregs$Topic4, function(x) posterior_predict(x, xmat, draws = 1000)))
+  topic4_mean <- colMeans(preds_topic4)
+  topic4_lower <- apply(preds_topic4, 2, quantile, 0.025)
+  topic4_upper <- apply(preds_topic4, 2, quantile, 0.975)
+  topic4_res <- setNames(data.frame(range_est_var, topic4_mean, topic4_lower, topic4_upper), nm)
+  
+  preds_topic6 <- do.call(rbind, 
+                          lapply(mod_betaregs$Topic6, function(x) posterior_predict(x, xmat, draws = 1000)))
+  topic6_mean <- colMeans(preds_topic6)
+  topic6_lower <- apply(preds_topic6, 2, quantile, 0.025)
+  topic6_upper <- apply(preds_topic6, 2, quantile, 0.975)
+  topic6_res <- setNames(data.frame(range_est_var, topic6_mean, topic6_lower, topic6_upper), nm)
+  # ----------------------------------------------------------------------------------------------
+  topic_preds[[est_var]] <- list(topic1_res, topic4_res, topic6_res)
+  names(topic_preds[[est_var]]) <- c("Topic1", "Topic4", "Topic6")
 }
-dat_new <- lapply(metadata[, -which(names(metadata) == est_var)], 
-                  function(x) if(is.numeric(x)) median(x) else majority(x))
-xmat <- data.frame(dat_new, range_est_var)
-names(xmat) <- c(names(dat_new),est_var)
-levels(xmat$Partei) <- levels(metadata$Partei)
-levels(xmat$Bundesland) <- levels(metadata$Bundesland)
-# ----------------------------------------------------------------------------------------------
-preds_topic6 <- do.call(rbind, 
-                        lapply(mod_betaregs$Topic6, function(x) posterior_predict(x, dat_fit, draws = 1000)))
-topic6_mean <- colMeans(preds_topic6)
-topic6_lower <- apply(preds_topic6, 2, quantile, 0.025)
-topic6_upper <- apply(preds_topic6, 2, quantile, 0.975)
-plot(xmat$t, topic6_mean, type = "l")
-lines(xmat$t, topic6_lower, type = "l")
-lines(xmat$t, topic6_upper, type = "l")
+
+str(topic_preds)

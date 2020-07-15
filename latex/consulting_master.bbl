@@ -1,4 +1,4 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -229,6 +229,12 @@ Matt Taddy.
 Martin~A Tanner.
 \newblock \emph{Tools for statistical inference}.
 \newblock Springer, 2012.
+
+\bibitem[Treier and Jackman(2008)]{treier2008democracy}
+Shawn Treier and Simon Jackman.
+\newblock Democracy as a latent variable.
+\newblock \emph{American Journal of Political Science}, 52\penalty0
+  (1):\penalty0 201--217, 2008.
 
 \bibitem[Tumasjan et~al.(2010)Tumasjan, Sprenger, Sandner, and
   Welpe]{tumasjan2010predicting}

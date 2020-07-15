@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (MiKTeX 2.9.7400 64-bit)
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: consulting_master.aux
 The style file: plainnat.bst
 Database file #1: ./kapitel/bibliography.bib
 Warning--empty journal in eisenstein2011sparse
-You've used 39 entries,
+You've used 40 entries,
             2773 wiz_defined-function locations,
-            826 strings with 11588 characters,
-and the built_in function-call counts, 18847 in all, are:
-= -- 1683
-> -- 1073
-< -- 28
-+ -- 366
-- -- 327
-* -- 1507
-:= -- 2858
-add.period$ -- 123
-call.type$ -- 39
-change.case$ -- 217
-chr.to.int$ -- 39
-cite$ -- 79
-duplicate$ -- 881
-empty$ -- 1563
-format.name$ -- 384
-if$ -- 3976
+            833 strings with 11720 characters,
+and the built_in function-call counts, 19303 in all, are:
+= -- 1727
+> -- 1094
+< -- 29
++ -- 373
+- -- 333
+* -- 1544
+:= -- 2926
+add.period$ -- 126
+call.type$ -- 40
+change.case$ -- 222
+chr.to.int$ -- 40
+cite$ -- 81
+duplicate$ -- 901
+empty$ -- 1603
+format.name$ -- 393
+if$ -- 4072
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 42
-newline$ -- 206
-num.names$ -- 156
-pop$ -- 462
+missing$ -- 43
+newline$ -- 211
+num.names$ -- 160
+pop$ -- 470
 preamble$ -- 1
-purify$ -- 184
+purify$ -- 188
 quote$ -- 0
-skip$ -- 679
+skip$ -- 695
 stack$ -- 0
-substring$ -- 757
-swap$ -- 113
+substring$ -- 784
+swap$ -- 114
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 404
+type$ -- 415
 warning$ -- 1
-while$ -- 178
+while$ -- 183
 width$ -- 0
-write$ -- 511
+write$ -- 524
 (There was 1 warning)
