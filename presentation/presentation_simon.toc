@@ -10,6 +10,6 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {5}{Covariate-level Topic Analysis}{27}{0}{5}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {6}{Causal Inference}{35}{0}{6}
+\beamer@sectionintoc {6}{Causal Inference}{41}{0}{6}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {7}{Discussion}{44}{0}{7}
+\beamer@sectionintoc {7}{Discussion}{50}{0}{7}

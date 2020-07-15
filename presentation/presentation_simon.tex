@@ -28,7 +28,7 @@
 
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \beamertemplatenavigationsymbolsempty
-\bibliographystyle{IEEEtran}
+%\bibliographystyle{IEEEtran}
 
 \usepackage[style=authoryear]{biblatex}
 \renewcommand*{\nameyeardelim}{\addcomma\addspace}
@@ -209,7 +209,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 	\item Construction of dataset containing Twitter posts by members of the German Bundestag and a variety of metadata
 	\item Application of the \textit{Structural Topic Model} (STM), introduced by \cite{roberts2016model}, to German MPs' Twitter communication
 	\item Development of new tools for estimation of relationship between topic proportions and metadata
-	\item Development and application of STM-specific train-test split to enable causal inference
+	\item Application of STM-specific train-test split to enable causal inference
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -524,6 +524,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \end{itemize}
 \end{frame}
 
+\section{Covariate-level Topic Analysis}
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Overview}
@@ -559,7 +560,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Method of Composition: Problems}
-Several concerns with method of composition:
+Several problems with method of composition:
 \begin{enumerate}
 \item In STM, regression model in step 2 is OLS; however OLS not appropriate to model (sampled) proportions in open unit interval
 \item Mixing of Bayesian and frequentist approach questionable:
@@ -572,6 +573,15 @@ Several concerns with method of composition:
 \end{frame}
 
 \begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\begin{center}
+Problem 1: OLS Regression
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Method of Composition: Implementation within \textit{stm}}
 \begin{itemize}
 \item Problem: OLS regression not suitable for (sampled) proportions, which are restricted to interval (0,1)
 \item Estimated relationship between proportions and prevalence covariates might even involve negative proportions:
@@ -582,13 +592,11 @@ Several concerns with method of composition:
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/estEffect_topic1.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic1.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/estEffect_topic6.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/estEffect_topic6.pdf}
   \end{subfigure}
-  \caption{Emprical mean and 95\% credible intervals for topics 1 and 6 over time, estimated using \textit{estimateEffect} from the \textit{stm} package.}
-  \label{fig:estEffect_topic16}
 \end{figure}
 \end{frame}
 
@@ -602,14 +610,19 @@ Several concerns with method of composition:
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/quasi_t6_cont.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/quasi_t6_cont.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/quasi_t6_cat.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/quasi_t6_cat.pdf}
   \end{subfigure}
-  \caption{Empirical mean and 95\% credible intervals, obtained using a quasibinomial GLM.}
-  \label{fig:quasi_t46_cont}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\begin{center}
+Problem 2: Mixing of Bayesian and Frequentist Approach
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -635,29 +648,34 @@ Several concerns with method of composition:
 
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Fully Bayesian Approach: Results}
 \begin{itemize}
 \item Predicted (empirical) mean mostly in line with results from previous analysis
 \item Uncertainty now w.r.t.\ variation of topic proportions in data
 \item Observed variation for topic proportions corresponds well to variation according to predictive posterior
 \end{itemize}
-\framesubtitle{Fully Bayesian Approach: Results}
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/stanbeta_t6_without_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/stanbeta_t6_without_credible.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/stanbeta_t6_with_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/stanbeta_t6_with_credible.pdf}
   \end{subfigure}
-  \caption{Smooth effects without credible intervals (left) and smooth effects with 95\% credible intervals (right)}
-  \label{fig:directassessment}
 \end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
-\framesubtitle{Multivariate Modeling of Proportions}
+\begin{center}
+Problem 3: Univariate Modeling of Topic Proportions
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Covariate-level Topic Analysis}
+\framesubtitle{Approach to Multivariate Modeling of Proportions (I)}
 \begin{itemize}
 \item Remember, by assumption: $\boldsymbol{\theta}_d \sim \text{LogisticNormal}(\boldsymbol{\Gamma}^T\boldsymbol{x}_d^T, \boldsymbol{\Sigma})$
 \item Logistic normal distribution assumes high dependence among individual components $\Rightarrow$ not fully taken into account in univariate modeling via, e.g., the beta distribution
@@ -668,7 +686,7 @@ Several concerns with method of composition:
 
 \begin{frame}
 \frametitle{Covariate-level Topic Analysis}
-\framesubtitle{Multivariate Modeling of Proportions}
+\framesubtitle{Approach to Multivariate Modeling of Proportions (II)}
 \begin{itemize}
 \item Plugging in $\boldsymbol{\Gamma}$ and $\hat{\boldsymbol{\Sigma}}$ is "na{\"i}ve" method: ideally sample prevalence parameters from their posterior $\Rightarrow$ would yield higher variation
 \item However, not easily possible $\Rightarrow$ should be addressed in future implementations
@@ -677,13 +695,11 @@ Several concerns with method of composition:
   \centering
   \captionsetup{justification=centering}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/direct_t6_without_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/direct_t6_without_credible.pdf}
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{../../plots/presentation/direct_t6_with_credible.pdf}
+    \includegraphics[width=\linewidth]{../plots/presentation/direct_t6_with_credible.pdf}
   \end{subfigure}
-  \caption{Smooth effects without credible intervals (left) and smooth effects with credible intervals (right)}
-  \label{fig:directassessment}
 \end{figure}
 \end{frame}
 
@@ -799,18 +815,22 @@ Several concerns with method of composition:
 \section{Discussion}
 \begin{frame}
 \frametitle{Discussion}
+\framesubtitle{Summary}
 \begin{itemize}
-\item Use of dataset and results for future (politological) analyses
-\item Topic-metadata relationship: 
-	\begin{itemize}
-	\item Room for methodological improvement
-	\item Applicability in predictive tasks	
-	\end{itemize}
-\item Train-test split and causal inference:
-	\begin{itemize}
-	\item Alternative model designs
-	\item Natural experiments	
-	\end{itemize}
+\item Creation of broad dataset including large-scale unstructured text and variety of metadata $Rightarrow$ use in future (politological) analyses
+\item Exemplification of topic analysis for German parliamentarians' Twitter communication
+\item Critical discussion of existing tools and development of new approaches regarding estimation of topic-metadata relationships
+\item Detailed illustration of train-test framework for causal inference within the STM
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Discussion}
+\framesubtitle{Suggestions for Future Research}
+\begin{itemize}
+\item Holistic framework for estimation of topic-metadata relationships $rightarrow$ investigation of effect size and especially importance, for instance through fully Bayesian approach using MCMC
+\item Identification of natural experiments for causal inference
+\item Research into alternative model designs, beyond STM (and LDA)
 \end{itemize}
 \end{frame}
 
