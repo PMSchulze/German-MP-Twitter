@@ -19,6 +19,32 @@
 
 \refsection{0}
   \sortlist[entry]{nyt/global/}
+    \entry{aldous1985exchangeability}{incollection}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=d902c5533454226942d48289118174f1}{%
+           family={Aldous},
+           familyi={A\bibinitperiod},
+           given={David\bibnamedelima J},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{d902c5533454226942d48289118174f1}
+      \strng{fullhash}{d902c5533454226942d48289118174f1}
+      \strng{authornamehash}{d902c5533454226942d48289118174f1}
+      \strng{authorfullhash}{d902c5533454226942d48289118174f1}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{\'{E}cole d'\'{E}t\'{e} de Probabilit\'{e}s de Saint-Flour XIII\x{fffd}\x{fffd}\x{fffd}1983}
+      \field{title}{Exchangeability and related topics}
+      \field{year}{1985}
+      \field{pages}{1\bibrangedash 198}
+      \range{pages}{198}
+    \endentry
     \entry{quanteda}{article}{}
       \name{author}{7}{}{%
         {{uniquename=0,hash=3c1ca3e512356959e202dae95044d122}{%

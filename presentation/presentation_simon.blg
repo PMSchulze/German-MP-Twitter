@@ -1,0 +1,18 @@
+[0] Config.pm:354> INFO - This is Biber 2.7
+[0] Config.pm:357> INFO - Logfile is 'presentation_simon.blg'
+[50] biber-darwin:303> INFO - === Wed Jul 15, 2020, 23:56:49
+[83] Biber.pm:359> INFO - Reading 'presentation_simon.bcf'
+[193] Biber.pm:835> INFO - Found 11 citekeys in bib section 0
+[210] Biber.pm:3670> INFO - Processing section 0
+[228] Biber.pm:3840> INFO - Looking for bibtex format file 'presentation_simon.bib' for section 0
+[238] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[245] bibtex.pm:1292> INFO - Found BibTeX data source 'presentation_simon.bib'
+[314] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[314] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[315] Biber.pm:3499> INFO - Sorting list 'nyt/global/' of type 'entry' with scheme 'nyt' and locale 'en-US'
+[315] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
+[331] bbl.pm:608> INFO - Writing 'presentation_simon.bbl' with encoding 'ascii'
+[333] Utils.pm:164> WARN - The entry 'aldous1985exchangeability' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[335] Utils.pm:164> WARN - The entry 'quanteda' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[338] bbl.pm:712> INFO - Output to presentation_simon.bbl
+[338] Biber.pm:109> INFO - WARNINGS: 2

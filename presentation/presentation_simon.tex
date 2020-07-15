@@ -14,25 +14,26 @@
 \usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{subcaption}
-\usepackage{lmodern}
+%\usepackage{lmodern}
 %\usepackage[T1]{fontenc}
-
-\newcommand{\customcite}[1]{\citeauthor{#1} (\citeyear{#1})}
-\newtheorem{satz}{Satz}
-
-\usecolortheme{seagull}
-\setbeamertemplate{footline}[page number]
-\setbeamercolor{frametitle}{fg=blue,bg=White}
-
-%\usepackage[backend=bibtex, style=authoryear-comp]{biblatex}
 
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \beamertemplatenavigationsymbolsempty
-%\bibliographystyle{IEEEtran}
 
+\usepackage{filecontents}
 \usepackage[style=authoryear]{biblatex}
 \renewcommand*{\nameyeardelim}{\addcomma\addspace}
 \addbibresource{\jobname.bib}
+
+\newcommand{\customcite}[1]{\citeauthor{#1} (\citeyear{#1})}
+
+\newtheorem{satz}{Satz}
+
+\setbeamertemplate{footline}[page number]
+
+\usecolortheme{seagull}
+\setbeamercolor{frametitle}{fg=blue,bg=White}
+
 
 \usepackage{filecontents}
 \begin{filecontents}{\jobname.bib}
@@ -129,31 +130,6 @@
 }
 \end{filecontents}
 
-
-
-
-%\DeclareMathOperator*{\argmax}{arg\, max}
-%\DeclareMathOperator*{\argmin}{arg\, min}
-%\setbeamertemplate{section in toc}[sections numbered]
-%\setbeamertemplate{subsection in toc}[subsections numbered]
-%\AtBeginSection[]
-%{
-%\begin{frame}
-%\frametitle{Überblick}
-%\tableofcontents[currentsection]
-%\end{frame}
-%}
-%
-%\AtBeginSubsection[
-% {\frame<beamer>{\frametitle{Überblick}   
-%  \tableofcontents[currentsection,currentsubsection]}}%
-%]%
-%{
- % \frame<beamer>{ 
- %   \frametitle{Überblick}   
-   % \tableofcontents[currentsection,currentsubsection]}
-%}
-
 \AtBeginSection[]{
   \begin{frame}
   \vfill
@@ -207,7 +183,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \item Key contributions of this project:
 	\begin{itemize}
 	\item Construction of dataset containing Twitter posts by members of the German Bundestag and a variety of metadata
-	\item Application of the \textit{Structural Topic Model} (STM), introduced by \cite{roberts2016model}, to German MPs' Twitter communication
+	\item Application of the \textit{Structural Topic Model} (STM), introduced by \textcite{roberts2016model}, to German MPs' Twitter communication
 	\item Development of new tools for estimation of relationship between topic proportions and metadata
 	\item Application of STM-specific train-test split to enable causal inference
 	\end{itemize}
@@ -219,7 +195,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{Motivation}
 \begin{itemize}
-\item Motivating example: excerpt from a scientific article \cite{blei2012presentation}
+\item Motivating example: excerpt from a scientific article \textcite{blei2012presentation}
 	\begin{figure}[h!]
   	\centering
   	\includegraphics[scale = 0.30]{../plots/presentation/motivation.png}
@@ -246,7 +222,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \begin{itemize}
 \item \textit{Topic assignments} $\boldsymbol{z}_{d,n}$: assignment of $w_{d,n}$ to a specific topic $k \in \{1,\dots,K\}$; $\boldsymbol{\beta}_{d,n}$ representing the (assigned) word distribution for $w_{d,n}$
 \item \textit{Topic proportions} $\boldsymbol{\theta}_d$: proportions of document $d$'s words assigned to each of the topics; $\sum_{k=1}^{K}\theta_{d,k}=1$, for all $d \in \{1,\dots,D\}$
-\item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \cite{aldous1985exchangeability}
+\item \textit{Bag-of-word} assumption: only words themselves meaningful, unlike word order or grammar; equivalent to assuming \textit{exchangeability} \textcite{aldous1985exchangeability}
 \end{itemize}
 \end{frame}
 
@@ -254,7 +230,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{\textit{Latent Dirichlet Allocation} (LDA) (I)}
 \begin{itemize}
-\item First topic model with entirely probabilistic generating process: LDA \cite{blei2003latent}
+\item First topic model with entirely probabilistic generating process: LDA \textcite{blei2003latent}
 \item Generative process for each document $d \in \{1,\dots,D\}$:
 \item[] 
 	\begin{enumerate}[{1)}]
@@ -265,7 +241,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 		\item Draw a word $w_{d,n} \sim \text{Multinomial}_V(\boldsymbol{\beta}_{d,n})$.
 	\end{enumerate}
 \end{enumerate}
-\item Graphical model representation of LDA: \cite{blei2003latent} 
+\item Graphical model representation of LDA: \textcite{blei2003latent} 
 	\begin{figure}[h!]
   	\centering
   	\hspace*{-1cm}\includegraphics[scale = 0.3]{../plots/presentation/lda_graphical.pdf}
@@ -278,7 +254,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \framesubtitle{\textit{Latent Dirichlet Allocation} (LDA) (II)}
 \begin{itemize}
 \vspace{-0.5cm}
-\item Illustration of topic assignment for the words of a document: \cite{blei2012probabilistic}
+\item Illustration of topic assignment for the words of a document: \textcite{blei2012probabilistic}
 	\vspace{-0.5cm}
 	\begin{figure}[h!]
   	\centering
@@ -315,7 +291,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Topic Modeling: Motivation and Theory}
 \framesubtitle{Graphical Model of the STM}
 \begin{itemize}
-\item Visualization of the generative process again through graphical model \cite{roberts2016model}:
+\item Visualization of the generative process again through graphical model \textcite{roberts2016model}:
 \begin{figure}[h!]
 \centering
 \hspace*{-1cm}\includegraphics[scale = 0.4]{../plots/presentation/stm_graphical.png}
@@ -345,7 +321,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Data}
 \framesubtitle{Data Collection (I)}
 \begin{itemize}
-\item MP-level data: from \url{www.bundestag.de/abgeordnete} using Python's \textit{BeautifulSoup} and a \textit{selenium web driver} \cite{van1995python} \cite{richardson2007beautiful}
+\item MP-level data: from \url{www.bundestag.de/abgeordnete} using Python's \textit{BeautifulSoup} and a \textit{selenium web driver} \textcite{van1995python} \textcite{richardson2007beautiful}
 \item[] 
 	\begin{figure}[h!]
   	\centering
@@ -360,7 +336,7 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Data}
 \framesubtitle{Data Collection (II)}
 \begin{itemize}
-\item Tweets (and further Twitter features): via the official Twitter API using Python's \textit{tweepy} library\cite{roesslein2020tweepy}
+\item Tweets (and further Twitter features): via the official Twitter API using Python's \textit{tweepy} library\textcite{roesslein2020tweepy}
 \item Monthly tweets (after dropping MPs without electoral district) for our period of analysis, September 24, 2017 through April 24, 2020:
 	\begin{figure}[h!]
   	\centering
@@ -374,11 +350,11 @@ Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
 \frametitle{Data}
 \framesubtitle{Data Preprocessing}
 \begin{itemize}
-\item Preprocessing: in R \cite{R}, using the \textit{quanteda} package \cite{quanteda}
+\item Preprocessing: in R \textcite{R}, using the \textit{quanteda} package \textcite{quanteda}
 \item Transcription of German umlauts (e.g. \"a $\rightarrow$ a) and ligature (\ss $\rightarrow$ ss)
 \item Removal of hyphens: relevant for compound words (e.g., \textit{Corona-Krise} vs \textit{Coronakrise})
 \item Transformation of text data into document-feature matrix (DFM); conversion to lowercase; removal of stopwords, units (\textit{kg}, \textit{uhr}), interjections (\textit{aaahhh}, \textit{ufff}), etc.
-\item Word stemming, i.e., cutting off word endings (e.g., \textit{politisch} $\rightarrow$ \textit{polit}) \cite{lucas2015computer}
+\item Word stemming, i.e., cutting off word endings (e.g., \textit{politisch} $\rightarrow$ \textit{polit}) \textcite{lucas2015computer}
 \end{itemize}
 \end{frame}
 
@@ -775,7 +751,7 @@ Problem 3: Univariate Modeling of Topic Proportions
   \begin{subfigure}[b]{0.49\linewidth}
     \includegraphics[width=\linewidth]{../plots/presentation/climate_summit_props.pdf}
   \end{subfigure}
-  \begin{subfigure}[b]{0.49\linewidth}
+  \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/presentation/emancipation_props.pdf}
   \end{subfigure}
 \end{figure}
@@ -817,7 +793,7 @@ Problem 3: Univariate Modeling of Topic Proportions
 \frametitle{Discussion}
 \framesubtitle{Summary}
 \begin{itemize}
-\item Creation of broad dataset including large-scale unstructured text and variety of metadata $Rightarrow$ use in future (politological) analyses
+\item Creation of broad dataset including large-scale unstructured text and variety of metadata $\Rightarrow$ use in future (politological) analyses
 \item Exemplification of topic analysis for German parliamentarians' Twitter communication
 \item Critical discussion of existing tools and development of new approaches regarding estimation of topic-metadata relationships
 \item Detailed illustration of train-test framework for causal inference within the STM
@@ -828,7 +804,7 @@ Problem 3: Univariate Modeling of Topic Proportions
 \frametitle{Discussion}
 \framesubtitle{Suggestions for Future Research}
 \begin{itemize}
-\item Holistic framework for estimation of topic-metadata relationships $rightarrow$ investigation of effect size and especially importance, for instance through fully Bayesian approach using MCMC
+\item Holistic framework for estimation of topic-metadata relationships $\Rightarrow$ investigation of effect size and especially importance, for instance through fully Bayesian approach using MCMC
 \item Identification of natural experiments for causal inference
 \item Research into alternative model designs, beyond STM (and LDA)
 \end{itemize}
