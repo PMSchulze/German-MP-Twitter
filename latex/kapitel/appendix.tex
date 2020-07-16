@@ -12,9 +12,9 @@ p(\theta,z|x) &= \frac{p(\theta,z,x)}{\int p(\theta,z,x)dzd\theta}
 \end{align*}
 is usually intractable due to the high-dimensional integral, which is why the distribution needs to be approximated.
 
-As stated in section 2.3, in variational inference a simple distribution family $q(\theta,z)$ is posited and subsequently, we determine the member of this family - that is, the variational parameter(s) - that minimizes the KL divergence. Note that, for computational purposes, we compute KL divergence of the true posterior $p$ from the approximating posterior $q$, $\text{KL}(q||p)$, whereas intuitively one would seek to minimize $\text{KL}(p||q)$.
+As stated in section 2.3, in variational inference a simple distribution family $q(\theta,z)$ is posited and subsequently we determine the member of this family - that is, the variational parameter(s) - that minimizes the KL divergence. Note that, for computational purposes, we compute KL divergence of the true posterior $p$ from the approximating posterior $q$, $\text{KL}(q||p)$, whereas intuitively one would seek to minimize $\text{KL}(p||q)$.
 
-The most popular variational inference technique is mean-field variational inference (also: mean-field variational Bayes), where we posit full factorizability of $q(\theta,z)$: $q(\theta,z) = q(\theta)q(z)$. That is, $\theta$ and $z$ are assumed to be independent with their own distributions and variational parameters $\phi$ (which we suppress for improved readability). Since $\theta$ and $z$ are actually dependent, this approximate distribution family $q(\theta,z)$ does not contain the true posterior $p(\theta,z|x)$.  
+The most popular variational inference technique is mean-field variational inference (also called mean-field variational Bayes), where we posit full factorizability of $q(\theta,z)$, that is, $q(\theta,z) = q(\theta)q(z)$. $\theta$ and $z$ are thus assumed to be independent with their own distributions and variational parameters $\phi$ (which we suppress for improved readability). Since $\theta$ and $z$ are actually dependent, this approximate distribution family $q(\theta,z)$ does not contain the true posterior $p(\theta,z|x)$.  
 
 Let us now write out the KL divergence of $p$ from $q$:
 \begin{align*}
@@ -22,11 +22,11 @@ Let us now write out the KL divergence of $p$ from $q$:
 &= \mathbb{E}_q[\log q(\theta,z)] - \mathbb{E}_q[\log p(\theta,z|x)] \\
 &=\mathbb{E}_q[\log q(\theta,z)] - \mathbb{E}_q[\log p(\theta,z,x)] + \log p(x) 
 \end{align*}
-Since $\text{KL}(q||p) \geq 0$ (which can be easily shown using Jensen's inequality), it follows that:
+Since $\text{KL}(q||p) \geq 0$ (which can be easily shown using Jensen's inequality), it follows that
 \begin{align*}
 \log p(x) & \geq \mathbb{E}_q[\log p(\theta,z,x)] - \mathbb{E}_q[\log q(\theta,z)].
 \end{align*}
-The left-hand side of the above inequality is the marginal log likelihood of observed data $x$ and is also called evidence (of the observed data). Note that the evidence is not computable - otherwise we would not need to resort to variational inference in the first place. The right-hand side thus presents a lower bound on the evidence and we define the \textit{Evidence Lower BOund} (ELBO) as:
+The left-hand side of the above inequality is the marginal log likelihood of observed data $x$ and is also called evidence (of the observed data). Note that the evidence is not computable - otherwise we would not need to resort to variational inference in the first place. The right-hand side thus presents a lower bound on the evidence and we define the \textit{Evidence Lower BOund} (ELBO) as
 \begin{align*}
 \text{ELBO} := \mathbb{E}_q[\log p(\theta,z,x)] - \mathbb{E}_q[\log q(\theta,z)],
 \end{align*}
@@ -37,9 +37,9 @@ q^{*}(z) \propto \exp\{\mathbb{E}_{q(\theta)}[\log p(x|z))p(z|\theta)]\}.
 \end{align*}
 The coordinate ascent algorithm iteratively updates one of these two expressions while holding the other one constant, but requires closed-form updates to do so. This requirement is fulfilled as long as all model nodes are conditionally conjugate, i.e., as long as for each node in the model "its conditional distribution given its Markov blanket (i.e., the set of random variables that it is dependent on in the posterior) is in the same family as its conditional distribution given its parents (i.e., its factor in the joint distribution)" (\cite{wang2013variational}, p.\ 1008). The authors consequently define a class of models where some nodes are not conditionally conjugate, the so-called \textit{nonconjugate models}; for this class, using Laplace approximations, the variational family is shown to be $q(\theta,z) = q(\theta|\mu,\Sigma)q(z|\phi)$; that is, $q(\theta)$ is now Gaussian with variational parameters $\mu$ and $\Sigma$.
 
-The STM in particular constitutes a nonconjugate model, since $p(\boldsymbol{\theta})$ is logistic normal and thus not conjugate with respect to the multinomial distribution $p(\boldsymbol{z}|\boldsymbol{\theta})$. Consequently, no closed-form update is available for $q(\boldsymbol{\eta})$. Using mean-field variational inference, the approximate posterior family is $\prod_{d=1}^{D}q(\boldsymbol{\eta}_d)q(\boldsymbol{z}_d)$, where $q(\boldsymbol{\eta}_d)$ is Gaussian and $q(\boldsymbol{z})$ is binomial (\citealp{roberts2016model}). Given the posterior, inference now consists in finding the particular member of the posterior distribution family that maximizes the approximate ELBO. (Due to the subsequent Laplace approximation, ELBO does not constitute a true lower bound on the evidence and the updates do not maximize ELBO directly, which is why \cite{roberts2013structural} use the term \textit{approximate} ELBO. See \cite{wang2013variational} for further discussion.) Applying Laplace variational inference, we approximate $q(\boldsymbol{\eta}_d)$ using a (quadratic) Taylor expression around the maximum-a-posteriori (MAP) estimate $\hat{\boldsymbol{\eta}}_d$, which yields a Gaussian variational posterior $q(\boldsymbol{\eta}_d)$, centered around $\hat{\boldsymbol{\eta}}_d$, and allows for a closed-form solution of $q(\boldsymbol{z}_d)$. Iteratively updating $q(\boldsymbol{\eta}_d)$ and $q(\boldsymbol{z}_d)$ thus constitutes the E-step of the EM algorithm.
+The STM in particular constitutes a nonconjugate model, since $p(\boldsymbol{\theta}_d)$ is logistic normal and thus not conjugate with respect to the multinomial distribution $p(\boldsymbol{z}_d|\boldsymbol{\theta}_d)$. Consequently, no closed-form update is available for $q(\boldsymbol{\eta}_d)$. Using mean-field variational inference, the approximate posterior family is $\prod_{d=1}^{D}q(\boldsymbol{\eta}_d)q(\boldsymbol{z}_d)$, where $q(\boldsymbol{\eta}_d)$ is Gaussian and $q(\boldsymbol{z}_d)$ is binomial (\citealp{roberts2016model}). Given the posterior, inference now consists in finding the particular member of the posterior distribution family that maximizes the approximate ELBO. (Due to the subsequent Laplace approximation, ELBO does not constitute a true lower bound on the evidence and the updates do not maximize ELBO directly, which is why \cite{roberts2013structural} use the term \textit{approximate} ELBO. See \cite{wang2013variational} for further discussion.) Applying Laplace variational inference, $q(\boldsymbol{\eta}_d)$ is approximated using a (quadratic) Taylor expression around the maximum-a-posteriori (MAP) estimate $\hat{\boldsymbol{\eta}}_d$, which yields a Gaussian variational posterior $q(\boldsymbol{\eta}_d)$, centered around $\hat{\boldsymbol{\eta}}_d$, and allows for a closed-form solution of $q(\boldsymbol{z}_d)$. Iteratively updating $q(\boldsymbol{\eta}_d)$ and $q(\boldsymbol{z}_d)$ thus constitutes the E-step of the EM algorithm.
 
-The M-step consists in maximizing the approximate ELBO with respect to model parameters. Prevalence parameters $\boldsymbol{\Gamma}$ and $\boldsymbol{\Sigma}$ are updated through linear regression and maximum likelihood estimation (MLE), respectively. The updates for topic-word distributions $\boldsymbol{\beta}_k$ (or $\boldsymbol{\beta}_{k,a}$ if a content covariate is specified) are obtained through multinomial logistic regression. Further details are provided in \cite{roberts2013structural} and in the appendix of \cite{roberts2013structural}. Moreover, the appendix of \cite{blei2003latent} provides a detailed description of variatonal inference and empirical parameter estimation for the (conditionally conjugate) LDA model.
+The M-step consists in maximizing the approximate ELBO with respect to model parameters. Prevalence parameters $\boldsymbol{\Gamma}$ and $\boldsymbol{\Sigma}$ are updated through linear regression and maximum likelihood estimation (MLE), respectively. The updates for topic-word distributions $\boldsymbol{\beta}_k$ (or $\boldsymbol{\beta}_k^{a}$ if a content covariate is specified) are obtained through multinomial logistic regression. Further details are provided in \cite{roberts2013structural} and in the appendix of \cite{roberts2013structural}. Moreover, the appendix of \cite{blei2003latent} provides a detailed description of variatonal inference and empirical parameter estimation for the (conditionally conjugate) LDA model.
 
 \subsection*{Appendix B: Additional Tables and Figures}
 
@@ -155,7 +155,7 @@ The M-step consists in maximizing the approximate ELBO with respect to model par
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/appendix/5_1/beta_t6_cont.pdf}
   \end{subfigure}
-  \caption{bla}
+  \caption{Mean and 95\% credible intervals for smooth effects, obtained using beta regression.}
   \label{fig:coffee}
 \end{figure}
 
@@ -167,7 +167,7 @@ The M-step consists in maximizing the approximate ELBO with respect to model par
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/appendix/5_1/beta_t6_cat.pdf}
   \end{subfigure}
-  \caption{blabla}
+  \caption{Mean and 95\% credible intervals for different political parties, obtained using beta regression.}
   \label{fig:coffee}
 \end{figure}
 
@@ -175,7 +175,7 @@ The M-step consists in maximizing the approximate ELBO with respect to model par
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \includegraphics[scale = 0.5]{../plots/appendix/5_1/beta_t146_cat.pdf}
-  \caption{Topical prevalence by political party for topics 1, 2, and 3.}
+  \caption{Topical prevalence by political party for topics 1, 4, and 6 (beta regression).}
   \label{fig:boat1}
 \end{figure}
 
@@ -190,10 +190,12 @@ The M-step consists in maximizing the approximate ELBO with respect to model par
   \begin{subfigure}[b]{0.3\linewidth}
     \includegraphics[width=\linewidth]{../plots/appendix/5_1/direct_t4_cat.pdf}
   \end{subfigure}
-  \caption{bla}
+  \caption{Smooth effects without credible intervals (left), smooth effects with credible intervals (center), and effect of the political party (right).}
   \label{fig:coffee}
 \end{figure}
 
+\vfill
+\clearpage
 
 \subsubsection*{Additional Figures and Tables of Section 6}
 
@@ -221,7 +223,7 @@ The M-step consists in maximizing the approximate ELBO with respect to model par
   \label{fig:beta_t46_cat_ctm}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[t!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
   \includegraphics[scale = 0.5]{../plots/appendix/6_1/beta_t146_cat_ctm.pdf}

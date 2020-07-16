@@ -4,7 +4,7 @@
 \subsection{Topical Prevalence: Method of Composition and Direct Assessment}
 \label{Covariate-level Topic Analysis}
 
-We now proceed to analyze the relationship between metadata information (i.e., document-level covariates) and topic proportions. We specify topical prevalence as 
+We now proceed to analyze the relationship between metadata information (i.e., document-level covariates) and topic proportions in an explorative fashion. We specify topical prevalence as 
 \begin{align}
 \mu_{d,k} = \boldsymbol{x_d}^T \boldsymbol{\gamma}_k= \gamma_{k,\text{party}_d} + \gamma_{k,\text{state}_d} + f_k(\text{t}_d) + g_k(\text{struct}_d), \label{prevalence}
 \end{align} 
@@ -44,16 +44,16 @@ In the case of \cite{treier2008democracy}, the regression model employed is a Co
 The idea of the method of composition is that the samples $\tilde{\boldsymbol{\xi}}^*$ take into account the uncertainty in $\boldsymbol{\theta}_{(k)}$. Additionally, the third step is performed in order to take into account the uncertainty regarding the regression estimation. Visualization of topic-metadata relationship then occurs as follows: For a (new) observation $\boldsymbol{x}_{\text{pred}}$, one can plot $\boldsymbol{x}_{\text{pred}}$ vs. the sampled predicted responses with $\boldsymbol{x}_{\text{pred}}^T \tilde{\boldsymbol{\xi}}_i^*$ as linear predictor, for all $i \in \{1,\dots,m\}$. The empirical mean and other quantities of interest, such as credible intervals, are then calculated using the $m$ sampled response values.
 
 While we agree with the approach of performing Monte Carlo sampling of topic proportions in order to integrate over these latent variables, we have several concerns, especially regarding the specific application of the method of composition in the STM (and the accompanying R package).
-\begin{enumerate}
+\begin{itemize}
 \item \textbf{Problem 1}: In the R package \textit{stm}, the regression model employed in step 2 is an ordinary least squares (OLS) regression; however OLS is not appropriate to model (sampled) proportions, which are constrained to the interval (0,1).
 \item \textbf{Problem 2}: A general problem with the method of composition is the mixing of Bayesian and frequentist methods. For instance, \cite{treier2008democracy} state that the sampled regression coefficients can be considered a sample from the posterior of regression coefficients. However, the way the method of composition is presented, we do \textit{not} perform a Bayesian regression and thus regression coefficients do not follow any distribution (only the \textit{estimators} of regression coefficients do); instead, regression coefficients are assumed to be fixed (unknown) parameters from a frequentist perspective. From a Bayesian perspective, the sampled $\tilde{\boldsymbol{\xi}}^*$ can only be considered a sample from the posterior of $\boldsymbol{\xi}$ in some regression models, however, with very questionable (uniform) prior assumptions. After having obtained the samples $\tilde{\boldsymbol{\xi}}^*$, inference of parameters is conducted in a classical Bayesian manner, e.g., calculating the empirical mean via averaging.
 \item \textbf{Problem 3}: Separate modeling of topic proportions neglects topic interdependence caused by the (multivariate) logistic normal distribution assumed within the generative process of the STM.
-\end{enumerate}
+\end{itemize}
 In the following we further discuss these problems and propose alternative approaches.
 
 \subsubsection{Problem 1: Implementation via OLS in the \textit{stm} package}
 
-\noindent As stated, the R package \textit{stm} implements an OLS regression through its \textit{estimateEffect} function. This approach ignores that the sampled topic proportions are restricted to $(0,1)$. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$:\\
+\noindent As stated, the R package \textit{stm} implements an OLS regression through its \textit{estimateEffect} function. This approach ignores that the sampled topic proportions are restricted to $(0,1)$. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$, as shown in Figure \ref{fig:estEffect_topic16}.\\
 
 \begin{figure}[h!]
   \centering

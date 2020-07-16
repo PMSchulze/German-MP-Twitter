@@ -1,30 +1,27 @@
-\contentsline {section}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {2}Theoretical Framework}{4}
-\contentsline {subsection}{\numberline {2.1}Topic Modeling - Overview}{4}
-\contentsline {subsection}{\numberline {2.2}The Structural Topic Model}{8}
-\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{12}
-\contentsline {section}{\numberline {3}Data}{13}
-\contentsline {subsection}{\numberline {3.1}Data Collection}{13}
-\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{16}
-\contentsline {section}{\numberline {4}Model Selection and Global Characteristics}{17}
-\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{17}
-\contentsline {subsection}{\numberline {4.2}Labeling}{19}
-\contentsline {subsection}{\numberline {4.3}Global-level Topic Analysis}{22}
-\contentsline {section}{\numberline {5}Method of Composition - New}{25}
-\contentsline {subsection}{\numberline {5.1}Problem 1: Implementation via OLS in the \textit {stm} package}{27}
-\contentsline {subsection}{\numberline {5.2}Problem 2: Mixing of Bayesian and Frequentist Approach}{29}
-\contentsline {subsection}{\numberline {5.3}Problem 3: Univariate Modeling of Topic Proportions}{31}
-\contentsline {section}{\numberline {6}Metadata Analysis - Topical Prevalence and Content}{33}
-\contentsline {subsection}{\numberline {6.1}Covariate-level Topic Analysis}{33}
-\contentsline {subsubsection}{\numberline {6.1.1}Method of Composition}{34}
-\contentsline {subsubsection}{\numberline {6.1.2}Direct assessment using $\cc@accent {"705E}{\bm {\Gamma }}$ and $\cc@accent {"705E}{\bm {\Sigma }}$}{38}
-\contentsline {subsection}{\numberline {6.2}Topical Content}{40}
-\contentsline {section}{\numberline {7}Double Usage of Metadata and Causal Inference}{42}
-\contentsline {subsection}{\numberline {7.1}A Clean Two-step Approach}{42}
-\contentsline {subsection}{\numberline {7.2}Causal Inference: Train-test Split}{46}
-\contentsline {subsubsection}{\numberline {7.2.1}Model Estimation on the Training Set}{47}
-\contentsline {subsubsection}{\numberline {7.2.2}Prediction of Topic Proportions on the Test Set}{47}
-\contentsline {subsubsection}{\numberline {7.2.3}Estimation of the Average Treatment Effect}{48}
-\contentsline {subsubsection}{\numberline {7.2.4}Results}{49}
-\contentsline {section}{\numberline {8}Conclusion}{51}
-\contentsline {section}{\numberline {9}Appendix}{53}
+\contentsline {section}{\numberline {1}Introduction}{2}%
+\contentsline {section}{\numberline {2}Theoretical Framework}{4}%
+\contentsline {subsection}{\numberline {2.1}Topic Modeling - Overview}{4}%
+\contentsline {subsection}{\numberline {2.2}The Structural Topic Model}{8}%
+\contentsline {subsection}{\numberline {2.3}Inference and Parameter Estimation}{12}%
+\contentsline {section}{\numberline {3}Data}{13}%
+\contentsline {subsection}{\numberline {3.1}Data Collection}{13}%
+\contentsline {subsection}{\numberline {3.2}Data Preprocessing}{16}%
+\contentsline {section}{\numberline {4}Model Selection and Global Characteristics}{17}%
+\contentsline {subsection}{\numberline {4.1}Hyperparameter Search and Model Fitting}{17}%
+\contentsline {subsection}{\numberline {4.2}Labeling}{19}%
+\contentsline {subsection}{\numberline {4.3}Global-level Topic Analysis}{23}%
+\contentsline {section}{\numberline {5}Metadata Analysis - Topical Prevalence and Content}{25}%
+\contentsline {subsection}{\numberline {5.1}Topical Prevalence: Method of Composition and Direct Assessment}{25}%
+\contentsline {subsubsection}{\numberline {5.1.1}Problem 1: Implementation via OLS in the \textit {stm} package}{28}%
+\contentsline {subsubsection}{\numberline {5.1.2}Problem 2: Mixing of Bayesian and Frequentist Approach}{31}%
+\contentsline {subsubsection}{\numberline {5.1.3}Problem 3: Univariate Modeling of Topic Proportions}{33}%
+\contentsline {subsection}{\numberline {5.2}Topical Content}{34}%
+\contentsline {section}{\numberline {6}Double Usage of Metadata and Causal Inference}{36}%
+\contentsline {subsection}{\numberline {6.1}A Clean Two-step Approach}{36}%
+\contentsline {subsection}{\numberline {6.2}Causal Inference: Train-test Split}{40}%
+\contentsline {subsubsection}{\numberline {6.2.1}Model Estimation on the Training Set}{41}%
+\contentsline {subsubsection}{\numberline {6.2.2}Prediction of Topic Proportions on the Test Set}{41}%
+\contentsline {subsubsection}{\numberline {6.2.3}Estimation of the Average Treatment Effect}{42}%
+\contentsline {subsubsection}{\numberline {6.2.4}Results}{43}%
+\contentsline {section}{\numberline {7}Conclusion}{45}%
+\contentsline {section}{\numberline {8}Appendix}{47}%
