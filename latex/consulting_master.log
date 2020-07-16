@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  16 JUL 2020 08:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  16 JUL 2020 22:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1297,6 +1297,24 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 )
 (./consulting_master.aux
 
+LaTeX Warning: Label `fig:estEffect_topic16' multiply defined.
+
+
+LaTeX Warning: Label `fig:quasi_t46_cont' multiply defined.
+
+
+LaTeX Warning: Label `fig:quasi_t46_cat' multiply defined.
+
+
+LaTeX Warning: Label `fig:quasi_t146_cat' multiply defined.
+
+
+LaTeX Warning: Label `Direct assessment' multiply defined.
+
+
+LaTeX Warning: Label `fig:directassessment' multiply defined.
+
+
 LaTeX Warning: Label `fig:coffee' multiply defined.
 
 
@@ -1545,13 +1563,173 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/vocabulary_comp
 arison.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
->]) (./kapitel/5_1_covariate_analysis.tex [25 <../plots/4_3/topic_correlations.
-pdf> <../plots/4_3/topic_correlations_map.pdf
+>] [25 <../plots/4_3/topic_correlations.pdf> <../plots/4_3/topic_correlations_m
+ap.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/topic_correlati
 ons_map.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] [26] [27]
+>] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+<../plots/5_1/estEffect_topic1.pdf, id=216, 497.86pt x 382.42876pt>
+File: ../plots/5_1/estEffect_topic1.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/estEffect_topic1.pdf>
+Package pdftex.def Info: ../plots/5_1/estEffect_topic1.pdf used on input line 3
+6.
+(pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
+
+<../plots/5_1/estEffect_topic6.pdf, id=217, 497.86pt x 382.42876pt>
+File: ../plots/5_1/estEffect_topic6.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/estEffect_topic6.pdf>
+Package pdftex.def Info: ../plots/5_1/estEffect_topic6.pdf used on input line 3
+9.
+(pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--53
+
+ []
+
+[27 <../plots/5_1/estEffect_topic1.pdf> <../plots/5_1/estEffect_topic6.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/estEffect_topic
+6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] <../plots/5_1/quasi_t4_cont.pdf, id=250, 497.86pt x 382.42876pt>
+File: ../plots/5_1/quasi_t4_cont.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/quasi_t4_cont.pdf>
+Package pdftex.def Info: ../plots/5_1/quasi_t4_cont.pdf used on input line 62.
+(pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
+
+<../plots/5_1/quasi_t6_cont.pdf, id=251, 497.86pt x 382.42876pt>
+File: ../plots/5_1/quasi_t6_cont.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/quasi_t6_cont.pdf>
+Package pdftex.def Info: ../plots/5_1/quasi_t6_cont.pdf used on input line 65.
+(pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
+
+<../plots/5_1/quasi_t4_cat.pdf, id=252, 497.86pt x 382.42876pt>
+File: ../plots/5_1/quasi_t4_cat.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/quasi_t4_cat.pdf>
+Package pdftex.def Info: ../plots/5_1/quasi_t4_cat.pdf used on input line 75.
+(pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
+
+<../plots/5_1/quasi_t6_cat.pdf, id=253, 497.86pt x 382.42876pt>
+File: ../plots/5_1/quasi_t6_cat.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/quasi_t6_cat.pdf>
+Package pdftex.def Info: ../plots/5_1/quasi_t6_cat.pdf used on input line 78.
+(pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[28 <../plots/5_1/quasi_t4_cont.pdf> <../plots/5_1/quasi_t6_cont.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cont.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
+>] <../plots/5_1/quasi_t146_cat.pdf, id=284, 578.16pt x 443.6575pt>
+File: ../plots/5_1/quasi_t146_cat.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/quasi_t146_cat.pdf>
+Package pdftex.def Info: ../plots/5_1/quasi_t146_cat.pdf used on input line 97.
+
+(pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[29 <../plots/5_1/quasi_t4_cat.pdf> <../plots/5_1/quasi_t6_cat.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cat.pd
+f): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 106--109
+
+ []
+
+[30 <../plots/5_1/quasi_t146_cat.pdf>]
+<../plots/5_1/stanbeta_t4_without_credible.pdf, id=333, 497.86pt x 382.42876pt>
+File: ../plots/5_1/stanbeta_t4_without_credible.pdf Graphic file (type pdf)
+<use ../plots/5_1/stanbeta_t4_without_credible.pdf>
+Package pdftex.def Info: ../plots/5_1/stanbeta_t4_without_credible.pdf used on 
+input line 118.
+(pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
+
+<../plots/5_1/stanbeta_t6_with_credible.pdf, id=334, 497.86pt x 382.42876pt>
+File: ../plots/5_1/stanbeta_t6_with_credible.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/stanbeta_t6_with_credible.pdf>
+Package pdftex.def Info: ../plots/5_1/stanbeta_t6_with_credible.pdf used on inp
+ut line 121.
+(pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
+
+<../plots/5_1/stanbeta_t6_cat.pdf, id=335, 497.86pt x 382.42876pt>
+File: ../plots/5_1/stanbeta_t6_cat.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/stanbeta_t6_cat.pdf>
+Package pdftex.def Info: ../plots/5_1/stanbeta_t6_cat.pdf used on input line 12
+4.
+(pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
+
+Overfull \hbox (5.08777pt too wide) in paragraph at lines 133--134
+\T1/cmr/m/n/12 pro-por-tions fol-low a lo-gis-tic nor-mal dis-tri-bu-tion, such
+ that $\OML/cmm/b/it/12 ^^R[] \OMS/cmsy/m/n/12 ^^X [][]\OT1/cmr/m/n/12 (\OT1/cm
+r/bx/n/12 ^^@[]\OML/cmm/b/it/12 x[]\OML/cmm/m/it/12 ; \OT1/cmr/bx/n/12 ^^F\OT1/
+cmr/m/n/12 )$\T1/cmr/m/n/12 .
+ []
+
+[31 <../plots/5_1/stanbeta_t4_without_credible.pdf> <../plots/5_1/stanbeta_t6_w
+ith_credible.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/stanbeta_t6_wit
+h_credible.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
+> <../plots/5_1/stanbeta_t6_cat.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/stanbeta_t6_cat
+.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+<../plots/5_1/direct_t6_without_credible.pdf, id=380, 497.86pt x 382.42876pt>
+File: ../plots/5_1/direct_t6_without_credible.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/direct_t6_without_credible.pdf>
+Package pdftex.def Info: ../plots/5_1/direct_t6_without_credible.pdf used on in
+put line 150.
+(pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
+
+<../plots/5_1/direct_t6_with_credible.pdf, id=381, 497.86pt x 382.42876pt>
+File: ../plots/5_1/direct_t6_with_credible.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/direct_t6_with_credible.pdf>
+Package pdftex.def Info: ../plots/5_1/direct_t6_with_credible.pdf used on input
+ line 153.
+(pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
+
+<../plots/5_1/direct_t6_cat.pdf, id=382, 543.02875pt x 331.2375pt>
+File: ../plots/5_1/direct_t6_cat.pdf Graphic file (type pdf)
+
+<use ../plots/5_1/direct_t6_cat.pdf>
+Package pdftex.def Info: ../plots/5_1/direct_t6_cat.pdf used on input line 156.
+
+(pdftex.def)             Requested size: 141.61081pt x 86.37747pt.
+) (./kapitel/5_1_covariate_analysis.tex
+[32 <../plots/5_1/direct_t6_without_credible.pdf> <../plots/5_1/direct_t6_with_
+credible.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_with_
+credible.pdf): PDF inclusion: multiple pdfs with page group included in a singl
+e page
+> <../plots/5_1/direct_t6_cat.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_cat.p
+df): PDF inclusion: multiple pdfs with page group included in a single page
+>] [33] [34]
 Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
@@ -1561,80 +1739,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
-<../plots/5_1/estEffect_topic1.pdf, id=219, 497.86pt x 382.42876pt>
 File: ../plots/5_1/estEffect_topic1.pdf Graphic file (type pdf)
-
 <use ../plots/5_1/estEffect_topic1.pdf>
 Package pdftex.def Info: ../plots/5_1/estEffect_topic1.pdf used on input line 5
 5.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
-
-<../plots/5_1/estEffect_topic6.pdf, id=220, 497.86pt x 382.42876pt>
 File: ../plots/5_1/estEffect_topic6.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/estEffect_topic6.pdf>
 Package pdftex.def Info: ../plots/5_1/estEffect_topic6.pdf used on input line 5
 8.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
- [28 <../plots/5_1/estEffect_topic1.pdf> <../plots/5_1/estEffect_topic6.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/estEffect_topic
-6.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
+ [35]
 Underfull \hbox (badness 10000) in paragraph at lines 72--75
 
  []
 
-<../plots/5_1/quasi_t4_cont.pdf, id=253, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cont.pdf Graphic file (type pdf)
-
 <use ../plots/5_1/quasi_t4_cont.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t4_cont.pdf used on input line 85.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
-
-<../plots/5_1/quasi_t6_cont.pdf, id=254, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cont.pdf Graphic file (type pdf)
-
-<use ../plots/5_1/quasi_t6_cont.pdf>
+ <use ../plots/5_1/quasi_t6_cont.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t6_cont.pdf used on input line 88.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/5_1/quasi_t4_cat.pdf, id=255, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t4_cat.pdf Graphic file (type pdf)
-
 <use ../plots/5_1/quasi_t4_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t4_cat.pdf used on input line 98.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
-
-<../plots/5_1/quasi_t6_cat.pdf, id=256, 497.86pt x 382.42876pt>
 File: ../plots/5_1/quasi_t6_cat.pdf Graphic file (type pdf)
-
-<use ../plots/5_1/quasi_t6_cat.pdf>
+ <use ../plots/5_1/quasi_t6_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t6_cat.pdf used on input line 101.
 (pdftex.def)             Requested size: 231.2979pt x 177.66997pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[29] [30 <../plots/5_1/quasi_t4_cont.pdf> <../plots/5_1/quasi_t6_cont.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cont.p
-df): PDF inclusion: multiple pdfs with page group included in a single page
-> <../plots/5_1/quasi_t4_cat.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t4_cat.pd
-f): PDF inclusion: multiple pdfs with page group included in a single page
-> <../plots/5_1/quasi_t6_cat.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/quasi_t6_cat.pd
-f): PDF inclusion: multiple pdfs with page group included in a single page
->] <../plots/5_1/quasi_t146_cat.pdf, id=317, 578.16pt x 443.6575pt>
+[36] [37]
 File: ../plots/5_1/quasi_t146_cat.pdf Graphic file (type pdf)
-
-<use ../plots/5_1/quasi_t146_cat.pdf>
+ <use ../plots/5_1/quasi_t146_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/quasi_t146_cat.pdf used on input line 120
 .
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
@@ -1646,50 +1793,34 @@ r/bx/n/12 ^^@[]\OML/cmm/b/it/12 x[]\OML/cmm/m/it/12 ; \OT1/cmr/bx/n/12 ^^F\OT1/
 cmr/m/n/12 )$\T1/cmr/m/n/12 .
  []
 
-[31 <../plots/5_1/quasi_t146_cat.pdf>]
-<../plots/5_1/direct_t6_without_credible.pdf, id=335, 497.86pt x 382.42876pt>
+[38]
 File: ../plots/5_1/direct_t6_without_credible.pdf Graphic file (type pdf)
-
-<use ../plots/5_1/direct_t6_without_credible.pdf>
+ <use ../plots/5_1/direct_t6_without_credible.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_without_credible.pdf used on in
 put line 148.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
-
-<../plots/5_1/direct_t6_with_credible.pdf, id=336, 497.86pt x 382.42876pt>
 File: ../plots/5_1/direct_t6_with_credible.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/direct_t6_with_credible.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_with_credible.pdf used on input
  line 151.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
-
-<../plots/5_1/direct_t6_cat.pdf, id=337, 543.02875pt x 331.2375pt>
 File: ../plots/5_1/direct_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/5_1/direct_t6_cat.pdf>
 Package pdftex.def Info: ../plots/5_1/direct_t6_cat.pdf used on input line 154.
 
 (pdftex.def)             Requested size: 141.61081pt x 86.37747pt.
- [32 <../plots/5_1/direct_t6_without_credible.pdf> <../plots/5_1/direct_t6_with
-_credible.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_with_
-credible.pdf): PDF inclusion: multiple pdfs with page group included in a singl
-e page
-> <../plots/5_1/direct_t6_cat.pdf
-
-pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/5_1/direct_t6_cat.p
-df): PDF inclusion: multiple pdfs with page group included in a single page
->]) (./kapitel/5_2_topical_content.tex [33]
-<../plots/5_2/t8_vocab_parties.pdf, id=386, 578.16pt x 443.6575pt>
+ [39]) (./kapitel/5_2_topical_content.tex
+[40] <../plots/5_2/t8_vocab_parties.pdf, id=453, 578.16pt x 443.6575pt>
 File: ../plots/5_2/t8_vocab_parties.pdf Graphic file (type pdf)
 
 <use ../plots/5_2/t8_vocab_parties.pdf>
 Package pdftex.def Info: ../plots/5_2/t8_vocab_parties.pdf used on input line 4
 2.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [34]) (./kapitel/6_1_ctm.tex [35 <../plots/5_2/t8_vocab_parties.pdf>] [36]
-<../plots/6_1/quasi_t4_cont_ctm.pdf, id=405, 497.86pt x 382.42876pt>
+ [41]) (./kapitel/6_1_ctm.tex [42 <../plots/5_2/t8_vocab_parties.pdf>] [43]
+<../plots/6_1/quasi_t4_cont_ctm.pdf, id=472, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t4_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t4_cont_ctm.pdf>
@@ -1697,7 +1828,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t4_cont_ctm.pdf used on input line
 18.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t6_cont_ctm.pdf, id=406, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t6_cont_ctm.pdf, id=473, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t6_cont_ctm.pdf>
@@ -1705,7 +1836,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t6_cont_ctm.pdf used on input line
 21.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t4_cat_ctm.pdf, id=407, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t4_cat_ctm.pdf, id=474, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t4_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t4_cat_ctm.pdf>
@@ -1713,7 +1844,7 @@ Package pdftex.def Info: ../plots/6_1/quasi_t4_cat_ctm.pdf used on input line 3
 2.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/6_1/quasi_t6_cat_ctm.pdf, id=408, 497.86pt x 382.42876pt>
+<../plots/6_1/quasi_t6_cat_ctm.pdf, id=475, 497.86pt x 382.42876pt>
 File: ../plots/6_1/quasi_t6_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t6_cat_ctm.pdf>
@@ -1724,19 +1855,19 @@ Package pdftex.def Info: ../plots/6_1/quasi_t6_cat_ctm.pdf used on input line 3
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/6_1/quasi_t146_cat_ctm.pdf, id=409, 578.16pt x 443.6575pt>
+<../plots/6_1/quasi_t146_cat_ctm.pdf, id=476, 578.16pt x 443.6575pt>
 File: ../plots/6_1/quasi_t146_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/6_1/quasi_t146_cat_ctm.pdf>
 Package pdftex.def Info: ../plots/6_1/quasi_t146_cat_ctm.pdf used on input line
  47.
 (pdftex.def)             Requested size: 289.07928pt x 221.8282pt.
- [37 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../plots/6_1/quasi_t6_cont_ctm.pdf
+ [44 <../plots/6_1/quasi_t4_cont_ctm.pdf> <../plots/6_1/quasi_t6_cont_ctm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t6_cont_c
 tm.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
->]) (./kapitel/6_2_train_test.tex [38 <../plots/6_1/quasi_t4_cat_ctm.pdf> <../p
+>]) (./kapitel/6_2_train_test.tex [45 <../plots/6_1/quasi_t4_cat_ctm.pdf> <../p
 lots/6_1/quasi_t6_cat_ctm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t6_cat_ct
@@ -1746,8 +1877,8 @@ m.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_1/quasi_t146_cat_
 ctm.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
 e
->] [39] [40] [41] [42]
-<../plots/6_2/climate_summit_props.pdf, id=499, 578.16pt x 433.62pt>
+>] [46] [47] [48] [49]
+<../plots/6_2/climate_summit_props.pdf, id=567, 578.16pt x 433.62pt>
 File: ../plots/6_2/climate_summit_props.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/climate_summit_props.pdf>
@@ -1755,7 +1886,7 @@ Package pdftex.def Info: ../plots/6_2/climate_summit_props.pdf used on input li
 ne 57.
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 
-<../plots/6_2/emancipation_props.pdf, id=500, 578.16pt x 433.62pt>
+<../plots/6_2/emancipation_props.pdf, id=568, 578.16pt x 433.62pt>
 File: ../plots/6_2/emancipation_props.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/emancipation_props.pdf>
@@ -1763,7 +1894,7 @@ Package pdftex.def Info: ../plots/6_2/emancipation_props.pdf used on input line
  60.
 (pdftex.def)             Requested size: 231.2979pt x 173.47139pt.
 
-<../plots/6_2/climate_summit_ate.pdf, id=501, 512.91624pt x 359.3425pt>
+<../plots/6_2/climate_summit_ate.pdf, id=569, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/climate_summit_ate.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/climate_summit_ate.pdf>
@@ -1771,14 +1902,14 @@ Package pdftex.def Info: ../plots/6_2/climate_summit_ate.pdf used on input line
  72.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
 
-<../plots/6_2/emancipation_ate.pdf, id=502, 512.91624pt x 359.3425pt>
+<../plots/6_2/emancipation_ate.pdf, id=570, 512.91624pt x 359.3425pt>
 File: ../plots/6_2/emancipation_ate.pdf Graphic file (type pdf)
 
 <use ../plots/6_2/emancipation_ate.pdf>
 Package pdftex.def Info: ../plots/6_2/emancipation_ate.pdf used on input line 7
 5.
 (pdftex.def)             Requested size: 231.2979pt x 162.04257pt.
-) (./kapitel/7_conclusion.tex [43 <../plots/6_2/climate_summit_props.pdf> <../p
+) (./kapitel/7_conclusion.tex [50 <../plots/6_2/climate_summit_props.pdf> <../p
 lots/6_2/emancipation_props.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/emancipation_pr
@@ -1793,12 +1924,12 @@ e
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/6_2/emancipation_at
 e.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] [44]) [45] (./kapitel/appendix.tex [46] [47]
+>] [51]) [52] (./kapitel/appendix.tex [53] [54]
 Underfull \vbox (badness 10000) detected at line 76
  []
 
-[48] [49]
-<../plots/appendix/5_1/beta_t4_cont.pdf, id=579, 497.86pt x 382.42876pt>
+[55] [56]
+<../plots/appendix/5_1/beta_t4_cont.pdf, id=646, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t4_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t4_cont.pdf>
@@ -1806,7 +1937,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t4_cont.pdf used on input l
 ine 153.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/5_1/beta_t6_cont.pdf, id=580, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/beta_t6_cont.pdf, id=647, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t6_cont.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t6_cont.pdf>
@@ -1814,7 +1945,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t6_cont.pdf used on input l
 ine 156.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/5_1/beta_t4_cat.pdf, id=581, 443.6575pt x 283.0575pt>
+<../plots/appendix/5_1/beta_t4_cat.pdf, id=648, 443.6575pt x 283.0575pt>
 File: ../plots/appendix/5_1/beta_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t4_cat.pdf>
@@ -1822,7 +1953,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/beta_t4_cat.pdf used on input li
 ne 165.
 (pdftex.def)             Requested size: 188.8096pt x 120.4598pt.
 
-<../plots/appendix/5_1/beta_t6_cat.pdf, id=582, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/beta_t6_cat.pdf, id=649, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/beta_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t6_cat.pdf>
@@ -1833,7 +1964,7 @@ ne 168.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/5_1/beta_t146_cat.pdf, id=583, 588.1975pt x 433.62pt>
+<../plots/appendix/5_1/beta_t146_cat.pdf, id=650, 588.1975pt x 433.62pt>
 File: ../plots/appendix/5_1/beta_t146_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/beta_t146_cat.pdf>
@@ -1845,7 +1976,7 @@ line 177.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<../plots/appendix/5_1/direct_t4_without_credible.pdf, id=584, 497.86pt x 382.4
+<../plots/appendix/5_1/direct_t4_without_credible.pdf, id=651, 497.86pt x 382.4
 2876pt>
 File: ../plots/appendix/5_1/direct_t4_without_credible.pdf Graphic file (type p
 df)
@@ -1854,7 +1985,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/direct_t4_without_credible.pdf u
 sed on input line 185.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/5_1/direct_t4_with_credible.pdf, id=585, 497.86pt x 382.4287
+<../plots/appendix/5_1/direct_t4_with_credible.pdf, id=652, 497.86pt x 382.4287
 6pt>
 File: ../plots/appendix/5_1/direct_t4_with_credible.pdf Graphic file (type pdf)
 
@@ -1863,7 +1994,7 @@ Package pdftex.def Info: ../plots/appendix/5_1/direct_t4_with_credible.pdf used
  on input line 188.
 (pdftex.def)             Requested size: 141.61081pt x 108.7774pt.
 
-<../plots/appendix/5_1/direct_t4_cat.pdf, id=586, 497.86pt x 382.42876pt>
+<../plots/appendix/5_1/direct_t4_cat.pdf, id=653, 497.86pt x 382.42876pt>
 File: ../plots/appendix/5_1/direct_t4_cat.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/5_1/direct_t4_cat.pdf>
@@ -1874,7 +2005,7 @@ line 191.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t4_cont_ctm.pdf, id=587, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t4_cont_ctm.pdf, id=654, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t4_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t4_cont_ctm.pdf>
@@ -1882,7 +2013,7 @@ Package pdftex.def Info: ../plots/appendix/6_1/beta_t4_cont_ctm.pdf used on inp
 ut line 203.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/6_1/beta_t6_cont_ctm.pdf, id=588, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t6_cont_ctm.pdf, id=655, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t6_cont_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t6_cont_ctm.pdf>
@@ -1893,7 +2024,7 @@ ut line 206.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t4_cat_ctm.pdf, id=589, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t4_cat_ctm.pdf, id=656, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t4_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t4_cat_ctm.pdf>
@@ -1901,7 +2032,7 @@ Package pdftex.def Info: ../plots/appendix/6_1/beta_t4_cat_ctm.pdf used on inpu
 t line 215.
 (pdftex.def)             Requested size: 188.8096pt x 145.03265pt.
 
-<../plots/appendix/6_1/beta_t6_cat_ctm.pdf, id=590, 497.86pt x 382.42876pt>
+<../plots/appendix/6_1/beta_t6_cat_ctm.pdf, id=657, 497.86pt x 382.42876pt>
 File: ../plots/appendix/6_1/beta_t6_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t6_cat_ctm.pdf>
@@ -1912,7 +2043,7 @@ t line 218.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../plots/appendix/6_1/beta_t146_cat_ctm.pdf, id=591, 588.1975pt x 433.62pt>
+<../plots/appendix/6_1/beta_t146_cat_ctm.pdf, id=658, 588.1975pt x 433.62pt>
 File: ../plots/appendix/6_1/beta_t146_cat_ctm.pdf Graphic file (type pdf)
 
 <use ../plots/appendix/6_1/beta_t146_cat_ctm.pdf>
@@ -1923,13 +2054,13 @@ put line 227.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [50 <../plots/appendix/5_1/beta_t4_cont.pdf> <../plots/appendix/5_1/beta_t6_c
+) [57 <../plots/appendix/5_1/beta_t4_cont.pdf> <../plots/appendix/5_1/beta_t6_c
 ont.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/beta_t
 6_cont.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
->] [51 <../plots/appendix/5_1/beta_t4_cat.pdf> <../plots/appendix/5_1/beta_t6_c
+>] [58 <../plots/appendix/5_1/beta_t4_cat.pdf> <../plots/appendix/5_1/beta_t6_c
 at.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/beta_t
@@ -1955,7 +2086,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/5_1/direct
 _t4_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
->] [52 <../plots/appendix/6_1/beta_t4_cont_ctm.pdf> <../plots/appendix/6_1/beta
+>] [59 <../plots/appendix/6_1/beta_t4_cont_ctm.pdf> <../plots/appendix/6_1/beta
 _t6_cont_ctm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/appendix/6_1/beta_t
@@ -1981,22 +2112,22 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 27.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [53
+) [60
 
-] [54])
-[55] (./consulting_master.aux)
+] [61])
+[62] (./consulting_master.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 14411 strings out of 492995
- 257059 string characters out of 6132704
- 303888 words of memory out of 5000000
- 17693 multiletter control sequences out of 15000+600000
- 36092 words of font info for 92 fonts, out of 8000000 for 9000
+ 14429 strings out of 492995
+ 257711 string characters out of 6132704
+ 303900 words of memory out of 5000000
+ 17707 multiletter control sequences out of 15000+600000
+ 36793 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,46p,10410b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,15n,46p,10410b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
@@ -2022,30 +2153,31 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texliv
 e/2017/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/texlive/2017/texmf-dis
-t/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texlive/2017/texmf-dist/
-fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2017/texmf-dist/fo
-nts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2017/texmf-dist/font
-s/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2017/texmf-dist/fonts/
-type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
-pe1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
-1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
-public/cm-super/sfrm1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
-blic/cm-super/sfti1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
-/cm-super/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/c
-m-super/sfti1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-
-super/sftt1200.pfb>
-Output written on consulting_master.pdf (56 pages, 2095659 bytes).
+2017/texmf-dist/fonts/type1/public/cm-super/sfbi1440.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2017
+/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2017/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2017/texmf-d
+ist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2017/texmf-dis
+t/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/texlive/2017/texmf-dist/
+fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texlive/2017/texmf-dist/fo
+nts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2017/texmf-dist/font
+s/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2017/texmf-dist/fonts/
+type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
+pe1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/cm-super/sfrm1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/cm-super/sfrm1440.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/cm-super/sfti1000.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
+/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/c
+m-super/sfti1200.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-
+super/sfti1728.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-su
+per/sftt1200.pfb>
+Output written on consulting_master.pdf (63 pages, 2235497 bytes).
 PDF statistics:
- 925 PDF objects out of 1000 (max. 8388607)
- 621 compressed objects within 7 object streams
+ 995 PDF objects out of 1000 (max. 8388607)
+ 668 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 

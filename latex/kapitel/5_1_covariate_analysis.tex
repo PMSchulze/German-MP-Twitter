@@ -1,7 +1,7 @@
 \section{Metadata Analysis - Topical Prevalence and Content}
 \label{Metadata Analysis - Topical Prevalence and Content}
 
-\subsection{Covariate-level Topic Analysis}
+\subsection{Topical Prevalence: Method of Composition and Direct Assessment}
 \label{Covariate-level Topic Analysis}
 
 We now proceed to analyze the relationship between metadata information (i.e., document-level covariates) and topic proportions. We specify topical prevalence as 
@@ -22,31 +22,38 @@ There exist different approaches to study the relationship between topic proport
 
 Alternatively, the estimated topic proportions can be used as dependent variable of a new regression on prevalence covariates. However, in contrast to a standard regression setting, in this case the dependent variable has been estimated itself before the regression is performed. Instead of simply using the maximum-a-posteriori (MAP) estimates of $\boldsymbol{\theta}_d$ as the dependent variable, having access to the posterior distribution of the topic proportions, we can account for the uncertainty of the dependent variable. This can be achieved by employing a sampling procedure known as the method of composition in the social sciences  (\citealp{tanner2012tools}, p.\ 52). This procedure is implemented in the \textit{stm} package through its function \textit{estimateEffect}.
 
-In the following, we first introduce the method of composition. We discuss its implementation in the \textit{stm} package and provide alternative regression approaches based on the method of composition. Subsequently, we evaluate the relationship between prevalence covariates and topic proportions by directly assessing the estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$, as outlined above, and compare the results of the two approaches.
-
-\subsubsection{Method of Composition}
-\label{Method of Composition}
-
-Let $\boldsymbol{\theta}_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. As stated, we want to perform a regression of these topic proportions $\boldsymbol{\theta}_{(k)}$ on a subset $\tilde{\boldsymbol{X}} \in \mathbb{R}^{D \times \tilde{P}}$ of prevalence covariates $\boldsymbol{X}$. The true topic proportions are unknown, but the STM produces an estimate of the approximate posterior of $\boldsymbol{\theta}_{(k)}$. A na{\"\i}ve approach would be to regress the estimated mode of the approximate posterior distribution on $\tilde{\boldsymbol{X}}$. However, this approach neglects much of the information contained in the distribution. 
-
-Instead, repeatedly sampling $\boldsymbol{\theta}_{(k)}^*$ from the approximate posterior distribution of $\boldsymbol{\theta}_{(k)}$, performing a regression for each sampled $\boldsymbol{\theta}_{(k)}^*$ on $\tilde{\boldsymbol{X}}$, and then sampling from the estimated distribution of coefficients, provides an i.i.d.\ sample from the marginal posterior distribution of regression coefficients. 
-
-Sampling $\boldsymbol{\theta}_{(k)}^*$ is achieved by first sampling the unnormalized topic proportions $\boldsymbol{\eta}^*$ from the approximate posterior $q(\boldsymbol{\eta})$, applying the softmax $\boldsymbol{\theta}^* = \text{softmax}(\boldsymbol{\eta}^*)$ (element-wise, i.e., for each of the K-dimensional vectors of topic proportions), and lastly selecting the $k$-th column of $\boldsymbol{\theta}^*$. Precisely, $q(\boldsymbol{\eta}) = \prod_d q(\boldsymbol{\eta}_d)$ is a normal distribution, which emerges from the Laplace approximation within variational inference; for details see \cite{roberts2016model}, pp.\ 992-993. For clarity, we denote the approximate posterior of topic proportions as $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$, in order to emphasize that the parameters of this distribution are learned from the observed data, i.e.\ prevalence covariates $\boldsymbol{X}$ and words $\boldsymbol{W}$ (note that we have not included any content variables $\boldsymbol{Y}$). Furthermore, let $\boldsymbol{\xi}$ denote the regression coefficients from a regression of $\boldsymbol{\theta}_{(k)}$ on $\tilde{\boldsymbol{X}}$, and let $q(\boldsymbol{\xi} | \tilde{\boldsymbol{X}}, \boldsymbol{\theta}_{(k)})$ be the approximate posterior distribution of these coefficients, i.e.\ given design matrix $\tilde{\boldsymbol{X}}$ and response $\boldsymbol{\theta}_{(k)}$.
-
-The method of composition can now be described by repeating the following process $m$ times:
-\begin{enumerate}
-\item Draw $\boldsymbol{\theta}_{(k)}^* \sim q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$.
-\item Draw $\boldsymbol{\xi}^* \sim q(\boldsymbol{\xi} | \tilde{\boldsymbol{X}}, \boldsymbol{\theta}_{(k)})$.
-\end{enumerate}
-It then holds that $\boldsymbol{\xi}_1^*, \dots, \boldsymbol{\xi}_m^*$ is an i.i.d.\ sample from the marginal posterior
-\begin{align*}
-q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W}) := \int_{\boldsymbol{\theta}_{(k)}} q(\boldsymbol{\xi} | \tilde{\boldsymbol{X}}, \boldsymbol{\theta}_{(k)}) q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W}) \text{d} \boldsymbol{\theta}_{(k)} = \int_{\boldsymbol{\theta}_{(k)}} q(\boldsymbol{\xi}, \boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W}) \text{d} \boldsymbol{\theta}_{(k)}, 
-\end{align*}
-where $q(\boldsymbol{\xi}, \boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W}) := q(\boldsymbol{\xi}| \tilde{\boldsymbol{X}}, \boldsymbol{\theta}_{(k)}) q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$. Thus, by integrating over $\boldsymbol{\theta}_{(k)}$, this approach allows incorporating information contained in the posterior distribution of $\boldsymbol{\theta}_{(k)}$ when determining $\boldsymbol{\xi}$.\\
+In the following, we first introduce the method of composition. We discuss its implementation in the \textit{stm} package and provide alternative regression approaches based on the method of composition. Subsequently, we evaluate the relationship between prevalence covariates and topic proportions by directly assessing the estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$, as outlined above, and compare the results of the two approaches.\\
 \\
-\textbf{Implementation in the \textit{stm} package} \vspace{10px}
+\noindent \textbf{Method of Composition} \vspace{10px}
 
-\noindent The R package \textit{stm} implements a simple OLS regression through its \textit{estimateEffect} function. However, this approach ignores that the sampled topic proportions are restricted to $(0,1)$ by construction. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$. Moreover, credible intervals are non-informative, due to violated model assumptions. \\
+Let $\boldsymbol{\theta}_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$ denote the proportions of the $k$-th topic for all $D$ documents. As stated, we want to perform a regression of these topic proportions $\boldsymbol{\theta}_{(k)}$ on prevalence covariates $\boldsymbol{X} \in \mathbb{R}^{D \times P}$. The true topic proportions are unknown, but the STM produces an estimate of the approximate (variational) posterior of $\boldsymbol{\theta}_{(k)}$. A "na{\"\i}ve" approach would be to regress the estimated mode of the approximate posterior distribution on $\boldsymbol{X}$. However, this approach neglects much of the information contained in the posterior distribution. 
+
+Instead, \cite{roberts2016model} employ a Monte Carlo sampling technique established by \cite{treier2008democracy}, which is known as the "method of composition" (\citealp{tanner2012tools}, p.\ 52) in the social sciences. This method is implemented in the R package \textit{stm} via the function \textit{estimateEffect}. The idea is to repeatedly sample $\boldsymbol{\theta}_{(k)}^*$ from their approximate posterior distribution and subsequently perform a regression for each sampled $\boldsymbol{\theta}_{(k)}^*$ on $\boldsymbol{X}$ in order to take into account the uncertainty in $\boldsymbol{\theta}_{(k)}^*$.
+
+Before we describe this method, we want to demonstrate how sampling $\boldsymbol{\theta}_{(k)}^*$ can be achieved. First, for all documents we sample the unnormalized topic proportions $\boldsymbol{\eta}^* := [\boldsymbol{\eta}^*_1 | \dots | \boldsymbol{\eta}_D^*]$ from the approximate posterior $q(\boldsymbol{\eta}) = \prod_d q(\boldsymbol{\eta}_d)$, to subsequently apply the softmax $\boldsymbol{\theta}^* := [\boldsymbol{\theta}^*_1 | \dots | \boldsymbol{\theta}^*_D] = \text{softmax}(\boldsymbol{\eta}^*)$ (element-wise, i.e., for each of the K-dimensional columns of topic proportions) and select the $k$-th column of $\boldsymbol{\theta}^*$ (which we denote as $\boldsymbol{\theta}_{(k)}^*$). To be precise, for all $d \in {1, \dots, D}$, $q(\boldsymbol{\eta}_d)$ is a normal distribution, which emerges from the Laplace approximation within variational inference; for details see \cite{roberts2016model}, pp.\ 992-993. We denote the approximate posterior of topic proportions as $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$, in order to emphasize that the parameters of the posterior distribution are learned from the observed data, i.e.\ prevalence covariates $\boldsymbol{X}$ and words $\boldsymbol{W}$ (note that we have not included any content variables $\boldsymbol{Y}$).
+
+The method of composition applied in the STM, inspired by \cite{treier2008democracy}, can now be described by the following iteration, which is repeated $m$ times:
+\begin{enumerate}
+\item Sample $\boldsymbol{\theta}^*_{(k)}$ from the variational posterior $q(\boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymbol{W})$.
+\item Run a regression model with response $\boldsymbol{\theta}^*_{(k)}$ and covariates $\boldsymbol{X}$ to obtain an estimate $\hat{\boldsymbol{\xi}}^*$ of regression coefficients $\boldsymbol{\xi}^*$ and covariance matrix of $\hat{\boldsymbol{\xi}}^*$, $\hat{\boldsymbol{V}}^*_{\xi}$.
+\item Sample $\tilde{\boldsymbol{\xi}}^*$ from $F(\hat{\boldsymbol{\xi}}^*, \hat{\boldsymbol{V}}^*_{\xi})$, where $F$ denotes the (asymptotic) distribution of $\hat{\boldsymbol{\xi}}^*$.
+\end{enumerate}
+
+In the case of \cite{treier2008democracy}, the regression model employed is a Cox regression, where estimators for the regression coefficients are asymptotically normally distributed (i.e., $F$ is a multivariate normal distribution).
+
+The idea of the method of composition is that the samples $\tilde{\boldsymbol{\xi}}^*$ take into account the uncertainty in $\boldsymbol{\theta}_{(k)}$. Additionally, the third step is performed in order to take into account the uncertainty regarding the regression estimation. Visualization of topic-metadata relationship then occurs as follows: For a (new) observation $\boldsymbol{x}_{\text{pred}}$, one can plot $\boldsymbol{x}_{\text{pred}}$ vs. the sampled predicted responses with $\boldsymbol{x}_{\text{pred}}^T \tilde{\boldsymbol{\xi}}_i^*$ as linear predictor, for all $i \in \{1,\dots,m\}$. The empirical mean and other quantities of interest, such as credible intervals, are then calculated using the $m$ sampled response values.
+
+While we agree with the approach of performing Monte Carlo sampling of topic proportions in order to integrate over these latent variables, we have several concerns, especially regarding the specific application of the method of composition in the STM (and the accompanying R package).
+\begin{enumerate}
+\item \textbf{Problem 1}: In the R package \textit{stm}, the regression model employed in step 2 is an ordinary least squares (OLS) regression; however OLS is not appropriate to model (sampled) proportions, which are constrained to the interval (0,1).
+\item \textbf{Problem 2}: A general problem with the method of composition is the mixing of Bayesian and frequentist methods. For instance, \cite{treier2008democracy} state that the sampled regression coefficients can be considered a sample from the posterior of regression coefficients. However, the way the method of composition is presented, we do \textit{not} perform a Bayesian regression and thus regression coefficients do not follow any distribution (only the \textit{estimators} of regression coefficients do); instead, regression coefficients are assumed to be fixed (unknown) parameters from a frequentist perspective. From a Bayesian perspective, the sampled $\tilde{\boldsymbol{\xi}}^*$ can only be considered a sample from the posterior of $\boldsymbol{\xi}$ in some regression models, however, with very questionable (uniform) prior assumptions. After having obtained the samples $\tilde{\boldsymbol{\xi}}^*$, inference of parameters is conducted in a classical Bayesian manner, e.g., calculating the empirical mean via averaging.
+\item \textbf{Problem 3}: Separate modeling of topic proportions neglects topic interdependence caused by the (multivariate) logistic normal distribution assumed within the generative process of the STM.
+\end{enumerate}
+In the following we further discuss these problems and propose alternative approaches.
+
+\subsubsection{Problem 1: Implementation via OLS in the \textit{stm} package}
+
+\noindent As stated, the R package \textit{stm} implements an OLS regression through its \textit{estimateEffect} function. This approach ignores that the sampled topic proportions are restricted to $(0,1)$. As expected, using this framework we frequently observe predicted proportions outside of $(0,1)$:\\
 
 \begin{figure}[h!]
   \centering
@@ -56,27 +63,23 @@ where $q(\boldsymbol{\xi}, \boldsymbol{\theta}_{(k)} | \boldsymbol{X}, \boldsymb
   \end{subfigure}
   \begin{subfigure}[b]{0.4\linewidth}
     \includegraphics[width=\linewidth]{../plots/5_1/estEffect_topic6.pdf}
-  \end{subfigure}
+  \end{subfigure}\\
   \caption{Estimated prevalence of topics 1 and 6 over time, generated using \textit{estimateEffect} from the \textit{stm} package}
   \label{fig:estEffect_topic16}
 \end{figure}
-
 \noindent \textbf{Alternative implementation} \vspace{10px}
 
-\noindent We can attempt to improve the approach employed within the \textit{stm} package by replacing the OLS regression with a regression model that assumes a dependent variable in the interval $(0,1)$. However, note that distributional assumptions about topic proportions $\boldsymbol{\theta}_{(k)}$ will still be violated, unless one specifies the $K$-dimensional vector of topic proportions as the response variable of a multivariate regression. Otherwise inter-topic correlations are neglected - regardless of the specific univariate regression model employed. This is due to the fact that the distribution of a subvector - and thus particularly of a single component - of $\boldsymbol{\theta}_d$ is not of a simple form when $\boldsymbol{\theta}_d$ follows a logistic normal distribution, see e.g.\ \cite{atchison1980logistic}.
+\noindent We can attempt to improve the approach employed within the \textit{stm} package by replacing the OLS regression with a regression model that assumes a dependent variable in the interval $(0,1)$. As shown by \cite{atchison1980logistic}, a distribution that can be used to approximate a logistic normal distribution is the Dirichlet distribution. However, note that the Dirichlet distribution assumes less interdependence among components than implied by the logistic normal distribution, as discussed in section \ref{Theoretical Framework}. In case of the Dirichlet distribution the univariate marginal distributions are beta distributions. One possibility is thus to perform a separate beta regression for each topic proportion on $\boldsymbol{X}$. 
 
-As shown by \cite{atchison1980logistic}, a distribution that can be used to approximate a logistic normal distribution is the Dirichlet distribution. However, note that the Dirichlet distribution assumes less interdependence among components than implied by the logistic normal distribution, as discussed in section \ref{Theoretical Framework}. In case of the Dirichlet distribution the univariate marginal distributions are beta distributions. One possibility is thus to perform a separate beta regression for each topic proportion on $\tilde{\boldsymbol{X}}$. 
+As an alternative approximation we can employ a quasibinomial generalized linear model (GLM). The $k$-th topic can be understood as one of two classes, with the remaining topics forming the alternative class. To match the underlying logistic normal distribution more closely, the quasi-likelihood furthermore allows for a flexible variance specification. 
 
-As an alternative approximation we can employ a quasibinomial generalized linear model (GLM). Topic proportions can be rescaled and discretized and topics understood as classes, such that each rescaled topic proportion can be interpreted as the "number of successes" for the respective class. To match the underlying logistic normal distribution more closely, the quasi-likelihood furthermore allows for a flexible variance specification.
-
-Note that $q(\boldsymbol{\xi}| \boldsymbol{\theta}_{(k)}, \tilde{\boldsymbol{X}})$ is asymptotically normal for both the beta regression (\citealp{ferrari2004beta}, p.\ 17) and the quasibinomial GLM (\citealp{fahrmeir2007regression}, p. 285). In both cases, we use a logit-link. \\
+Note that the distribution of regression coefficient estimators is asymptotically normal for both the beta regression (\citealp{ferrari2004beta}, p.\ 17) and the quasibinomial GLM (\citealp{fahrmeir2007regression}, p. 285). In both cases, we use a logit-link. \\
 \\
 \noindent \textbf{Visualization} \vspace{10px}
 
-\noindent We now apply the method of composition, based on either a beta regression or a quasibinomial GLM, in order to visualize covariate effects. Here we only visualize the results obtained by the quasibinomial GLM; the results of the beta regression, which show similar trends, are found in the appendix. Setting the number of simulations to 100, we sample $\boldsymbol{\xi}^*_1, \dots, \boldsymbol{\xi}^*_{100}$ from the  marginal posterior distribution $q(\boldsymbol{\xi} | \boldsymbol{X}, \boldsymbol{W})$. As mentioned, when visualizing the impact of a particular covariate, all other covariates are held at their median (or majority vote, if categorical), in line with the methodology employed in the \textit{stm} package.
-Let $\tilde{\boldsymbol{X}}^*$ denote the subset of $\boldsymbol{X}$ where, apart from the variable of interest, each selected column consists of the median of the respective column of $\boldsymbol{X}$. In order to plot the predicted effects, we then input $\tilde{\boldsymbol{X}^*}\boldsymbol{\xi}^*$ into the sigmoid function, which is the response function corresponding to a regression with logit-link, and calculate the predicted proportions. 
+\noindent We now apply the method of composition, based on either a beta regression or a quasibinomial GLM, in order to visualize covariate effects. Here we only visualize the results obtained by the quasibinomial GLM; the results of the beta regression, which show similar trends, are found in the appendix. Setting the number of simulations to 100, we sample regression coefficients $\tilde{\boldsymbol{\xi}}^*_1, \dots, \tilde{\boldsymbol{\xi}}^*_{100}$. When visualizing the impact of a particular covariate, all other covariates are held at their median (or majority vote, if categorical), in line with the methodology employed in the \textit{stm} package.
 
-We exemplarily illustrate the relationship between covariates and topic proportions for topic 4 ("Social/Housing") and topic 6 ("Climate Protection"). The linear predictor of our regressions takes the same form as in  \eqref{prevalence}, i.e., we do not use a subset $\tilde{\boldsymbol{X}}$ but the full set of prevalence covariates $\boldsymbol{X}$ in order to estimate the effects, although we do not display each covariate included. For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the mean and the shaded area represents 95\% credible intervals.
+We exemplarily illustrate the relationship between covariates and topic proportions for topic 4 ("Social/Housing") and topic 6 ("Climate Protection"). For smooth effects, it is important to recall that their borders are inherently unstable, which is why one should refrain from (over-)interpreting them. For both continuous and categorical variables, black lines indicate the mean and the shaded area represents 95\% credible intervals.
 
 \begin{figure}[h!]
   \centering
@@ -117,30 +120,55 @@ Finally, the graph below shows a summary comparison of topical prevalence across
 \begin{figure}[h!]
   \centering
   \captionsetup{justification=centering,margin=2cm}
-  \includegraphics[scale = 0.5]{../plots/5_1/quasi_t146_cat.pdf}
+  \includegraphics[scale = 0.5]{../plots/5_1/quasi_t146_cat.pdf} \\
   \caption{Topical prevalence by political party for topics 1, 4, and 6.}
   \label{fig:quasi_t146_cat}
 \end{figure}
 
-\subsubsection{Direct assessment using $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$}
+\subsubsection{Problem 2: Mixing of Bayesian and Frequentist Approach}
+
+The regression employed within the method of composition is framed as a \textit{frequentist} regression. However, \cite{treier2008democracy} and the authors of the STM consider $\tilde{\boldsymbol{\xi}}^*$ as samples from the (marginal, i.e., integrated over latent topic proportions) posterior of regression coefficients. In case of an ordinary linear regression this is, however, only true by assuming uniform priors for $\boldsymbol{\xi}$. In general, the mixing of the Bayesian and the frequentist framework within the method of composition is not well-founded theoretically. This is especially the case when employing an \textit{asymptotic} distribution of regression coefficient estimators from the frequentist regression framework, as is the case for the model considered by \cite{treier2008democracy}, the GLM and the beta regression.
+
+Furthermore, note that uncertainty from previous plots is with respect to the prediction of the mean of topic proportions. However, it is not obvious why this is preferable when the objective is to \textit{explore} the topical structure. In particular, the uncertainty with respect to the predicted mean does \textit{not} reflect variation of topic proportions in the data. When exploring the topic-metadata relationship, it might in fact be more instructive to examine the (predicted) variation of topic proportions among individuals at different covariate values.\\
+\\
+\noindent \textbf{Alternative implementation} \vspace{10px}
+
+Due to these concerns, we propose to replace the (frequentist) regression in the second step of each iteration of the method of composition with an explicit Bayesian regression. In particular, in case of a Bayesian regression we can sample proportions from the respective posterior predictive distribution at the end of each step of the method of composition (i.e., conditioning on previously sampled $\boldsymbol{\theta}_{(k)}^*$) at different covariate values $\boldsymbol{x}_{\text{pred}}$. This allows us to display the (predicted) variation of topic proportions at different covariate levels. Furthermore, the calculation of empirical quantities of interest, such as the mean, now occurs within a fully Bayesian framework, allowing for sound interpretations.
+
+Specifically, in order to adequately model topic proportions we employ a Bayesian beta regression with normal priors centered around zero. Depicting the results from the described procedure (that is, sampling from the posterior predictive distribution at the end of each iteration of the method of composition) in Figure \ref{fig:stanbeta}, we find that the empirical mean is mostly in line with results from our previous analyses. However, since "uncertainty" is now with respect to the variation of (predicted) topic proportions in the data - and not with respect to the prediction of their mean - 95\% credible intervals differ starkly compared to the previous section. In general, we observe that in all cases there seem to be some individuals with rather extreme topic proportions. This corresponds well to what we observe when directly examining the estimated topical structure of the STM in a descriptive manner. For instance, in section \ref{Hyperparameter Search and Model Fitting} we saw that the estimated proportion of topic 1 for MP Martin Hess amounted to 98.86\% in June 2018. We observe such high variation likewise for other topics and covariate values. The fully Bayesian approach allows for a precise exploration of the distribution of topic proportions at different covariate values. The mid panel of Figure \ref{fig:stanbeta} tells us - for instance - that, based on the discovered topical structure, we can expect a lower variation of proportions among parliamentarians for topic 6 in districts with a large share of immigrants. If desired, we could also predict other quantiles of interest. In our view, this approach allows for a much more intuitive exploration of the latent space of topic proportions with respect to different metadata dimensions. 
+
+\begin{figure}[h!]
+    \centering
+     \captionsetup{justification=centering,margin=2cm}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{../plots/5_1/stanbeta_t4_without_credible.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{../plots/5_1/stanbeta_t6_with_credible.pdf}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\linewidth}
+    \includegraphics[width=\linewidth]{../plots/5_1/stanbeta_t6_cat.pdf}
+  \end{subfigure}
+  \caption{Smooth effects without credible intervals (left), smooth effects with credible intervals (center), and effect of the political party (right). Samples from the posterior predictive distribution of topic proportions within the method of composition.}
+  \label{fig:stanbeta}
+\end{figure}
+
+\subsubsection{Problem 3: Univariate Modeling of Topic Proportions}
 \label{Direct assessment}
 
-The STM being an extension of the correlated topic model (CTM), it is assumed that the topic proportions follow a logistic normal distribution, such that $\boldsymbol{\theta}_d \sim \text{LogisticNormal}_{K-1}(\boldsymbol{\Gamma}^T\boldsymbol{x}_d^T, \boldsymbol{\Sigma})$. Within the CTM, the Dirichlet distribution of the LDA has been replaced with a logistic normal distribution, in order to allow for a joint dependence among topics. Therefore, as mentioned above, separately modeling topic proportions is a simplification; in particular credible intervals should be treated with caution.
+The STM being an extension of the correlated topic model (CTM), it is assumed that the topic proportions follow a logistic normal distribution, such that $\boldsymbol{\theta}_d \sim \text{LogisticNormal}_{K-1}(\boldsymbol{\Gamma}^T\boldsymbol{x}_d^T, \boldsymbol{\Sigma})$. Within the CTM, the Dirichlet distribution of the LDA has been replaced with a logistic normal distribution, in order to allow for a joint dependence among topics. Therefore, as mentioned above, separately modeling topic proportions is a simplification. 
 
 In order to examine the relation of prevalence covariates and topic proportions considering the joint dependence among latter ones, we can attempt to directly use the output produced by the STM: inference within the STM involves finding the maximum-a-posteriori (MAP) estimate $\hat{\boldsymbol{\Gamma}}$ and the maximum likelihood estimate $\hat{\boldsymbol{\Sigma}}$. 
 
-If we are interested in how a specific prevalence variable is related to topic proportions, similarly to previous analyses we can attempt to predict topic proportions based on a new design matrix $\boldsymbol{X}^*$, where each column, apart from the variable of interest, corresponds to the median of the respective column of $\boldsymbol{X}$. Ideally, in order to directly predict topic proportions, we would first draw a sample $\boldsymbol{\Gamma}^*$ from the posterior distribution of $\boldsymbol{\Gamma}$ and subsequently sample the topic proportions $\boldsymbol{\theta}_d^*$ from a logistic normal with mean parameters $((\boldsymbol{\Gamma}^*)^T (\boldsymbol{x}_d^*)^T, \boldsymbol{\Sigma}^*)$, where $\boldsymbol{\Sigma}^*$ is the covariance matrix updated according to the sampled $\boldsymbol{\Gamma}^*$ (see \citealp{roberts2016model}, p.\ 993, formula 11). The resulting topic proportions would then correspond to a sample of the posterior predictive distribution of topic proportions. Unfortunately, the output of the STM does not allow for the possibility to draw a sample from the posterior distribution of $\boldsymbol{\Gamma}$, but only provides its MAP estimate $\hat{\boldsymbol{\Gamma}}$. 
-
-Nevertheless, in order to get an impression of how the assumed generative process of topic proportions in the STM behaves, we can plug the estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$ into the logistic normal distribution and visualize sampled values from this distribution. Given a new observation $\boldsymbol{x}_d^*$, we can sample $\boldsymbol{\theta}_d^*$ from $\text{LogisticNormal}_{K-1}(\hat{\boldsymbol{\Gamma}}^T(\boldsymbol{x}_d^*)^T, \hat{\boldsymbol{\Sigma}})$ by:
+In order to get an impression of how the assumed generative process of topic proportions in the STM behaves, we can plug the estimates $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$ into the logistic normal distribution and visualize sampled values from this distribution. Given a new observation $\boldsymbol{x}_{\text{pred}}$, we can sample $\boldsymbol{\theta}_d^*$ from $\text{LogisticNormal}_{K-1}(\hat{\boldsymbol{\Gamma}}^T\boldsymbol{x}_{\text{pred}}^T, \hat{\boldsymbol{\Sigma}})$ by:
 
 \begin{enumerate}
-\item Drawing $\boldsymbol{\eta}_d^* \sim \mathcal{N}_{K-1}(\hat{\boldsymbol{\Gamma}}^T(\boldsymbol{x}_d^*)^T, \hat{\boldsymbol{\Sigma}})$ and setting $\boldsymbol{\eta}^*_{d,K} = 0$.
+\item Drawing $\boldsymbol{\eta}_d^* \sim \mathcal{N}_{K-1}(\hat{\boldsymbol{\Gamma}}^T\boldsymbol{x}_{\text{pred}}^T, \hat{\boldsymbol{\Sigma}})$ and setting $\boldsymbol{\eta}^*_{d,K} = 0$.
 \item Mapping to the simplex, i.e., for all $k = 1,\dots,K$: $\theta_{d,k}^* = \frac{\exp(\eta^*_{d,k})}{\exp(\sum_{i=1}^{K} \eta^*_{d,i})}$.
 \item Setting $\boldsymbol{\theta}_d^* := (\theta_{d,1}^*, \dots \theta_{d,K}^*)^T$.
 \end{enumerate}
 
-We repeated the above steps 1000 times for each input value of a selected variable, while fixing other variables at their median, and obtained the empirical mean as well as 95\% credible intervals. Plotting the results, we observe that while the mean shows a similar trend to our previous analyses, the obtained credible intervals are much broader.
-
+We repeated the above steps 1000 times for each input value of a selected variable, while fixing other variables at their median, and obtained the empirical mean as well as 95\% credible intervals. Plotting the results, we observe that the mean shows a similar trend to our previous analyses. 
 \begin{figure}[h!]
     \centering
      \captionsetup{justification=centering,margin=2cm}
@@ -153,11 +181,9 @@ We repeated the above steps 1000 times for each input value of a selected variab
   \begin{subfigure}[b]{0.3\linewidth}
     \includegraphics[width=\linewidth]{../plots/5_1/direct_t6_cat.pdf}
   \end{subfigure}
-  \caption{Smooth effects without credible intervals (left), smooth effects with credible intervals (mid), and effect of the political party (right).}
+  \caption{Smooth effects without credible intervals (left), smooth effects with credible intervals (center), and effect of the political party (right).}
   \label{fig:directassessment}
 \end{figure}
 
-The high uncertainty that is observed can be ascribed to the fact that the unnormalized topic proportions are drawn from a $K-1$-dimensional \textit{multivariate} normal distribution before the softmax is applied. Therefore, a single normalized proportion depends heavily on the sampled unnormalized proportions of the remaining topics. While the variance of a topic-specific unnormalized proportion is independent of the remaining unnormalized proportions and c.p.\ constant for an increasing number of topics, the application of the softmax function induces a large increase in the variance of a topic-specific normalized proportion.
-
-We suspect that the magnitudes of credible intervals in figure \ref{fig:directassessment} provide a more realistic picture than those of a separate modeling of topic proportions, since the usage of the logistic normal distribution of topic proportions means implicitly assuming dependence among topics, as argued above. This ultimately produces a large variance of the univariate marginal distributions of topic proportions, as can be observed. Ideally, one should sample $\boldsymbol{\Gamma}$ from its posterior distribution instead of plugging in its MAP estimate. Such a procedure would, however, presumably produce an even higher uncertainty. Our results suggest that there is a discrepancy between the distribution of topic proportions assumed in the generative process of the STM and the impression we gain of this distribution via a separate modeling of topics using the method of composition.
+As in the fully Bayesian regression approach, the variation is again with respect to the topic proportions in the data (i.e., not with respect to the predicted mean). Compared to the fully Bayesian approach from the previous section, the variation we observe is much lower. This is due to the fact that plugging in $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$ is a "na{\"i}ve" approach. In order to get a more realistic picture, we would have to first sample prevalence parameters from their posterior, and subsequently plug these samples into the logistic normal distribution, yielding samples from the posterior predictive distribution of topic proportions. This would likely result in a variation on the scale of the results obtained using the fully Bayesian regression approach. Unfortunately, sampling of prevalence parameters is not possible using the R package \textit{stm}. 
 
