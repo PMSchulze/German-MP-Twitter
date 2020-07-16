@@ -1,19 +1,19 @@
 [0] Config.pm:354> INFO - This is Biber 2.7
 [0] Config.pm:357> INFO - Logfile is 'presentation_consulting.blg'
-[65] biber-darwin:303> INFO - === Thu Jul 16, 2020, 00:25:21
-[94] Biber.pm:359> INFO - Reading 'presentation_consulting.bcf'
-[216] Biber.pm:835> INFO - Found 10 citekeys in bib section 0
-[238] Biber.pm:3670> INFO - Processing section 0
-[271] Biber.pm:3840> INFO - Looking for bibtex format file 'presentation_consulting.bib' for section 0
-[273] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
-[283] bibtex.pm:1292> INFO - Found BibTeX data source 'presentation_consulting.bib'
-[286] Utils.pm:164> WARN - Duplicate entry key: 'blei2003latent' in file 'presentation_consulting.bib', skipping ...
-[287] Utils.pm:164> WARN - Duplicate entry key: 'roberts2016model' in file 'presentation_consulting.bib', skipping ...
-[364] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[364] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[364] Biber.pm:3499> INFO - Sorting list 'nyt/global/' of type 'entry' with scheme 'nyt' and locale 'en-US'
-[364] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
-[379] bbl.pm:608> INFO - Writing 'presentation_consulting.bbl' with encoding 'ascii'
-[383] Utils.pm:164> WARN - The entry 'quanteda' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
-[388] bbl.pm:712> INFO - Output to presentation_consulting.bbl
-[389] Biber.pm:109> INFO - WARNINGS: 3
+[42] biber-darwin:303> INFO - === Thu Jul 16, 2020, 08:58:40
+[67] Biber.pm:359> INFO - Reading 'presentation_consulting.bcf'
+[173] Biber.pm:835> INFO - Found 11 citekeys in bib section 0
+[190] Biber.pm:3670> INFO - Processing section 0
+[220] Biber.pm:3840> INFO - Looking for bibtex format file 'presentation_consulting.bib' for section 0
+[222] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[230] bibtex.pm:1292> INFO - Found BibTeX data source 'presentation_consulting.bib'
+[231] Utils.pm:164> WARN - Duplicate entry key: 'blei2003latent' in file 'presentation_consulting.bib', skipping ...
+[232] Utils.pm:164> WARN - Duplicate entry key: 'roberts2016model' in file 'presentation_consulting.bib', skipping ...
+[301] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[301] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[302] Biber.pm:3499> INFO - Sorting list 'nyt/global/' of type 'entry' with scheme 'nyt' and locale 'en-US'
+[302] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
+[313] bbl.pm:608> INFO - Writing 'presentation_consulting.bbl' with encoding 'ascii'
+[316] Utils.pm:164> WARN - The entry 'quanteda' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[320] bbl.pm:712> INFO - Output to presentation_consulting.bbl
+[320] Biber.pm:109> INFO - WARNINGS: 3

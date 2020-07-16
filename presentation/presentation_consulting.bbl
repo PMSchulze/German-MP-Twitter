@@ -335,6 +335,39 @@
       \field{title}{Tweepy: Twitter for Python!}
       \field{year}{2020}
     \endentry
+    \entry{treier2008democracy}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=43f6d5ccc2497be48312110f4a67a3ec}{%
+           family={Treier},
+           familyi={T\bibinitperiod},
+           given={Shawn},
+           giveni={S\bibinitperiod}}}%
+        {{uniquename=0,hash=40964af0b06eafe7b25f4e545a94503f}{%
+           family={Jackman},
+           familyi={J\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{dda6c43da3d6faff08e20f6e4d960b9b}
+      \strng{fullhash}{dda6c43da3d6faff08e20f6e4d960b9b}
+      \strng{authornamehash}{dda6c43da3d6faff08e20f6e4d960b9b}
+      \strng{authorfullhash}{dda6c43da3d6faff08e20f6e4d960b9b}
+      \field{sortinit}{T}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Political Science}
+      \field{number}{1}
+      \field{title}{Democracy as a latent variable}
+      \field{volume}{52}
+      \field{year}{2008}
+      \field{pages}{201\bibrangedash 217}
+      \range{pages}{17}
+    \endentry
     \entry{van1995python}{book}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=6e5c5006a95b090dafa8ef616ba15134}{%

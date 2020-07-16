@@ -2,14 +2,14 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{5}{0}{2}
+\beamer@sectionintoc {2}{Topic Modeling: Motivation and Theory}{6}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{Data}{13}{0}{3}
+\beamer@sectionintoc {3}{Data}{15}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{16}{0}{4}
+\beamer@sectionintoc {4}{Model Selection and Global Characteristics}{19}{0}{4}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {5}{Covariate-level Topic Analysis}{23}{0}{5}
+\beamer@sectionintoc {5}{Covariate-level Topic Analysis}{27}{0}{5}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {6}{Causal Inference}{36}{0}{6}
+\beamer@sectionintoc {6}{Causal Inference}{41}{0}{6}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {7}{Discussion}{43}{0}{7}
+\beamer@sectionintoc {7}{Discussion}{49}{0}{7}

@@ -2157,6 +2157,7 @@
     <bcf:citekey order="11">R</bcf:citekey>
     <bcf:citekey order="12">quanteda</bcf:citekey>
     <bcf:citekey order="13">lucas2015computer</bcf:citekey>
+    <bcf:citekey order="14">treier2008democracy</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nyt/global/" type="entry" sortscheme="nyt" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>
