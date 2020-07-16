@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  16 JUL 2020 08:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.24)  16 JUL 2020 10:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2318,8 +2318,9 @@ Overfull \hbox (77.96756pt too wide) in paragraph at lines 512--512
  <../plots/4_3/vocabulary_comparison.pdf> <../plots/4_3/topic_correlations_map.
 pdf
 
-pdfTeX warning: pdflatex (file ../plots/4_3/topic_correlations_map.pdf): PDF in
-clusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/topic_correlati
+ons_map.pdf): PDF inclusion: multiple pdfs with page group included in a single
+ page
 >] [27
 
 ] [28
@@ -2336,7 +2337,7 @@ File: ../plots/presentation/estEffect_topic1.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/estEffect_topic1.pdf>
 Package pdftex.def Info: ../plots/presentation/estEffect_topic1.pdf used on inp
-ut line 589.
+ut line 590.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
 <../plots/presentation/estEffect_topic6.pdf, id=420, 497.86pt x 382.42876pt>
@@ -2344,21 +2345,22 @@ File: ../plots/presentation/estEffect_topic6.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/estEffect_topic6.pdf>
 Package pdftex.def Info: ../plots/presentation/estEffect_topic6.pdf used on inp
-ut line 589.
+ut line 590.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
  [32
 
  <../plots/presentation/estEffect_topic1.pdf> <../plots/presentation/estEffect_
 topic6.pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/estEffect_topic6.pdf): PDF
- inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/estEff
+ect_topic6.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 >] <../plots/presentation/quasi_t6_cont.pdf, id=454, 497.86pt x 382.42876pt>
 File: ../plots/presentation/quasi_t6_cont.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/quasi_t6_cont.pdf>
 Package pdftex.def Info: ../plots/presentation/quasi_t6_cont.pdf used on input 
-line 607.
+line 608.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
 <../plots/presentation/quasi_t6_cat.pdf, id=455, 497.86pt x 382.42876pt>
@@ -2366,15 +2368,16 @@ File: ../plots/presentation/quasi_t6_cat.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/quasi_t6_cat.pdf>
 Package pdftex.def Info: ../plots/presentation/quasi_t6_cat.pdf used on input l
-ine 607.
+ine 608.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
  [33
 
  <../plots/presentation/quasi_t6_cont.pdf> <../plots/presentation/quasi_t6_cat.
 pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/quasi_t6_cat.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/quasi_
+t6_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single 
+page
 >] [34
 
 ] [35
@@ -2388,7 +2391,7 @@ File: ../plots/presentation/stanbeta_t6_without_credible.pdf Graphic file (type
  pdf)
  <use ../plots/presentation/stanbeta_t6_without_credible.pdf>
 Package pdftex.def Info: ../plots/presentation/stanbeta_t6_without_credible.pdf
- used on input line 655.
+ used on input line 656.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
 <../plots/presentation/stanbeta_t6_with_credible.pdf, id=509, 497.86pt x 382.42
@@ -2397,15 +2400,16 @@ File: ../plots/presentation/stanbeta_t6_with_credible.pdf Graphic file (type pd
 f)
  <use ../plots/presentation/stanbeta_t6_with_credible.pdf>
 Package pdftex.def Info: ../plots/presentation/stanbeta_t6_with_credible.pdf us
-ed on input line 655.
+ed on input line 656.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
  [37
 
  <../plots/presentation/stanbeta_t6_without_credible.pdf> <../plots/presentatio
 n/stanbeta_t6_with_credible.pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/stanbeta_t6_with_credible.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/stanbe
+ta_t6_with_credible.pdf): PDF inclusion: multiple pdfs with page group included
+ in a single page
 >] [38
 
 ] [39
@@ -2417,7 +2421,7 @@ File: ../plots/presentation/direct_t6_without_credible.pdf Graphic file (type p
 df)
  <use ../plots/presentation/direct_t6_without_credible.pdf>
 Package pdftex.def Info: ../plots/presentation/direct_t6_without_credible.pdf u
-sed on input line 692.
+sed on input line 693.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
 
 <../plots/presentation/direct_t6_with_credible.pdf, id=557, 497.86pt x 382.4287
@@ -2426,15 +2430,16 @@ File: ../plots/presentation/direct_t6_with_credible.pdf Graphic file (type pdf)
 
  <use ../plots/presentation/direct_t6_with_credible.pdf>
 Package pdftex.def Info: ../plots/presentation/direct_t6_with_credible.pdf used
- on input line 692.
+ on input line 693.
 (pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
  [40
 
  <../plots/presentation/direct_t6_without_credible.pdf> <../plots/presentation/
 direct_t6_with_credible.pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/direct_t6_with_credible.pd
-f): PDF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/direct
+_t6_with_credible.pdf): PDF inclusion: multiple pdfs with page group included i
+n a single page
 >] [41
 
 ]
@@ -2443,7 +2448,7 @@ pt>
 File: ../plots/presentation/correlation_causality.png Graphic file (type png)
  <use ../plots/presentation/correlation_causality.png>
 Package pdftex.def Info: ../plots/presentation/correlation_causality.png used o
-n input line 702.
+n input line 703.
 (pdftex.def)             Requested size: 210.78697pt x 163.10896pt.
  [42
 
@@ -2459,7 +2464,7 @@ File: ../plots/presentation/climate_summit_props.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/climate_summit_props.pdf>
 Package pdftex.def Info: ../plots/presentation/climate_summit_props.pdf used on
- input line 754.
+ input line 755.
 (pdftex.def)             Requested size: 167.72658pt x 125.7929pt.
 
 <../plots/presentation/emancipation_props.pdf, id=625, 578.16pt x 433.62pt>
@@ -2467,15 +2472,16 @@ File: ../plots/presentation/emancipation_props.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/emancipation_props.pdf>
 Package pdftex.def Info: ../plots/presentation/emancipation_props.pdf used on i
-nput line 754.
+nput line 755.
 (pdftex.def)             Requested size: 167.72658pt x 125.7929pt.
  [46
 
  <../plots/presentation/climate_summit_props.pdf> <../plots/presentation/emanci
 pation_props.pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/emancipation_props.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/emanci
+pation_props.pdf): PDF inclusion: multiple pdfs with page group included in a s
+ingle page
 >] [47
 
 ]
@@ -2484,7 +2490,7 @@ DF inclusion: multiple pdfs with page group included in a single page
 File: ../plots/presentation/climate_summit_ate.pdf Graphic file (type pdf)
  <use ../plots/presentation/climate_summit_ate.pdf>
 Package pdftex.def Info: ../plots/presentation/climate_summit_ate.pdf used on i
-nput line 785.
+nput line 786.
 (pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
 
 <../plots/presentation/emancipation_ate.pdf, id=666, 512.91624pt x 359.3425pt>
@@ -2492,15 +2498,16 @@ File: ../plots/presentation/emancipation_ate.pdf Graphic file (type pdf)
 
 <use ../plots/presentation/emancipation_ate.pdf>
 Package pdftex.def Info: ../plots/presentation/emancipation_ate.pdf used on inp
-ut line 785.
+ut line 786.
 (pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
  [48
 
  <../plots/presentation/climate_summit_ate.pdf> <../plots/presentation/emancipa
 tion_ate.pdf
 
-pdfTeX warning: pdflatex (file ../plots/presentation/emancipation_ate.pdf): PDF
- inclusion: multiple pdfs with page group included in a single page
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/emanci
+pation_ate.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
 >] [49
 
 ] [50
@@ -2510,7 +2517,7 @@ pdfTeX warning: pdflatex (file ../plots/presentation/emancipation_ate.pdf): PDF
 ]
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 812.
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 813.
 
 [52
 
@@ -2527,11 +2534,11 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10.95> not available
 \tf@snm=\write10
 \openout10 = `presentation_consulting.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 813.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 813.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 814.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 814.
  (./presentation_consulting.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 813.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 813.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 814.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 814.
 Package rerunfilecheck Info: File `presentation_consulting.out' has not changed
 .
 (rerunfilecheck)             Checksum: 0EB31863DC0F2B9DE04B404683CF3803;396.
@@ -2581,7 +2588,7 @@ ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive
 ive/2017/texmf-dist/fonts/type1/public/cm-super/sfso0800.pfb></usr/local/texliv
 e/2017/texmf-dist/fonts/type1/public/cm-super/sfso0900.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/public/cm-super/sfso1000.pfb>
-Output written on presentation_consulting.pdf (53 pages, 2204478 bytes).
+Output written on presentation_consulting.pdf (53 pages, 2204520 bytes).
 PDF statistics:
  860 PDF objects out of 1000 (max. 8388607)
  657 compressed objects within 7 object streams

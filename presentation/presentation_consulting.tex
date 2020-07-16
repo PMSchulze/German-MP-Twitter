@@ -533,7 +533,7 @@ STM uses a mean-field variational EM algorithm \parencite{roberts2016model}:
 \framesubtitle{Method of Composition}
 \begin{itemize}
 \item Let $\boldsymbol{\theta}_{(k)}:=(\theta_{1,k}, \dots, \theta_{D,k})^T \in [0,1]^{D}$ denote proportion of $k$-th topic for all $D$ documents
-\item Method of Composition \parencite{treier2008democracy}
+\item Method of Composition \parencite{treier2008democracy}:
 \item[] Repeat $m$ times:
 \begin{enumerate}
 \item Sample $\boldsymbol{\theta}^*_{(k)}$ from (variational) posterior of $\boldsymbol{\theta}_{(k)}$ estimated by STM
@@ -541,6 +541,7 @@ STM uses a mean-field variational EM algorithm \parencite{roberts2016model}:
 \item Sample $\tilde{\boldsymbol{\xi}}^*$ from $F(\hat{\boldsymbol{\xi}}^*, \hat{\boldsymbol{V}}^*_{\xi})$, where $F$ is (asymptotic) distribution of $\hat{\boldsymbol{\xi}}^*$
 \end{enumerate}
 \item Idea: samples $\tilde{\boldsymbol{\xi}}^*$ take into account uncertainty in $\boldsymbol{\theta}_{(k)}$
+\item Additionally: uncertainty w.r.t.\ mean prediction (step 3)
 \item Visualization of topic-metadata relationship: For observation $\boldsymbol{x}_{\text{pred}}$, plot $\boldsymbol{x}_{\text{pred}}$ vs. predicted response with $\boldsymbol{x}_{\text{pred}}^T \tilde{\boldsymbol{\xi}}^*$ as linear predictor
 \end{itemize}
 \end{frame}
@@ -676,7 +677,7 @@ Problem 3: Univariate Modeling of Topic Proportions
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Approach to Multivariate Modeling of Proportions (II)}
 \begin{itemize}
-\item Plugging in $\boldsymbol{\Gamma}$ and $\hat{\boldsymbol{\Sigma}}$ is "na{\"i}ve" method: ideally sample prevalence parameters from their posterior $\Rightarrow$ would yield higher variation
+\item Plugging in $\hat{\boldsymbol{\Gamma}}$ and $\hat{\boldsymbol{\Sigma}}$ is "na{\"i}ve" method: ideally sample prevalence parameters from their posterior $\Rightarrow$ would yield higher variation
 \item However, not easily possible $\Rightarrow$ should be addressed in future implementations
 \end{itemize}
 \begin{figure}[h!]
