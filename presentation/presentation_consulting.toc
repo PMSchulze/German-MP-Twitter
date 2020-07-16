@@ -12,4 +12,4 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {6}{Causal Inference}{36}{0}{6}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {7}{Discussion}{44}{0}{7}
+\beamer@sectionintoc {7}{Discussion}{43}{0}{7}

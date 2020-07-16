@@ -2150,12 +2150,13 @@
     <bcf:citekey order="4">blei2003latent</bcf:citekey>
     <bcf:citekey order="5">blei2012probabilistic</bcf:citekey>
     <bcf:citekey order="6">roberts2016model</bcf:citekey>
-    <bcf:citekey order="7">richardson2007beautiful</bcf:citekey>
-    <bcf:citekey order="8">van1995python</bcf:citekey>
-    <bcf:citekey order="9">roesslein2020tweepy</bcf:citekey>
-    <bcf:citekey order="10">R</bcf:citekey>
-    <bcf:citekey order="11">quanteda</bcf:citekey>
-    <bcf:citekey order="12">lucas2015computer</bcf:citekey>
+    <bcf:citekey order="7">roberts2016model</bcf:citekey>
+    <bcf:citekey order="8">richardson2007beautiful</bcf:citekey>
+    <bcf:citekey order="9">van1995python</bcf:citekey>
+    <bcf:citekey order="10">roesslein2020tweepy</bcf:citekey>
+    <bcf:citekey order="11">R</bcf:citekey>
+    <bcf:citekey order="12">quanteda</bcf:citekey>
+    <bcf:citekey order="13">lucas2015computer</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nyt/global/" type="entry" sortscheme="nyt" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

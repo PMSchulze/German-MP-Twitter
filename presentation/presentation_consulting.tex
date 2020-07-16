@@ -146,8 +146,8 @@
 \title{Twitter in the Parliament - A Text-based Analysis of German Political Entities}
 \date{July 16, 2020}
 \author[author1]{Patrick Schulze, Simon Wiegrebe\\[5mm]{\tiny
-Project partners: \textit{Prof. Dr. Paul W. Thurner, Sandra Wankmüller} (Geschwister Scholl Institute of Political Science, LMU) \\[2mm]
-Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias Aßenmacher}
+Project partners: \textit{Prof. Dr. Paul W. Thurner, Sandra Wankm\"uller} (Geschwister Scholl Institute of Political Science, LMU) \\[2mm]
+Supervisors: \textit{Prof. Dr. Christian Heumann, Matthias A{\ss}enmacher}
 }}
 \vspace*{-0.7cm}
 \titlegraphic{
@@ -198,7 +198,7 @@ Key contributions of this project:
   	\centering
   	\includegraphics[scale = 0.30]{../plots/presentation/motivation.png}
 	\end{figure}
-\item Question at hand: how to assign colored words to topics?
+\item Question at hand: how to group words into topics?
 \end{itemize}
 \end{frame}
 
@@ -299,18 +299,11 @@ Key contributions of this project:
 
 \begin{frame}
 \frametitle{Topic Modeling: Motivation and Theory}
-\framesubtitle{\textit{Inference and Parameter Estimation}}
-\begin{itemize}
-\vspace{-0.5cm}
-\item (Hierarchical) Bayesian model $\Rightarrow$ exact inference impossible due to marginal distributions in the denominator of posterior distribution $p$
-\item Variational inference: positing a simple distribution family $q$ for latent variables $\boldsymbol{\theta}$ and $\boldsymbol{z}$
-\item Mean-field variational inference: positing full factorizability of approximating posterior $q$, i.e., $q(\boldsymbol{\theta}, \boldsymbol{z})=q(\boldsymbol{\theta})q(\boldsymbol{z})$
-\item Then: minimizing Kullback-Leibler divergence between $q$ and $p$
-\item STM uses a mean-field variational EM algorithm:
+\framesubtitle{\textit{Inference and Parameter Estimation in the STM}}
+STM uses a mean-field variational EM algorithm \parencite{roberts2016model}:
 \begin{itemize}
 \item E-step: update posterior distributions of latent variables $\boldsymbol{\theta}$ and $\boldsymbol{z}$
 \item M-step: update model parameters $\boldsymbol{\Gamma}$, $\boldsymbol{\Sigma}$, and - if present - topical content parameters
-\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -536,7 +529,7 @@ Key contributions of this project:
 \framesubtitle{Method of Composition: Problems}
 Several problems with method of composition:
 \begin{enumerate}
-\item In STM, regression model in step 2 is OLS; however OLS not appropriate to model (sampled) proportions in open unit interval
+\item In \textit{stm}, regression model in step 2 is OLS; however OLS not appropriate to model (sampled) proportions in open unit interval
 \item Mixing of Bayesian and frequentist approach questionable:
 \begin{itemize}
 \item From Bayesian perspective, $\tilde{\boldsymbol{\xi}}^*$ can only be considered sample from posterior of $\boldsymbol{\xi}$ in certain Bayesian regression models with questionable (uniform) prior assumptions
@@ -603,7 +596,7 @@ Problem 2: Mixing of Bayesian and Frequentist Approach
 \frametitle{Covariate-level Topic Analysis}
 \framesubtitle{Mixing of Bayesian and Frequentist Approach}
 \begin{itemize}
-\item Regression within of method of composition is \textit{frequentist} regression
+\item Regression within method of composition is \textit{frequentist} regression
 \item However, in STM $\tilde{\boldsymbol{\xi}}^*$ considered samples from (marginal, i.e., integrated over latent topic proportions) posterior of regression coefficients; only true by assuming uniform priors for $\boldsymbol{\xi}$
 \item Caution: uncertainty from previous plots with respect to prediction of mean $\Rightarrow$ does \textit{not} reflect variation of topic proportions in data!
 \item Better idea: fully Bayesian approach with more realistic priors and sampling from posterior predictive distribution to reflect variation of data
@@ -683,7 +676,7 @@ Problem 3: Univariate Modeling of Topic Proportions
 \framesubtitle{Correlation vs. Causality (I)}
 	\begin{figure}[h!]
   	\centering
-  	\includegraphics[scale = 0.60]{../plots/presentation/correlation_causality.png}
+  	\includegraphics[scale = 0.50]{../plots/presentation/correlation_causality.png}
 	\end{figure}
 \end{frame}
 
@@ -721,22 +714,6 @@ Problem 3: Univariate Modeling of Topic Proportions
 \item Test set $\mathcal{D}_{\text{test}}$ used to assess relation between \textit{predicted} test set topic proportions and test set prevalence covariates
 \item Identification problem solved: model used for prediction determined by training set observations $\Rightarrow$ treatment of test set observations not dependent on other individuals' treatment from test set. 
 \item Overfitting also solved: noise from training set very unlikely to be replicated on test set
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Causal Inference}
-\framesubtitle{Implementation within the STM}
-\begin{itemize}
-\item Inputting documents, i.e., words and metadata from the training set $\mathcal{D}_{\text{train}}$, to obtain estimates $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ using the STM
-\item Then, estimating (variational) posterior of test set topic proportions, conditional on the model parameters $(\hat{\boldsymbol{\beta}}_{\text{train}}, \hat{\boldsymbol{\Gamma}}_{\text{train}}, \hat{\boldsymbol{\Sigma}}_{\text{train}})$ from training set $\mathcal{D}_{\text{train}}$ as well as words $\boldsymbol{W}_{\text{test}}$ from test set $\mathcal{D}_{\text{test}}$
-\item Estimation of (variational) posterior conditional on data and training set parameters via E-step of (variational) EM algorithm
-\item Benefit of using the STM: covariate information from training set directly used to predict topic proportions on test set
-\item Important: Covariate information from test set must not be used!
-	\begin{itemize}
-	\item Otherwise: predicting different topic proportions for two documents from test set with exact same words if prevalence covariates differ
-	\item However, causal effect should be zero in such a case!
-	\end{itemize}
 \end{itemize}
 \end{frame}
 
