@@ -21,9 +21,8 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # ----------------------------------------------------------------------------------------------
 # ------------------ Choose dataset for preprocessing ------------------------------------------
@@ -37,13 +36,13 @@ setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\
 # file <- "prep_cdu_test"
 
 # file <- "prep_monthly"
-# file <- "prep_monthly_train"
+file <- "prep_monthly_train"
 # file <- "prep_monthly_test"
 # file <- "prep_cdu_monthly"
 # file <- "prep_cdu_monthly_train"
 # file <- "prep_cdu_monthly_test"
 
-filepath <- paste0("./data/", file, ".rds")
+filepath <- paste0("../data/topic_preparation/", file, ".rds")
 data <- readRDS(filepath)
 
 # ----------------------------------------------------------------------------------------------
@@ -199,6 +198,7 @@ if (grepl("monthly", file)) {
 # ----------------------------------------------------------------------------------------------
 
 # save
-outpath <- stringi::stri_replace_all_fixed(filepath, "prep", "preprocessed")
-saveRDS(data_preprocessed, outpath)
+file_new <- stringi::stri_replace_all_fixed(file, "prep", "preprocessed")
+filepath_out <- paste0("../data/topic_preprocessing/", file_new, ".rds")
+saveRDS(data_preprocessed, filepath_out)
 

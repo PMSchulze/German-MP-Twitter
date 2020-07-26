@@ -22,20 +22,16 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # load data
-data <- readRDS("./data/preprocessed_monthly.rds")
-data_corpus <- readRDS("./data/prep_monthly.rds")
+data <- readRDS("../data/topic_preprocessing/preprocessed_monthly.rds")
+data_corpus <- readRDS("../data/topic_preparation/prep_monthly.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------- Model Fitting ---------------------------------------
 # ----------------------------------------------------------------------------------------------
-
-# set number of topics
-
 
 # choose covariates (now for topical prevalence AND content) and number of topics
 covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
@@ -59,9 +55,9 @@ K <- 15
 #   seed = 123,
 #   max.em.its = 200,
 #   init.type = "Spectral")
-# saveRDS(mod_cont, "./data/mod_cont_monthly.rds")
+# saveRDS(mod_cont, "../data/5_2/mod_cont_monthly.rds")
 
-mod_cont <- readRDS("./data/mod_cont_monthly.rds")
+mod_cont <- readRDS("../data/5_2/mod_cont_monthly.rds")
 
 mod_cont$settings$dim$A # number of parties
 K*mod_cont$settings$dim$A # total number of beta-vectors in content model
@@ -80,14 +76,14 @@ K*mod_cont$settings$dim$A # total number of beta-vectors in content model
 # first, prepare objects/variables needed for labeling process
 
 ## table of MAP topic proportions per document (for all topics)
-topic_props <- make.dt(
+topic_props <- stm::make.dt(
   mod_cont, 
   data$meta[c("Name", "Partei","Datum", "Bundesland")]) %>% 
   cbind(docname = names(data$documents), .)
 
 ## top words per topic (for all topics)
 n <- 15 # number of top words displayed per topic, per party, and per topic-party interaction
-topic_words <- labelTopics(mod_cont, n = n)
+topic_words <- stm::labelTopics(mod_cont, n = n)
 
 ## topic to be evaluated
 topic_number <- 1
@@ -171,3 +167,4 @@ topic_cont_labels[[topic_number]] # topic label
 plot(mod_cont, type = "perspectives", topics = topic_number,
      covarlevels = c("Bündnis 90/Die Grünen", "AfD"), text.cex = 0.8,
      plabels = c("B'90/Die Grünen", "AfD"))
+

@@ -22,13 +22,12 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # load data
-data <- readRDS("./data/preprocessed_monthly.rds")
-data_corpus <- readRDS("./data/prep_monthly.rds") # data containing raw tweets (before preprocessing)
+data <- readRDS("../data/topic_preprocessing/preprocessed_monthly.rds")
+data_corpus <- readRDS("../data/topic_preparation/prep_monthly.rds") # data containing raw tweets (before preprocessing)
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------- Hyperparameter Search -------------------------------
@@ -42,7 +41,7 @@ outcome <- ""
 prevalence <- as.formula(paste(outcome, covar, sep = "~")) 
 
 # # search hyperparameter space for optimal K using searchK function
-# hyperparameter_search <- searchK(
+# hyperparameter_search <- stm::searchK(
 #   documents = data$documents,
 #   vocab = data$vocab,
 #   data = data$meta,
@@ -52,10 +51,10 @@ prevalence <- as.formula(paste(outcome, covar, sep = "~"))
 #   max.em.its = 200,
 #   init.type = "Spectral"
 # )
-# saveRDS(hyperparameter_search, "../data/searchK_large_data.rds")
+# saveRDS(hyperparameter_search, "../data/4/searchK_data.rds")
 
 # load searchK results
-searchK_data <- readRDS("./data/searchK_large_data.rds")
+searchK_data <- readRDS("../data/4/searchK_data.rds")
 
 # plot four metrics used for hyperparameter search 
 plot_heldout <- ggplot(data = searchK_data$results, aes(x = K, y = heldout)) +
@@ -119,10 +118,10 @@ K <- 15
 #   seed = 123,
 #   max.em.its = 200,
 #   init.type = "Spectral")
-# saveRDS(mod_prev, "./data/mod_prev_monthly.rds")
+# saveRDS(mod_prev, "../data/4/mod_prev_monthly.rds")
 
 # load fitted model
-mod_prev <- readRDS("./data/mod_prev_monthly.rds")
+mod_prev <- readRDS("../data/4/mod_prev_monthly.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ---------------------------------------- Labeling --------------------------------------------
@@ -137,14 +136,14 @@ mod_prev <- readRDS("./data/mod_prev_monthly.rds")
 # first, prepare objects/variables needed for labeling process
 
 ## table of MAP topic proportions per document (for all topics)
-topic_props <- make.dt(
+topic_props <- stm::make.dt(
   mod_prev, 
   data$meta[c("Name", "Partei", "Datum", "Bundesland")]) %>% 
   cbind(docname = names(data$documents), .)
 
 ## top words per topic (for all topics)
 n <- 5 # number of top words displayed
-topic_words <- labelTopics(mod_prev, n = n)
+topic_words <- stm::labelTopics(mod_prev, n = n)
 
 ## topic to be evaluated
 topic_number <- 1
@@ -177,7 +176,7 @@ topic_labels <- list(
 topic_words
 
 ## word cloud for selected topic
-cloud(mod_prev, topic = topic_number, scale = c(2.0, 0.25))
+stm::cloud(mod_prev, topic = topic_number, scale = c(2.0, 0.25))
 
 # (2)
 ## create variable 'docname' used for matching of raw tweets
@@ -269,4 +268,4 @@ ggcorrplot::ggcorrplot(cormat) +
 set.seed(111) # seed chosen for convenient spacing between topic labels
 mod_prev_corr <- topicCorr(mod_prev, method = "simple", cutoff = 0.00, verbose = TRUE) # based on correlations between mod_prev$theta
 vertex_sizes <- rep(20, K)
-plot.topicCorr(mod_prev_corr, vlabels = topic_labels, vertex.label.cex = 1, vertex.size = vertex_sizes)
+stm::plot.topicCorr(mod_prev_corr, vlabels = topic_labels, vertex.label.cex = 1, vertex.size = vertex_sizes)

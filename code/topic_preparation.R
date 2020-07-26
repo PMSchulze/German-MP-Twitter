@@ -21,17 +21,15 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-# setwd('C:\\Users\\Simon\\Desktop\\Twitter')
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd('/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse')
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # ----------------------------------------------------------------------------------------------
 # ----------------------------------- Prepare Twitter data ------------------------------------- 
 # ----------------------------------------------------------------------------------------------
 
 # load data
-tweepy_df <- read_delim('./data/tweepy_df.csv', delim = ',') # available as pickle on network drive "consulting_thurner" due to size (5GB)
+tweepy_df <- read_delim('../data/web_scraping/tweepy_df.csv', delim = ',') # available as pickle on network drive "consulting_thurner" due to size (5GB)
 # inspect parsing problems
 problems(tweepy_df)
 # remove rows where problems occur, drop retweets and users where download failed,
@@ -87,14 +85,14 @@ resigned <- c(
 topic <- topic[which(!topic$Name %in% resigned),]
 
 # save
-saveRDS(topic, "./data/topic.rds")
+saveRDS(topic, "../data/topic_preparation/topic.rds")
 
 # ----------------------------------------------------------------------------------------------
 # ----------------------------------- Aggregate Twitter data ----------------------------------- 
 # ----------------------------------------------------------------------------------------------
 
 # load data
-topic <- readRDS("./data/topic.rds")
+topic <- readRDS("../data/topic_preparation/topic.rds")
 
 # aggregate data on a per-user basis
 topic_user <- topic %>% 
@@ -125,10 +123,10 @@ topic_user_monthly <-  topic %>%
 # ----------------------------------------------------------------------------------------------
 
 # load personal data (MP-level)
-abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
+abg_df <- read_delim("../data/web_scraping/abg_df.csv", delim = ",") %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
 # load socioeconomic and election data (electoral-district level)
-se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
+se_df <- read_delim("../data/web_scraping/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
 
@@ -191,8 +189,8 @@ colnames_user_monthly <- data.frame(oldnames = colnames(alldata_user_monthly),
                                     newnames = c(colnames(alldata_user_monthly)[1:13], paste0("Struktur_", 1:54)))
 colnames(alldata_user) <- colnames_user[["newnames"]]
 colnames(alldata_user_monthly) <- colnames_user_monthly[["newnames"]]
-write.csv(colnames_user, file = "./data/topic_colnames.csv")
-write.csv(colnames_user_monthly, file = "./data/topic_monthly_colnames.csv")
+write.csv(colnames_user, file = "../data/topic_preparation/topic_colnames.csv")
+write.csv(colnames_user_monthly, file = "../data/topic_preparation/topic_monthly_colnames.csv")
 
 # extract party-specific dataset
 alldata_cdu_user <- alldata_user %>% 
@@ -201,46 +199,46 @@ alldata_cdu_user_monthly <- alldata_user_monthly %>%
   filter(Partei == "CDU/CSU")
 
 # save
-saveRDS(alldata_user, "./data/prep.rds")
-saveRDS(alldata_cdu_user, "./data/prep_cdu.rds")
-saveRDS(alldata_user_monthly, "./data/prep_monthly.rds")
-saveRDS(alldata_cdu_user_monthly, "./data/prep_cdu_monthly.rds")
+saveRDS(alldata_user, "../data/topic_preparation/prep.rds")
+saveRDS(alldata_cdu_user, "../data/topic_preparation/prep_cdu.rds")
+saveRDS(alldata_user_monthly, "../data/topic_preparation/prep_monthly.rds")
+saveRDS(alldata_cdu_user_monthly, "../data/topic_preparation/prep_cdu_monthly.rds")
 
 # reload and split into train and test set (50-50 split)
 set.seed(123)
-alldata_cdu_user <- readRDS("./data/prep_cdu.rds")
+alldata_cdu_user <- readRDS("../data/topic_preparation/prep_cdu.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_cdu_user), p*nrow(alldata_cdu_user))
 alldata_cdu_user_train <- alldata_cdu_user[idx_train,]
 alldata_cdu_user_test <- alldata_cdu_user[-idx_train,]
-saveRDS(alldata_cdu_user_train, "./data/prep_cdu_train.rds")
-saveRDS(alldata_cdu_user_test, "./data/prep_cdu_test.rds")
+saveRDS(alldata_cdu_user_train, "../data/topic_preparation/prep_cdu_train.rds")
+saveRDS(alldata_cdu_user_test, "../data/topic_preparation/prep_cdu_test.rds")
 
 set.seed(123)
-alldata_user <- readRDS("./data/prep.rds")
+alldata_user <- readRDS("../data/topic_preparation/prep.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_user), p*nrow(alldata_user))
 alldata_user_train <- alldata_user[idx_train,]
 alldata_user_test <- alldata_user[-idx_train,]
-saveRDS(alldata_user_train, "./data/prep_train.rds")
-saveRDS(alldata_user_test, "./data/prep_test.rds")
+saveRDS(alldata_user_train, "../data/topic_preparation/prep_train.rds")
+saveRDS(alldata_user_test, "../data/topic_preparation/prep_test.rds")
 
 
 set.seed(123)
-alldata_cdu_user_monthly <- readRDS("./data/prep_cdu_monthly.rds")
+alldata_cdu_user_monthly <- readRDS("../data/topic_preparation/prep_cdu_monthly.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_cdu_user_monthly), p*nrow(alldata_cdu_user_monthly))
 alldata_cdu_user_monthly_train <- alldata_cdu_user_monthly[idx_train,]
 alldata_cdu_user_monthly_test <- alldata_cdu_user_monthly[-idx_train,]
-saveRDS(alldata_cdu_user_monthly_train, "./data/prep_cdu_monthly_train.rds")
-saveRDS(alldata_cdu_user_monthly_test, "./data/prep_cdu_monthly_test.rds")
+saveRDS(alldata_cdu_user_monthly_train, "../data/topic_preparation/prep_cdu_monthly_train.rds")
+saveRDS(alldata_cdu_user_monthly_test, "../data/topic_preparation/prep_cdu_monthly_test.rds")
 
 set.seed(123)
-alldata_user_monthly <- readRDS("./data/prep_monthly.rds")
+alldata_user_monthly <- readRDS("../data/topic_preparation/prep_monthly.rds")
 p <- 0.5
 idx_train <- sample(1:nrow(alldata_user_monthly), p*nrow(alldata_user_monthly))
 alldata_user_monthly_train <- alldata_user_monthly[idx_train,]
 alldata_user_monthly_test <- alldata_user_monthly[-idx_train,]
-saveRDS(alldata_user_monthly_train, "./data/prep_monthly_train.rds")
-saveRDS(alldata_user_monthly_test, "./data/prep_monthly_test.rds")
+saveRDS(alldata_user_monthly_train, "../data/topic_preparation/prep_monthly_train.rds")
+saveRDS(alldata_user_monthly_test, "../data/topic_preparation/prep_monthly_test.rds")
 

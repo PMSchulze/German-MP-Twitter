@@ -17,21 +17,21 @@ mod_prev <- readRDS("./data/mod_prev_monthly.rds")
 mod_ctm <- readRDS("./data/mod_ctm_monthly.rds")
 # load topic labels
 topic_labels <- list(
-  Topic1 = "right/nationalist",
-  Topic2 = "miscellaneous_1",
-  Topic3 = "green/climate",
-  Topic4 = "social/housing",
-  Topic5 = "Europe_english",
-  Topic6 = "mobility",
+  Topic1 = "Right/Nationalist",
+  Topic2 = "Miscellaneous 1",
+  Topic3 = "Climate Economics",
+  Topic4 = "Social/Housing",
+  Topic5 = "Digital/Future",
+  Topic6 = "Climate Protection",
   Topic7 = "Europe",
-  Topic8 = "corona",
-  Topic9 = "left/anti-war",
-  Topic10 = "Twitter/politics_1",
-  Topic11 = "Twitter/politics_2",
-  Topic12 = "miscellaneous_2",
-  Topic13 = "Twitter/politics_3",
-  Topic14 = "right-wing extremism",
-  Topic15 = "social/health"
+  Topic8 = "Corona",
+  Topic9 = "Left/Anti-war",
+  Topic10 = "Twitter/Politics 1",
+  Topic11 = "Twitter/Politics 2",
+  Topic12 = "Miscellaneous 2",
+  Topic13 = "Twitter/Politics 3",
+  Topic14 = "Right-wing Extremism",
+  Topic15 = "Society/Solidarity"
 )
 # load list of prevalence covariates
 varlist <- c(
@@ -226,6 +226,7 @@ gridExtra::grid.arrange(
 )
 
 ## Topic 4: Social/Housing -- Beta regression
+### Categorical Plots
 (plot_party_4 <- ggplot(preds_beta$Partei$Topic4, aes(y=proportion, x = Partei)) +
     geom_crossbar(aes(ymax = ci_upper, ymin = ci_lower), fill = "grey70") +
     xlab("Party") +
@@ -235,7 +236,7 @@ gridExtra::grid.arrange(
           axis.title.x = element_text(size=16)))
 
 ## Topics 1,6, and 4 -- Beta regression
-### Categorial Plots
+### Categorical Plots
 preds_beta$Partei$Topic1$Topic <- "Right/Nationalist"
 preds_beta$Partei$Topic6$Topic <- "Climate Protection"
 preds_beta$Partei$Topic4$Topic <- "Social/Housing"

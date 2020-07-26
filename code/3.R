@@ -22,14 +22,13 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-# setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse")
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # data
 ## load twitter data and aggregate on a per-user basis
-topic <- readRDS("./data/topic.rds")
-prep <- readRDS("./data/prep.rds")
+topic <- readRDS("../data/topic_preparation/topic.rds")
+prep <- readRDS("../data/topic_preparation/prep.rds")
 
 topic_user <- topic %>% 
   group_by(Name) %>% 
@@ -42,9 +41,9 @@ topic_user <- topic %>%
   ungroup()
 
 ## merge with personal and socioeconomic data
-abg_df <- read_delim("./data/abg_df.csv", delim = ",") %>%
+abg_df <- read_delim("../data/web_scraping/abg_df.csv", delim = ",") %>%
   rename(Twitter_Username = Twitter, Wahlkreis_Nr = `Wahlkreis-Nr.`)
-se_df <- read_delim("./data/se_df.csv", delim = ",") %>% 
+se_df <- read_delim("../data/web_scraping/se_df.csv", delim = ",") %>% 
   rename(Wahlkreis_Nr = `Wahlkreis-Nr.`, "AfD Anteil" = "AFD Anteil") %>% 
   select(-Bundesland)
 
@@ -78,7 +77,7 @@ ggplot(data_adj, aes(x = date)) + geom_histogram(stat = "count") +
         axis.title.y = element_text(size = 12, face = "bold"))
 
 # load monthly data post preprocessing
-data <- readRDS("./data/preprocessed_monthly.rds")
+data <- readRDS("../data/topic_preprocessing/preprocessed_monthly.rds")
 
 nrow(data$meta) # MP-level documents (monthly!) remaining after preprocessing
 ncol(data$meta) # number of covariates
