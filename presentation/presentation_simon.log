@@ -1714,4 +1714,852 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \integerpart=\count199
 \decimalpart=\count266
 )
-Package: xstring 2013/10/13  v1.7c  String man
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+\c@tabx@nest=\count267
+\c@listtotal=\count268
+\c@listcount=\count269
+\c@liststart=\count270
+\c@liststop=\count271
+\c@citecount=\count272
+\c@citetotal=\count273
+\c@multicitecount=\count274
+\c@multicitetotal=\count275
+\c@instcount=\count276
+\c@maxnames=\count277
+\c@minnames=\count278
+\c@maxitems=\count279
+\c@minitems=\count280
+\c@citecounter=\count281
+\c@savedcitecounter=\count282
+\c@uniquelist=\count283
+\c@uniquename=\count284
+\c@refsection=\count285
+\c@refsegment=\count286
+\c@maxextratitle=\count287
+\c@maxextratitleyear=\count288
+\c@maxextrayear=\count289
+\c@maxextraalpha=\count290
+\c@abbrvpenalty=\count291
+\c@highnamepenalty=\count292
+\c@lownamepenalty=\count293
+\c@maxparens=\count294
+\c@parenlevel=\count295
+\blx@tempcnta=\count296
+\blx@tempcntb=\count297
+\blx@tempcntc=\count298
+\blx@maxsection=\count299
+\blx@maxsegment@0=\count300
+\blx@notetype=\count301
+\blx@parenlevel@text=\count302
+\blx@parenlevel@foot=\count303
+\blx@sectionciteorder@0=\count304
+\labelnumberwidth=\skip63
+\labelalphawidth=\skip64
+\biblabelsep=\skip65
+\bibitemsep=\skip66
+\bibnamesep=\skip67
+\bibinitsep=\skip68
+\bibparsep=\skip69
+\bibhang=\skip70
+\blx@bcfin=\read2
+\blx@bcfout=\write6
+\c@mincomprange=\count305
+\c@maxcomprange=\count306
+\c@mincompwidth=\count307
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/blx-dm.def)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'authoryear.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count308
+\c@savedafterword=\count309
+\c@annotator=\count310
+\c@savedannotator=\count311
+\c@author=\count312
+\c@savedauthor=\count313
+\c@bookauthor=\count314
+\c@savedbookauthor=\count315
+\c@commentator=\count316
+\c@savedcommentator=\count317
+\c@editor=\count318
+\c@savededitor=\count319
+\c@editora=\count320
+\c@savededitora=\count321
+\c@editorb=\count322
+\c@savededitorb=\count323
+\c@editorc=\count324
+\c@savededitorc=\count325
+\c@foreword=\count326
+\c@savedforeword=\count327
+\c@holder=\count328
+\c@savedholder=\count329
+\c@introduction=\count330
+\c@savedintroduction=\count331
+\c@namea=\count332
+\c@savednamea=\count333
+\c@nameb=\count334
+\c@savednameb=\count335
+\c@namec=\count336
+\c@savednamec=\count337
+\c@translator=\count338
+\c@savedtranslator=\count339
+\c@shortauthor=\count340
+\c@savedshortauthor=\count341
+\c@shorteditor=\count342
+\c@savedshorteditor=\count343
+\c@labelname=\count344
+\c@savedlabelname=\count345
+\c@institution=\count346
+\c@savedinstitution=\count347
+\c@lista=\count348
+\c@savedlista=\count349
+\c@listb=\count350
+\c@savedlistb=\count351
+\c@listc=\count352
+\c@savedlistc=\count353
+\c@listd=\count354
+\c@savedlistd=\count355
+\c@liste=\count356
+\c@savedliste=\count357
+\c@listf=\count358
+\c@savedlistf=\count359
+\c@location=\count360
+\c@savedlocation=\count361
+\c@organization=\count362
+\c@savedorganization=\count363
+\c@origlocation=\count364
+\c@savedoriglocation=\count365
+\c@origpublisher=\count366
+\c@savedorigpublisher=\count367
+\c@publisher=\count368
+\c@savedpublisher=\count369
+\c@language=\count370
+\c@savedlanguage=\count371
+\c@pageref=\count372
+\c@savedpageref=\count373
+\shorthandwidth=\skip71
+\shortjournalwidth=\skip72
+\shortserieswidth=\skip73
+\shorttitlewidth=\skip74
+\shortauthorwidth=\skip75
+\shorteditorwidth=\skip76
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2016/12/05 v3.7 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2016/12/05 v3.7 biblatex compatibility (PK/JW/AB)
+\c@textcitecount=\count374
+\c@textcitetotal=\count375
+\c@textcitemaxnames=\count376
+\c@biburlnumpenalty=\count377
+\c@biburlucpenalty=\count378
+\c@biburllcpenalty=\count379
+\c@smartand=\count380
+)
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+File: authoryear.bbx 2016/12/05 v3.7 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2016/12/05 v3.7 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count381
+\c@bbx:relatedtotal=\count382
+))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+File: authoryear.cbx 2016/12/05 v3.7 biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+))
+\c@satz=\count383
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/themes/color/beamercolorth
+emeseagull.sty)
+
+LaTeX Warning: Overwriting file `./presentation_simon.bib'.
+
+\openout15 = `presentation_simon.bib'.
+
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\\' on input line 149.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\\' on input line 149.
+
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2016/12/05 v3.7 biblatex localization (PK/JW/AB)
+)
+
+Package biblatex Warning: Patching footnotes failed.
+(biblatex)                Footnote detection will not work.
+
+\@quotelevel=\count384
+\@quotereset=\count385
+(./presentation_simon.aux)
+\openout1 = `presentation_simon.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 155.
+LaTeX Font Info:    ... okay on input line 155.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=342.2953pt
+* \textheight=244.6939pt
+* \oddsidemargin=-61.31996pt
+* \evensidemargin=-61.31996pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count386
+\scratchdimen=\dimen282
+\scratchbox=\box69
+\nofMPsegments=\count387
+\nofMParguments=\count388
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count389
+\MPscratchDim=\dimen283
+\MPnumerator=\count390
+\makeMPintoPDFobject=\count391
+\everyMPtoPDFconversion=\toks44
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box70
+Package hyperref Info: Link coloring OFF on input line 155.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count392
+)
+LaTeX Info: Redefining \ref on input line 155.
+LaTeX Info: Redefining \pageref on input line 155.
+LaTeX Info: Redefining \nameref on input line 155.
+
+(./presentation_simon.out) (./presentation_simon.out)
+\@outlinefile=\write7
+\openout7 = `presentation_simon.out'.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 155.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 155.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 155.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 155.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 155.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 155.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 155.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 155.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 155.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 155.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 155.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 1
+55.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
+155.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
+ut line 155.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-basic-dictionary/translator-basic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-bibliography-dictionary/translator-bibliography-dictionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-environment-dictionary/translator-environment-dictionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-months-dictionary/translator-months-dictionary-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-numbers-dictionary/translator-numbers-dictionary-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-theorem-dictionary/translator-theorem-dictionary-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+)
+LaTeX Info: Redefining \includegraphics on input line 155.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: No input encoding detected.
+(biblatex)             Assuming 'ascii'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'ascii'.
+\openout6 = `presentation_simon.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'presentation_simon.bbl' found.
+
+(./presentation_simon.bbl)
+Package biblatex Info: Reference section=0 on input line 155.
+Package biblatex Info: Reference segment=0 on input line 155.
+ (./presentation_simon.nav)
+Missing character: There is no Ã in font cmssi8!
+Missing character: There is no ¼ in font cmssi8!
+Missing character: There is no Ã in font cmssi8!
+Missing character: There is no Ÿ in font cmssi8!
+
+<../presentation/Sigillum.pdf, id=19, 614.295pt x 794.97pt>
+File: ../presentation/Sigillum.pdf Graphic file (type pdf)
+
+<use ../presentation/Sigillum.pdf>
+Package pdftex.def Info: ../presentation/Sigillum.pdf used on input line 159.
+(pdftex.def)             Requested size: 56.9055pt x 73.63062pt.
+
+Overfull \vbox (12.59666pt too high) detected at line 159
+ []
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 159.
+
+[1
+
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../pres
+entation/Sigillum.pdf>] (./presentation_simon.toc) [2
+
+] [3
+
+] [4
+
+] [5
+
+] [6
+
+]
+<../plots/presentation/motivation.png, id=99, 522.753pt x 414.348pt>
+File: ../plots/presentation/motivation.png Graphic file (type png)
+
+<use ../plots/presentation/motivation.png>
+Package pdftex.def Info: ../plots/presentation/motivation.png used on input lin
+e 205.
+(pdftex.def)             Requested size: 156.8271pt x 124.30536pt.
+ [7
+
+ <../plots/presentation/motivation.png>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 217.
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 217.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
+line 217.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
+thkerncmss.
+) [8
+
+] [9
+
+]
+<../plots/presentation/lda_graphical.pdf, id=135, 595.22375pt x 312.16624pt>
+File: ../plots/presentation/lda_graphical.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/lda_graphical.pdf>
+Package pdftex.def Info: ../plots/presentation/lda_graphical.pdf used on input 
+line 250.
+(pdftex.def)             Requested size: 178.5685pt x 93.65059pt.
+ [10
+
+ <../plots/presentation/lda_graphical.pdf>]
+<../plots/presentation/lda_topic_assignment.jpeg, id=156, 803.0pt x 436.63126pt
+>
+File: ../plots/presentation/lda_topic_assignment.jpeg Graphic file (type jpg)
+ <use ../plots/presentation/lda_topic_assignment.jpeg>
+Package pdftex.def Info: ../plots/presentation/lda_topic_assignment.jpeg used o
+n input line 264.
+(pdftex.def)             Requested size: 321.1943pt x 174.6494pt.
+
+Overfull \hbox (0.79906pt too wide) in paragraph at lines 264--264
+ [] 
+ []
+
+[11
+
+ <../plots/presentation/lda_topic_assignment.jpeg>] [12
+
+]
+<../plots/presentation/stm_graphical.png, id=179, 822.07124pt x 325.215pt>
+File: ../plots/presentation/stm_graphical.png Graphic file (type png)
+
+<use ../plots/presentation/stm_graphical.png>
+Package pdftex.def Info: ../plots/presentation/stm_graphical.png used on input 
+line 300.
+(pdftex.def)             Requested size: 328.82266pt x 130.0837pt.
+ [13
+
+ <../plots/presentation/stm_graphical.png>] [14
+
+] [15
+
+]
+<../plots/presentation/amthor.png, id=205, 612.48825pt x 431.81325pt>
+File: ../plots/presentation/amthor.png Graphic file (type png)
+
+<use ../plots/presentation/amthor.png>
+Package pdftex.def Info: ../plots/presentation/amthor.png used on input line 33
+3.
+(pdftex.def)             Requested size: 183.7479pt x 129.54497pt.
+
+Overfull \vbox (12.21188pt too high) detected at line 333
+ []
+
+[16
+
+ <../plots/presentation/amthor.png>]
+<../plots/3/monthly_tweets.pdf, id=218, 578.16pt x 443.6575pt>
+File: ../plots/3/monthly_tweets.pdf Graphic file (type pdf)
+
+<use ../plots/3/monthly_tweets.pdf>
+Package pdftex.def Info: ../plots/3/monthly_tweets.pdf used on input line 347.
+(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
+
+Overfull \vbox (8.68602pt too high) detected at line 347
+ []
+
+[17
+
+ <../plots/3/monthly_tweets.pdf>] [18
+
+] [19
+
+]
+<../plots/4_1/searchK.pdf, id=260, 578.16pt x 443.6575pt>
+File: ../plots/4_1/searchK.pdf Graphic file (type pdf)
+
+<use ../plots/4_1/searchK.pdf>
+Package pdftex.def Info: ../plots/4_1/searchK.pdf used on input line 373.
+(pdftex.def)             Requested size: 173.44933pt x 133.09827pt.
+ [20
+
+ <../plots/4_1/searchK.pdf>]
+Overfull \vbox (2.01448pt too high) detected at line 414
+ []
+
+[21
+
+] <../plots/4_2/t1_wordcloud.pdf, id=287, 578.16pt x 443.6575pt>
+File: ../plots/4_2/t1_wordcloud.pdf Graphic file (type pdf)
+
+<use ../plots/4_2/t1_wordcloud.pdf>
+Package pdftex.def Info: ../plots/4_2/t1_wordcloud.pdf used on input line 427.
+(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
+
+Overfull \vbox (12.8559pt too high) detected at line 427
+ []
+
+[22
+
+ <../plots/4_2/t1_wordcloud.pdf>]
+<../plots/presentation/martin_hess_topic1.png, id=302, 399.29175pt x 454.69875p
+t>
+File: ../plots/presentation/martin_hess_topic1.png Graphic file (type png)
+ <use ../plots/presentation/martin_hess_topic1.png>
+Package pdftex.def Info: ../plots/presentation/martin_hess_topic1.png used on i
+nput line 439.
+(pdftex.def)             Requested size: 159.71387pt x 181.87627pt.
+
+Overfull \vbox (12.03484pt too high) detected at line 439
+ []
+
+[23
+
+ <../plots/presentation/martin_hess_topic1.png>] [24
+
+]
+<../plots/4_3/global_thetas.pdf, id=316, 578.16pt x 443.6575pt>
+File: ../plots/4_3/global_thetas.pdf Graphic file (type pdf)
+
+<use ../plots/4_3/global_thetas.pdf>
+Package pdftex.def Info: ../plots/4_3/global_thetas.pdf used on input line 482.
+
+(pdftex.def)             Requested size: 231.2599pt x 177.45984pt.
+ [25
+
+ <../plots/4_3/global_thetas.pdf>]
+<../plots/4_3/vocabulary_comparison.pdf, id=339, 578.16pt x 443.6575pt>
+File: ../plots/4_3/vocabulary_comparison.pdf Graphic file (type pdf)
+
+<use ../plots/4_3/vocabulary_comparison.pdf>
+Package pdftex.def Info: ../plots/4_3/vocabulary_comparison.pdf used on input l
+ine 501.
+(pdftex.def)             Requested size: 128.15614pt x 98.33606pt.
+
+<../plots/4_3/topic_correlations_map.pdf, id=340, 497.86pt x 382.42876pt>
+File: ../plots/4_3/topic_correlations_map.pdf Graphic file (type pdf)
+
+<use ../plots/4_3/topic_correlations_map.pdf>
+Package pdftex.def Info: ../plots/4_3/topic_correlations_map.pdf used on input 
+line 501.
+(pdftex.def)             Requested size: 128.15614pt x 98.44295pt.
+
+Overfull \hbox (77.96756pt too wide) in paragraph at lines 501--501
+ [] 
+ []
+
+[26
+
+ <../plots/4_3/vocabulary_comparison.pdf> <../plots/4_3/topic_correlations_map.
+pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/4_3/topic_correlati
+ons_map.pdf): PDF inclusion: multiple pdfs with page group included in a single
+ page
+>] [27
+
+] [28
+
+] [29
+
+] [30
+
+] [31
+
+]
+<../plots/presentation/estEffect_topic1.pdf, id=395, 497.86pt x 382.42876pt>
+File: ../plots/presentation/estEffect_topic1.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/estEffect_topic1.pdf>
+Package pdftex.def Info: ../plots/presentation/estEffect_topic1.pdf used on inp
+ut line 577.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+
+<../plots/presentation/estEffect_topic6.pdf, id=396, 497.86pt x 382.42876pt>
+File: ../plots/presentation/estEffect_topic6.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/estEffect_topic6.pdf>
+Package pdftex.def Info: ../plots/presentation/estEffect_topic6.pdf used on inp
+ut line 577.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+ [32
+
+ <../plots/presentation/estEffect_topic1.pdf> <../plots/presentation/estEffect_
+topic6.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/estEff
+ect_topic6.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
+>] <../plots/presentation/quasi_t6_cont.pdf, id=430, 497.86pt x 382.42876pt>
+File: ../plots/presentation/quasi_t6_cont.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/quasi_t6_cont.pdf>
+Package pdftex.def Info: ../plots/presentation/quasi_t6_cont.pdf used on input 
+line 595.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+
+<../plots/presentation/quasi_t6_cat.pdf, id=431, 497.86pt x 382.42876pt>
+File: ../plots/presentation/quasi_t6_cat.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/quasi_t6_cat.pdf>
+Package pdftex.def Info: ../plots/presentation/quasi_t6_cat.pdf used on input l
+ine 595.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+ [33
+
+ <../plots/presentation/quasi_t6_cont.pdf> <../plots/presentation/quasi_t6_cat.
+pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/quasi_
+t6_cat.pdf): PDF inclusion: multiple pdfs with page group included in a single 
+page
+>] [34
+
+] [35
+
+] [36
+
+]
+<../plots/presentation/stanbeta_t6_without_credible.pdf, id=484, 497.86pt x 382
+.42876pt>
+File: ../plots/presentation/stanbeta_t6_without_credible.pdf Graphic file (type
+ pdf)
+ <use ../plots/presentation/stanbeta_t6_without_credible.pdf>
+Package pdftex.def Info: ../plots/presentation/stanbeta_t6_without_credible.pdf
+ used on input line 643.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+
+<../plots/presentation/stanbeta_t6_with_credible.pdf, id=485, 497.86pt x 382.42
+876pt>
+File: ../plots/presentation/stanbeta_t6_with_credible.pdf Graphic file (type pd
+f)
+ <use ../plots/presentation/stanbeta_t6_with_credible.pdf>
+Package pdftex.def Info: ../plots/presentation/stanbeta_t6_with_credible.pdf us
+ed on input line 643.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+ [37
+
+ <../plots/presentation/stanbeta_t6_without_credible.pdf> <../plots/presentatio
+n/stanbeta_t6_with_credible.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/stanbe
+ta_t6_with_credible.pdf): PDF inclusion: multiple pdfs with page group included
+ in a single page
+>] [38
+
+] [39
+
+]
+<../plots/presentation/direct_t6_without_credible.pdf, id=532, 497.86pt x 382.4
+2876pt>
+File: ../plots/presentation/direct_t6_without_credible.pdf Graphic file (type p
+df)
+ <use ../plots/presentation/direct_t6_without_credible.pdf>
+Package pdftex.def Info: ../plots/presentation/direct_t6_without_credible.pdf u
+sed on input line 680.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+
+<../plots/presentation/direct_t6_with_credible.pdf, id=533, 497.86pt x 382.4287
+6pt>
+File: ../plots/presentation/direct_t6_with_credible.pdf Graphic file (type pdf)
+
+ <use ../plots/presentation/direct_t6_with_credible.pdf>
+Package pdftex.def Info: ../plots/presentation/direct_t6_with_credible.pdf used
+ on input line 680.
+(pdftex.def)             Requested size: 136.91603pt x 105.17114pt.
+ [40
+
+ <../plots/presentation/direct_t6_without_credible.pdf> <../plots/presentation/
+direct_t6_with_credible.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/direct
+_t6_with_credible.pdf): PDF inclusion: multiple pdfs with page group included i
+n a single page
+>] [41
+
+]
+<../plots/presentation/correlation_causality.png, id=574, 421.575pt x 326.21875
+pt>
+File: ../plots/presentation/correlation_causality.png Graphic file (type png)
+ <use ../plots/presentation/correlation_causality.png>
+Package pdftex.def Info: ../plots/presentation/correlation_causality.png used o
+n input line 690.
+(pdftex.def)             Requested size: 252.94695pt x 195.73274pt.
+
+Overfull \vbox (1.06213pt too high) detected at line 690
+ []
+
+[42
+
+ <../plots/presentation/correlation_causality.png (PNG copy)>] [43
+
+] [44
+
+]
+[45
+
+] [46
+
+]
+<../plots/presentation/climate_summit_props.pdf, id=607, 578.16pt x 433.62pt>
+File: ../plots/presentation/climate_summit_props.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/climate_summit_props.pdf>
+Package pdftex.def Info: ../plots/presentation/climate_summit_props.pdf used on
+ input line 758.
+(pdftex.def)             Requested size: 136.91603pt x 102.68146pt.
+
+<../plots/presentation/emancipation_props.pdf, id=608, 578.16pt x 433.62pt>
+File: ../plots/presentation/emancipation_props.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/emancipation_props.pdf>
+Package pdftex.def Info: ../plots/presentation/emancipation_props.pdf used on i
+nput line 758.
+(pdftex.def)             Requested size: 136.91603pt x 102.68146pt.
+ [47
+
+ <../plots/presentation/climate_summit_props.pdf> <../plots/presentation/emanci
+pation_props.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/emanci
+pation_props.pdf): PDF inclusion: multiple pdfs with page group included in a s
+ingle page
+>] [48
+
+]
+<../plots/presentation/climate_summit_ate.pdf, id=648, 512.91624pt x 359.3425pt
+>
+File: ../plots/presentation/climate_summit_ate.pdf Graphic file (type pdf)
+ <use ../plots/presentation/climate_summit_ate.pdf>
+Package pdftex.def Info: ../plots/presentation/climate_summit_ate.pdf used on i
+nput line 789.
+(pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
+
+<../plots/presentation/emancipation_ate.pdf, id=649, 512.91624pt x 359.3425pt>
+File: ../plots/presentation/emancipation_ate.pdf Graphic file (type pdf)
+
+<use ../plots/presentation/emancipation_ate.pdf>
+Package pdftex.def Info: ../plots/presentation/emancipation_ate.pdf used on inp
+ut line 789.
+(pdftex.def)             Requested size: 128.15614pt x 89.78604pt.
+ [49
+
+ <../plots/presentation/climate_summit_ate.pdf> <../plots/presentation/emancipa
+tion_ate.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../plots/presentation/emanci
+pation_ate.pdf): PDF inclusion: multiple pdfs with page group included in a sin
+gle page
+>] [50
+
+] [51
+
+] [52
+
+]
+./presentation_simon.tex:816: Undefined control sequence.
+<argument> ...babilit\'{e}s de Saint-Flour XIII\x 
+                                                  {fffd}\x {fffd}\x {fffd}1983
+l.816 \end{frame}
+                 
+? 
+./presentation_simon.tex:816: Emergency stop.
+<argument> ...babilit\'{e}s de Saint-Flour XIII\x 
+                                                  {fffd}\x {fffd}\x {fffd}1983
+l.816 \end{frame}
+                 
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 32764 strings out of 492995
+ 631103 string characters out of 6132704
+ 1030968 words of memory out of 5000000
+ 35636 multiletter control sequences out of 15000+600000
+ 32931 words of font info for 96 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 56i,17n,59p,10416b,1200s stack positions out of 5000i,500n,10000p,200000b,80000s
+./presentation_simon.tex:816:  ==> Fatal error occurred, no output PDF file pro
+duced!
