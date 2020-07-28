@@ -7,8 +7,15 @@ Created on Sun Apr 19 11:37:06 2020
 """
 
 import pandas as pd
+import os
 import pickle
 import tweepy_helpers as th
+
+# set up working directory
+os.path.abspath(os.getcwd()) # initial working directory (should be equal to source file directory if using Jupyter Notebook)
+os.chdir('../../data/web_scraping') # change to directory where all data files are stored
+# check working directory
+os.path.abspath(os.getcwd())
 
 # import Bundestag data
 with open('abg_df.pickle', 'rb') as handle:

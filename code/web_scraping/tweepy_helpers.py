@@ -36,8 +36,7 @@ def get_hashtags(x):
     hashtags_text = [x['text'] for x in hashtags_dict]
     return(hashtags_text)
     
-# function to download tweets for a specific user with:       
-## - Tweepy
+# function to download tweets for a specific user with Tweepy
 def download_tweets_tweepy(username):
     #initialize a list to hold all the tweepy Tweets
     alltweets = []
