@@ -22,26 +22,22 @@ if (length(not_installed) > 0) {
 }
 lapply(packages_required, library, character.only = TRUE)
 
-# set working directory
-# setwd('C:\\Users\\Simon\\OneDrive\\Uni\\LMU\\SS 2020\\Statistisches Consulting\\Bundestag-MP-Analyse')
-setwd("/Users/patrickschulze/Desktop/Consulting/Bundestag-MP-Analyse/code")
+# set working directory (to folder where this code file is saved)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # ----------------------------------------------------------------------------------------------
+
 # load data
-data <- readRDS("../data/preprocessed_monthly.rds")
-data_train <- readRDS("../data/preprocessed_monthly_train.rds")
-data_test <- readRDS("../data/preprocessed_monthly_test.rds")
-
-# data_corpus <- readRDS("../data/prep_monthly.rds")
-# data_aggregated <- readRDS("../data/preprocessed.rds") # MP-level (non-monthly) data
-
-K <- 15
+data <- readRDS("../data/topic_preprocessing/preprocessed_monthly.rds")
+data_train <- readRDS("../data/topic_preprocessing/preprocessed_monthly_train.rds")
+data_test <- readRDS("../data/topic_preprocessing/preprocessed_monthly_test.rds")
 
 # choose covariates and number of topics
 covar <- "Partei+ Bundesland + s(t, df = 5) + s(Struktur_4, df = 5) + 
   s(Struktur_22, df = 5) + s(Struktur_42, df = 5) + s(Struktur_54, df = 5)"
 outcome <- ""
 prevalence <- as.formula(paste(outcome, covar, sep = "~")) 
+K <- 15
 
 # ----------------------------------------------------------------------------------------------
 
@@ -57,15 +53,13 @@ prevalence <- as.formula(paste(outcome, covar, sep = "~"))
 #   max.em.its = 300,
 #   init.type = "Spectral"
 # )
-# saveRDS(mod_train, "../data/mod_monthly_train.rds")
+# saveRDS(mod_train, "../data/6_2/mod_monthly_train.rds")
 
-mod_train <- readRDS("../data/mod_monthly_train.rds")
+mod_train <- readRDS("../data/6_2/mod_monthly_train.rds")
 
 # ----------------------------------------------------------------------------------------------
 
-# label topics
-n <- 10
-topic_words_train <- labelTopics(mod_train, n = n)
+# label topics (according to labeling process; see R-file of section 4)
 
 topic_labels_train <- list(
   Topic1 = "Arms Industry/War",
@@ -85,7 +79,6 @@ topic_labels_train <- list(
   Topic15 = "Right/Nationalist 2"
 )
 
-# 12, 9, 13, 15, 1, 6, 8, 10, 2, 14
 # ----------------------------------------------------------------------------------------------
 
 # align corpus
@@ -96,7 +89,6 @@ data_test <- stm::alignCorpus(new = data_test, old.vocab = mod_train$vocab, verb
 test_none <- stm::fitNewDocuments(
   model = mod_train, 
   documents = data_test$documents, 
-  # newData = data_test$meta,
   origData = data_train$meta,
   prevalence = prevalence,
   prevalencePrior = "None",
@@ -112,7 +104,6 @@ test_none <- stm::fitNewDocuments(
 test_avg <- stm::fitNewDocuments(
   model = mod_train, 
   documents = data_test$documents, 
-  # newData = data_test$meta,
   origData = data_train$meta,
   prevalence = prevalence,
   prevalencePrior = "Average",
@@ -123,8 +114,9 @@ test_avg <- stm::fitNewDocuments(
   verbose = TRUE
 )
 
-# comparison plots training vs test data
-## prepare dataframes
+# ----------------------------------------------------------------------------------------------
+
+# prepare general dataframes for different data sets
 topic_props_train <- make.dt(
   mod_train, data_train$meta[c("Partei", "Bundesland", "Datum", "t", 
                                "Struktur_4", "Struktur_22", "Struktur_42", "Struktur_54")]
@@ -141,8 +133,10 @@ topic_props_test_avg <- make.dt(
 )
 
 # ----------------------------------------------------------------------------------------------
+# Now, create plots for UN Climate Summit
 
-# filter for AfD and green party 
+# filter topic proportions and covariates 
+# for time t = 13 and t = 25 (Sep 2018 and Sep 2019 respectively) 
 climate_train <- topic_props_train[(t==13) | (t==25)]
 climate_train$t <- as.factor(climate_train$t)
 climate_train$set <- "Training Set"
@@ -154,6 +148,8 @@ climate_test_avg$t <- as.factor(climate_test_avg$t)
 climate_test_avg$set <- "Test Set, Average Prior"
 climate_all <- rbind(climate_train, climate_test_none, climate_test_avg)
 
+# create data frame containing mean and credible intervals 
+# of topic proportion predictions on respective data set (train/test) with prior none/avg
 climate_effects <- data.frame(t = rep(c(13,25), each = 3), 
                               set = rep(c("Training Set", "Test Set, No Prior", "Test Set, Average Prior"),2))
 climate_effects$mean[1] <- mean(climate_train[t == climate_effects$t[1], Topic9])
@@ -216,8 +212,10 @@ ggplot(climate_ATE_df, aes(set, ATE)) +
 # ----------------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------------
+# Finally, create plots for topic 'Emancipation'
 
-# filter for AfD and green party 
+# filter topic proportions and covariates 
+# for AfD and Green Party
 emancipation_train <- topic_props_train[(Partei == "AfD") | (Partei == "B체ndnis 90/Die Gr체nen")]
 emancipation_train$set <- "Training Set"
 emancipation_test_none <- topic_props_test_none[(Partei == "AfD") | (Partei == "B체ndnis 90/Die Gr체nen")]
@@ -226,6 +224,8 @@ emancipation_test_avg <- topic_props_test_avg[(Partei == "AfD") | (Partei == "B�
 emancipation_test_avg$set <- "Test Set, Average Prior"
 emancipation_all <- rbind(emancipation_train, emancipation_test_none, emancipation_test_avg)
 
+# again, create data frame containing mean and credible intervals 
+# of topic proportion predictions on respective data set (train/test) with prior none/avg
 emancipation_effects <- data.frame(Partei = rep(c("AfD","B체ndnis 90/Die Gr체nen"), each = 3), 
                               set = rep(c("Training Set", "Test Set, No Prior", "Test Set, Average Prior"),2))
 emancipation_effects$mean[1] <- mean(emancipation_train[Partei == emancipation_effects$Partei[1], Topic12])
