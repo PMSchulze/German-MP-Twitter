@@ -31,16 +31,10 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # file <- "prep"
 # file <- "prep_train"
 # file <- "prep_test"
-# file <- "prep_cdu"
-# file <- "prep_cdu_train"
-# file <- "prep_cdu_test"
 
 # file <- "prep_monthly"
 file <- "prep_monthly_train"
 # file <- "prep_monthly_test"
-# file <- "prep_cdu_monthly"
-# file <- "prep_cdu_monthly_train"
-# file <- "prep_cdu_monthly_test"
 
 filepath <- paste0("../data/topic_preparation/", file, ".rds")
 data <- readRDS(filepath)

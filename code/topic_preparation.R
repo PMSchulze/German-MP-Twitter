@@ -192,17 +192,9 @@ colnames(alldata_user_monthly) <- colnames_user_monthly[["newnames"]]
 write.csv(colnames_user, file = "../data/topic_preparation/topic_colnames.csv")
 write.csv(colnames_user_monthly, file = "../data/topic_preparation/topic_monthly_colnames.csv")
 
-# # extract party-specific dataset
-# alldata_cdu_user <- alldata_user %>% 
-#   filter(Partei == "CDU/CSU")
-# alldata_cdu_user_monthly <- alldata_user_monthly %>% 
-#   filter(Partei == "CDU/CSU")
-
 # save
 saveRDS(alldata_user, "../data/topic_preparation/prep.rds")
 saveRDS(alldata_user_monthly, "../data/topic_preparation/prep_monthly.rds")
-# saveRDS(alldata_cdu_user, "../data/topic_preparation/prep_cdu.rds")
-# saveRDS(alldata_cdu_user_monthly, "../data/topic_preparation/prep_cdu_monthly.rds")
 
 # reload and split into train and test set (50-50 split)
 
@@ -223,24 +215,3 @@ alldata_user_monthly_train <- alldata_user_monthly[idx_train,]
 alldata_user_monthly_test <- alldata_user_monthly[-idx_train,]
 saveRDS(alldata_user_monthly_train, "../data/topic_preparation/prep_monthly_train.rds")
 saveRDS(alldata_user_monthly_test, "../data/topic_preparation/prep_monthly_test.rds")
-
-# # Likewise for CDU data
-# set.seed(123)
-# alldata_cdu_user <- readRDS("../data/topic_preparation/prep_cdu.rds")
-# p <- 0.5
-# idx_train <- sample(1:nrow(alldata_cdu_user), p*nrow(alldata_cdu_user))
-# alldata_cdu_user_train <- alldata_cdu_user[idx_train,]
-# alldata_cdu_user_test <- alldata_cdu_user[-idx_train,]
-# saveRDS(alldata_cdu_user_train, "../data/topic_preparation/prep_cdu_train.rds")
-# saveRDS(alldata_cdu_user_test, "../data/topic_preparation/prep_cdu_test.rds")
-
-# set.seed(123)
-# alldata_cdu_user_monthly <- readRDS("../data/topic_preparation/prep_cdu_monthly.rds")
-# p <- 0.5
-# idx_train <- sample(1:nrow(alldata_cdu_user_monthly), p*nrow(alldata_cdu_user_monthly))
-# alldata_cdu_user_monthly_train <- alldata_cdu_user_monthly[idx_train,]
-# alldata_cdu_user_monthly_test <- alldata_cdu_user_monthly[-idx_train,]
-# saveRDS(alldata_cdu_user_monthly_train, "../data/topic_preparation/prep_cdu_monthly_train.rds")
-# saveRDS(alldata_cdu_user_monthly_test, "../data/topic_preparation/prep_cdu_monthly_test.rds")
-
-
