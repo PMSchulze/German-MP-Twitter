@@ -28,4 +28,5 @@ vignettes/*.pdf
 .Renviron
 Bundestag-MP-Analyse.Rproj
 
-/data
+data/
+__pycache__/
